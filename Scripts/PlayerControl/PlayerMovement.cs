@@ -70,8 +70,6 @@ public class PlayerMovement : KinematicBody2D
 			character.Scale = scale;
 		}
 		
-		//Test
-		
 		motion.x = Mathf.Clamp(motion.x, -MAXSPEED, MAXSPEED);
 		
 		if (IsOnFloor() && Input.IsActionPressed("Jump"))
