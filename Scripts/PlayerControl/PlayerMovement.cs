@@ -4,7 +4,12 @@ using System;
 public class PlayerMovement : KinematicBody2D
 {
 	//Existential variable
-	public bool active = true;
+	private bool active;
+	public bool Active
+	{
+		get {return active;}
+		set {active = value;}
+	}
 	
 	//Movement variables
 	private const float ACCEL = 90;
