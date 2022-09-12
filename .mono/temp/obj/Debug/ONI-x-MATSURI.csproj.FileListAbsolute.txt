@@ -1,0 +1,8 @@
+D:\GodotProjects\ONI-x-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.csprojAssemblyReference.cache
+D:\GodotProjects\ONI-x-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.AssemblyInfoInputs.cache
+D:\GodotProjects\ONI-x-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.AssemblyInfo.cs
+D:\GodotProjects\ONI-x-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.csproj.CoreCompileInputs.cache
+D:\GodotProjects\ONI-x-MATSURI\.mono\temp\bin\Debug\ONI-x-MATSURI.dll
+D:\GodotProjects\ONI-x-MATSURI\.mono\temp\bin\Debug\ONI-x-MATSURI.pdb
+D:\GodotProjects\ONI-x-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.dll
+D:\GodotProjects\ONI-x-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.pdb
