@@ -33,11 +33,16 @@ public class PlayerMovement : KinematicBody2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		active = true;
 		character = (Sprite)GetNode("Sprite");
 	}
 
 	public override void _PhysicsProcess(float delta)
 	{
+		//Allows other codes to deactivate player movement easily
+		if(!active)
+			return;
+		
 		if(motion.y < MAXFALLSPEED)
 			motion.y += GRAVITY;
 		
