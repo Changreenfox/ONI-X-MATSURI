@@ -17,13 +17,6 @@ config/icon="res://Assets/icon.png"
 [autoload]
 
 PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
-IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
-UserData="*res://addons/github-integration/scripts/user_data.gd"
-RestHandler="*res://addons/github-integration/scripts/RestHandler.gd"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "res://addons/github-integration/plugin.cfg" )
 
 [gui]
 
