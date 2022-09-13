@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/sprites/player/player_idle_R_1.png" type="Texture" id=1]
 [ext_resource path="res://assets/tiles/ground_tile.png" type="Texture" id=2]
-[ext_resource path="res://Scripts/PlayerControl/PlayerMovement.cs" type="Script" id=3]
+[ext_resource path="res://Scripts/Actors/Player/PlayerMovement.cs" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 46.0
@@ -16,6 +16,7 @@ extents = Vector2( 107, 92.5 )
 [node name="Player" type="KinematicBody2D" parent="."]
 position = Vector2( -1, 1 )
 scale = Vector2( 0.6, 0.6 )
+collision_mask = 15
 script = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="Player"]
@@ -37,6 +38,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite2"]
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2/StaticBody2D"]
 position = Vector2( 0, -0.5 )
@@ -51,6 +54,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite3"]
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite3/StaticBody2D"]
 position = Vector2( 0, -0.5 )
@@ -65,6 +70,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite4"]
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite4/StaticBody2D"]
 position = Vector2( 0, -0.5 )
@@ -79,6 +86,8 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Sprite5"]
+collision_layer = 8
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite5/StaticBody2D"]
 position = Vector2( 0, -0.5 )

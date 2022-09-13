@@ -1,44 +1,36 @@
 using Godot;
 using System;
 
-public class PlayerMovement : KinematicBody2D
+public class PlayerMovement : Actor
 {
 	//Existential variable
-	private bool active;
-	public bool Active
-	{
-		get {return active;}
-		set {active = value;}
-	}
+	protected bool active = true;
 	
 	//Movement variables
-	private const float ACCEL = 90;
-	private const float MAXSPEED = 600;
+	protected const float ACCEL = 90;
+	protected const float MAXSPEED = 600;
 	
 	//Jumping variables
-	private const float GRAVITY = 40;
-	private const float JUMPSPEED = 1000;
-	private const float MAXFALLSPEED = 5000;
-	
-	//Floor Normal... says a floor is anything with a normal angle of ^
-	private Vector2 UP = new Vector2(0, -1);
+	protected const float JUMPSPEED = 1000;
+	protected const float MAXFALLSPEED = 5000;
 	
 	//Dynamic Variable Declaration
-	private Vector2 motion = new Vector2(0, 0);
-	private Sprite character;
+	protected Vector2 motion = new Vector2(0, 0);
 	
 	//Animation Variables
-	private bool facingRight = true;
+	protected bool facingRight = true;
 	
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		active = true;
-		character = (Sprite)GetNode("Sprite");
-	}
+	//public override void _Ready()
+	//{
+		//Assigns the sprite for every actor
+		//base._Ready();
+	//}
 
 	public override void _PhysicsProcess(float delta)
 	{
+		//GD.Print(hp);
+		
 		//Allows other codes to deactivate player movement easily
 		if(!active)
 			return;
@@ -46,24 +38,24 @@ public class PlayerMovement : KinematicBody2D
 		if(motion.y < MAXFALLSPEED)
 			motion.y += GRAVITY;
 		
-		bool goRight = Input.IsActionPressed("MoveRight");
-		bool goLeft = Input.IsActionPressed("MoveLeft");
+		float goRight = Input.GetActionStrength("MoveRight");
+		float goLeft = Input.GetActionStrength("MoveLeft");
 		
-		if (goRight)
+		if (goRight > 0)
 		{
-			motion.x += ACCEL;
-			if(!goLeft)
+			motion.x += ACCEL * (goRight - goLeft);
+			if(goLeft <= 0)
 				facingRight = true;
 		}
 				
-		if (goLeft)
+		if (goLeft > 0)
 		{
-			motion.x -= ACCEL;
-			if(!goRight)
+			motion.x -= ACCEL * (goLeft - goRight);
+			if(goRight <= 0)
 				facingRight = false;
 		}
 		
-		if(!goRight && !goLeft)
+		if(goRight <= 0 && goLeft <= 0)
 			motion.x = Mathf.Lerp(motion.x, 0, 0.15f);
 			
 		if (facingRight)
@@ -82,8 +74,9 @@ public class PlayerMovement : KinematicBody2D
 		
 		motion.x = Mathf.Clamp(motion.x, -MAXSPEED, MAXSPEED);
 		
-		if (IsOnFloor() && Input.IsActionPressed("Jump"))
-			motion.y = -JUMPSPEED;
+		float jump = Input.GetActionStrength("Jump");
+		if (IsOnFloor() && jump > 0)
+			motion.y = -JUMPSPEED * jump;
 		
 		motion = MoveAndSlide(motion, UP);
 	}
