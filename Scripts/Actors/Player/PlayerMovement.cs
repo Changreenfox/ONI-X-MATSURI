@@ -4,21 +4,27 @@ using System;
 public class PlayerMovement : Actor
 {
 	//Existential variable
+	[Export]
 	protected bool active = true;
 	
 	//Movement variables
-	protected const float ACCEL = 90;
-	protected const float MAXSPEED = 600;
+	[Export]
+	protected float ACCEL = 90;
+	[Export]
+	protected float MAXSPEED = 600;
 	
 	//Jumping variables
-	protected const float JUMPSPEED = 1000;
-	protected const float MAXFALLSPEED = 5000;
+	[Export]
+	protected float JUMPSPEED = 1000;
+	[Export]
+	protected float MAXFALLSPEED = 5000;
 	
 	//Dynamic Variable Declaration
+	[Export]
 	protected Vector2 motion = new Vector2(0, 0);
 	
 	//Animation Variables
-	protected bool facingRight = true;
+
 	
 	// Called when the node enters the scene tree for the first time.
 	//public override void _Ready()

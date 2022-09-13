@@ -7,18 +7,26 @@ public class Actor : KinematicBody2D
 {
 
 	//Actor Variables
-	protected int hp;
+	[Export]
+	protected int hp = 3;
 	
 	//Common Functionality
 	
 	//Every Actor has a sprite
+	[Export]
 	protected Sprite character;
 	
 	//Every Actor has access to gravity
-	protected const float GRAVITY = 40;
+	[Export]
+	protected float GRAVITY = 40;
 	
 	//Floor Normal... says a floor is anything with a normal angle of ^
+	[Export]
 	protected Vector2 UP = new Vector2(0, -1);
+	
+	//Every Actor can face left or right
+	[Export]
+	protected bool facingRight = true;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
