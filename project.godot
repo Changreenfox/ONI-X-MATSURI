@@ -46,6 +46,8 @@ Jump={
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Power-ups"
 2d_physics/layer_4="World"
+2d_physics/layer_5="PlayerAttack"
+2d_physics/layer_6="EnemyAttack"
 
 [physics]
 

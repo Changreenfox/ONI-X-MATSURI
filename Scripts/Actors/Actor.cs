@@ -6,27 +6,31 @@ using System;
 public class Actor : KinematicBody2D
 {
 
-	//Actor Variables
+	// Actor Variables
 	[Export]
 	protected int hp = 3;
 	
-	//Common Functionality
+	// Common Functionality
 	
-	//Every Actor has a sprite
+	// Every Actor has a sprite
 	[Export]
 	protected Sprite character;
 	
-	//Every Actor has access to gravity
+	// Every Actor has access to gravity
 	[Export]
 	protected float GRAVITY = 40;
 	
-	//Floor Normal... says a floor is anything with a normal angle of ^
+	// Floor Normal... says a floor is anything with a normal angle of ^
 	[Export]
 	protected Vector2 UP = new Vector2(0, -1);
 	
-	//Every Actor can face left or right
+	// Every Actor can face left or right
 	[Export]
 	protected bool facingRight = true;
+	
+	//Every Actor has a list of attacks
+	[Export]
+	public BasicAttack[] attacks;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -36,7 +40,14 @@ public class Actor : KinematicBody2D
 		character = (Sprite)GetNode("Sprite");
 	}
 
-
+	// Returns true if the actor survives and false if the actor dies
+	public bool TakeDamage(int damage)
+	{
+		hp -= damage;
+		if (hp <= 0)
+			return false;
+		return true;
+	}
 	
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
