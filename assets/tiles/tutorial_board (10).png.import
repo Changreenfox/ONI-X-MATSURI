@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/tutorial_board (10).png-1c1d4f444b4e487a4872f9d4e7456daa.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://assets/tiles/tutorial_board (10).png"
+dest_files=[ "res://.import/tutorial_board (10).png-1c1d4f444b4e487a4872f9d4e7456daa.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0
