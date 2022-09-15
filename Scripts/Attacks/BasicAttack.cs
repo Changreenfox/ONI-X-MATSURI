@@ -10,17 +10,17 @@ public class BasicAttack:Area2D
 	
 	private CollisionPolygon2D range;
 	
-	public override void Ready()
+	public override void _Ready()
 	{
 		range = (CollisionPolygon2D)GetNode("Range");
-		range.Disable = true;
+		range.Disabled = true;
 	}
 	
 	public void Attack()
 	{
-		range.Disable = false;
+		range.Disabled = false;
 		//Check if the attached collider is colliding with anything
 		GD.Print("Attack");
-		range.Disable = true;
+		range.Disabled = true;
 	}
 }

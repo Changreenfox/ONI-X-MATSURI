@@ -38,15 +38,19 @@ public class Actor : KinematicBody2D
 		//So long as any children call base._Ready() if overriden, all sprites
 		//will be found dynamically 
 		character = (Sprite)GetNode("Sprite");
+		
+		foreach (Node node in GetChildren())
+		{
+			if(node is BasicAttack)
+				GD.Print(node.Name);
+		}
 	}
 
 	// Returns true if the actor survives and false if the actor dies
 	public bool TakeDamage(int damage)
 	{
 		hp -= damage;
-		if (hp <= 0)
-			return false;
-		return true;
+		return hp <= 0;
 	}
 	
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
