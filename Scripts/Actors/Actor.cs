@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 // The base for the player and enemies
 // Contains base functionality for HP, attacking, and taking damage
@@ -30,7 +31,7 @@ public class Actor : KinematicBody2D
 	
 	//Every Actor has a list of attacks
 	[Export]
-	public BasicAttack[] attacks;
+	public List<BasicAttack> attacks = new List<BasicAttack>();
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -42,7 +43,10 @@ public class Actor : KinematicBody2D
 		foreach (Node node in GetChildren())
 		{
 			if(node is BasicAttack)
+			{
 				GD.Print(node.Name);
+				attacks.Add((BasicAttack)node);
+			}
 		}
 	}
 
@@ -50,6 +54,7 @@ public class Actor : KinematicBody2D
 	public bool TakeDamage(int damage)
 	{
 		hp -= damage;
+		GD.Print(hp);
 		return hp <= 0;
 	}
 	

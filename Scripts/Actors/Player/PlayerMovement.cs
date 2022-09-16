@@ -35,17 +35,19 @@ public class PlayerMovement : Actor
 
 	public override void _PhysicsProcess(float delta)
 	{
-		//GD.Print(hp);
 		
 		//Allows other codes to deactivate player movement easily
 		if(!active)
 			return;
 		
-		if(motion.y < MAXFALLSPEED)
-			motion.y += GRAVITY;
-		
+		//Gather inputs
 		float goRight = Input.GetActionStrength("MoveRight");
 		float goLeft = Input.GetActionStrength("MoveLeft");
+		float jump = Input.GetActionStrength("Jump");
+		bool attacking = Input.IsActionPressed("Attack");
+
+		if(motion.y < MAXFALLSPEED)
+			motion.y += GRAVITY;
 		
 		if (goRight > 0)
 		{
@@ -80,12 +82,30 @@ public class PlayerMovement : Actor
 		
 		motion.x = Mathf.Clamp(motion.x, -MAXSPEED, MAXSPEED);
 		
-		float jump = Input.GetActionStrength("Jump");
-		if (IsOnFloor() && jump > 0)
-			motion.y = -JUMPSPEED * jump;
-		
+		if (IsOnFloor())
+		{
+			if (attacking)
+				Attack();
+			if (jump > 0)
+				motion.y = -JUMPSPEED * jump;
+		}
+		else
+			if (attacking)
+				JumpAttack();
+				
 		motion = MoveAndSlide(motion, UP);
 	}
+
+	public void Attack()
+	{
+		attacks[0].Attack();
+	}
+
+	public void JumpAttack()
+	{
+		attacks[1].Attack();
+	}
+
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
