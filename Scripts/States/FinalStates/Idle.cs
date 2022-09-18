@@ -16,6 +16,7 @@ public class Idle : OnGround
 
     public override string HandlePhysics(float delta)
     {
+        //temp could be jump. What should we do?
         string temp = base.HandlePhysics(delta);
         if(-0.01 > velocity.x || velocity.x > 0.01)
             return "Walk";
