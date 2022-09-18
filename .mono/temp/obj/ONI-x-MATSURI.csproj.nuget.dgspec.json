@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GodotProjects\\ONI-x-MATSURI\\ONI-x-MATSURI.csproj": {}
+    "F:\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj": {}
   },
   "projects": {
-    "D:\\GodotProjects\\ONI-x-MATSURI\\ONI-x-MATSURI.csproj": {
+    "F:\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GodotProjects\\ONI-x-MATSURI\\ONI-x-MATSURI.csproj",
+        "projectUniqueName": "F:\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj",
         "projectName": "ONI-x-MATSURI",
-        "projectPath": "D:\\GodotProjects\\ONI-x-MATSURI\\ONI-x-MATSURI.csproj",
-        "packagesPath": "C:\\Users\\Chandler Fox\\.nuget\\packages\\",
-        "outputPath": "D:\\GodotProjects\\ONI-x-MATSURI\\.mono\\temp\\obj\\",
+        "projectPath": "F:\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj",
+        "packagesPath": "C:\\Users\\RicardoCN\\.nuget\\packages\\",
+        "outputPath": "F:\\GitHub\\ONI-X-MATSURI\\.mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Chandler Fox\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\RicardoCN\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -39,7 +39,7 @@
       "frameworks": {
         "net472": {
           "targetAlias": "net472",
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
         }
       }
     }

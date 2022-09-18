@@ -6,3 +6,12 @@ D:\GodotProjects\ONI-x-MATSURI\.mono\temp\bin\Debug\ONI-x-MATSURI.dll
 D:\GodotProjects\ONI-x-MATSURI\.mono\temp\bin\Debug\ONI-x-MATSURI.pdb
 D:\GodotProjects\ONI-x-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.dll
 D:\GodotProjects\ONI-x-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.pdb
+F:\GitHub\ONI-X-MATSURI\.mono\temp\bin\Debug\ONI-x-MATSURI.dll
+F:\GitHub\ONI-X-MATSURI\.mono\temp\bin\Debug\ONI-x-MATSURI.pdb
+F:\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.csproj.AssemblyReference.cache
+F:\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.GeneratedMSBuildEditorConfig.editorconfig
+F:\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.AssemblyInfoInputs.cache
+F:\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.AssemblyInfo.cs
+F:\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.csproj.CoreCompileInputs.cache
+F:\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.dll
+F:\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.pdb

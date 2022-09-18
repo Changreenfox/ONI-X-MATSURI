@@ -3,6 +3,9 @@ using System;
 
 public class PlayerMovement : Actor
 {
+	[Signal]
+	delegate void PlaySoundSignal(string entityName, string soundName);
+	
 	//Existential variable
 	[Export]
 	protected bool active = true;
@@ -86,6 +89,8 @@ public class PlayerMovement : Actor
 		{
 			if (attacking)
 				Attack();
+				//EmitSignal(nameof(PlaySoundSignal), "player", "attack");
+				//Game starts with attacking = true
 			if (jump > 0)
 				motion.y = -JUMPSPEED * jump;
 		}
