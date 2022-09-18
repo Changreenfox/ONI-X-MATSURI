@@ -78,14 +78,12 @@ public class SoundManager : Node
 	
 	public void PlaySound(string entityName, string soundName) 
 	{
-		GD.Print("Played sound " + soundName);
-		/*AudioStreamPlayer soundEffect = new AudioStreamPlayer();
-		AudioStreamPlayer.SetStream(preloadedSounds[entityName][soundName]);
-		AudioStreamPlayer.Play();
-		AudioStream sound = ResourceLoader.Load<AudioStream>(SOUND_PATH + "player/player_attack_16bit.wav");
+		GD.Print("Played sound: " + soundName);
 		AudioStreamPlayer soundPlayer = new AudioStreamPlayer();
-		soundPlayer.Stream = sound;
-		soundPlayer.Play();*/
+		soundPlayer.Stream = preloadedSounds["player"]["attack"];
+		this.AddChild(soundPlayer);
+		soundPlayer.Connect("finished", this, nameof(_on_AudioStreamPlayer_finished));
+		soundPlayer.Play();
 	}
 	
 	// Called when the node enters the scene tree for the first time.
@@ -105,6 +103,11 @@ public class SoundManager : Node
 			}
 		};
 		GetNode<Node>("/root/World/Player").Connect("PlaySoundSignal", this, nameof(PlaySound));
+	}
+	
+	private void _on_AudioStreamPlayer_finished()
+	{
+		QueueFree();
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

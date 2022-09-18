@@ -79,3 +79,5 @@ shape = SubResource( 2 )
 [node name="OgreBrute" parent="." instance=ExtResource( 3 )]
 position = Vector2( 280, -16 )
 collision_mask = 24
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
