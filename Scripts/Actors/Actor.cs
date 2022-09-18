@@ -16,6 +16,11 @@ public abstract class Actor : KinematicBody2D
 	// Velocity & Direction values
 	[Export]
 	protected Vector2 velocity = new Vector2(0, 0);
+	public Vector2 Velocity
+	{
+		get { return velocity; }
+		set { velocity = value; }
+	}
 	[Export]
 	protected Vector2 direction = new Vector2(0, 0);
 	public Vector2 Direction
@@ -89,12 +94,9 @@ public abstract class Actor : KinematicBody2D
 	//Will be called in the states, allowing the player to play specific animations
     public void PlayAnimation(string name)
     {
-		Vector2 scale = character.Scale;
-		if(facingRight)
-			scale.x = 1;
-		else
-			scale.x = -1;
-		character.Scale = scale;
+		//Vector2 scale = character.Scale;
+		
+		//character.Scale = scale;
     }
 	
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

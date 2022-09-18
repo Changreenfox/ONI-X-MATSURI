@@ -53,7 +53,6 @@ public abstract class Motion : State
         float goRight = Input.GetActionStrength("MoveRight");
 		float goLeft = Input.GetActionStrength("MoveLeft");
         float jump = Input.GetActionStrength("Jump");
-        host.FacingRight = goRight >= goLeft;
         direction = new Vector2(goRight - goLeft, jump);
         host.Direction = direction;
     }

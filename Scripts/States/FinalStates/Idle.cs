@@ -10,7 +10,9 @@ public class Idle : OnGround
     
     public override void Enter()
     {
+        velocity = host.Velocity;
         velocity.x = 0;
+        host.Velocity = velocity;
         host.PlayAnimation("Idle");
     }
 

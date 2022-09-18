@@ -48,6 +48,23 @@ public class Player : Actor
         if(!active)
             return;
         state.HandleProcess(delta);
+
+        Vector2 scale = character.Scale;
+        facingRight = velocity.x >= 0;
+		if(facingRight)
+        {
+			scale.x = 1;
+            foreach (Node2D node in attacks)
+                node.Scale = scale;
+            
+        }
+		else
+        {
+			scale.x = -1;
+            foreach (Node2D node in attacks)
+                node.Scale = scale;
+        }
+		character.Scale = scale;
     }
 
     public void ChangeState(string name)
