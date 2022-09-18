@@ -21,6 +21,9 @@ public class PlayerMovement : Actor
 	protected float JUMPSPEED = 1000;
 	[Export]
 	protected float MAXFALLSPEED = 5000;
+
+	protected float GRAVITY = 40;
+	// protected Vector2 UP = new Vector2(0, -1);
 	
 	//Dynamic Variable Declaration
 	[Export]
