@@ -29,7 +29,7 @@ public abstract class Actor : KinematicBody2D
 		set { direction = value; }
 	}
 
-    // Floor Normal... says a floor is anything with a normal angle of ^
+	// Floor Normal... says a floor is anything with a normal angle of ^
 	protected Vector2 UP = new Vector2(0, -1);
 	
 	// Every Actor has a sprite
@@ -40,10 +40,10 @@ public abstract class Actor : KinematicBody2D
 	[Export]
 	protected bool facingRight = true;
 	public bool FacingRight
-    {
-        get{ return facingRight; }
-        set{ facingRight = value; }
-    }
+	{
+		get{ return facingRight; }
+		set{ facingRight = value; }
+	}
 	
 	//Every Actor has a list of attacks
 	[Export]
@@ -67,15 +67,15 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	public Vector2 GetVelocity()
-    {
-        return velocity;
-    }
-
-    public Vector2 Move(Vector2 newVelocity)
-    {
-        velocity = MoveAndSlide(newVelocity, UP);
+	{
 		return velocity;
-    }
+	}
+
+	public Vector2 Move(Vector2 newVelocity)
+	{
+		velocity = MoveAndSlide(newVelocity, UP);
+		return velocity;
+	}
 
 	// Returns true if the actor survives and false if the actor dies
 	public bool TakeDamage(int damage)
@@ -86,18 +86,18 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	// Handle the Attack here
-    public void Attack(int selection)
-    {
-        attacks[selection].Attack();
-    }
+	public void Attack(int selection)
+	{
+		attacks[selection].Attack();
+	}
 
 	//Will be called in the states, allowing the player to play specific animations
-    public void PlayAnimation(string name)
-    {
+	public void PlayAnimation(string name)
+	{
 		//Vector2 scale = character.Scale;
 		
 		//character.Scale = scale;
-    }
+	}
 	
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
