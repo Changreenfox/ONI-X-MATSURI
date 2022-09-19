@@ -15,3 +15,12 @@ F:\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.AssemblyInfo.cs
 F:\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.csproj.CoreCompileInputs.cache
 F:\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.dll
 F:\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.pdb
+C:\Users\rache\Documents\GitHub\ONI-X-MATSURI\.mono\temp\bin\Debug\ONI-x-MATSURI.dll
+C:\Users\rache\Documents\GitHub\ONI-X-MATSURI\.mono\temp\bin\Debug\ONI-x-MATSURI.pdb
+C:\Users\rache\Documents\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.csproj.AssemblyReference.cache
+C:\Users\rache\Documents\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\rache\Documents\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.AssemblyInfoInputs.cache
+C:\Users\rache\Documents\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.AssemblyInfo.cs
+C:\Users\rache\Documents\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.csproj.CoreCompileInputs.cache
+C:\Users\rache\Documents\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.dll
+C:\Users\rache\Documents\GitHub\ONI-X-MATSURI\.mono\temp\obj\Debug\ONI-x-MATSURI.pdb

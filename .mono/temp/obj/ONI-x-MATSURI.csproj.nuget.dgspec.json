@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "F:\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj": {}
+    "C:\\Users\\rache\\Documents\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj": {}
   },
   "projects": {
-    "F:\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj": {
+    "C:\\Users\\rache\\Documents\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj",
+        "projectUniqueName": "C:\\Users\\rache\\Documents\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj",
         "projectName": "ONI-x-MATSURI",
-        "projectPath": "F:\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj",
-        "packagesPath": "C:\\Users\\RicardoCN\\.nuget\\packages\\",
-        "outputPath": "F:\\GitHub\\ONI-X-MATSURI\\.mono\\temp\\obj\\",
+        "projectPath": "C:\\Users\\rache\\Documents\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj",
+        "packagesPath": "C:\\Users\\rache\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rache\\Documents\\GitHub\\ONI-X-MATSURI\\.mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\RicardoCN\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\rache\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net472"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,7 +37,15 @@
       "frameworks": {
         "net472": {
           "targetAlias": "net472",
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
+          "dependencies": {
+            "Microsoft.NETFramework.ReferenceAssemblies": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[1.0.2, )",
+              "autoReferenced": true
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }
