@@ -7,7 +7,7 @@ public class Idle : OnGround
     {
         host = _host;
     }
-    
+
     public override void Enter()
     {
         base.Enter();

@@ -6,10 +6,6 @@ public class PlayerMovement : Actor
 	[Signal]
 	delegate void PlaySoundSignal(string entityName, string soundName);
 	
-	//Existential variable
-	[Export]
-	protected bool active = true;
-	
 	//Movement variables
 	[Export]
 	protected float ACCEL = 90;

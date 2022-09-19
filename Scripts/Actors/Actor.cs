@@ -6,12 +6,24 @@ using System.Collections.Generic;
 // Contains base functionality for HP, attacking, and taking damage
 public abstract class Actor : KinematicBody2D
 {
-
+	/*=============================================================== Members =======================================================*/
 	// Actor Variables
 	[Export]
 	protected int hp = 3;
+	public int HP
+	{
+		get{ return hp; }
+		set{ hp = value; }
+	}
 	
 	// Common Functionality
+
+	protected bool active = true;
+	public bool Active
+	{
+		get{ return active;}
+		set{ active = value;}
+	}
 
 	// Velocity & Direction values
 	[Export]
@@ -48,6 +60,13 @@ public abstract class Actor : KinematicBody2D
 	//Every Actor has a list of attacks
 	[Export]
 	public List<BasicAttack> attacks = new List<BasicAttack>();
+
+
+	//FSM variables
+	protected State state;
+	protected StateContainer container = new StateContainer();
+
+	/*=============================================================== Methods =======================================================*/
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -66,6 +85,41 @@ public abstract class Actor : KinematicBody2D
 		}
 	}
 
+	public override void _PhysicsProcess(float delta)
+    {
+        if(!active)
+            return;
+        string name = state.HandlePhysics(delta);
+        if(name != null)
+            ChangeState(name);
+        
+        Vector2 scale = character.Scale;
+        
+		if(facingRight)
+			scale.x = 1;
+		else
+			scale.x = -1;
+
+        foreach (Node2D node in attacks)
+                node.Scale = scale;
+		character.Scale = scale;
+    }
+
+	public override void _Process(float delta)
+    {
+        if(!active)
+            return;
+        state.HandleProcess(delta);
+    }
+
+	/*=============================================================== Helpers =======================================================*/
+	public void ChangeState(string name)
+	{
+		GD.Print(name);
+		state = container.GetState(name);
+		state.Enter();
+	}
+
 	public Vector2 GetVelocity()
 	{
 		return velocity;
@@ -78,11 +132,10 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	// Returns true if the actor survives and false if the actor dies
-	public bool TakeDamage(int damage)
+	public void TakeDamage(int damage)
 	{
 		hp -= damage;
 		GD.Print(hp);
-		return hp <= 0;
 	}
 
 	// Handle the Attack here
@@ -97,6 +150,11 @@ public abstract class Actor : KinematicBody2D
 		//Vector2 scale = character.Scale;
 		
 		//character.Scale = scale;
+	}
+
+	public virtual void Die()
+	{
+		QueueFree();
 	}
 	
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
