@@ -41,6 +41,17 @@ public class Player : Actor
         string name = state.HandlePhysics(delta);
         if(name != null)
             ChangeState(name);
+        
+        Vector2 scale = character.Scale;
+        
+		if(facingRight)
+			scale.x = 1;
+		else
+			scale.x = -1;
+
+        foreach (Node2D node in attacks)
+                node.Scale = scale;
+		character.Scale = scale;
     }
 
     public override void _Process(float delta)
@@ -48,23 +59,6 @@ public class Player : Actor
         if(!active)
             return;
         state.HandleProcess(delta);
-
-        Vector2 scale = character.Scale;
-        facingRight = velocity.x >= 0;
-		if(facingRight)
-        {
-			scale.x = 1;
-            foreach (Node2D node in attacks)
-                node.Scale = scale;
-            
-        }
-		else
-        {
-			scale.x = -1;
-            foreach (Node2D node in attacks)
-                node.Scale = scale;
-        }
-		character.Scale = scale;
     }
 
     public void ChangeState(string name)

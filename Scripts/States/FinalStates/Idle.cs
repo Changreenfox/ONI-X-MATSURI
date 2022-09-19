@@ -10,19 +10,18 @@ public class Idle : OnGround
     
     public override void Enter()
     {
-        velocity = host.Velocity;
+        base.Enter();
         velocity.x = 0;
+        host.FacingRight = true;
         host.Velocity = velocity;
         host.PlayAnimation("Idle");
     }
 
     public override string HandlePhysics(float delta)
     {
-        //temp could be jump. What should we do?
         string temp = base.HandlePhysics(delta);
         if(-0.01 > velocity.x || velocity.x > 0.01)
             return "Walk";
-        
 
         return temp;
     }

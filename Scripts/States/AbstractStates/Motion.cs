@@ -37,14 +37,19 @@ public abstract class Motion : State
 
         //If no direction, we slow until motion.x == 0
         if(direction.Equals(Vector2.Zero))
+        {
             velocity.x = Mathf.Lerp(velocity.x, 0, 0.15f);
+        }
         else
+        {
             velocity.x += direction.x * speed;
+        }
         
 
         velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
         
         velocity = host.Move(velocity);
+
         return null;
     }
 
@@ -52,6 +57,9 @@ public abstract class Motion : State
     {
         float goRight = Input.GetActionStrength("MoveRight");
 		float goLeft = Input.GetActionStrength("MoveLeft");
+        if(goRight != goLeft)
+            host.FacingRight = goRight > goLeft;
+
         float jump = Input.GetActionStrength("Jump");
         direction = new Vector2(goRight - goLeft, jump);
         host.Direction = direction;
