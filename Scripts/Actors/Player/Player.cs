@@ -4,35 +4,35 @@ using System;
 // Finite State Machine for the Player
 public class Player : Actor
 {
-    private State state;
-    private StateContainer container;
+	private State state;
+	private StateContainer container;
 
-    private bool active = true;
-    public bool Active
-    {
-        get{ return active;}
-        set{ active = value;}
-    }
+	private bool active = true;
+	public bool Active
+	{
+		get{ return active;}
+		set{ active = value;}
+	}
 
-    public override void _Ready()
-    {
-        //Set the character sprite
-        base._Ready();
+	public override void _Ready()
+	{
+		//Set the character sprite
+		base._Ready();
 
-        container = new StateContainer();
+		container = new StateContainer();
 
-        Node states = GetNode("States");
+		Node states = GetNode("States");
 
-        container.SetState("Idle", new Idle(this));
-        container.SetState("Walk", new Walk(this));
-        container.SetState("Jump", new Jump(this));
+		container.SetState("Idle", new Idle(this));
+		container.SetState("Walk", new Walk(this));
+		container.SetState("Jump", new Jump(this));
 
-        /*container.SetState("Idle", (State)states.GetNode("Idle"));
-        container.SetState("Walk", (State)states.GetNode("Walk"));
-        container.SetState("Jump", (State)states.GetNode("Jump"));*/
+		/*container.SetState("Idle", (State)states.GetNode("Idle"));
+		container.SetState("Walk", (State)states.GetNode("Walk"));
+		container.SetState("Jump", (State)states.GetNode("Jump"));*/
 
-        state = container.GetState("Idle");
-    }
+		state = container.GetState("Idle");
+	}
 
     public override void _PhysicsProcess(float delta)
     {
@@ -61,10 +61,10 @@ public class Player : Actor
         state.HandleProcess(delta);
     }
 
-    public void ChangeState(string name)
-    {
-        GD.Print(name);
-        state = container.GetState(name);
-        state.Enter();
-    }
+	public void ChangeState(string name)
+	{
+		GD.Print(name);
+		state = container.GetState(name);
+		state.Enter();
+	}
 }

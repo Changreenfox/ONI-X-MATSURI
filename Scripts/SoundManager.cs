@@ -82,7 +82,11 @@ public class SoundManager : Node
 		AudioStreamPlayer soundPlayer = new AudioStreamPlayer();
 		soundPlayer.Stream = preloadedSounds["player"]["attack"];
 		this.AddChild(soundPlayer);
-		soundPlayer.Connect("finished", this, nameof(_on_AudioStreamPlayer_finished));
+		soundPlayer.Connect("finished", 
+							this, 
+							nameof(_on_AudioStreamPlayer_finished),
+							new Godot.Collections.Array() { soundPlayer }
+							);
 		soundPlayer.Play();
 	}
 	
@@ -102,12 +106,12 @@ public class SoundManager : Node
 				}
 			}
 		};
-		GetNode<Node>("/root/World/Player").Connect("PlaySoundSignal", this, nameof(PlaySound));
+		//GetNode<Node>("/root/CustomSignals").Connect("PlaySoundSignal", this, nameof(PlaySound));
 	}
 	
-	private void _on_AudioStreamPlayer_finished()
+	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)
 	{
-		QueueFree();
+		soundPlayer.QueueFree();
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
