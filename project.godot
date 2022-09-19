@@ -16,6 +16,7 @@ config/icon="res://Assets/icon.png"
 
 [autoload]
 
+PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
 SoundManager="*res://Scripts/SoundManager.cs"
 
 [gui]
