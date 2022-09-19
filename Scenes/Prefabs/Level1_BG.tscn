@@ -1,0 +1,111 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/backgrounds/Background_buildings.png" type="Texture" id=1]
+[ext_resource path="res://assets/backgrounds/Background_sky.png" type="Texture" id=2]
+[ext_resource path="res://assets/backgrounds/Background_mountains.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/Prefabs/MountainParallax.cs" type="Script" id=4]
+
+[node name="Background" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="Sky" type="Node2D" parent="."]
+
+[node name="BackgroundSky" type="Sprite" parent="Sky"]
+position = Vector2( 1920, 0 )
+texture = ExtResource( 2 )
+
+[node name="BackgroundSky2" type="Sprite" parent="Sky"]
+position = Vector2( 5760, 0 )
+texture = ExtResource( 2 )
+
+[node name="BackgroundSky3" type="Sprite" parent="Sky"]
+position = Vector2( 9600, 0 )
+texture = ExtResource( 2 )
+
+[node name="BackgroundSky4" type="Sprite" parent="Sky"]
+position = Vector2( 13440, 0 )
+texture = ExtResource( 2 )
+
+[node name="BackgroundSky5" type="Sprite" parent="Sky"]
+position = Vector2( 17280, 0 )
+texture = ExtResource( 2 )
+
+[node name="BackgroundSky6" type="Sprite" parent="Sky"]
+position = Vector2( 21120, 0 )
+texture = ExtResource( 2 )
+
+[node name="BackgroundSky7" type="Sprite" parent="Sky"]
+position = Vector2( 24960, 0 )
+texture = ExtResource( 2 )
+
+[node name="BackgroundSky8" type="Sprite" parent="Sky"]
+position = Vector2( 28800, 0 )
+texture = ExtResource( 2 )
+
+[node name="Mountains" type="Node2D" parent="."]
+
+[node name="BackgroundMountains" type="Sprite" parent="Mountains"]
+position = Vector2( 1920, 0 )
+texture = ExtResource( 3 )
+
+[node name="BackgroundMountains2" type="Sprite" parent="Mountains"]
+position = Vector2( 5760, 0 )
+texture = ExtResource( 3 )
+
+[node name="BackgroundMountains3" type="Sprite" parent="Mountains"]
+position = Vector2( 9600, 0 )
+texture = ExtResource( 3 )
+
+[node name="BackgroundMountains4" type="Sprite" parent="Mountains"]
+position = Vector2( 13440, 0 )
+texture = ExtResource( 3 )
+
+[node name="BackgroundMountains5" type="Sprite" parent="Mountains"]
+position = Vector2( 17280, 0 )
+texture = ExtResource( 3 )
+
+[node name="BackgroundMountains6" type="Sprite" parent="Mountains"]
+position = Vector2( 21120, 0 )
+texture = ExtResource( 3 )
+
+[node name="BackgroundMountains7" type="Sprite" parent="Mountains"]
+position = Vector2( 24960, 0 )
+texture = ExtResource( 3 )
+
+[node name="BackgroundMountains8" type="Sprite" parent="Mountains"]
+position = Vector2( 28800, 0 )
+texture = ExtResource( 3 )
+
+[node name="Buildings" type="Node2D" parent="."]
+
+[node name="BackgroundBuildings" type="Sprite" parent="Buildings"]
+position = Vector2( 1920, 0 )
+texture = ExtResource( 1 )
+
+[node name="BackgroundBuildings2" type="Sprite" parent="Buildings"]
+position = Vector2( 5760, 0 )
+texture = ExtResource( 1 )
+
+[node name="BackgroundBuildings3" type="Sprite" parent="Buildings"]
+position = Vector2( 9600, 0 )
+texture = ExtResource( 1 )
+
+[node name="BackgroundBuildings4" type="Sprite" parent="Buildings"]
+position = Vector2( 13440, 0 )
+texture = ExtResource( 1 )
+
+[node name="BackgroundBuildings5" type="Sprite" parent="Buildings"]
+position = Vector2( 17280, 0 )
+texture = ExtResource( 1 )
+
+[node name="BackgroundBuildings6" type="Sprite" parent="Buildings"]
+position = Vector2( 21120, 0 )
+texture = ExtResource( 1 )
+
+[node name="BackgroundBuildings7" type="Sprite" parent="Buildings"]
+position = Vector2( 24960, 0 )
+texture = ExtResource( 1 )
+
+[node name="BackgroundBuildings8" type="Sprite" parent="Buildings"]
+position = Vector2( 28800, 0 )
+texture = ExtResource( 1 )

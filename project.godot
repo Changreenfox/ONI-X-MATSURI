@@ -19,6 +19,11 @@ config/icon="res://Assets/icon.png"
 PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
 SoundManager="*res://Scripts/SoundManager.cs"
 
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

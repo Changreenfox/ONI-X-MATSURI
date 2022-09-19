@@ -5,6 +5,7 @@ public class PlayerMovement : Actor
 {
 	[Signal]
 	delegate void PlaySoundSignal(string entityName, string soundName);
+	delegate void PlayerMovementX(float distance);
 	
 	//Movement variables
 	[Export]
@@ -98,6 +99,8 @@ public class PlayerMovement : Actor
 				JumpAttack();
 				
 		motion = MoveAndSlide(motion, UP);
+		
+		EmitSignal("PlayerMovementX", motion.x);
 	}
 
 	public void Attack()

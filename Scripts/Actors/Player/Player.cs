@@ -22,6 +22,75 @@ public class Player : Actor
 		*/
 
 		state = container.GetState("Idle");
+	}
+
+<<<<<<< Updated upstream
+    public override void _PhysicsProcess(float delta)
+    {
+        if(!active)
+            return;
+        string name = state.HandlePhysics(delta);
+        if(name != null)
+            ChangeState(name);
+        
+        Vector2 scale = character.Scale;
+        
+		if(facingRight)
+			scale.x = 1;
+		else
+			scale.x = -1;
+
+        foreach (Node2D node in attacks)
+                node.Scale = scale;
+=======
+	public override void _PhysicsProcess(float delta)
+	{
+		if(!active)
+			return;
+		string name = state.HandlePhysics(delta);
+		if(name != null)
+			ChangeState(name);
+	}
+
+	public override void _Process(float delta)
+	{
+		if(!active)
+			return;
+		state.HandleProcess(delta);
+
+		Vector2 scale = character.Scale;
+		facingRight = velocity.x >= 0;
+		if(facingRight)
+		{
+			scale.x = 1;
+			foreach (Node2D node in attacks)
+				node.Scale = scale;
+			
+		}
+		else
+		{
+			scale.x = -1;
+			foreach (Node2D node in attacks)
+				node.Scale = scale;
+		}
+>>>>>>> Stashed changes
+		character.Scale = scale;
+	}
+
+<<<<<<< Updated upstream
+    public override void _Process(float delta)
+    {
+        if(!active)
+            return;
+        state.HandleProcess(delta);
+    }
+
+=======
+>>>>>>> Stashed changes
+	public void ChangeState(string name)
+	{
+		GD.Print(name);
+		state = container.GetState(name);
 		state.Enter();
 	}
 }

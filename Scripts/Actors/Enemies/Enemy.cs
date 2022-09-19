@@ -13,5 +13,4 @@ public class Enemy : Actor
 
                 state = container.GetState("Idle");
                 state.Enter();
-        }
 }
