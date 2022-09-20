@@ -65,12 +65,17 @@ public abstract class Actor : KinematicBody2D
 	//FSM variables
 	protected State state;
 	protected StateContainer container = new StateContainer();
+	
+	
+	protected Globals globalsRef;
 
 	/*=============================================================== Methods =======================================================*/
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		globalsRef = (Globals)GetNode("/root/Globals");
+		
 		//So long as any children call base._Ready() if overriden, all sprites
 		//will be found dynamically 
 		character = (Sprite)GetNode("Sprite");
@@ -86,31 +91,31 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	public override void _PhysicsProcess(float delta)
-    {
-        if(!active)
-            return;
-        string name = state.HandlePhysics(delta);
-        if(name != null)
-            ChangeState(name);
-        
-        Vector2 scale = character.Scale;
-        
+	{
+		if(!active)
+			return;
+		string name = state.HandlePhysics(delta);
+		if(name != null)
+			ChangeState(name);
+		
+		Vector2 scale = character.Scale;
+		
 		if(facingRight)
 			scale.x = 1;
 		else
 			scale.x = -1;
 
-        foreach (Node2D node in attacks)
-                node.Scale = scale;
+		foreach (Node2D node in attacks)
+				node.Scale = scale;
 		character.Scale = scale;
-    }
+	}
 
 	public override void _Process(float delta)
-    {
-        if(!active)
-            return;
-        state.HandleProcess(delta);
-    }
+	{
+		if(!active)
+			return;
+		state.HandleProcess(delta);
+	}
 
 	/*=============================================================== Helpers =======================================================*/
 	public void ChangeState(string name)
@@ -142,6 +147,7 @@ public abstract class Actor : KinematicBody2D
 	public void Attack(int selection)
 	{
 		attacks[selection].Attack();
+		globalsRef.Signals.EmitSignal(nameof(CustomSignals.PlaySoundSignal), "player", "attack");
 	}
 
 	//Will be called in the states, allowing the player to play specific animations

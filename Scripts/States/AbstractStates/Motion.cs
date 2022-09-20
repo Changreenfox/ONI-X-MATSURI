@@ -52,13 +52,13 @@ public abstract class Motion : State
 	{
 		float goRight = Input.GetActionStrength("MoveRight");
 		float goLeft = Input.GetActionStrength("MoveLeft");
-        if(goRight != goLeft)
-            host.FacingRight = goRight > goLeft;
+		if(goRight != goLeft)
+			host.FacingRight = goRight > goLeft;
 
-        float jump = Input.GetActionStrength("Jump");
-        direction = new Vector2(goRight - goLeft, jump);
-        host.Direction = direction;
-    }
+		float jump = Input.GetActionStrength("Jump");
+		direction = new Vector2(goRight - goLeft, jump);
+		host.Direction = direction;
+	}
 
 	protected abstract void Attack();
 }

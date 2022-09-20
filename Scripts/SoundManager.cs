@@ -7,17 +7,19 @@ public class SoundManager : Node
 	// Declare member variables here. Examples:
 	// private int a = 2;
 	// private string b = "text";
-	//[Export]
-	protected static float SOUND_VOLUME = 1.0f;
+	private Globals globalsRef;
 	
 	//[Export]
-	protected static string SOUND_PATH = "res://assets/sounds/";
+	private static float SOUND_VOLUME = 1.0f;
 	
-	protected List<AudioStreamPlayer> activeSounds;
+	//[Export]
+	private static string SOUND_PATH = "res://assets/sounds/";
+	
+	private List<AudioStreamPlayer> activeSounds;
 	
 	//Format: Dictionary<Entity name, Dictionary<Entity sound name, Sound path>>
 	//[Export]
-	protected Dictionary<string, Dictionary<string, string>> soundPaths = 
+	private Dictionary<string, Dictionary<string, string>> soundPaths = 
 		new Dictionary<string, Dictionary<string, string>> 
 		{
 			{
@@ -73,7 +75,7 @@ public class SoundManager : Node
 	
 	//Format: Dictionary<Entity name, Dictionary<Entity sound name, Sound>>
 	//[Export]
-	protected Dictionary<string, Dictionary<string, AudioStream>> preloadedSounds;
+	private Dictionary<string, Dictionary<string, AudioStream>> preloadedSounds;
 	
 	
 	public void PlaySound(string entityName, string soundName) 
@@ -106,7 +108,8 @@ public class SoundManager : Node
 				}
 			}
 		};
-		//GetNode<Node>("/root/CustomSignals").Connect("PlaySoundSignal", this, nameof(PlaySound));
+		globalsRef = (Globals)GetNode("/root/Globals");
+		globalsRef.Signals.Connect(nameof(CustomSignals.PlaySoundSignal), this, nameof(PlaySound));
 	}
 	
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)

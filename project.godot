@@ -16,7 +16,8 @@ config/icon="res://Assets/icon.png"
 
 [autoload]
 
-PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
+Globals="*res://Scripts/Globals.cs"
+CustomSignals="*res://Scripts/CustomSignals.cs"
 SoundManager="*res://Scripts/SoundManager.cs"
 
 [display]
