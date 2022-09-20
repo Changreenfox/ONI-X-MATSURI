@@ -16,9 +16,9 @@ config/icon="res://Assets/icon.png"
 
 [autoload]
 
-Globals="*res://Scripts/Globals.cs"
-CustomSignals="*res://Scripts/CustomSignals.cs"
-SoundManager="*res://Scripts/SoundManager.cs"
+GameManager="*res://Scripts/Managers/GameManager.cs"
+SignalManager="*res://Scripts/Managers/SignalManager.cs"
+AudioManager="*res://Scripts/Managers/AudioManager.cs"
 
 [display]
 

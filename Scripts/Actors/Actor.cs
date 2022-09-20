@@ -7,6 +7,12 @@ using System.Collections.Generic;
 public abstract class Actor : KinematicBody2D
 {
 	/*=============================================================== Members =======================================================*/
+	protected GameManager gManager;
+	public GameManager GManager
+	{
+		get{ return gManager; }
+	}
+	
 	// Actor Variables
 	[Export]
 	protected int hp = 3;
@@ -66,16 +72,13 @@ public abstract class Actor : KinematicBody2D
 	protected State state;
 	protected StateContainer container = new StateContainer();
 	
-	
-	protected Globals globalsRef;
 
 	/*=============================================================== Methods =======================================================*/
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		globalsRef = (Globals)GetNode("/root/Globals");
-		
+		gManager = (GameManager)GetNode("/root/GameManager");
 		//So long as any children call base._Ready() if overriden, all sprites
 		//will be found dynamically 
 		character = (Sprite)GetNode("Sprite");
@@ -147,7 +150,6 @@ public abstract class Actor : KinematicBody2D
 	public void Attack(int selection)
 	{
 		attacks[selection].Attack();
-		globalsRef.Signals.EmitSignal(nameof(CustomSignals.PlaySoundSignal), "player", "attack");
 	}
 
 	//Will be called in the states, allowing the player to play specific animations

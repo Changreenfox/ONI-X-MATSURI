@@ -2,15 +2,15 @@ using Godot;
 using System;
 using System.Collections.Generic;	//Dictionary
 
-public class SoundManager : Node
+public class AudioManager : Node
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
 	// private string b = "text";
-	private Globals globalsRef;
+	private GameManager gManager;
 	
 	//[Export]
-	private static float SOUND_VOLUME = 1.0f;
+	//private static float SOUND_VOLUME = 1.0f;
 	
 	//[Export]
 	private static string SOUND_PATH = "res://assets/sounds/";
@@ -75,14 +75,14 @@ public class SoundManager : Node
 	
 	//Format: Dictionary<Entity name, Dictionary<Entity sound name, Sound>>
 	//[Export]
-	private Dictionary<string, Dictionary<string, AudioStream>> preloadedSounds;
+	private Dictionary<string, Dictionary<string, AudioStream>> loadedSounds;
 	
 	
 	public void PlaySound(string entityName, string soundName) 
 	{
-		GD.Print("Played sound: " + soundName);
+		//GD.Print("Played sound: " + soundName);
 		AudioStreamPlayer soundPlayer = new AudioStreamPlayer();
-		soundPlayer.Stream = preloadedSounds["player"]["attack"];
+		soundPlayer.Stream = loadedSounds[entityName][soundName];
 		this.AddChild(soundPlayer);
 		soundPlayer.Connect("finished", 
 							this, 
@@ -96,7 +96,7 @@ public class SoundManager : Node
 	public override void _Ready()
 	{
 		activeSounds = new List<AudioStreamPlayer>();
-		preloadedSounds = new Dictionary<string, Dictionary<string, AudioStream>> 
+		loadedSounds = new Dictionary<string, Dictionary<string, AudioStream>> 
 		{
 			{
 				"player", 
@@ -108,13 +108,14 @@ public class SoundManager : Node
 				}
 			}
 		};
-		globalsRef = (Globals)GetNode("/root/Globals");
-		globalsRef.Signals.Connect(nameof(CustomSignals.PlaySoundSignal), this, nameof(PlaySound));
+		gManager = (GameManager)GetNode("/root/GameManager");
+		//globalsRef.Signals.Connect(nameof(CustomSignals.PlaySoundSignal), this, nameof(PlaySound));
 	}
 	
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)
 	{
 		soundPlayer.QueueFree();
+		GD.Print("Player freed");
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
