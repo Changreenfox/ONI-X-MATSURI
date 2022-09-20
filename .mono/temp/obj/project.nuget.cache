@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fPb5IG4T0x+FYWsQ+D3cvHvs/cwOsb8jzCekNEXdX9cTqqAQ8oZm4Y4lEL67z7O9GYgooYmYvF2hERcM7AAe9g==",
+  "dgSpecHash": "oTRse/on49N0IjoGgpWzU9fNVxbveJdBcg0bYVXwhOH68i9CFd5im+/RIOKxIBDqJZdByiAsaVcavVKyhHTngQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\rache\\Documents\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\rache\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
-    "C:\\Users\\rache\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net472\\1.0.2\\microsoft.netframework.referenceassemblies.net472.1.0.2.nupkg.sha512"
-  ],
+  "projectFilePath": "F:\\GitHub\\ONI-X-MATSURI\\ONI-x-MATSURI.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
