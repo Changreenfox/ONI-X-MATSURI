@@ -16,6 +16,13 @@ extents = Vector2( 107, 92.5 )
 position = Vector2( 520.2, 148 )
 collision_mask = 45
 
+[node name="Camera2D" type="Camera2D" parent="Player"]
+current = true
+limit_left = 0
+limit_top = -540
+limit_bottom = -540
+smoothing_enabled = true
+
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( 400.2, 253 )
 scale = Vector2( 0.6, 0.6 )

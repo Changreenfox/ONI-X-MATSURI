@@ -23,10 +23,6 @@ frame = 1
 position = Vector2( 0, 11.6667 )
 shape = SubResource( 1 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-smoothing_enabled = true
-
 [node name="NormalAttack" parent="." instance=ExtResource( 3 )]
 
 [node name="Range" type="CollisionPolygon2D" parent="NormalAttack"]
