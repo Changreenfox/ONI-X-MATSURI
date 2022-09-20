@@ -1,3 +1,7 @@
+/*
+Class to declare, emit, and connect custom signals between classes.
+*/
+
 using Godot;
 using System;
 

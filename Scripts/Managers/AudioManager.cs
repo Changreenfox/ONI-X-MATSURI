@@ -4,18 +4,10 @@ using System.Collections.Generic;	//Dictionary
 
 public class AudioManager : Node
 {
-	// Declare member variables here. Examples:
-	// private int a = 2;
-	// private string b = "text";
-	private GameManager gManager;
-	
-	//[Export]
-	//private static float SOUND_VOLUME = 1.0f;
+	//private GameManager gManager;
 	
 	//[Export]
 	private static string SOUND_PATH = "res://assets/sounds/";
-	
-	private List<AudioStreamPlayer> activeSounds;
 	
 	//Format: Dictionary<Entity name, Dictionary<Entity sound name, Sound path>>
 	//[Export]
@@ -95,7 +87,6 @@ public class AudioManager : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		activeSounds = new List<AudioStreamPlayer>();
 		loadedSounds = new Dictionary<string, Dictionary<string, AudioStream>> 
 		{
 			{
@@ -108,8 +99,7 @@ public class AudioManager : Node
 				}
 			}
 		};
-		gManager = (GameManager)GetNode("/root/GameManager");
-		//globalsRef.Signals.Connect(nameof(CustomSignals.PlaySoundSignal), this, nameof(PlaySound));
+		//gManager = (GameManager)GetNode("/root/GameManager");
 	}
 	
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)

@@ -18,6 +18,7 @@ config/icon="res://Assets/icon.png"
 
 GameManager="*res://Scripts/Managers/GameManager.cs"
 SignalManager="*res://Scripts/Managers/SignalManager.cs"
+TextureManager="*res://Scripts/Managers/TextureManager.cs"
 AudioManager="*res://Scripts/Managers/AudioManager.cs"
 
 [display]
