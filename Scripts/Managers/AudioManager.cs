@@ -115,7 +115,7 @@ public class AudioManager : Node
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)
 	{
 		soundPlayer.QueueFree();
-		GD.Print("Player freed");
+		//GD.Print("Player freed");
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
