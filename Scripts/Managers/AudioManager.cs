@@ -10,6 +10,26 @@ public class AudioManager : Node
 	
 	//[Export]
 	private static string SOUND_PATH = "res://assets/sounds/";
+		
+		
+	private static float MUSIC_VOLUME_DB = -20f;
+	
+	//[Export]
+	private static string MUSIC_PATH = (SOUND_PATH + "music/");
+	
+	private AudioStreamPlayer currentMusic;
+	
+	//Format: Dictionary<scene name, music path>
+	//[Export]
+	private Dictionary<string, string> musicPaths = 
+		new Dictionary<string, string> 
+		{
+			{"Defeat", 				(MUSIC_PATH + "lose_screen_music.mp3")},
+			{"Level1", 				(MUSIC_PATH + "main_stage_music.mp3")},
+			{"MainMenu", 			(MUSIC_PATH + "main_menu_music.mp3")},
+			{"OniBoss", 			(MUSIC_PATH + "boss_stage_music.mp3")},
+			{"Victory", 			(MUSIC_PATH + "win_screen_music.mp3")}		
+		};
 	
 	//Format: Dictionary<Entity name, Dictionary<Entity sound name, Sound path>>
 	//[Export]
@@ -61,16 +81,26 @@ public class AudioManager : Node
 				"user_interface", 
 				new Dictionary<string, string>
 				{
-					{"quit_button_press", (SOUND_PATH + "menu/button_press.wav")},
-					{"start_button_press", (SOUND_PATH + "menu/button_press2.wav")}
+					{"quit_button_press",	(SOUND_PATH + "menu/button_press.wav")},
+					{"start_button_press",	(SOUND_PATH + "menu/button_press2.wav")}
 				}
 			}
 		};
+	//Format: Dictionary<scene name, music>
+	//[Export]
+	private Dictionary<string, AudioStream> loadedMusic;
 	
 	//Format: Dictionary<Entity name, Dictionary<Entity sound name, Sound>>
 	//[Export]
 	private Dictionary<string, Dictionary<string, AudioStream>> loadedSounds;
 	
+	
+	public void PlayMusic(string musicName) 
+	{
+		currentMusic.Stop();
+		currentMusic.Stream = loadedMusic[musicName];
+		currentMusic.Play();
+	}
 	
 	public void PlaySound(string entityName, string soundName) 
 	{
@@ -90,6 +120,22 @@ public class AudioManager : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		//gManager = (GameManager)GetNode("/root/GameManager");
+		
+		loadedMusic = new Dictionary<string, AudioStream>
+		{
+			{"Defeat", 				ResourceLoader.Load<AudioStream>(MUSIC_PATH + "lose_screen_music.mp3")},
+			{"Level1", 				ResourceLoader.Load<AudioStream>(MUSIC_PATH + "main_stage_music.mp3")},
+			{"MainMenu", 			ResourceLoader.Load<AudioStream>(MUSIC_PATH + "main_menu_music.mp3")},
+			{"OniBoss", 			ResourceLoader.Load<AudioStream>(MUSIC_PATH + "boss_stage_music.mp3")},
+			{"Victory", 			ResourceLoader.Load<AudioStream>(MUSIC_PATH + "win_screen_music.mp3")}
+		};
+		
+		currentMusic = new AudioStreamPlayer();
+		currentMusic.Stream = loadedMusic["MainMenu"];
+		currentMusic.VolumeDb = MUSIC_VOLUME_DB;
+		this.AddChild(currentMusic);
+		
 		loadedSounds = new Dictionary<string, Dictionary<string, AudioStream>> 
 		{
 			{
@@ -142,7 +188,6 @@ public class AudioManager : Node
 				}
 			}
 		};
-		//gManager = (GameManager)GetNode("/root/GameManager");
 	}
 	
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)

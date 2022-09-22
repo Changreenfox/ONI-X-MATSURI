@@ -8,7 +8,7 @@ using System;
 public class SignalManager : Node
 {
 	[Signal]
-	public delegate void EntityLoadedSignal(string entityName);
+	public delegate void SceneLoadedSignal(string sceneName);
 	[Signal]
 	public delegate void PlaySoundSignal(string entityName, string soundName);
 }

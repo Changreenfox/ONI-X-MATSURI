@@ -25,7 +25,12 @@ public class GameManager : Node
 		get{ return textures; }
 	}
 	
-	private Node2D currentLevel;
+	private SceneBase currentScene;
+	public SceneBase CurrentScene
+	{
+		get{ return currentScene; }
+		set{ currentScene = value; }
+	}
 	// Declare member variables here. Examples:
 	// private int a = 2;
 	// private string b = "text";
@@ -44,6 +49,7 @@ public class GameManager : Node
 		signals = (SignalManager)GetNode("/root/SignalManager");
 		textures = (TextureManager)GetNode("/root/TextureManager");
 		
+		signals.Connect(nameof(SignalManager.SceneLoadedSignal), audio, nameof(AudioManager.PlayMusic));
 		signals.Connect(nameof(SignalManager.PlaySoundSignal), audio, nameof(AudioManager.PlaySound));
 	}
 
