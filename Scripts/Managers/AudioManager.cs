@@ -6,7 +6,7 @@ public class AudioManager : Node
 {
 	//private GameManager gManager;
 	
-	private static float SOUND_VOLUME_DB = -30f;
+	private static float SOUND_VOLUME_DB = -20f;
 	
 	//[Export]
 	private static string SOUND_PATH = "res://assets/sounds/";
