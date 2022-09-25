@@ -159,6 +159,8 @@ public class AudioManager : Node
 		}
 		currentMusic.Stream = loadedMusic[musicName];
 		currentMusic.Name = musicName;
+		currentMusic.VolumeDb = MUSIC_VOLUME_DB;
+		currentMusic.Bus = "Music";
 		currentMusic.Play();
 	}
 	
@@ -169,6 +171,7 @@ public class AudioManager : Node
 		soundPlayer.Stream = loadedSounds[domainName][soundName];
 		soundPlayer.Name = soundName;
 		soundPlayer.VolumeDb = SOUND_VOLUME_DB;
+		soundPlayer.Bus = "Sounds";
 		currentSoundsNode.AddChild(soundPlayer);
 		soundPlayer.Connect("finished", 
 							this, 
@@ -178,22 +181,24 @@ public class AudioManager : Node
 		soundPlayer.Play();
 	}
 	
-	public void SetMusicVolume(float volumeDB)
+	public void SetMusicMute(bool enable)
 	{
-		MUSIC_VOLUME_DB = volumeDB;
-		foreach(AudioStreamPlayer track in currentMusicNode.GetChildren())
-		{
-			track.VolumeDb = volumeDB;
-		}
+		AudioServer.SetBusMute(1, enable);
 	}
 	
-	public void SetSoundVolume(float volumeDB)
+	public void SetMusicVolume(float volumeDb)
 	{
-		SOUND_VOLUME_DB = volumeDB;
-		foreach(AudioStreamPlayer sound in currentSoundsNode.GetChildren())
-		{
-			sound.VolumeDb = volumeDB;
-		}
+		AudioServer.SetBusVolumeDb(1, volumeDb);
+	}
+	
+	public void SetSoundMute(bool enable)
+	{
+		AudioServer.SetBusMute(2, enable);
+	}
+	
+	public void SetSoundVolume(float volumeDb)
+	{
+		AudioServer.SetBusVolumeDb(2, volumeDb);
 	}
 	
 	// Called when the node enters the scene tree for the first time.
