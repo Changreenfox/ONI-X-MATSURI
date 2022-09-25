@@ -7,13 +7,9 @@ public class AudioManager : Node
 	/*=============================================================== Members =======================================================*/
 	//private GameManager gManager;
 	
-	private static float SOUND_VOLUME_DB = -20f;
-	
 	//[Export]
 	private static string SOUND_PATH = "res://assets/sounds/";
 		
-		
-	private static float MUSIC_VOLUME_DB = -20f;
 	
 	//[Export]
 	private static string MUSIC_PATH = (SOUND_PATH + "music/");
@@ -159,7 +155,6 @@ public class AudioManager : Node
 		}
 		currentMusic.Stream = loadedMusic[musicName];
 		currentMusic.Name = musicName;
-		currentMusic.VolumeDb = MUSIC_VOLUME_DB;
 		currentMusic.Bus = "Music";
 		currentMusic.Play();
 	}
@@ -170,7 +165,6 @@ public class AudioManager : Node
 		AudioStreamPlayer soundPlayer = new AudioStreamPlayer();
 		soundPlayer.Stream = loadedSounds[domainName][soundName];
 		soundPlayer.Name = soundName;
-		soundPlayer.VolumeDb = SOUND_VOLUME_DB;
 		soundPlayer.Bus = "Sounds";
 		currentSoundsNode.AddChild(soundPlayer);
 		soundPlayer.Connect("finished", 
@@ -239,8 +233,10 @@ public class AudioManager : Node
 		currentMusic = new AudioStreamPlayer();
 		currentMusic.Stream = loadedMusic["Level1"];
 		currentMusic.Name = "Level1";
-		currentMusic.VolumeDb = MUSIC_VOLUME_DB;
+		currentMusic.Bus = "Music";
 		currentMusicNode.AddChild(currentMusic);
+		
+		AudioServer.SetBusVolumeDb(0, -20f);
 	}
 	
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)
