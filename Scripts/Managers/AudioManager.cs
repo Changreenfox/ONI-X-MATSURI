@@ -4,6 +4,7 @@ using System.Collections.Generic;	//Dictionary
 
 public class AudioManager : Node
 {
+	/*=============================================================== Members =======================================================*/
 	//private GameManager gManager;
 	
 	private static float SOUND_VOLUME_DB = -20f;
@@ -22,8 +23,16 @@ public class AudioManager : Node
 	
 	private Node currentSoundsNode;
 	
+	//Format: Dictionary<scene name, music track>
+	//[Export]
+	private Dictionary<string, AudioStream> loadedMusic;
 	
-	//Format: Dictionary<scene name, music path>
+	//Format: Dictionary<domainName, Dictionary<domain soundName, Sound stream>>
+	//[Export]
+	private Dictionary<string, Dictionary<string, AudioStream>> loadedSounds;
+	
+	
+	//Format: Dictionary<scene name, music track path>
 	//[Export]
 	private Dictionary<string, string> musicPaths = 
 		new Dictionary<string, string> 
@@ -91,22 +100,42 @@ public class AudioManager : Node
 			}
 		};
 		
-	//Format: Dictionary<scene name, music>
-	//[Export]
-	private Dictionary<string, AudioStream> loadedMusic;
 	
-	//Format: Dictionary<domainName, Dictionary<domain soundName, Sound stream>>
-	//[Export]
-	private Dictionary<string, Dictionary<string, AudioStream>> loadedSounds;
+	/*=============================================================== Methods =======================================================*/
 	
+	public void LoadMusic(string trackName, bool forceLoad = false)
+	{
+		string musicTrackPathRef = "";
+		//If the requested track is not defined in our filepaths
+		if(!musicPaths.TryGetValue(trackName, out musicTrackPathRef))
+		{
+			//Handle errors
+			return;
+		}
+		//If entry exists and forceLoad == true, assign value (Used for reloading music)
+		if(loadedMusic.TryGetValue(trackName, out AudioStream streamRef))
+		{
+			streamRef = forceLoad ? ResourceLoader.Load<AudioStream>(musicTrackPathRef) : streamRef;
+		}
+		else
+		{
+			loadedMusic.Add(trackName, ResourceLoader.Load<AudioStream>(musicTrackPathRef));
+		}
+	}
 	
 	public void LoadDomainSounds(string domainName, bool forceLoad = false)
 	{
 		Dictionary<string, AudioStream> domainDictRef = new Dictionary<string, AudioStream>();
-		if(!loadedSounds.TryGetValue(domainName, out domainDictRef))	//If the domain doesnt exist yet (e,g,, Player, OniBrute, etc.)
+		if(!loadedSounds.TryGetValue(domainName, out domainDictRef))	//If the domain doesnt exist (e,g,, Player, OniBrute, etc.)
 		{
-			domainDictRef = new Dictionary<string, AudioStream>();	//out value returns null in this case
-			loadedSounds.Add(domainName, domainDictRef);
+			//Handle errors
+			GD.Print(domainName, " sounds aren't initialized!");
+			return;
+		}
+		if(soundPaths == null)
+		{
+			//Handle errors
+			return;
 		}
 		foreach(KeyValuePair<string, string> entry in soundPaths[domainName])
 		{
@@ -181,79 +210,32 @@ public class AudioManager : Node
 		currentMusicNode.Name = "Music";
 		this.AddChild(currentMusicNode);
 		
-		loadedMusic = new Dictionary<string, AudioStream>
+		loadedMusic = new Dictionary<string, AudioStream>();
+		
+		//Initialize pre-determined domains
+		loadedSounds = new Dictionary<string, Dictionary<string, AudioStream>> 
 		{
-			{"Defeat", 				ResourceLoader.Load<AudioStream>(MUSIC_PATH + "lose_screen_music.mp3")},
-			{"Level1", 				ResourceLoader.Load<AudioStream>(MUSIC_PATH + "main_stage_music.mp3")},
-			{"MainMenu", 			ResourceLoader.Load<AudioStream>(MUSIC_PATH + "main_menu_music.mp3")},
-			{"OniBoss", 			ResourceLoader.Load<AudioStream>(MUSIC_PATH + "boss_stage_music.mp3")},
-			{"Victory", 			ResourceLoader.Load<AudioStream>(MUSIC_PATH + "win_screen_music.mp3")}
+			{ "enemy_oni", new Dictionary<string, AudioStream>{ } },
+			{ "enemy_oni_boss", new Dictionary<string, AudioStream>{ } },
+			{ "player", new Dictionary<string, AudioStream>{ } },
+			{ "powerups", new Dictionary<string, AudioStream>{ } },
+			{ "user_interface", new Dictionary<string, AudioStream> { } }
 		};
 		
-		currentMusic = new AudioStreamPlayer();
-		currentMusic.Stream = loadedMusic["MainMenu"];
-		currentMusic.VolumeDb = MUSIC_VOLUME_DB;
-		currentMusicNode.AddChild(currentMusic);
-		
-		loadedSounds = new Dictionary<string, Dictionary<string, AudioStream>>();
+		LoadMusic("Level1");
+		//LoadMusic("MainMenu");
 		
 		LoadDomainSounds("enemy_oni");
 		LoadDomainSounds("enemy_oni_boss");
 		LoadDomainSounds("player");
 		LoadDomainSounds("powerups");
 		LoadDomainSounds("user_interface");
-		/*loadedSounds = new Dictionary<string, Dictionary<string, AudioStream>> 
-		{
-			{
-				"enemy_oni", 
-				new Dictionary<string, AudioStream>
-				{
-					{"damage", 			ResourceLoader.Load<AudioStream>(SOUND_PATH + "enemy/enemy_oni_damage.wav")},
-					{"death", 			ResourceLoader.Load<AudioStream>(SOUND_PATH + "enemy/enemy_oni_death.wav")}
-				}
-			},
-			{
-				"enemy_oni_boss", 
-				new Dictionary<string, AudioStream>
-				{	            
-					{"damage", 			ResourceLoader.Load<AudioStream>(SOUND_PATH + "enemy/enemy_oni_boss_damage.wav")},
-					{"death", 			ResourceLoader.Load<AudioStream>(SOUND_PATH + "enemy/enemy_oni_boss_death.wav")},
-					{"death_vaporize", 	ResourceLoader.Load<AudioStream>(SOUND_PATH + "enemy/enemy_oni_boss_death_vaporize.wav")},
-					{"drop", 			ResourceLoader.Load<AudioStream>(SOUND_PATH + "enemy/enemy_oni_boss_drop.wav")},
-					{"drum-attack", 	ResourceLoader.Load<AudioStream>(SOUND_PATH + "enemy/enemy_oni_boss_drum-attack.wav")},
-					{"drum-charge", 	ResourceLoader.Load<AudioStream>(SOUND_PATH + "enemy/enemy_oni_boss_drum-charge.wav")},
-					{"laugh", 			ResourceLoader.Load<AudioStream>(SOUND_PATH + "enemy/enemy_oni_boss_laugh.wav")},
-					{"phase2-groan", 	ResourceLoader.Load<AudioStream>(SOUND_PATH + "enemy/enemy_oni_boss_groan.wav")}
-				}
-			},
-			{
-				"player", 
-				new Dictionary<string, AudioStream>
-				{
-					{"attack", 			ResourceLoader.Load<AudioStream>(SOUND_PATH + "player/player_attack_16bit.wav")},
-					{"damage", 			ResourceLoader.Load<AudioStream>(SOUND_PATH + "player/player_damage.wav")},
-					{"jump", 			ResourceLoader.Load<AudioStream>(SOUND_PATH + "player/player_jump_16bit.wav")}
-				}
-			},
-			{
-				"powerups", 
-				new Dictionary<string, AudioStream>
-				{
-					{"attack-boost", 	ResourceLoader.Load<AudioStream>(SOUND_PATH + "powerups/attack-boost.wav")},
-					{"heal", 			ResourceLoader.Load<AudioStream>(SOUND_PATH + "powerups/heal.wav")},
-					{"jump-boost", 		ResourceLoader.Load<AudioStream>(SOUND_PATH + "powerups/jump-boost.wav")},
-					{"speed-boost", 	ResourceLoader.Load<AudioStream>(SOUND_PATH + "powerups/speed-boost.wav")}
-				}
-			},
-			{
-				"user_interface", 
-				new Dictionary<string, AudioStream>
-				{
-					{"quit_button_press", ResourceLoader.Load<AudioStream>(SOUND_PATH + "menu/button_press.wav")},
-					{"start_button_press", ResourceLoader.Load<AudioStream>(SOUND_PATH + "menu/button_press2.wav")}
-				}
-			}
-		};*/
+		
+		currentMusic = new AudioStreamPlayer();
+		currentMusic.Stream = loadedMusic["Level1"];
+		currentMusic.Name = "Level1";
+		currentMusic.VolumeDb = MUSIC_VOLUME_DB;
+		currentMusicNode.AddChild(currentMusic);
 	}
 	
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)
