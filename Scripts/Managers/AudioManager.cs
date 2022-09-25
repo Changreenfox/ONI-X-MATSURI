@@ -17,7 +17,11 @@ public class AudioManager : Node
 	//[Export]
 	private static string MUSIC_PATH = (SOUND_PATH + "music/");
 	
+	private Node currentMusicNode;
 	private AudioStreamPlayer currentMusic;
+	
+	private Node currentSoundsNode;
+	
 	
 	//Format: Dictionary<scene name, music path>
 	//[Export]
@@ -31,7 +35,7 @@ public class AudioManager : Node
 			{"Victory", 			(MUSIC_PATH + "win_screen_music.mp3")}		
 		};
 	
-	//Format: Dictionary<Entity name, Dictionary<Entity sound name, Sound path>>
+	//Format: Dictionary<domainName, Dictionary<domain soundName, Sound path>>
 	//[Export]
 	private Dictionary<string, Dictionary<string, string>> soundPaths = 
 		new Dictionary<string, Dictionary<string, string>> 
@@ -86,29 +90,57 @@ public class AudioManager : Node
 				}
 			}
 		};
+		
 	//Format: Dictionary<scene name, music>
 	//[Export]
 	private Dictionary<string, AudioStream> loadedMusic;
 	
-	//Format: Dictionary<Entity name, Dictionary<Entity sound name, Sound>>
+	//Format: Dictionary<domainName, Dictionary<domain soundName, Sound stream>>
 	//[Export]
 	private Dictionary<string, Dictionary<string, AudioStream>> loadedSounds;
 	
 	
+	public void LoadDomainSounds(string domainName, bool forceLoad = false)
+	{
+		Dictionary<string, AudioStream> domainDictRef = new Dictionary<string, AudioStream>();
+		if(!loadedSounds.TryGetValue(domainName, out domainDictRef))	//If the domain doesnt exist yet (e,g,, Player, OniBrute, etc.)
+		{
+			domainDictRef = new Dictionary<string, AudioStream>();	//out value returns null in this case
+			loadedSounds.Add(domainName, domainDictRef);
+		}
+		foreach(KeyValuePair<string, string> entry in soundPaths[domainName])
+		{
+			//If entry exists and forceLoad == true, assign value (Used for reloading sounds)
+			if(domainDictRef.TryGetValue(entry.Key, out AudioStream streamRef))
+			{
+				streamRef = forceLoad ? ResourceLoader.Load<AudioStream>(entry.Value) : streamRef;
+			}
+			//If entry doesn't exist
+			else
+			{
+				domainDictRef.Add(entry.Key, ResourceLoader.Load<AudioStream>(entry.Value));
+			}
+		}
+	}
+	
 	public void PlayMusic(string musicName) 
 	{
-		currentMusic.Stop();
+		if(currentMusic.Stream == null && currentMusic.Playing) {
+			currentMusic.Stop();
+		}
 		currentMusic.Stream = loadedMusic[musicName];
+		currentMusic.Name = musicName;
 		currentMusic.Play();
 	}
 	
-	public void PlaySound(string entityName, string soundName) 
+	public void PlaySound(string domainName, string soundName) 
 	{
 		//GD.Print("Played sound: " + soundName);
 		AudioStreamPlayer soundPlayer = new AudioStreamPlayer();
-		soundPlayer.Stream = loadedSounds[entityName][soundName];
+		soundPlayer.Stream = loadedSounds[domainName][soundName];
+		soundPlayer.Name = soundName;
 		soundPlayer.VolumeDb = SOUND_VOLUME_DB;
-		this.AddChild(soundPlayer);
+		currentSoundsNode.AddChild(soundPlayer);
 		soundPlayer.Connect("finished", 
 							this, 
 							nameof(_on_AudioStreamPlayer_finished),
@@ -117,10 +149,37 @@ public class AudioManager : Node
 		soundPlayer.Play();
 	}
 	
+	public void SetMusicVolume(float volumeDB)
+	{
+		MUSIC_VOLUME_DB = volumeDB;
+		foreach(AudioStreamPlayer track in currentMusicNode.GetChildren())
+		{
+			track.VolumeDb = volumeDB;
+		}
+	}
+	
+	public void SetSoundVolume(float volumeDB)
+	{
+		SOUND_VOLUME_DB = volumeDB;
+		foreach(AudioStreamPlayer sound in currentSoundsNode.GetChildren())
+		{
+			sound.VolumeDb = volumeDB;
+		}
+	}
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		//gManager = (GameManager)GetNode("/root/GameManager");
+		//This Node will centralize all sounds; manage all current sounds (mute, stop, etc.)
+		currentSoundsNode = new Node();
+		currentSoundsNode.Name = "Sounds";
+		this.AddChild(currentSoundsNode);
+		
+		//This Node will centralize all music tracks; in case we want to play multiple music tracks and organization
+		currentMusicNode = new Node();
+		currentMusicNode.Name = "Music";
+		this.AddChild(currentMusicNode);
 		
 		loadedMusic = new Dictionary<string, AudioStream>
 		{
@@ -134,9 +193,16 @@ public class AudioManager : Node
 		currentMusic = new AudioStreamPlayer();
 		currentMusic.Stream = loadedMusic["MainMenu"];
 		currentMusic.VolumeDb = MUSIC_VOLUME_DB;
-		this.AddChild(currentMusic);
+		currentMusicNode.AddChild(currentMusic);
 		
-		loadedSounds = new Dictionary<string, Dictionary<string, AudioStream>> 
+		loadedSounds = new Dictionary<string, Dictionary<string, AudioStream>>();
+		
+		LoadDomainSounds("enemy_oni");
+		LoadDomainSounds("enemy_oni_boss");
+		LoadDomainSounds("player");
+		LoadDomainSounds("powerups");
+		LoadDomainSounds("user_interface");
+		/*loadedSounds = new Dictionary<string, Dictionary<string, AudioStream>> 
 		{
 			{
 				"enemy_oni", 
@@ -187,7 +253,7 @@ public class AudioManager : Node
 					{"start_button_press", ResourceLoader.Load<AudioStream>(SOUND_PATH + "menu/button_press2.wav")}
 				}
 			}
-		};
+		};*/
 	}
 	
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)
