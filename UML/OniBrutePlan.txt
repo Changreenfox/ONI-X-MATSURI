@@ -1,0 +1,26 @@
+Oni has a "vision" collider that when it detects the player, it disables, plays an "alert" animation for the Oni, 
+Causes him to try to get to a certain distance from the player
+At which point he will attack, wait 1s, then check to see if he where the player is to attack again
+
+*Should delete itself when the player can't see them & the oni is to the LEFT (Collider that kills the ogre out-of-vision that's a child of Camera)
+
+State Helper Function: 
+// Creates a timer with time time, tied to function toActivate saying when it goes off
+CreateTimer(float time, function toActivate);
+
+States:
+- Idle (Paces left, pauses, and paces right. Loop)
+    Enter(): enable vision collider, disable out-of-vision collider
+	Transitions: When vision collider collides with Player body (Startle state)
+- Alerted (Has a protected Player target variable)
+    Enter(): disable vision collider, enable out-of-vision collider
+	Transitions: When out-of-vision collider collides with Player body (Idle state)
+
+Alerted = Startle: Play a quick alert animation where and the oni face the camera and an exclamation mark appears above his head)
+	Transitions: Time (Move State)
+
+Alerted = Move: Move towards the player at a set moveSpeed and try to get the player within an "attackState" collider
+	Transitions: attackState collider hit [should be slightly smaller than the actual attack collider], (AttackState)
+
+Alerted = AttackState: Get into an attack stance (0.5s), then actually attack (play with timing), then get out of stance (1s)
+	Transitions: When timing ends (Move State)
