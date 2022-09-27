@@ -5,6 +5,7 @@ public class Jump : Motion
 {
 	[Export]
 	protected float jumpSpeed = 1000;
+	private bool facingRight;
 
 	public Jump(Actor _host)
 	{
@@ -14,6 +15,7 @@ public class Jump : Motion
 	public override void Enter()
 	{
 		base.Enter();
+		facingRight = host.FacingRight;
 		velocity.y = -jumpSpeed * direction.y;
 		host.PlayAnimation("Jump");
 		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
@@ -25,6 +27,11 @@ public class Jump : Motion
 	{
 		// base here is Motion, which will always return null
 		string move = base.HandlePhysics(delta);
+		if(host.FacingRight != facingRight)
+		{
+			host.PlayAnimation("Jump");
+			facingRight = host.FacingRight;
+		}
 		if (host.IsOnFloor())
 		{
 			if(velocity.Equals(Vector2.Zero))

@@ -11,6 +11,7 @@ public class Player : Actor
 
 		container.SetState("Idle", new Idle(this));
 		container.SetState("Walk", new Walk(this));
+		container.SetState("Run", new Run(this));
 		container.SetState("Jump", new Jump(this));
 		container.SetState("Death", new Death(this));
 

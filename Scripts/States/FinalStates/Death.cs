@@ -10,7 +10,7 @@ public class Death : State
 
 	public override void Enter()
 	{
-		host.PlayAnimation("Death");
+		//host.PlayAnimation("Death");
 		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
 										"enemy_oni",	//Name of entityName must match name of class (standardize later) 
 										"death");

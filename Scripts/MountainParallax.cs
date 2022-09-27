@@ -19,10 +19,10 @@ public class MountainParallax : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
-		Vector2 newV = new Vector2(Mountains.Position.x + PlayerNode.Velocity.x * 0.005f, 0);
+		Vector2 newV = new Vector2(Mountains.Position.x + PlayerNode.Velocity.x * 0.001f, 0);
 	 	Mountains.Position = newV;
 		
-		newV = new Vector2(Skys.Position.x + PlayerNode.Velocity.x * 0.008f, 0);
+		newV = new Vector2(Skys.Position.x + PlayerNode.Velocity.x * 0.0005f, 0);
 		Skys.Position = newV;
 	}
 	

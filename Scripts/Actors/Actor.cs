@@ -72,6 +72,9 @@ public abstract class Actor : KinematicBody2D
 	protected State state;
 	protected StateContainer container = new StateContainer();
 	
+	//animation
+	protected AnimationPlayer animator;
+	
 
 	/*=============================================================== Methods =======================================================*/
 	
@@ -82,6 +85,8 @@ public abstract class Actor : KinematicBody2D
 		//So long as any children call base._Ready() if overriden, all sprites
 		//will be found dynamically 
 		character = (Sprite)GetNode("Sprite");
+		
+		animator = (AnimationPlayer)GetNode("AnimationPlayer");
 		
 		foreach (Node node in GetChildren())
 		{
@@ -110,7 +115,6 @@ public abstract class Actor : KinematicBody2D
 
 		foreach (Node2D node in attacks)
 				node.Scale = scale;
-		character.Scale = scale;
 	}
 
 	public override void _Process(float delta)
@@ -155,9 +159,15 @@ public abstract class Actor : KinematicBody2D
 	//Will be called in the states, allowing the player to play specific animations
 	public void PlayAnimation(string name)
 	{
-		//Vector2 scale = character.Scale;
-		
-		//character.Scale = scale;
+		if(name == "IdleForward"){ //if the player is idle for a long time
+			animator.Play(name);
+			return;
+		}
+		 //else play the correct animation
+		if(facingRight) name += "Right";
+		else name += "Left";
+		animator.Play(name);
+		return;
 	}
 
 	public virtual void Die()

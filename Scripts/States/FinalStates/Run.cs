@@ -1,9 +1,9 @@
 using Godot;
 using System;
 
-public class Walk : OnGround
+public class Run : OnGround
 {
-	public Walk(Actor _host)
+	public Run(Actor _host)
 	{
 		host = _host;
 	}
@@ -11,22 +11,19 @@ public class Walk : OnGround
 	public override void Enter()
 	{
 		base.Enter();
-		host.PlayAnimation("Walk");
+		host.PlayAnimation("Run");
 	}
 
 	public override string HandlePhysics(float delta)
 	{
 		string temp = base.HandlePhysics(delta);
-		if(-0.1 < velocity.x && velocity.x < 0.1)
-			return "Idle";
-			
-		if(-WalkToRunSpeed > velocity.x || velocity.x > WalkToRunSpeed)
-			return "Run";
+		if(-WalkToRunSpeed < velocity.x && velocity.x < WalkToRunSpeed)
+			return "Walk";
 		return temp;
 	}
 
 	public override string StateName()
 	{
-		return "Walk";
+		return "Run";
 	}
 }
