@@ -3,6 +3,8 @@ using System;
 
 public class BasicAttack:Area2D
 {
+	protected Actor host;
+	
 	// Attack functionality shared by all attacks
 
 	//Damage
@@ -27,6 +29,8 @@ public class BasicAttack:Area2D
 	public override void _Ready()
 	{
 		range = (CollisionPolygon2D)GetNode("Range");
+		
+		host = (Actor)GetNode("/root/World/Player");
 
 		Connect("area_entered", this, nameof(_on_Attack_area_entered));
 		Connect("body_entered", this, nameof(_on_Attack_body_entered));
@@ -64,6 +68,9 @@ public class BasicAttack:Area2D
 			timer += delta;
 			if(timer >= cooldown)
 			{
+				host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
+										host.GetType().Name.ToLower(), 
+										"attack");
 				attacked = false;
 				timer = 0;
 			}

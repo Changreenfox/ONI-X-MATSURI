@@ -1,0 +1,3 @@
+For power-ups:
+- movement variables in Player //[Export]// get updated in the states in .Enter()
+- Dynamically create a Timer object child that does 2 things on signal: reset bool & timer.ClearQueue()
