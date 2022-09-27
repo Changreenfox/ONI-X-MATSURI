@@ -15,12 +15,12 @@ public class Jump : Motion
 	public override void Enter()
 	{
 		base.Enter();
+		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
+								host.GetType().Name.ToLower(), 
+								"jump");
 		facingRight = host.FacingRight;
 		velocity.y = -jumpSpeed * direction.y;
 		host.PlayAnimation("Jump");
-		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
-										host.GetType().Name.ToLower(), 
-										"jump");
 	}
 
 	public override string HandlePhysics(float delta)
