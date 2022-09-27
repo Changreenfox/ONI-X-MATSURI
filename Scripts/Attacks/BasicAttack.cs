@@ -43,6 +43,9 @@ public class BasicAttack:Area2D
 		{
 			attacking = true;
 			attacked = true;
+			host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
+										host.GetType().Name.ToLower(), 
+										"attack");
 		}
 	}
 	
@@ -68,9 +71,6 @@ public class BasicAttack:Area2D
 			timer += delta;
 			if(timer >= cooldown)
 			{
-				host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
-										host.GetType().Name.ToLower(), 
-										"attack");
 				attacked = false;
 				timer = 0;
 			}
