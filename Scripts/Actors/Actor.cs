@@ -66,6 +66,8 @@ public abstract class Actor : KinematicBody2D
 	//Every Actor has a list of attacks
 	[Export]
 	public List<BasicAttack> attacks = new List<BasicAttack>();
+	[Export]
+	public List<ContactDamage> surfaces = new List<ContactDamage>();
 
 
 	//FSM variables
@@ -92,8 +94,13 @@ public abstract class Actor : KinematicBody2D
 		{
 			if(node is BasicAttack)
 			{
-				GD.Print(node.Name);
+				GD.Print(Name, " -> ", node.Name);
 				attacks.Add((BasicAttack)node);
+			}
+			else if(node is ContactDamage)
+			{
+				GD.Print(Name, " -> ", node.Name);
+				surfaces.Add((ContactDamage)node);
 			}
 		}
 	}
@@ -153,7 +160,7 @@ public abstract class Actor : KinematicBody2D
 	// Handle the Attack here
 	public void Attack(int selection)
 	{
-		attacks[selection].Attack();
+		attacks[selection].StartAttack();
 	}
 
 	//Will be called in the states, allowing the player to play specific animations
