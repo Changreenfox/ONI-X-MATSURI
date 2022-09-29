@@ -62,6 +62,10 @@ Attack={
 2d_physics/layer_5="PlayerAttack"
 2d_physics/layer_6="EnemyAttack"
 
+[mono]
+
+project/assembly_name="ONI-x-MATSURI"
+
 [physics]
 
 common/enable_pause_aware_picking=true
