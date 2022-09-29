@@ -105,12 +105,12 @@ public class PlayerMovement : Actor
 
 	public void Attack()
 	{
-		attacks[0].StartAttack();
+		attacks[0].StartAttack("NormalAttack");
 	}
 
 	public void JumpAttack()
 	{
-		attacks[1].StartAttack();
+		attacks[1].StartAttack("JumpAttack");
 	}
 
 

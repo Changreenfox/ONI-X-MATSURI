@@ -34,7 +34,7 @@ public abstract class Attack : Area2D
     }
 
     //Begin the attack animation
-	public virtual void StartAttack()
+	public virtual void StartAttack(string name)
 	{
 		if(!attacked)
 		{
@@ -43,6 +43,7 @@ public abstract class Attack : Area2D
 			host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
 										host.GetType().Name.ToLower(), 
 										"attack");
+            host.PlayAnimation(name);
 		}
 	}
 

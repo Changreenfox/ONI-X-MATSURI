@@ -109,10 +109,14 @@ public abstract class Actor : KinematicBody2D
 	{
 		if(!active)
 			return;
+
+		// Handle States
 		string name = state.HandlePhysics(delta);
+
 		if(name != null)
 			ChangeState(name);
 		
+		//Flips the Actor's colliders
 		Vector2 scale = character.Scale;
 		
 		if(facingRight)
@@ -121,7 +125,9 @@ public abstract class Actor : KinematicBody2D
 			scale.x = -1;
 
 		foreach (Node2D node in attacks)
-				node.Scale = scale;
+			node.Scale = scale;
+		foreach (Node2D node in surfaces)
+			node.Scale = scale;
 	}
 
 	public override void _Process(float delta)
@@ -158,9 +164,9 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	// Handle the Attack here
-	public void Attack(int selection)
+	public void Attack(int selection, string name)
 	{
-		attacks[selection].StartAttack();
+		attacks[selection].StartAttack(name);
 	}
 
 	//Will be called in the states, allowing the player to play specific animations

@@ -252,23 +252,29 @@ vframes = 11
 frame = 2
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, 11.6667 )
 shape = SubResource( 1 )
 
 [node name="NormalAttack" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [node name="Range" type="CollisionPolygon2D" parent="NormalAttack"]
+visible = false
 position = Vector2( 13.3333, 40 )
 polygon = PoolVector2Array( -13.3333, -26.6667, 12.2151, -80.1784, 52.025, -94.0689, 78.6891, -94.4412, 93.3333, -66.6667, 93.3333, -26.6667, 93.3333, 13.3333, 80, 40, 53.3333, 40, 13.3333, 26.6667 )
 
 [node name="JumpAttack" parent="." instance=ExtResource( 3 )]
+visible = false
 
 [node name="Range" type="CollisionPolygon2D" parent="JumpAttack"]
+visible = false
 position = Vector2( -26.6667, 26.6667 )
 rotation = 1.58476
 polygon = PoolVector2Array( -13.3333, -26.6667, 12.2151, -80.1784, 52.025, -94.0689, 78.6891, -94.4412, 93.3333, -66.6667, 93.3333, -26.6667, 93.3333, 13.3333, 80, 40, 53.3333, 40, 13.3333, 26.6667 )
 
 [node name="States" type="Node2D" parent="."]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "IdleForward"

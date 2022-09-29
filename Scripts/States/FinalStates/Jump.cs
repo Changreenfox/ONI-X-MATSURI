@@ -45,7 +45,7 @@ public class Jump : Motion
 	//Will not currently work with Attack function... PlayerFSM would require attack to take an int var saying which attack to use
 	protected override void Attack()
 	{
-		host.Attack(1);
+		host.Attack(1, "JumpAttack");
 	}
 
 	public override string StateName()
