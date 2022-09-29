@@ -12,6 +12,8 @@ public abstract class Motion : State
 	protected float gravity = 40;
 	[Export]
 	protected float maxFallSpeed = 5000;
+	
+	protected float WalkToRunSpeed = 550;
 
 	protected bool facingRight;
 	protected Vector2 direction = new Vector2();

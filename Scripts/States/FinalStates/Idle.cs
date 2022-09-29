@@ -25,6 +25,7 @@ public class Idle : OnGround
 		time += delta;
 		if (time > faceForwardCooldown)
 			host.PlayAnimation("IdleForward");
+			
 		if(-0.01 > velocity.x || velocity.x > 0.01)
 			return "Walk";
 

@@ -27,17 +27,23 @@ public class Jump : Motion
 	{
 		// base here is Motion, which will always return null
 		string move = base.HandlePhysics(delta);
+
+		//Update to the opposite Jump Animation
 		if(host.FacingRight != face)
 		{
-			host.PlayAnimation("Jump");
+			PlayAnimation();
 			face = host.FacingRight;
 		}
+
+		//Check to see if we are still jumping
 		if (host.IsOnFloor())
 		{
 			if(velocity.Equals(Vector2.Zero))
 				return "Idle";
-			else
+			else if (Mathf.Abs(velocity.x) < WalkToRunSpeed)
 				return "Walk";
+			else
+				return "Run";
 		}
 		return move;
 	}

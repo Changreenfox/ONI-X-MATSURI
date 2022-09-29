@@ -11,7 +11,7 @@ public class Run : OnGround
 	public override string HandlePhysics(float delta)
 	{
 		string temp = base.HandlePhysics(delta);
-		if(-WalkToRunSpeed < velocity.x && velocity.x < WalkToRunSpeed)
+		if(Mathf.Abs(velocity.x) < WalkToRunSpeed)
 			return "Walk";
 		return temp;
 	}

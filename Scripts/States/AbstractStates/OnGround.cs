@@ -3,7 +3,6 @@ using System;
 
 public abstract class OnGround : Motion
 {
-	public float WalkToRunSpeed = 300;
 	public override string HandlePhysics(float delta)
 	{
 		// Base here will be Motion, which will always return null
