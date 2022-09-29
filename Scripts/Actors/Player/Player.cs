@@ -24,4 +24,9 @@ public class Player : Actor
 
 		state = container.GetState("Idle");
 	}
+
+	public override void Die()
+	{
+		
+	}
 }

@@ -34,27 +34,27 @@ public class UIManager : Control
 			if(PlayerNode.HP == 1)
 				Heart1.Texture = HeartHalf;
 			else
-				Heart1.texture = HeartFull;
-			Heart2.texture = HeartEmpty;
-			Heart3.texture = HeartEmpty;
+				Heart1.Texture = HeartFull;
+			Heart2.Texture = HeartEmpty;
+			Heart3.Texture = HeartEmpty;
 		}
 		else if (PlayerNode.HP <= 4)
 		{
-			Heart1.texture = HeartFull;
+			Heart1.Texture = HeartFull;
 			if(PlayerNode.HP == 3)
 				Heart2.Texture = HeartHalf;
 			else
-				Heart2.texture = HeartFull;
-			Heart3.texture = HeartEmpty;
+				Heart2.Texture = HeartFull;
+			Heart3.Texture = HeartEmpty;
 		}
 		else
 		{
-			Heart1.texture = HeartFull;
-			Heart2.texture = HeartFull;
+			Heart1.Texture = HeartFull;
+			Heart2.Texture = HeartFull;
 			if(PlayerNode.HP == 5)
 				Heart3.Texture = HeartHalf;
 			else
-				Heart3.texture = HeartFull;
+				Heart3.Texture = HeartFull;
 		}
 	}
 
