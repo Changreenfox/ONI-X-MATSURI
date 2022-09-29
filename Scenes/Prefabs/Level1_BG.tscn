@@ -6,6 +6,7 @@
 [ext_resource path="res://Scripts/MountainParallax.cs" type="Script" id=4]
 
 [node name="Background" type="Node2D"]
+position = Vector2( 0, 540 )
 script = ExtResource( 4 )
 
 [node name="Sky" type="Node2D" parent="."]

@@ -1,97 +1,44 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/tiles/ground_tile.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Prefabs/OgreBrute.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/Level1_BG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/SceneBase.cs" type="Script" id=5]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 107, 92.5 )
+[ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/TileMap.tscn" type="PackedScene" id=7]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
 
 [node name="Background" parent="." instance=ExtResource( 4 )]
 
+[node name="TutorialChunk" parent="." instance=ExtResource( 7 )]
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 520.2, 148 )
+position = Vector2( 273, -64 )
+scale = Vector2( 1, 1 )
 collision_mask = 45
+hp = 6
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( -870.333, -260 )
 current = true
 limit_left = 0
-limit_top = -540
-limit_bottom = -540
+limit_top = 0
+limit_bottom = 0
 smoothing_enabled = true
 
-[node name="Sprite2" type="Sprite" parent="."]
-position = Vector2( 400.2, 253 )
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Sprite2"]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2/StaticBody2D"]
-position = Vector2( 0, -0.5 )
-shape = SubResource( 2 )
-
-[node name="Sprite3" type="Sprite" parent="."]
-position = Vector2( 656.2, 253 )
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Sprite3"]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite3/StaticBody2D"]
-position = Vector2( 0, -0.5 )
-shape = SubResource( 2 )
-
-[node name="Sprite4" type="Sprite" parent="."]
-position = Vector2( 784.2, 253 )
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Sprite4"]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite4/StaticBody2D"]
-position = Vector2( 0, -0.5 )
-shape = SubResource( 2 )
-
-[node name="Sprite5" type="Sprite" parent="."]
-position = Vector2( 528.2, 253 )
-scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Sprite5"]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite5/StaticBody2D"]
-position = Vector2( 0, -0.5 )
-shape = SubResource( 2 )
+[node name="Interface" parent="Player/Camera2D/CanvasLayer" instance=ExtResource( 6 )]
+margin_left = -1.99982
+margin_top = -8.0
+margin_right = -1.99976
+margin_bottom = -8.0
 
 [node name="OgreBrute" parent="." instance=ExtResource( 3 )]
-position = Vector2( 800.2, 132 )
+position = Vector2( 1272, 880 )
+scale = Vector2( 1, 1 )
 collision_mask = 24
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

@@ -17,7 +17,6 @@ public class Idle : OnGround
 		time = 0;
 		velocity.x = 0;
 		host.Velocity = velocity;
-		host.PlayAnimation("Idle");
 	}
 
 	public override string HandlePhysics(float delta)
@@ -26,6 +25,7 @@ public class Idle : OnGround
 		time += delta;
 		if (time > faceForwardCooldown)
 			host.PlayAnimation("IdleForward");
+			
 		if(-0.01 > velocity.x || velocity.x > 0.01)
 			return "Walk";
 
@@ -35,5 +35,10 @@ public class Idle : OnGround
 	public override string StateName()
 	{
 		return "Idle";
+	}
+
+	protected override void PlayAnimation()
+	{
+		host.PlayAnimation("Idle");
 	}
 }

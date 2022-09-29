@@ -3,7 +3,6 @@ using System;
 
 public abstract class OnGround : Motion
 {
-	public float WalkToRunSpeed = 300;
 	public override string HandlePhysics(float delta)
 	{
 		// Base here will be Motion, which will always return null
@@ -16,7 +15,7 @@ public abstract class OnGround : Motion
 	//Normal Attack
 	protected override void Attack()
 	{    
-		host.Attack(0);
+		host.Attack(0, "Attack");
 		//APPARENTLY THIS THING CRASHES IF entityName STARTS WITH AN UPPERCASE LETTER????
 		/*
 		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 

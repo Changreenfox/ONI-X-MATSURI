@@ -66,6 +66,8 @@ public abstract class Actor : KinematicBody2D
 	//Every Actor has a list of attacks
 	[Export]
 	public List<BasicAttack> attacks = new List<BasicAttack>();
+	[Export]
+	public List<ContactDamage> surfaces = new List<ContactDamage>();
 
 
 	//FSM variables
@@ -92,8 +94,13 @@ public abstract class Actor : KinematicBody2D
 		{
 			if(node is BasicAttack)
 			{
-				GD.Print(node.Name);
+				GD.Print(Name, " -> ", node.Name);
 				attacks.Add((BasicAttack)node);
+			}
+			else if(node is ContactDamage)
+			{
+				GD.Print(Name, " -> ", node.Name);
+				surfaces.Add((ContactDamage)node);
 			}
 		}
 	}
@@ -102,10 +109,14 @@ public abstract class Actor : KinematicBody2D
 	{
 		if(!active)
 			return;
+
+		// Handle States
 		string name = state.HandlePhysics(delta);
+
 		if(name != null)
 			ChangeState(name);
 		
+		//Flips the Actor's colliders
 		Vector2 scale = character.Scale;
 		
 		if(facingRight)
@@ -114,14 +125,20 @@ public abstract class Actor : KinematicBody2D
 			scale.x = -1;
 
 		foreach (Node2D node in attacks)
-				node.Scale = scale;
+			node.Scale = scale;
+		foreach (Node2D node in surfaces)
+			node.Scale = scale;
 	}
 
 	public override void _Process(float delta)
 	{
 		if(!active)
 			return;
-		state.HandleProcess(delta);
+
+		string name = state.HandleProcess(delta);
+
+		if(name != null)
+			ChangeState(name);
 	}
 
 	/*=============================================================== Helpers =======================================================*/
@@ -151,9 +168,9 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	// Handle the Attack here
-	public void Attack(int selection)
+	public void Attack(int selection, string name)
 	{
-		attacks[selection].Attack();
+		attacks[selection].StartAttack(name);
 	}
 
 	//Will be called in the states, allowing the player to play specific animations
