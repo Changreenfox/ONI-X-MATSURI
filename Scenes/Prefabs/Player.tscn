@@ -241,7 +241,6 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-scale = Vector2( 0.6, 0.6 )
 collision_mask = 47
 script = ExtResource( 2 )
 
