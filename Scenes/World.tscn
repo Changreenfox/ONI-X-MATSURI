@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/tiles/ground_tile.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Prefabs/OgreBrute.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/Level1_BG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/SceneBase.cs" type="Script" id=5]
+[ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 107, 92.5 )
@@ -17,6 +18,7 @@ script = ExtResource( 5 )
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 520.2, 148 )
 collision_mask = 45
+hp = 6
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2( -870.333, -260 )
@@ -25,6 +27,14 @@ limit_left = 0
 limit_top = -540
 limit_bottom = -540
 smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
+
+[node name="Interface" parent="Player/Camera2D/CanvasLayer" instance=ExtResource( 6 )]
+margin_left = -1.99982
+margin_top = -8.0
+margin_right = -1.99976
+margin_bottom = -8.0
 
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( 400.2, 253 )
