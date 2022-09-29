@@ -22,6 +22,12 @@ public class Death : State
 		return null;
 	}
 
+	// Called when Process is called in FSM
+	public override string HandleProcess(float delta)
+	{
+		return null;
+	}
+
 	public override string StateName()
 	{
 		return "Death";

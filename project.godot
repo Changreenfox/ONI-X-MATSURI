@@ -20,8 +20,7 @@ GameManager="*res://Scripts/Managers/GameManager.cs"
 SignalManager="*res://Scripts/Managers/SignalManager.cs"
 TextureManager="*res://Scripts/Managers/TextureManager.cs"
 AudioManager="*res://Scripts/Managers/AudioManager.cs"
-PluginSettings="*res://addons/github-integration/scripts/PluginSettings.gd"
-SoundManager="*res://Scripts/SoundManager.cs"
+SoundManager="res://Scripts/SoundManager.cs"
 
 [display]
 

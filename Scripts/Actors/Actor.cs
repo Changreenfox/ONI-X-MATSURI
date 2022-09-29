@@ -134,7 +134,11 @@ public abstract class Actor : KinematicBody2D
 	{
 		if(!active)
 			return;
-		state.HandleProcess(delta);
+
+		string name = state.HandleProcess(delta);
+
+		if(name != null)
+			ChangeState(name);
 	}
 
 	/*=============================================================== Helpers =======================================================*/

@@ -20,6 +20,8 @@ public abstract class State : Node2D
 	// Called when Process is called in FSM
 	public virtual string HandleProcess(float delta)
 	{
+		if(host.HP <= 0)
+        	return "Death";
 		return null;
 	}
 
