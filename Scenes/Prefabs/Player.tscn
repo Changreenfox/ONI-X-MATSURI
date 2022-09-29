@@ -268,7 +268,6 @@ polygon = PoolVector2Array( -13.3333, -26.6667, 12.2151, -80.1784, 52.025, -94.0
 visible = false
 
 [node name="Range" type="CollisionPolygon2D" parent="JumpAttack"]
-visible = false
 position = Vector2( -26.6667, 26.6667 )
 rotation = 1.58476
 polygon = PoolVector2Array( -13.3333, -26.6667, 12.2151, -80.1784, 52.025, -94.0689, 78.6891, -94.4412, 93.3333, -66.6667, 93.3333, -26.6667, 93.3333, 13.3333, 80, 40, 53.3333, 40, 13.3333, 26.6667 )

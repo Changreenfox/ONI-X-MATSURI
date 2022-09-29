@@ -13,6 +13,7 @@ public abstract class Motion : State
 	[Export]
 	protected float maxFallSpeed = 5000;
 
+	protected bool facingRight;
 	protected Vector2 direction = new Vector2();
 	protected Vector2 velocity = new Vector2();
 
@@ -20,6 +21,8 @@ public abstract class Motion : State
 	{
 		velocity = host.GetVelocity();
 		direction = host.Direction;
+		facingRight = host.FacingRight;
+		PlayAnimation();
 	}
 
 	// Input we're looking for is attacking
@@ -52,12 +55,25 @@ public abstract class Motion : State
 	{
 		float goRight = Input.GetActionStrength("MoveRight");
 		float goLeft = Input.GetActionStrength("MoveLeft");
-		if(goRight != goLeft)
-			host.FacingRight = goRight > goLeft;
-
 		float jump = Input.GetActionStrength("Jump");
 		direction = new Vector2(goRight - goLeft, jump);
 		host.Direction = direction;
+
+		//Set facing direction
+		if(goRight != goLeft)
+		{
+			facingRight = goRight > goLeft;
+			if(facingRight != host.FacingRight)
+			{
+				host.FacingRight = facingRight;
+				PlayAnimation();
+			}
+		}
+	}
+
+	protected virtual void PlayAnimation()
+	{
+		return;
 	}
 
 	protected abstract void Attack();

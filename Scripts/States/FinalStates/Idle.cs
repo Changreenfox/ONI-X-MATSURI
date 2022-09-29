@@ -17,7 +17,6 @@ public class Idle : OnGround
 		time = 0;
 		velocity.x = 0;
 		host.Velocity = velocity;
-		host.PlayAnimation("Idle");
 	}
 
 	public override string HandlePhysics(float delta)
@@ -35,5 +34,10 @@ public class Idle : OnGround
 	public override string StateName()
 	{
 		return "Idle";
+	}
+
+	protected override void PlayAnimation()
+	{
+		host.PlayAnimation("Idle");
 	}
 }

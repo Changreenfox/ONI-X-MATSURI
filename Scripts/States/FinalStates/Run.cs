@@ -8,18 +8,17 @@ public class Run : OnGround
 		host = _host;
 	}
 
-	public override void Enter()
-	{
-		base.Enter();
-		host.PlayAnimation("Run");
-	}
-
 	public override string HandlePhysics(float delta)
 	{
 		string temp = base.HandlePhysics(delta);
 		if(-WalkToRunSpeed < velocity.x && velocity.x < WalkToRunSpeed)
 			return "Walk";
 		return temp;
+	}
+
+	protected override void PlayAnimation()
+	{
+		host.PlayAnimation("Run");
 	}
 
 	public override string StateName()

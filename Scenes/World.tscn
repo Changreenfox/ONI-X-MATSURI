@@ -16,6 +16,7 @@ script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 273, -64 )
+scale = Vector2( 1, 1 )
 collision_mask = 45
 hp = 6
 
@@ -36,7 +37,8 @@ margin_right = -1.99976
 margin_bottom = -8.0
 
 [node name="OgreBrute" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1205, 896 )
+position = Vector2( 1272, 880 )
+scale = Vector2( 1, 1 )
 collision_mask = 24
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

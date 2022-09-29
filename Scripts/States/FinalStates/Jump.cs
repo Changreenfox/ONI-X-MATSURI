@@ -5,7 +5,8 @@ public class Jump : Motion
 {
 	[Export]
 	protected float jumpSpeed = 1000;
-	private bool facingRight;
+
+	private bool face;
 
 	public Jump(Actor _host)
 	{
@@ -15,22 +16,21 @@ public class Jump : Motion
 	public override void Enter()
 	{
 		base.Enter();
+		face = host.FacingRight;
 		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
 								host.GetType().Name.ToLower(), 
 								"jump");
-		facingRight = host.FacingRight;
 		velocity.y = -jumpSpeed * direction.y;
-		host.PlayAnimation("Jump");
 	}
 
 	public override string HandlePhysics(float delta)
 	{
 		// base here is Motion, which will always return null
 		string move = base.HandlePhysics(delta);
-		if(host.FacingRight != facingRight)
+		if(host.FacingRight != face)
 		{
 			host.PlayAnimation("Jump");
-			facingRight = host.FacingRight;
+			face = host.FacingRight;
 		}
 		if (host.IsOnFloor())
 		{
@@ -40,6 +40,11 @@ public class Jump : Motion
 				return "Walk";
 		}
 		return move;
+	}
+
+	protected override void PlayAnimation()
+	{
+		host.PlayAnimation("Jump");
 	}
 
 	//Will not currently work with Attack function... PlayerFSM would require attack to take an int var saying which attack to use

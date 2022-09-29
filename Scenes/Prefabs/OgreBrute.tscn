@@ -116,5 +116,4 @@ script = ExtResource( 3 )
 
 [node name="Range" type="CollisionShape2D" parent="Contact"]
 visible = false
-scale = Vector2( 1, 1 )
 shape = SubResource( 3 )
