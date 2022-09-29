@@ -21,7 +21,7 @@ public abstract class State : Node2D
 	public virtual string HandleProcess(float delta)
 	{
 		if(host.HP <= 0)
-        	return "Death";
+			return "Death";
 		return null;
 	}
 

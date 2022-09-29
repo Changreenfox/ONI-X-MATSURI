@@ -62,7 +62,6 @@ public class UIManager : Control
 	{
 		GetTree().Quit();
 	}
-
 }
 
 

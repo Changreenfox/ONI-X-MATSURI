@@ -8,7 +8,7 @@ public class BasicAttack : Attack
 
 	public override void GetRange()
 	{    
-        range = (CollisionPolygon2D)GetNode("Range");
+		range = (CollisionPolygon2D)GetNode("Range");
 	}
 
 

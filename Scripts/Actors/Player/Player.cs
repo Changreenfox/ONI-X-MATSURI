@@ -27,6 +27,6 @@ public class Player : Actor
 
 	public override void Die()
 	{
-		
+		GetTree().ChangeScene("res://Scenes/GameOver.tscn");
 	}
 }

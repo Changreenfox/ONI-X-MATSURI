@@ -1,11 +1,13 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/tiles/ground_tile.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Prefabs/OgreBrute.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/Level1_BG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/SceneBase.cs" type="Script" id=5]
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=6]
+
+[sub_resource type="StreamTexture" id=3]
+flags = 4
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 107, 92.5 )
@@ -39,7 +41,7 @@ margin_bottom = -8.0
 [node name="Sprite2" type="Sprite" parent="."]
 position = Vector2( 400.2, 253 )
 scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 2 )
+texture = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -55,7 +57,7 @@ shape = SubResource( 2 )
 [node name="Sprite3" type="Sprite" parent="."]
 position = Vector2( 656.2, 253 )
 scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 2 )
+texture = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -71,7 +73,7 @@ shape = SubResource( 2 )
 [node name="Sprite4" type="Sprite" parent="."]
 position = Vector2( 784.2, 253 )
 scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 2 )
+texture = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }
@@ -87,7 +89,7 @@ shape = SubResource( 2 )
 [node name="Sprite5" type="Sprite" parent="."]
 position = Vector2( 528.2, 253 )
 scale = Vector2( 0.6, 0.6 )
-texture = ExtResource( 2 )
+texture = SubResource( 3 )
 __meta__ = {
 "_edit_group_": true
 }

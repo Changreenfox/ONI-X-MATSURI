@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class GameOver : Node2D
+public class Win : Node2D
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -14,10 +14,9 @@ public class GameOver : Node2D
 //  {
 //      
 //  }
-
 	private void _on_ReturnButton_pressed()
 	{
-		GetTree().ChangeScene("res://Scenes/Start.tscn");
+		GetTree().ChangeScene("res://Scenes/StartScreen.tscn");
 	}
 
 }
