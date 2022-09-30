@@ -42,8 +42,8 @@ public abstract class Attack : Area2D
 		{
 			GD.Print("Here");
 			host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
-										host.GetType().Name.ToLower(), 
-										"attack");
+										host.GetType().Name,
+										"Attack");
 			host.PlayAnimation(name, prev);
 			host.Attacking = true;
 			attacking = true;

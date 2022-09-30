@@ -18,8 +18,8 @@ public class Jump : Motion
 		base.Enter();
 		face = host.FacingRight;
 		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
-								host.GetType().Name.ToLower(), 
-								"jump");
+								host.GetType().Name, 
+								"Jump");
 		velocity.y = -jumpSpeed * direction.y;
 	}
 

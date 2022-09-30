@@ -71,6 +71,7 @@ public class AudioManager : Node
 				{
 					{"Attack", 			(SOUND_PATH + "player/player_attack_16bit.wav")},
 					{"Damage", 			(SOUND_PATH + "player/player_damage.wav")},
+					{"Death",			(SOUND_PATH + "nosound.wav")},
 					{"Jump", 			(SOUND_PATH + "player/player_jump_16bit.wav")}
 				}
 			},
@@ -213,11 +214,11 @@ public class AudioManager : Node
 		//Initialize pre-determined domains
 		loadedSounds = new Dictionary<string, Dictionary<string, AudioStream>> 
 		{
-			{ "enemy_oni", new Dictionary<string, AudioStream>{ } },
-			{ "enemy_oni_boss", new Dictionary<string, AudioStream>{ } },
-			{ "player", new Dictionary<string, AudioStream>{ } },
-			{ "powerups", new Dictionary<string, AudioStream>{ } },
-			{ "user_interface", new Dictionary<string, AudioStream> { } }
+			{ "OniBoss", new Dictionary<string, AudioStream>{ } },
+			{ "OniBrute", new Dictionary<string, AudioStream>{ } },
+			{ "Player", new Dictionary<string, AudioStream>{ } },
+			{ "PowerUps", new Dictionary<string, AudioStream>{ } },
+			{ "UserInterface", new Dictionary<string, AudioStream> { } }
 		};
 		
 		LoadMusic("GameOver");
@@ -226,11 +227,11 @@ public class AudioManager : Node
 		LoadMusic("StartScreen");
 		LoadMusic("Victory");
 		
-		LoadDomainSounds("enemy_oni");
-		LoadDomainSounds("enemy_oni_boss");
-		LoadDomainSounds("player");
-		LoadDomainSounds("powerups");
-		LoadDomainSounds("user_interface");
+		LoadDomainSounds("OniBoss");
+		LoadDomainSounds("OniBrute");
+		LoadDomainSounds("Player");
+		LoadDomainSounds("PowerUps");
+		LoadDomainSounds("UserInterface");
 		
 		currentMusic = new AudioStreamPlayer();
 		currentMusic.Stream = loadedMusic["Level1"];
