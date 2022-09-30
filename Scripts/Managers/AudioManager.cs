@@ -44,52 +44,52 @@ public class AudioManager : Node
 		new Dictionary<string, Dictionary<string, string>> 
 		{
 			{
-				"enemy_oni", 
-				new Dictionary<string, string>
-				{
-					{"damage", 			(SOUND_PATH + "enemy/enemy_oni_damage.wav")},
-					{"death", 			(SOUND_PATH + "enemy/enemy_oni_death.wav")}
-				}
-			},
-			{
-				"enemy_oni_boss", 
+				"OniBoss", 
 				new Dictionary<string, string>
 				{	            
-					{"damage", 			(SOUND_PATH + "enemy/enemy_oni_boss_damage.wav")},
-					{"death", 			(SOUND_PATH + "enemy/enemy_oni_boss_death.wav")},
-					{"death_vaporize", 	(SOUND_PATH + "enemy/enemy_oni_boss_death_vaporize.wav")},
-					{"drop", 			(SOUND_PATH + "enemy/enemy_oni_boss_drop.wav")},
-					{"drum-attack", 	(SOUND_PATH + "enemy/enemy_oni_boss_drum-attack.wav")},
-					{"drum-charge", 	(SOUND_PATH + "enemy/enemy_oni_boss_drum-charge.wav")},
-					{"laugh", 			(SOUND_PATH + "enemy/enemy_oni_boss_laugh.wav")},
-					{"phase2-groan", 	(SOUND_PATH + "enemy/enemy_oni_boss_groan.wav")}
+					{"Damage", 			(SOUND_PATH + "enemy/enemy_oni_boss_damage.wav")},
+					{"Death", 			(SOUND_PATH + "enemy/enemy_oni_boss_death.wav")},
+					{"DeathVaporize", 	(SOUND_PATH + "enemy/enemy_oni_boss_death_vaporize.wav")},
+					{"Drop", 			(SOUND_PATH + "enemy/enemy_oni_boss_drop.wav")},
+					{"DrumAttack", 		(SOUND_PATH + "enemy/enemy_oni_boss_drum-attack.wav")},
+					{"DrumCharge", 		(SOUND_PATH + "enemy/enemy_oni_boss_drum-charge.wav")},
+					{"Laugh", 			(SOUND_PATH + "enemy/enemy_oni_boss_laugh.wav")},
+					{"Phase2_Groan", 	(SOUND_PATH + "enemy/enemy_oni_boss_groan.wav")}
 				}
 			},
 			{
-				"player", 
+				"OniBrute", 
 				new Dictionary<string, string>
 				{
-					{"attack", 			(SOUND_PATH + "player/player_attack_16bit.wav")},
-					{"damage", 			(SOUND_PATH + "player/player_damage.wav")},
-					{"jump", 			(SOUND_PATH + "player/player_jump_16bit.wav")}
+					{"Damage", 			(SOUND_PATH + "enemy/enemy_oni_damage.wav")},
+					{"Death", 			(SOUND_PATH + "enemy/enemy_oni_death.wav")}
 				}
 			},
 			{
-				"powerups", 
+				"Player", 
 				new Dictionary<string, string>
 				{
-					{"attack-boost", 	(SOUND_PATH + "powerups/attack-boost.wav")},
-					{"heal", 			(SOUND_PATH + "powerups/heal.wav")},
-					{"jump-boost", 		(SOUND_PATH + "powerups/jump-boost.wav")},
-					{"speed-boost", 	(SOUND_PATH + "powerups/speed-boost.wav")}
+					{"Attack", 			(SOUND_PATH + "player/player_attack_16bit.wav")},
+					{"Damage", 			(SOUND_PATH + "player/player_damage.wav")},
+					{"Jump", 			(SOUND_PATH + "player/player_jump_16bit.wav")}
 				}
 			},
 			{
-				"user_interface", 
+				"PowerUps", 
 				new Dictionary<string, string>
 				{
-					{"quit_button_press",	(SOUND_PATH + "menu/button_press.wav")},
-					{"start_button_press",	(SOUND_PATH + "menu/button_press2.wav")}
+					{"AttackBoost", 	(SOUND_PATH + "powerups/attack-boost.wav")},
+					{"Heal", 			(SOUND_PATH + "powerups/heal.wav")},
+					{"JumpBoost", 		(SOUND_PATH + "powerups/jump-boost.wav")},
+					{"SpeedBoost", 		(SOUND_PATH + "powerups/speed-boost.wav")}
+				}
+			},
+			{
+				"UserInterface", 
+				new Dictionary<string, string>
+				{
+					{"QuitButtonPress",	(SOUND_PATH + "menu/button_press.wav")},
+					{"StartButtonPress",(SOUND_PATH + "menu/button_press2.wav")}
 				}
 			}
 		};
