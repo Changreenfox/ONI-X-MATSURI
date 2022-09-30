@@ -44,3 +44,4 @@ data_*/
 .mono/temp/obj/ONI-x-MATSURI.csproj.nuget.g.targets
 .mono/temp/obj/project.assets.json
 .mono/temp/obj/project.nuget.cache
+.vscode/settings.json
