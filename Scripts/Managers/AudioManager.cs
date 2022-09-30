@@ -31,11 +31,11 @@ public class AudioManager : Node
 	private Dictionary<string, string> musicPaths = 
 		new Dictionary<string, string> 
 		{
-			{"Defeat", 					(MUSIC_PATH + "lose_screen_music.mp3")},
-			{"Level1", 					(MUSIC_PATH + "main_stage_music.mp3")},
-			{"OniBoss", 				(MUSIC_PATH + "boss_stage_music.mp3")},
-			{"StartScreen", 			(MUSIC_PATH + "main_menu_music.mp3")},
-			{"Victory", 				(MUSIC_PATH + "win_screen_music.mp3")}		
+			{"GameOver", 			(MUSIC_PATH + "lose_screen_music.mp3")},
+			{"Level1", 				(MUSIC_PATH + "main_stage_music.mp3")},
+			{"OniBoss", 			(MUSIC_PATH + "boss_stage_music.mp3")},
+			{"StartScreen", 		(MUSIC_PATH + "main_menu_music.mp3")},
+			{"Victory", 			(MUSIC_PATH + "win_screen_music.mp3")}		
 		};
 	
 	//Format: Dictionary<domainName, Dictionary<domain soundName, Sound path>>
@@ -149,7 +149,7 @@ public class AudioManager : Node
 	
 	public void PlayMusic(string musicName) 
 	{
-		if(currentMusic.Stream == null && currentMusic.Playing) {
+		if(currentMusic.Stream != null && currentMusic.Playing) {
 			currentMusic.Stop();
 		}
 		currentMusic.Stream = loadedMusic[musicName];
@@ -220,7 +220,7 @@ public class AudioManager : Node
 			{ "user_interface", new Dictionary<string, AudioStream> { } }
 		};
 		
-		LoadMusic("Defeat");
+		LoadMusic("GameOver");
 		LoadMusic("Level1");
 		LoadMusic("OniBoss");
 		LoadMusic("StartScreen");
@@ -244,7 +244,7 @@ public class AudioManager : Node
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)
 	{
 		soundPlayer.QueueFree();
-		//GD.Print("Player freed");
+		//GD.Print("Player", audioPlayer.Name, " freed");
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
