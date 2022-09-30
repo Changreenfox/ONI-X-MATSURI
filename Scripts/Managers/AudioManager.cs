@@ -9,7 +9,6 @@ public class AudioManager : Node
 	
 	//[Export]
 	private static string SOUND_PATH = "res://assets/sounds/";
-		
 	
 	//[Export]
 	private static string MUSIC_PATH = (SOUND_PATH + "music/");
@@ -26,7 +25,6 @@ public class AudioManager : Node
 	//Format: Dictionary<domainName, Dictionary<domain soundName, Sound stream>>
 	//[Export]
 	private Dictionary<string, Dictionary<string, AudioStream>> loadedSounds;
-	
 	
 	//Format: Dictionary<scene name, music track path>
 	//[Export]
@@ -113,6 +111,7 @@ public class AudioManager : Node
 		{
 			streamRef = forceLoad ? ResourceLoader.Load<AudioStream>(musicTrackPathRef) : streamRef;
 		}
+		//If music entry doesn't exist
 		else
 		{
 			loadedMusic.Add(trackName, ResourceLoader.Load<AudioStream>(musicTrackPathRef));
@@ -140,7 +139,7 @@ public class AudioManager : Node
 			{
 				streamRef = forceLoad ? ResourceLoader.Load<AudioStream>(entry.Value) : streamRef;
 			}
-			//If entry doesn't exist
+			//If sound entry doesn't exist
 			else
 			{
 				domainDictRef.Add(entry.Key, ResourceLoader.Load<AudioStream>(entry.Value));
@@ -177,22 +176,22 @@ public class AudioManager : Node
 	
 	public void SetMusicMute(bool enable)
 	{
-		AudioServer.SetBusMute(1, enable);
+		AudioServer.SetBusMute(AudioServer.GetBusIndex("Music"), enable);
 	}
 	
 	public void SetMusicVolume(float volumeDb)
 	{
-		AudioServer.SetBusVolumeDb(1, volumeDb);
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), volumeDb);
 	}
 	
 	public void SetSoundMute(bool enable)
 	{
-		AudioServer.SetBusMute(2, enable);
+		AudioServer.SetBusMute(AudioServer.GetBusIndex("Sounds"), enable);
 	}
 	
 	public void SetSoundVolume(float volumeDb)
 	{
-		AudioServer.SetBusVolumeDb(2, volumeDb);
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sounds"), volumeDb);
 	}
 	
 	// Called when the node enters the scene tree for the first time.
