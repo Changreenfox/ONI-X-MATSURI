@@ -31,11 +31,11 @@ public class AudioManager : Node
 	private Dictionary<string, string> musicPaths = 
 		new Dictionary<string, string> 
 		{
-			{"Defeat", 				(MUSIC_PATH + "lose_screen_music.mp3")},
-			{"Level1", 				(MUSIC_PATH + "main_stage_music.mp3")},
-			{"MainMenu", 			(MUSIC_PATH + "main_menu_music.mp3")},
-			{"OniBoss", 			(MUSIC_PATH + "boss_stage_music.mp3")},
-			{"Victory", 			(MUSIC_PATH + "win_screen_music.mp3")}		
+			{"Defeat", 					(MUSIC_PATH + "lose_screen_music.mp3")},
+			{"Level1", 					(MUSIC_PATH + "main_stage_music.mp3")},
+			{"OniBoss", 				(MUSIC_PATH + "boss_stage_music.mp3")},
+			{"StartScreen", 			(MUSIC_PATH + "main_menu_music.mp3")},
+			{"Victory", 				(MUSIC_PATH + "win_screen_music.mp3")}		
 		};
 	
 	//Format: Dictionary<domainName, Dictionary<domain soundName, Sound path>>
@@ -220,8 +220,11 @@ public class AudioManager : Node
 			{ "user_interface", new Dictionary<string, AudioStream> { } }
 		};
 		
+		LoadMusic("Defeat");
 		LoadMusic("Level1");
-		//LoadMusic("MainMenu");
+		LoadMusic("OniBoss");
+		LoadMusic("StartScreen");
+		LoadMusic("Victory");
 		
 		LoadDomainSounds("enemy_oni");
 		LoadDomainSounds("enemy_oni_boss");
@@ -235,7 +238,7 @@ public class AudioManager : Node
 		currentMusic.Bus = "Music";
 		currentMusicNode.AddChild(currentMusic);
 		
-		AudioServer.SetBusVolumeDb(0, -20f);
+		AudioServer.SetBusVolumeDb(0, -3f);
 	}
 	
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)

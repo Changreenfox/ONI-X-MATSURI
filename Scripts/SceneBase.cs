@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class SceneBase : Node
+public class SceneBase : Node2D
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
@@ -20,7 +20,7 @@ public class SceneBase : Node
 		gManager.CurrentScene = this;
 		gManager.Signals.EmitSignal(
 									nameof(SignalManager.SceneLoadedSignal),
-									"Level1"
+									GetType().Name
 									);
 		
 	}

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class StartScreen : SceneBase
+public class Level1 : SceneBase
 {
 	// Declare member variables here. Examples:
 	// private int a = 2;
@@ -18,17 +18,4 @@ public class StartScreen : SceneBase
 //  {
 //      
 //  }
-
-	private void _on_StartButton_pressed()
-	{
-		GetTree().ChangeScene("res://Scenes/World.tscn");
-	}
-
-	private void _on_QuitButton_pressed()
-	{
-		GetTree().Quit();
-	}
-
 }
-
-
