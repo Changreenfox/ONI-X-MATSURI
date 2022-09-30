@@ -3,16 +3,16 @@ using System;
 
 public abstract class Attack : Area2D
 {
-    // Attack functionality shared by all attacks
-    protected Actor host;
+	// Attack functionality shared by all attacks
+	protected Actor host;
 
-    //Damage
+	//Damage
 	[Export]
 	public int damage = 1;
 
-    //Time it takes for attack to play out
+	//Time it takes for attack to play out
 	[Export]
-	public float attackTime = 0.5f;
+	public float attackTime = 0.6f;
 
 	//Time it takes until the player attacks again
 	public float cooldown = 0.6f;
@@ -26,16 +26,16 @@ public abstract class Attack : Area2D
 	
 	public override void _Ready()
 	{
-        Node node = GetNode("Range");
-        GetRange();
+		Node node = GetNode("Range");
+		GetRange();
 		
 		host = (Actor)GetNode("/root/World/Player");
 
 		Connect("area_entered", this, nameof(_on_Attack_area_entered));
 		Connect("body_entered", this, nameof(_on_Attack_body_entered));
-    }
+	}
 
-    //Begin the attack animation
+	//Begin the attack animation
 	public virtual void StartAttack(string name, State prev)
 	{
 		if(!attacked)
@@ -44,19 +44,19 @@ public abstract class Attack : Area2D
 			host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
 										host.GetType().Name.ToLower(), 
 										"attack");
-            host.PlayAnimation(name, prev);
+			host.PlayAnimation(name, prev);
 			host.Attacking = true;
 			attacking = true;
 			attacked = true;
 		}
 	}
 
-    //Detect when an enemy is within range
+	//Detect when an enemy is within range
 	public virtual void _on_Attack_body_entered(KinematicBody2D collision)
 	{
 		Actor enemy = collision as Actor;
 		//enemy? means if not null, call enemy.TakeDamage, otherwise do nothing
-        GD.Print(this.Name, " Hit! ", enemy?.Name);
+		GD.Print(this.Name, " Hit! ", enemy?.Name);
 		enemy?.TakeDamage(damage);
 	}
 
@@ -67,5 +67,5 @@ public abstract class Attack : Area2D
 		GD.Print("Hit!");
 	}
 
-    public abstract void GetRange();
+	public abstract void GetRange();
 }
