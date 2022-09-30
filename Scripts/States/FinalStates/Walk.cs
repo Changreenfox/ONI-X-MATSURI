@@ -19,9 +19,9 @@ public class Walk : OnGround
 		return temp;
 	}
 
-	protected override void PlayAnimation()
+	public override void PlayAnimation()
 	{
-		host.PlayAnimation("Walk");
+		host.PlayAnimation("Walk", this);
 	}
 
 	public override string StateName()

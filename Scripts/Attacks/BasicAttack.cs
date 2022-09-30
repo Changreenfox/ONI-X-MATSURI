@@ -24,8 +24,10 @@ public class BasicAttack : Attack
 			timer += delta;
 			if(timer >= attackTime)
 			{
+				host.Attacking = false;
 				attacking = false;
 				timer = 0;
+				previousState.PlayAnimation();
 			}
 		}
 		//cooldown state
@@ -34,6 +36,7 @@ public class BasicAttack : Attack
 			timer += delta;
 			if(timer >= cooldown)
 			{
+				GD.Print("Called -> ", timer);
 				attacked = false;
 				timer = 0;
 			}

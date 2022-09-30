@@ -15,7 +15,7 @@ public abstract class OnGround : Motion
 	//Normal Attack
 	protected override void Attack()
 	{    
-		host.Attack(0, "Attack");
+		host.Attack(0, "Attack", this);
 		//APPARENTLY THIS THING CRASHES IF entityName STARTS WITH AN UPPERCASE LETTER????
 		/*
 		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 

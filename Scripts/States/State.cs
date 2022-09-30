@@ -35,4 +35,9 @@ public abstract class State : Node2D
 	{
 	   return "State"; 
 	}
+	
+	public virtual void PlayAnimation()
+	{
+		return;
+	}
 }

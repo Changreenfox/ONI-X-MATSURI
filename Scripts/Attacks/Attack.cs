@@ -12,15 +12,17 @@ public abstract class Attack : Area2D
 
     //Time it takes for attack to play out
 	[Export]
-	public float attackTime = 0.2f;
+	public float attackTime = 0.5f;
 
 	//Time it takes until the player attacks again
-	public float cooldown = 0.5f;
+	public float cooldown = 0.6f;
 
 	//Private variables for keeping track of state
 	protected bool attacking = false;
 	protected bool attacked = false;
 	protected float timer = 0;
+
+	public State previousState;
 	
 	public override void _Ready()
 	{
@@ -34,16 +36,18 @@ public abstract class Attack : Area2D
     }
 
     //Begin the attack animation
-	public virtual void StartAttack(string name)
+	public virtual void StartAttack(string name, State prev)
 	{
 		if(!attacked)
 		{
-			attacking = true;
-			attacked = true;
+			GD.Print("Here");
 			host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
 										host.GetType().Name.ToLower(), 
 										"attack");
-            host.PlayAnimation(name);
+            host.PlayAnimation(name, prev);
+			host.Attacking = true;
+			attacking = true;
+			attacked = true;
 		}
 	}
 

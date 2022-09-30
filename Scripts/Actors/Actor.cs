@@ -69,6 +69,13 @@ public abstract class Actor : KinematicBody2D
 	[Export]
 	public List<ContactDamage> surfaces = new List<ContactDamage>();
 
+	private bool attacking = false;
+	public bool Attacking
+	{
+		get{ return attacking; }
+		set{ attacking = value; }
+	}
+
 
 	//FSM variables
 	protected State state;
@@ -168,13 +175,13 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	// Handle the Attack here
-	public void Attack(int selection, string name)
+	public void Attack(int selection, string name, State prev)
 	{
-		attacks[selection].StartAttack(name);
+		attacks[selection].StartAttack(name, prev);
 	}
 
 	//Will be called in the states, allowing the player to play specific animations
-	public void PlayAnimation(string name)
+	public void PlayAnimation(string name, State current)
 	{
 		if(name == "IdleForward"){ //if the player is idle for a long time
 			animator.Play(name);
@@ -183,7 +190,15 @@ public abstract class Actor : KinematicBody2D
 		 //else play the correct animation
 		if(facingRight) name += "Right";
 		else name += "Left";
-		animator.Play(name);
+
+		HandleExtraAnimation(current);
+
+		if(!attacking)
+			animator.Play(name);
+	}
+
+	public virtual void HandleExtraAnimation(State current)
+	{
 		return;
 	}
 
