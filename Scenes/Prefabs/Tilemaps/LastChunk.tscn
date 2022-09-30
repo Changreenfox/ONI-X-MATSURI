@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/TileMap.tres" type="TileSet" id=1]
+
+[node name="LastTile" type="Node2D"]
+position = Vector2( 0, 56 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+format = 1
+tile_data = PoolIntArray( -65523, 5, 0, 327691, 8, 0, 458752, 2, 0, 458753, 2, 0, 458754, 3, 0, 458755, 4, 0, 458756, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 2, 0 )

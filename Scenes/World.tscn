@@ -1,18 +1,19 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/Level1Generator.cs" type="Script" id=2]
 [ext_resource path="res://Scenes/Prefabs/OgreBrute.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/Level1_BG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/SceneBase.cs" type="Script" id=5]
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Prefabs/Tilemaps/TileMap.tscn" type="PackedScene" id=7]
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
 
 [node name="Background" parent="." instance=ExtResource( 4 )]
 
-[node name="TutorialChunk" parent="." instance=ExtResource( 7 )]
+[node name="LevelGenerator" type="Node2D" parent="."]
+script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 273, -64 )
@@ -20,10 +21,10 @@ collision_mask = 45
 hp = 6
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2( -870.333, -260 )
 current = true
 limit_left = 0
 limit_top = 0
+limit_right = 30720
 limit_bottom = 0
 smoothing_enabled = true
 

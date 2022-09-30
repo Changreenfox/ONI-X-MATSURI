@@ -11,7 +11,7 @@ public class EnemyIdle : State
     
     public override void Enter()
     {
-        host.PlayAnimation("Idle");
+        host.PlayAnimation("Idle", this);
     }
 
     public override string HandlePhysics(float delta)

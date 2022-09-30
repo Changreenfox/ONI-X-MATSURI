@@ -48,15 +48,15 @@ public class Jump : Motion
 		return move;
 	}
 
-	protected override void PlayAnimation()
+	public override void PlayAnimation()
 	{
-		host.PlayAnimation("Jump");
+		host.PlayAnimation("Jump", this);
 	}
 
 	//Will not currently work with Attack function... PlayerFSM would require attack to take an int var saying which attack to use
 	protected override void Attack()
 	{
-		host.Attack(1, "JumpAttack");
+		host.Attack(1, "JumpAttack", this);
 	}
 
 	public override string StateName()

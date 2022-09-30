@@ -73,10 +73,5 @@ public abstract class Motion : State
 		}
 	}
 
-	protected virtual void PlayAnimation()
-	{
-		return;
-	}
-
 	protected abstract void Attack();
 }

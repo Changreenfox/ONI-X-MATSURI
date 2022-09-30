@@ -16,9 +16,9 @@ public class Run : OnGround
 		return temp;
 	}
 
-	protected override void PlayAnimation()
+	public override void PlayAnimation()
 	{
-		host.PlayAnimation("Run");
+		host.PlayAnimation("Run", this);
 	}
 
 	public override string StateName()
