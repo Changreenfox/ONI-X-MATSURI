@@ -10,7 +10,7 @@ height = 50.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "AttackLeft"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -26,7 +26,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "AttackRight"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -93,7 +93,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "JumpAttackLeft"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -109,7 +109,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=6]
 resource_name = "JumpAttackRight"
-length = 0.4
+length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -117,10 +117,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 28, 29, 30, 31 ]
+"values": [ 28, 29, 30, 31, 31 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -251,19 +251,19 @@ vframes = 11
 frame = 2
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 57 )
+position = Vector2( 0, -7 )
 shape = SubResource( 1 )
 
 [node name="NormalAttack" parent="." instance=ExtResource( 3 )]
 
 [node name="Range" type="CollisionPolygon2D" parent="NormalAttack"]
-position = Vector2( 14, 84 )
+position = Vector2( 13, 26 )
 polygon = PoolVector2Array( -13.3333, -26.6667, 12.2151, -80.1784, 52.025, -94.0689, 78.6891, -94.4412, 93.3333, -66.6667, 93.3333, -26.6667, 93.3333, 13.3333, 80, 40, 53.3333, 40, 13.3333, 26.6667 )
 
 [node name="JumpAttack" parent="." instance=ExtResource( 3 )]
 
 [node name="Range" type="CollisionPolygon2D" parent="JumpAttack"]
-position = Vector2( -26, 71 )
+position = Vector2( -27, 14 )
 rotation = 1.58476
 polygon = PoolVector2Array( -13.3333, -26.6667, 12.2151, -80.1784, 52.025, -94.0689, 78.6891, -94.4412, 93.3333, -66.6667, 93.3333, -26.6667, 93.3333, 13.3333, 80, 40, 53.3333, 40, 13.3333, 26.6667 )
 
