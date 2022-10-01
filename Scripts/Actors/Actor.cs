@@ -47,6 +47,49 @@ public abstract class Actor : KinematicBody2D
 		set { direction = value; }
 	}
 
+	[Export]
+	protected float speed = 90;
+	public float Speed
+	{
+		get{ return speed; }
+		set{ speed = value; }
+	}
+	[Export]
+	protected float maxSpeed = 600;
+	public float MaxSpeed
+	{
+		get{ return maxSpeed; }
+		set{ maxSpeed = value; }
+	}
+	[Export]
+	protected float gravity = 40;
+	public float Gravity
+	{
+		get{ return gravity; }
+		set{ gravity = value; }
+	}
+	[Export]
+	protected float jumpSpeed = 1000;
+	public float JumpSpeed
+	{
+		get { return jumpSpeed; }
+		set { jumpSpeed = value; }
+	}
+	[Export]
+	protected float maxFallSpeed = 5000;
+	public float MaxFallSpeed
+	{
+		get{ return maxFallSpeed; }
+		set{ maxFallSpeed = value; }
+	}
+	[Export]
+	protected float walkToRunSpeed = 550;
+	public float WalkToRunSpeed 
+	{
+		get{ return walkToRunSpeed; }
+		set{ walkToRunSpeed = value; }
+	}
+
 	// Floor Normal... says a floor is anything with a normal angle of ^
 	protected Vector2 UP = new Vector2(0, -1);
 	
@@ -154,11 +197,6 @@ public abstract class Actor : KinematicBody2D
 		GD.Print(name);
 		state = container.GetState(name);
 		state.Enter();
-	}
-
-	public Vector2 GetVelocity()
-	{
-		return velocity;
 	}
 
 	public Vector2 Move(Vector2 newVelocity)

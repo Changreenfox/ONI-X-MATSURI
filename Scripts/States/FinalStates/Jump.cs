@@ -3,8 +3,7 @@ using System;
 
 public class Jump : Motion
 {
-	[Export]
-	protected float jumpSpeed = 1000;
+
 
 	private bool face;
 
@@ -20,7 +19,9 @@ public class Jump : Motion
 		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
 								host.GetType().Name, 
 								"Jump");
-		velocity.y = -jumpSpeed * direction.y;
+		Vector2 velocity = host.Velocity;
+		velocity.y -= host.JumpSpeed * host.Direction.y;
+		host.Velocity = velocity;
 	}
 
 	public override string HandlePhysics(float delta)
@@ -38,9 +39,9 @@ public class Jump : Motion
 		//Check to see if we are still jumping
 		if (host.IsOnFloor())
 		{
-			if(velocity.Equals(Vector2.Zero))
+			if(host.Velocity.Equals(Vector2.Zero))
 				return "Idle";
-			else if (Mathf.Abs(velocity.x) < WalkToRunSpeed)
+			else if (Mathf.Abs(host.Velocity.x) < host.WalkToRunSpeed)
 				return "Walk";
 			else
 				return "Run";
