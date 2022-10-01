@@ -29,7 +29,7 @@ public abstract class Attack : Area2D
 		Node node = GetNode("Range");
 		GetRange();
 		
-		host = (Actor)GetNode("/root/World/Player");
+		host = (Actor)GetParent();
 
 		Connect("area_entered", this, nameof(_on_Attack_area_entered));
 		Connect("body_entered", this, nameof(_on_Attack_body_entered));
