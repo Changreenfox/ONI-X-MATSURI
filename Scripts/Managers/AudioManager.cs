@@ -9,7 +9,6 @@ public class AudioManager : Node
 	
 	//[Export]
 	private static string SOUND_PATH = "res://assets/sounds/";
-		
 	
 	//[Export]
 	private static string MUSIC_PATH = (SOUND_PATH + "music/");
@@ -27,16 +26,15 @@ public class AudioManager : Node
 	//[Export]
 	private Dictionary<string, Dictionary<string, AudioStream>> loadedSounds;
 	
-	
 	//Format: Dictionary<scene name, music track path>
 	//[Export]
 	private Dictionary<string, string> musicPaths = 
 		new Dictionary<string, string> 
 		{
-			{"Defeat", 				(MUSIC_PATH + "lose_screen_music.mp3")},
+			{"GameOver", 			(MUSIC_PATH + "lose_screen_music.mp3")},
 			{"Level1", 				(MUSIC_PATH + "main_stage_music.mp3")},
-			{"MainMenu", 			(MUSIC_PATH + "main_menu_music.mp3")},
 			{"OniBoss", 			(MUSIC_PATH + "boss_stage_music.mp3")},
+			{"StartScreen", 		(MUSIC_PATH + "main_menu_music.mp3")},
 			{"Victory", 			(MUSIC_PATH + "win_screen_music.mp3")}		
 		};
 	
@@ -46,52 +44,53 @@ public class AudioManager : Node
 		new Dictionary<string, Dictionary<string, string>> 
 		{
 			{
-				"enemy_oni", 
-				new Dictionary<string, string>
-				{
-					{"damage", 			(SOUND_PATH + "enemy/enemy_oni_damage.wav")},
-					{"death", 			(SOUND_PATH + "enemy/enemy_oni_death.wav")}
-				}
-			},
-			{
-				"enemy_oni_boss", 
+				"OniBoss", 
 				new Dictionary<string, string>
 				{	            
-					{"damage", 			(SOUND_PATH + "enemy/enemy_oni_boss_damage.wav")},
-					{"death", 			(SOUND_PATH + "enemy/enemy_oni_boss_death.wav")},
-					{"death_vaporize", 	(SOUND_PATH + "enemy/enemy_oni_boss_death_vaporize.wav")},
-					{"drop", 			(SOUND_PATH + "enemy/enemy_oni_boss_drop.wav")},
-					{"drum-attack", 	(SOUND_PATH + "enemy/enemy_oni_boss_drum-attack.wav")},
-					{"drum-charge", 	(SOUND_PATH + "enemy/enemy_oni_boss_drum-charge.wav")},
-					{"laugh", 			(SOUND_PATH + "enemy/enemy_oni_boss_laugh.wav")},
-					{"phase2-groan", 	(SOUND_PATH + "enemy/enemy_oni_boss_groan.wav")}
+					{"Damage", 			(SOUND_PATH + "enemy/enemy_oni_boss_damage.wav")},
+					{"Death", 			(SOUND_PATH + "enemy/enemy_oni_boss_death.wav")},
+					{"DeathVaporize", 	(SOUND_PATH + "enemy/enemy_oni_boss_death_vaporize.wav")},
+					{"Drop", 			(SOUND_PATH + "enemy/enemy_oni_boss_drop.wav")},
+					{"DrumAttack", 		(SOUND_PATH + "enemy/enemy_oni_boss_drum-attack.wav")},
+					{"DrumCharge", 		(SOUND_PATH + "enemy/enemy_oni_boss_drum-charge.wav")},
+					{"Laugh", 			(SOUND_PATH + "enemy/enemy_oni_boss_laugh.wav")},
+					{"Phase2_Groan", 	(SOUND_PATH + "enemy/enemy_oni_boss_groan.wav")}
 				}
 			},
 			{
-				"player", 
+				"OniBrute", 
 				new Dictionary<string, string>
 				{
-					{"attack", 			(SOUND_PATH + "player/player_attack_16bit.wav")},
-					{"damage", 			(SOUND_PATH + "player/player_damage.wav")},
-					{"jump", 			(SOUND_PATH + "player/player_jump_16bit.wav")}
+					{"Damage", 			(SOUND_PATH + "enemy/enemy_oni_damage.wav")},
+					{"Death", 			(SOUND_PATH + "enemy/enemy_oni_death.wav")}
 				}
 			},
 			{
-				"powerups", 
+				"Player", 
 				new Dictionary<string, string>
 				{
-					{"attack-boost", 	(SOUND_PATH + "powerups/attack-boost.wav")},
-					{"heal", 			(SOUND_PATH + "powerups/heal.wav")},
-					{"jump-boost", 		(SOUND_PATH + "powerups/jump-boost.wav")},
-					{"speed-boost", 	(SOUND_PATH + "powerups/speed-boost.wav")}
+					{"Attack", 			(SOUND_PATH + "player/player_attack_16bit.wav")},
+					{"Damage", 			(SOUND_PATH + "player/player_damage.wav")},
+					{"Death",			(SOUND_PATH + "nosound.wav")},
+					{"Jump", 			(SOUND_PATH + "player/player_jump_16bit.wav")}
 				}
 			},
 			{
-				"user_interface", 
+				"PowerUps", 
 				new Dictionary<string, string>
 				{
-					{"quit_button_press",	(SOUND_PATH + "menu/button_press.wav")},
-					{"start_button_press",	(SOUND_PATH + "menu/button_press2.wav")}
+					{"AttackBoost", 	(SOUND_PATH + "powerups/attack-boost.wav")},
+					{"Heal", 			(SOUND_PATH + "powerups/heal.wav")},
+					{"JumpBoost", 		(SOUND_PATH + "powerups/jump-boost.wav")},
+					{"SpeedBoost", 		(SOUND_PATH + "powerups/speed-boost.wav")}
+				}
+			},
+			{
+				"UserInterface", 
+				new Dictionary<string, string>
+				{
+					{"QuitButtonPress",	(SOUND_PATH + "menu/button_press.wav")},
+					{"StartButtonPress",(SOUND_PATH + "menu/button_press2.wav")}
 				}
 			}
 		};
@@ -113,6 +112,7 @@ public class AudioManager : Node
 		{
 			streamRef = forceLoad ? ResourceLoader.Load<AudioStream>(musicTrackPathRef) : streamRef;
 		}
+		//If music entry doesn't exist
 		else
 		{
 			loadedMusic.Add(trackName, ResourceLoader.Load<AudioStream>(musicTrackPathRef));
@@ -140,7 +140,7 @@ public class AudioManager : Node
 			{
 				streamRef = forceLoad ? ResourceLoader.Load<AudioStream>(entry.Value) : streamRef;
 			}
-			//If entry doesn't exist
+			//If sound entry doesn't exist
 			else
 			{
 				domainDictRef.Add(entry.Key, ResourceLoader.Load<AudioStream>(entry.Value));
@@ -150,7 +150,7 @@ public class AudioManager : Node
 	
 	public void PlayMusic(string musicName) 
 	{
-		if(currentMusic.Stream == null && currentMusic.Playing) {
+		if(currentMusic.Stream != null && currentMusic.Playing) {
 			currentMusic.Stop();
 		}
 		currentMusic.Stream = loadedMusic[musicName];
@@ -177,22 +177,22 @@ public class AudioManager : Node
 	
 	public void SetMusicMute(bool enable)
 	{
-		AudioServer.SetBusMute(1, enable);
+		AudioServer.SetBusMute(AudioServer.GetBusIndex("Music"), enable);
 	}
 	
 	public void SetMusicVolume(float volumeDb)
 	{
-		AudioServer.SetBusVolumeDb(1, volumeDb);
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), volumeDb);
 	}
 	
 	public void SetSoundMute(bool enable)
 	{
-		AudioServer.SetBusMute(2, enable);
+		AudioServer.SetBusMute(AudioServer.GetBusIndex("Sounds"), enable);
 	}
 	
 	public void SetSoundVolume(float volumeDb)
 	{
-		AudioServer.SetBusVolumeDb(2, volumeDb);
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sounds"), volumeDb);
 	}
 	
 	// Called when the node enters the scene tree for the first time.
@@ -214,21 +214,24 @@ public class AudioManager : Node
 		//Initialize pre-determined domains
 		loadedSounds = new Dictionary<string, Dictionary<string, AudioStream>> 
 		{
-			{ "enemy_oni", new Dictionary<string, AudioStream>{ } },
-			{ "enemy_oni_boss", new Dictionary<string, AudioStream>{ } },
-			{ "player", new Dictionary<string, AudioStream>{ } },
-			{ "powerups", new Dictionary<string, AudioStream>{ } },
-			{ "user_interface", new Dictionary<string, AudioStream> { } }
+			{ "OniBoss", new Dictionary<string, AudioStream>{ } },
+			{ "OniBrute", new Dictionary<string, AudioStream>{ } },
+			{ "Player", new Dictionary<string, AudioStream>{ } },
+			{ "PowerUps", new Dictionary<string, AudioStream>{ } },
+			{ "UserInterface", new Dictionary<string, AudioStream> { } }
 		};
 		
+		LoadMusic("GameOver");
 		LoadMusic("Level1");
-		//LoadMusic("MainMenu");
+		LoadMusic("OniBoss");
+		LoadMusic("StartScreen");
+		LoadMusic("Victory");
 		
-		LoadDomainSounds("enemy_oni");
-		LoadDomainSounds("enemy_oni_boss");
-		LoadDomainSounds("player");
-		LoadDomainSounds("powerups");
-		LoadDomainSounds("user_interface");
+		LoadDomainSounds("OniBoss");
+		LoadDomainSounds("OniBrute");
+		LoadDomainSounds("Player");
+		LoadDomainSounds("PowerUps");
+		LoadDomainSounds("UserInterface");
 		
 		currentMusic = new AudioStreamPlayer();
 		currentMusic.Stream = loadedMusic["Level1"];
@@ -236,13 +239,13 @@ public class AudioManager : Node
 		currentMusic.Bus = "Music";
 		currentMusicNode.AddChild(currentMusic);
 		
-		AudioServer.SetBusVolumeDb(0, -20f);
+		AudioServer.SetBusVolumeDb(0, -3f);
 	}
 	
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)
 	{
 		soundPlayer.QueueFree();
-		//GD.Print("Player freed");
+		//GD.Print("Player", audioPlayer.Name, " freed");
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

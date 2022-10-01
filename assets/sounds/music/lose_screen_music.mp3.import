@@ -11,5 +11,5 @@ dest_files=[ "res://.import/lose_screen_music.mp3-0d610667ceb72e96caa0bff364bf28
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
