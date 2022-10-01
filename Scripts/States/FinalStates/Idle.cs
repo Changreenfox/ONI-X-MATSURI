@@ -15,22 +15,23 @@ public class Idle : OnGround
 	{
 		base.Enter();
 		time = 0;
+		Vector2 velocity = host.Velocity;
 		velocity.x = 0;
 		host.Velocity = velocity;
 	}
 
 	public override string HandlePhysics(float delta)
 	{
-		string temp = base.HandlePhysics(delta);
+		string move = base.HandlePhysics(delta);
 		if (time > faceForwardCooldown)
 			host.PlayAnimation("IdleForward", this);
 		else
 			time += delta;
 			
-		if(-0.01 > velocity.x || velocity.x > 0.01)
+		if(-0.01 > host.Velocity.x || host.Velocity.x > 0.01)
 			return "Walk";
 
-		return temp;
+		return move;
 	}
 
 	public override string StateName()

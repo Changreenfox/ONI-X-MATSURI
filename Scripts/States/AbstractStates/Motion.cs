@@ -4,25 +4,10 @@ using System;
 // Base class for walking & jumping
 public abstract class Motion : State
 {
-	[Export]
-	protected float speed = 90;
-	[Export]
-	protected float maxSpeed = 600;
-	[Export]
-	protected float gravity = 40;
-	[Export]
-	protected float maxFallSpeed = 5000;
-	
-	protected float WalkToRunSpeed = 550;
-
 	protected bool facingRight;
-	protected Vector2 direction = new Vector2();
-	protected Vector2 velocity = new Vector2();
 
 	public override void Enter()
 	{
-		velocity = host.GetVelocity();
-		direction = host.Direction;
 		facingRight = host.FacingRight;
 		PlayAnimation();
 	}
@@ -30,9 +15,11 @@ public abstract class Motion : State
 	// Input we're looking for is attacking
 	public override string HandlePhysics(float delta)
 	{
-		velocity.y += gravity;
+		Vector2 velocity = host.Velocity;
 
-		velocity.y = Mathf.Min(maxFallSpeed, velocity.y);
+		velocity.y += host.Gravity;
+
+		velocity.y = Mathf.Min(host.MaxFallSpeed, velocity.y);
 		// Might be better to not make this a state
 		if (Input.IsActionPressed("Attack"))
 			Attack();
@@ -41,15 +28,15 @@ public abstract class Motion : State
 		GetInputDirection();
 
 		//If no direction, we slow until motion.x == 0
-		if(direction.Equals(Vector2.Zero))
+		if(host.Direction.Equals(Vector2.Zero))
 			velocity.x = Mathf.Lerp(velocity.x, 0, 0.15f);
 		else
-			velocity.x += direction.x * speed;
+			velocity.x += host.Direction.x * host.Speed;
+		
 		
 
-		velocity.x = Mathf.Clamp(velocity.x, -maxSpeed, maxSpeed);
-		
-		velocity = host.Move(velocity);
+		velocity.x = Mathf.Clamp(velocity.x, -host.MaxSpeed, host.MaxSpeed);
+		host.Move(velocity);
 		return null;
 	}
 
@@ -58,7 +45,7 @@ public abstract class Motion : State
 		float goRight = Input.GetActionStrength("MoveRight");
 		float goLeft = Input.GetActionStrength("MoveLeft");
 		float jump = Input.GetActionStrength("Jump");
-		direction = new Vector2(goRight - goLeft, jump);
+		Vector2 direction = new Vector2(goRight - goLeft, jump);
 		host.Direction = direction;
 
 		//Set facing direction

@@ -10,13 +10,13 @@ public class Walk : OnGround
 
 	public override string HandlePhysics(float delta)
 	{
-		string temp = base.HandlePhysics(delta);
-		if(Mathf.Abs(velocity.x) < 0.15)
+		string move = base.HandlePhysics(delta);
+		if(Mathf.Abs(host.Velocity.x) < 0.15)
 			return "Idle";
 			
-		if(Mathf.Abs(velocity.x) > WalkToRunSpeed)
+		if(Mathf.Abs(host.Velocity.x) > host.WalkToRunSpeed)
 			return "Run";
-		return temp;
+		return move;
 	}
 
 	public override void PlayAnimation()
