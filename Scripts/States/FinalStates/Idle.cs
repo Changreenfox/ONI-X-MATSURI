@@ -24,7 +24,7 @@ public class Idle : OnGround
 	{
 		string move = base.HandlePhysics(delta);
 		if (time > faceForwardCooldown)
-			host.PlayAnimation("IdleForward", this);
+			host.PlayAnimation("IdleForward");
 		else
 			time += delta;
 			
@@ -41,7 +41,7 @@ public class Idle : OnGround
 
 	public override void PlayAnimation()
 	{
-		host.PlayAnimation("Idle", this);
+		host.PlayAnimation("Idle");
 	}
 
 	protected override void Attack()

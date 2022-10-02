@@ -126,6 +126,10 @@ public abstract class Actor : KinematicBody2D
 	
 	//animation
 	protected AnimationPlayer animator;
+	public AnimationPlayer Animator
+	{
+		get{ return animator; }
+	}
 	
 
 	/*=============================================================== Methods =======================================================*/
@@ -139,6 +143,11 @@ public abstract class Actor : KinematicBody2D
 		character = (Sprite)GetNode("Sprite");
 		
 		animator = (AnimationPlayer)GetNode("AnimationPlayer");
+
+		string timerName = Name + "AttackCooldown";
+		Timer timer = new Timer();
+		timer.Name = timerName;
+		AddChild(timer);
 		
 		foreach (Node node in GetChildren())
 		{
@@ -166,18 +175,9 @@ public abstract class Actor : KinematicBody2D
 		if(name != null)
 			ChangeState(name);
 		
-		//Flips the Actor's colliders
-		Vector2 scale = character.Scale;
+		if(!attacking)
+			FaceAttacks();
 		
-		if(facingRight)
-			scale.x = 1;
-		else
-			scale.x = -1;
-
-		foreach (Node2D node in attacks)
-			node.Scale = scale;
-		foreach (Node2D node in surfaces)
-			node.Scale = scale;
 	}
 
 	public override void _Process(float delta)
@@ -216,36 +216,55 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	// Handle the Attack here
-	public void Attack(int selection, string name, State prev)
+	public void Attack(int selection, string prevState)
 	{
-		attacks[selection].StartAttack(name, prev);
+		attacks[selection].StartAttack(prevState);
 	}
 
 	//Will be called in the states, allowing the player to play specific animations
-	public void PlayAnimation(string name, State current)
+	public string PlayAnimation(string name)
 	{
 		if(name == "IdleForward"){ //if the player is idle for a long time
 			animator.Play(name);
-			return;
+			return name;
 		}
+
+		if(attacking)
+		{
+			foreach(Attack attack in attacks)
+				if (attack.Waiting)
+				{
+					attack.PreviousAnim = name;
+					return name;
+				}
+		}
+
 		 //else play the correct animation
 		if(facingRight) name += "Right";
 		else name += "Left";
+		
+		animator.Play(name);
 
-		HandleExtraAnimation(current);
-
-		if(!attacking)
-			animator.Play(name);
-	}
-
-	public virtual void HandleExtraAnimation(State current)
-	{
-		return;
+		return name;
 	}
 
 	public virtual void Die()
 	{
 		QueueFree();
+	}
+
+	//Flips the Actor's colliders
+	public void FaceAttacks()
+	{
+		Vector2 scale = character.Scale;
+		if(facingRight)
+			scale.x = 1;
+		else
+			scale.x = -1;
+		foreach (Node2D node in attacks)
+			node.Scale = scale;
+		foreach (Node2D node in surfaces)
+			node.Scale = scale;
 	}
 	
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

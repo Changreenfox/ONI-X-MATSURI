@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public abstract class Attack : Area2D
 {
@@ -10,44 +11,71 @@ public abstract class Attack : Area2D
 	[Export]
 	public int damage = 1;
 
-	//Time it takes for attack to play out
-	[Export]
-	public float attackTime = 0.6f;
-
-	//Time it takes until the player attacks again
-	public float cooldown = 0.6f;
-
-	//Private variables for keeping track of state
+	protected bool active = false;
 	protected bool attacking = false;
-	protected bool attacked = false;
-	protected float timer = 0;
+	protected bool waiting = false;
+	public bool Waiting
+	{
+		get { return waiting; }
+	}
 
-	public State previousState;
+	[Export]
+	protected string name = "Attack";
+
+	protected Timer time;
+
+	protected string previousAnim;
+	public string PreviousAnim
+	{
+		get{ return previousAnim; }
+		set { previousAnim = value; }
+	}
 	
 	public override void _Ready()
 	{
-		Node node = GetNode("Range");
 		GetRange();
 		
 		host = (Actor)GetParent();
 
 		Connect("area_entered", this, nameof(_on_Attack_area_entered));
 		Connect("body_entered", this, nameof(_on_Attack_body_entered));
+
+		//cooldown timer
+		time = (Timer)host.GetNode("AttackCooldown");
+	}
+
+	//Update state of attack
+	public override void _Process(float delta)
+	{
+		//Use this function to be collider-safe
+		SetColliderActive();
+
+		//Leave when not ready to call functions
+		if(!active)
+			return;
+		
+		//Immediately reset active so we only call it once
+		active = false;
+
+		//Call async functions
+		ActivateCollider();
+		//waiting should be false now
 	}
 
 	//Begin the attack animation
-	public virtual void StartAttack(string name, State prev)
+	public virtual void StartAttack(string prevAnim)
 	{
-		if(!attacked)
+		//If you're not waiting for the attack to finish and the Time is stopped
+		//GD.Print(!waiting, " and ", time.IsStopped());
+		if(!waiting && time.IsStopped())
 		{
-			GD.Print("Here");
-			host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
-										host.GetType().Name,
-										"Attack");
-			host.PlayAnimation(name, prev);
-			host.Attacking = true;
-			attacking = true;
-			attacked = true;
+			previousAnim = prevAnim;
+			//Start waiting for the attack to finish
+			waiting = true;
+
+			//Allows a single entrance into the co-routine
+			active = true;
+			GD.Print("Begin Attack");
 		}
 	}
 
@@ -67,5 +95,9 @@ public abstract class Attack : Area2D
 		GD.Print("Hit!");
 	}
 
-	public abstract void GetRange();
+	protected abstract void GetRange();
+	protected abstract void SetColliderActive();
+
+	protected virtual async Task ActivateCollider() { await WaitCooldown(); }
+	protected virtual async Task WaitCooldown() { }
 }

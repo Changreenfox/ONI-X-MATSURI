@@ -21,7 +21,7 @@ public class Walk : OnGround
 
 	public override void PlayAnimation()
 	{
-		host.PlayAnimation("Walk", this);
+		host.PlayAnimation("Walk");
 	}
 
 	public override string StateName()

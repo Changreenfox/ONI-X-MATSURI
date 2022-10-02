@@ -29,13 +29,4 @@ public class Player : Actor
 	{
 		GetTree().ChangeScene("res://Scenes/GameOver.tscn");
 	}
-
-	public override void HandleExtraAnimation(State current)
-	{
-		//If the player is attacking, tell the animator which state to return to
-		if(current is OnGround)
-			attacks[0].previousState = current;
-		else
-			attacks[1].previousState = current;
-	}
 }

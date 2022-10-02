@@ -260,6 +260,7 @@ position = Vector2( 13, 26 )
 polygon = PoolVector2Array( -13.3333, -26.6667, 12.2151, -80.1784, 52.025, -94.0689, 78.6891, -94.4412, 93.3333, -66.6667, 93.3333, -26.6667, 93.3333, 13.3333, 80, 40, 53.3333, 40, 13.3333, 26.6667 )
 
 [node name="JumpAttack" parent="." instance=ExtResource( 3 )]
+name = "JumpAttack"
 
 [node name="Range" type="CollisionPolygon2D" parent="JumpAttack"]
 position = Vector2( -27, 14 )
@@ -270,7 +271,6 @@ polygon = PoolVector2Array( -13.3333, -26.6667, 12.2151, -80.1784, 52.025, -94.0
 visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "IdleForward"
 anims/AttackLeft = SubResource( 2 )
 anims/AttackRight = SubResource( 3 )
 anims/IdleForward = SubResource( 4 )
@@ -285,3 +285,6 @@ anims/RunLeft = SubResource( 10 )
 anims/RunRight = SubResource( 11 )
 anims/WalkLeft = SubResource( 14 )
 anims/WalkRight = SubResource( 15 )
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.6

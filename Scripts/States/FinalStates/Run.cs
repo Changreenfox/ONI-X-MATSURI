@@ -18,7 +18,7 @@ public class Run : OnGround
 
 	public override void PlayAnimation()
 	{
-		host.PlayAnimation("Run", this);
+		host.PlayAnimation("Run");
 	}
 
 	public override string StateName()

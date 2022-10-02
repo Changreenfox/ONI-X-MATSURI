@@ -115,3 +115,6 @@ script = ExtResource( 3 )
 [node name="Range" type="CollisionShape2D" parent="Contact"]
 visible = false
 shape = SubResource( 3 )
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
