@@ -206,13 +206,35 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	// Returns true if the actor survives and false if the actor dies
-	public void TakeDamage(int damage)
+	public void TakeDamage(Attack attack)
 	{
 		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
 										GetType().Name,
 										"Damage");
-		hp -= damage;
+		hp -= attack.Damage;
+		TakeKnockback(attack);
 		GD.Print(hp);
+	}
+
+	//Called in TakeDamage() to cause knockback
+	public virtual void TakeKnockback(Attack attack)
+	{
+		Vector2 impulse = attack.Impulse;
+		Vector2 attackPosition = attack.GlobalPosition;
+
+		int directionX = 1, directionY = -1;
+		if(attackPosition.x > GlobalPosition.x)
+			directionX = -1;
+		if(attackPosition.y < GlobalPosition.y)
+		{
+			GD.Print(attackPosition.y, " - ", GlobalPosition.y);
+			directionY = 1;
+		}
+		impulse.x *= directionX;
+		impulse.y *= directionY;
+
+		GD.Print(impulse);
+		velocity = MoveAndSlide(impulse * attack.Damage, UP);
 	}
 
 	// Handle the Attack here
