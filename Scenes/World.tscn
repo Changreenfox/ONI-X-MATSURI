@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Level1Generator.cs" type="Script" id=2]
@@ -8,6 +8,12 @@
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Actors/Enemies/OniBrute.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/CameraController.cs" type="Script" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 33, 565 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2, 701.75 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
@@ -22,7 +28,15 @@ position = Vector2( 273, -64 )
 collision_mask = 45
 hp = 6
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="OgreBrute" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1272, 0 )
+collision_mask = 24
+script = ExtResource( 7 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 273, -64 )
 current = true
 limit_left = 0
 limit_top = 0
@@ -31,17 +45,23 @@ limit_bottom = 0
 smoothing_enabled = true
 script = ExtResource( 8 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
-[node name="Interface" parent="Player/Camera2D/CanvasLayer" instance=ExtResource( 6 )]
+[node name="Interface" parent="Camera2D/CanvasLayer" instance=ExtResource( 6 )]
 margin_left = -1.99982
 margin_top = -8.0
 margin_right = -1.99976
 margin_bottom = -8.0
 
-[node name="OgreBrute" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1272, 0 )
-collision_mask = 24
-script = ExtResource( 7 )
+[node name="StaticBody2D" type="StaticBody2D" parent="Camera2D"]
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/StaticBody2D"]
+position = Vector2( -984, 605 )
+shape = SubResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2( -54, 17 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 55, 421.75 )
+shape = SubResource( 2 )

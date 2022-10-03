@@ -14,7 +14,7 @@ public class MountainParallax : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		CameraNode = GetNode<Camera2D>("/root/World/Player/Camera2D");
+		CameraNode = GetNode<Camera2D>("/root/World/Camera2D");
 		PlayerNode = GetNode<Player>("/root/World/Player");
 		Mountains = GetNode<Node2D>("Mountains");
 		Skys = GetNode<Node2D>("Sky");
