@@ -261,6 +261,7 @@ position = Vector2( 13, 27 )
 polygon = PoolVector2Array( -13.3333, -26.6667, 86, -56, 124, -33, 138, 2, 93, 53, -5, 54, -85, 37, -127, 9, -73, -28 )
 
 [node name="JumpAttack" parent="." instance=ExtResource( 3 )]
+name = "JumpAttack"
 
 [node name="Range" type="CollisionPolygon2D" parent="JumpAttack"]
 position = Vector2( -27, 13 )
