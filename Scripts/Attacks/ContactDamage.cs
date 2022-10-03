@@ -10,6 +10,7 @@ public class ContactDamage : Attack
 	protected override void GetRange()
 	{    
         range = (CollisionShape2D)GetNode("Range");
+		attacking = true;
 	}
 
 	protected override void SetColliderActive()
