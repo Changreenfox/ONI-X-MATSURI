@@ -11,7 +11,7 @@ public class EnemyIdle : AIMotion
     
     public override void Enter()
     {
-        host.PlayAnimation("Idle");
+        base.Enter();
     }
 
     public override string HandlePhysics(float delta)
@@ -23,4 +23,9 @@ public class EnemyIdle : AIMotion
     {
         return "Idle";
     }
+
+    public override void PlayAnimation()
+	{
+		host.PlayAnimation("IdleForward");
+	}
 }
