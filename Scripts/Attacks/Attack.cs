@@ -7,10 +7,21 @@ public abstract class Attack : Area2D
 	// Attack functionality shared by all attacks
 	protected Actor host;
 
-	//Damage
+	//Damage and knockback
 	[Export]
-	public int damage = 1;
+	private int damage = 1;
+	public int Damage
+	{
+		get { return damage; }
+	}
+	[Export]
+	private Vector2 impulse = new Vector2(750, 500);
+	public Vector2 Impulse
+	{
+		get { return impulse; }
+	}
 
+	//States
 	protected bool active = false;
 	protected bool attacking = false;
 	protected bool waiting = false;
@@ -22,8 +33,10 @@ public abstract class Attack : Area2D
 	[Export]
 	protected string name = "Attack";
 
+	//Same Cooldown timer
 	protected Timer time;
 
+	//Stores which animation to continue from after the attack animation is finished
 	protected string previousAnim;
 	public string PreviousAnim
 	{
@@ -85,13 +98,13 @@ public abstract class Attack : Area2D
 		Actor enemy = collision as Actor;
 		//enemy? means if not null, call enemy.TakeDamage, otherwise do nothing
 		GD.Print(this.Name, " Hit! ", enemy?.Name);
-		enemy?.TakeDamage(damage);
+		enemy?.TakeDamage(this);
 	}
 
 	public virtual void _on_Attack_area_entered(Area2D collision)
 	{
 		Actor enemy = collision.GetParent() as Actor;
-		enemy?.TakeDamage(damage);
+		enemy?.TakeDamage(this);
 		GD.Print("Hit!");
 	}
 

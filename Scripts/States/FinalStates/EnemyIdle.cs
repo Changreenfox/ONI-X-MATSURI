@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 // Will inherit from enemy AI
-public class EnemyIdle : State
+public class EnemyIdle : AIMotion
 {
     public EnemyIdle(Actor _host)
     {
@@ -11,19 +11,21 @@ public class EnemyIdle : State
     
     public override void Enter()
     {
-        host.PlayAnimation("Idle");
+        base.Enter();
     }
 
     public override string HandlePhysics(float delta)
     {
-        if(host.HP <= 0)
-            return "Death";
-
-        return null;
+        return base.HandlePhysics(delta);
     }
 
     public override string StateName()
     {
         return "Idle";
     }
+
+    public override void PlayAnimation()
+	{
+		host.PlayAnimation("IdleForward");
+	}
 }
