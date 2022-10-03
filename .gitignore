@@ -45,3 +45,4 @@ data_*/
 .mono/temp/obj/project.assets.json
 .mono/temp/obj/project.nuget.cache
 .vscode/settings.json
+*.import

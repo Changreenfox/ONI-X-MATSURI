@@ -80,7 +80,7 @@ public abstract class Attack : Area2D
 	{
 		//If you're not waiting for the attack to finish and the Time is stopped
 		//GD.Print(!waiting, " and ", time.IsStopped());
-		if(!waiting && time.IsStopped())
+		if(!waiting && !host.Attacking && time.IsStopped())
 		{
 			previousAnim = prevAnim;
 			//Start waiting for the attack to finish
