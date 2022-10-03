@@ -9,7 +9,7 @@ radius = 40.0
 height = 80.0
 
 [sub_resource type="Animation" id=4]
-resource_name = "Idle"
+resource_name = "IdleForward"
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -101,8 +101,8 @@ frame = 4
 shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Idle"
-anims/Idle = SubResource( 4 )
+autoplay = "IdleForward"
+anims/IdleForward = SubResource( 4 )
 anims/RESET = SubResource( 5 )
 anims/WalkLeft = SubResource( 6 )
 anims/WalkRight = SubResource( 7 )

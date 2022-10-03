@@ -278,7 +278,7 @@ public abstract class Actor : KinematicBody2D
 	//Flips the Actor's colliders
 	public void FaceAttacks()
 	{
-		Vector2 scale = character.Scale;
+		Vector2 scale = new Vector2(1,1);
 		if(facingRight)
 			scale.x = 1;
 		else
