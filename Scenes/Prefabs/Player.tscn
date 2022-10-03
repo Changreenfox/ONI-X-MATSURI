@@ -134,10 +134,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 40, 41, 42, 43 ]
+"values": [ 40 ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -150,10 +150,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 36, 37, 38, 39 ]
+"values": [ 36 ]
 }
 
 [sub_resource type="Animation" id=9]
@@ -257,13 +257,13 @@ shape = SubResource( 1 )
 [node name="NormalAttack" parent="." instance=ExtResource( 3 )]
 
 [node name="Range" type="CollisionPolygon2D" parent="NormalAttack"]
-position = Vector2( 9, -21 )
+position = Vector2( 13, 27 )
 polygon = PoolVector2Array( -13.3333, -26.6667, 12.2151, -80.1784, 52.025, -94.0689, 78.6891, -94.4412, 93.3333, -66.6667, 93.3333, -26.6667, 93.3333, 13.3333, 80, 40, 53.3333, 40, 13.3333, 26.6667 )
 
 [node name="JumpAttack" parent="." instance=ExtResource( 3 )]
 
 [node name="Range" type="CollisionPolygon2D" parent="JumpAttack"]
-position = Vector2( -30, -34 )
+position = Vector2( -27, 13 )
 rotation = 1.58476
 polygon = PoolVector2Array( -13.3333, -26.6667, 12.2151, -80.1784, 52.025, -94.0689, 78.6891, -94.4412, 93.3333, -66.6667, 93.3333, -26.6667, 93.3333, 13.3333, 80, 40, 53.3333, 40, 13.3333, 26.6667 )
 
