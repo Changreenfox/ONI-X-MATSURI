@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 
 public class ContactDamage : Attack
 {
-    //The range of the attack
+	//The range of the attack
 	private CollisionShape2D range;
 
 	protected override void GetRange()
 	{    
-        range = (CollisionShape2D)GetNode("Range");
+		range = (CollisionShape2D)GetNode("Range");
 	}
 
 	protected override void SetColliderActive()
@@ -17,9 +17,9 @@ public class ContactDamage : Attack
 		range.SetDeferred("disabled", !attacking);
 	}
 
-    public override void _on_Attack_body_entered(KinematicBody2D collision)
+	public override void _on_Attack_body_entered(KinematicBody2D collision)
 	{
-        base._on_Attack_body_entered(collision);
+		base._on_Attack_body_entered(collision);
 		active = true;
 	}
 
