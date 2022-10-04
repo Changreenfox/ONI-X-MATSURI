@@ -258,7 +258,7 @@ shape = SubResource( 1 )
 
 [node name="Range" type="CollisionPolygon2D" parent="NormalAttack"]
 position = Vector2( 13, 27 )
-polygon = PoolVector2Array( -8, -75, 86, -56, 124, -33, 138, 2, 93, 53, -5, 54, -111, 41, -158, 10, -156, -40, -94, -68 )
+polygon = PoolVector2Array( 86, -56, 124, -33, 138, 2, 91, 45, 51, 53, -13, 53, -101, 29, -117, 5, -69, -27, -13, -27, 35, -43 )
 
 [node name="JumpAttack" parent="." instance=ExtResource( 3 )]
 name = "JumpAttack"
@@ -266,7 +266,7 @@ name = "JumpAttack"
 [node name="Range" type="CollisionPolygon2D" parent="JumpAttack"]
 position = Vector2( -27, 13 )
 rotation = 1.58476
-polygon = PoolVector2Array( -13.3333, -26.6667, 24.3498, -118.352, 68.0383, -140.964, 123.48, -109.735, 127.583, -30.7845, 126.644, 45.2361, 71.3197, 94.0133, 27.9748, 69.6162 )
+polygon = PoolVector2Array( -5.37652, -26.9276, 24.3498, -118.352, 68.0383, -140.964, 123.48, -109.735, 130.163, -60.8234, 114.5, -36.6024, 91.061, 3.72886, 35.7366, 52.5061, -19.8111, 85.2849, -35.8095, 85.5084, -44.1439, 61.6224, -44.3673, 45.624, -20.8164, 13.292, -5.15311, -10.9291 )
 
 [node name="States" type="Node2D" parent="."]
 visible = false
