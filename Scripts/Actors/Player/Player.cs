@@ -29,4 +29,15 @@ public class Player : Actor
 	{
 		GetTree().ChangeScene("res://Scenes/GameOver.tscn");
 	}
+	
+	public void _on_Area2D_body_entered(object body)
+	{
+		Node2D RespawnNode = GetNode<Node2D>("/root/World/Camera2D/RespawnPoint");
+		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, "Damage");
+		hp -= 1;
+		Position = RespawnNode.GlobalPosition;
+	}
 }
+
+
+
