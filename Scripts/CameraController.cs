@@ -20,6 +20,7 @@ public class CameraController : Camera2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
+		//Update the Camera's position when as the player moves right
 		if (PlayerNode.Position.x > MostLeft + 15)
 		{
 			Vector2 temp = Position;
