@@ -23,7 +23,6 @@ public class Idle : OnGround
 	public override string HandlePhysics(float delta)
 	{
 		string move = base.HandlePhysics(delta);
-		GD.Print("Velocity: ", host.Velocity);
 		if (time > faceForwardCooldown)
 			host.PlayAnimation("IdleForward");
 		else
