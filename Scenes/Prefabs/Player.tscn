@@ -269,7 +269,6 @@ rotation = 1.58476
 polygon = PoolVector2Array( -5.37652, -26.9276, 24.3498, -118.352, 68.0383, -140.964, 123.48, -109.735, 130.163, -60.8234, 114.5, -36.6024, 91.061, 3.72886, 35.7366, 52.5061, -19.8111, 85.2849, -35.8095, 85.5084, -44.1439, 61.6224, -44.3673, 45.624, -20.8164, 13.292, -5.15311, -10.9291 )
 
 [node name="States" type="Node2D" parent="."]
-visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/AttackLeft = SubResource( 2 )

@@ -7,6 +7,13 @@ using System;
 
 public class GameManager : Node
 {
+	private int health;
+	public int Health
+	{
+		get{ return health; }
+		set{ health = value; }
+	}
+	
 	private AudioManager audio;
 	public AudioManager Audio
 	{
