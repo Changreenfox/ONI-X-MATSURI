@@ -5,6 +5,7 @@ using System;
 
 public class CameraController : Camera2D
 {
+	GameManager gManager;
 	private Player PlayerNode;
 	private float MostLeft = 0;
 	// Declare member variables here. Examples:
@@ -14,7 +15,8 @@ public class CameraController : Camera2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		PlayerNode = GetNode<Player>("/root/World/Player");
+		gManager = (GameManager)GetNode("/root/GameManager");
+		PlayerNode = gManager.PlayerRef;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

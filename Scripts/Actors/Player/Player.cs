@@ -39,4 +39,9 @@ public class Player : Actor
 		hp -= 1;
 		Position = RespawnNode.GlobalPosition;
 	}
+	
+	public void _on_EndWall_body_entered(object body)
+	{
+		GetTree().ChangeScene("res://Scenes/BossLevel.tscn");
+	}
 }
