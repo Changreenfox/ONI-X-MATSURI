@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Scripts/Actors/Enemies/Enemy.cs" type="Script" id=1]
+[ext_resource path="res://Scripts/Actors/Enemies/OniBrute.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemy/oni_spritesheet_large_2.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=3]
 
@@ -88,11 +88,8 @@ tracks/0/keys = {
 
 [node name="OniBrute" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 25
+collision_mask = 24
 script = ExtResource( 1 )
-speed = 20.0
-maxSpeed = 150.0
-walkToRunSpeed = 100.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )

@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/TileMap.tres" type="TileSet" id=2]
+[ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 33, 620 )
+
+[node name="World" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 267, 510 )
+
+[node name="OniBrute" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1102, 632 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+collision_layer = 8
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( 65535, 2, 0, 24, 2, 0, 131071, 2, 0, 65560, 2, 0, 196607, 2, 0, 131096, 2, 0, 262143, 2, 0, 196632, 2, 0, 327679, 2, 0, 262168, 2, 0, 393215, 2, 0, 327704, 2, 0, 458751, 2, 0, 393240, 2, 0, 524287, 2, 0, 458776, 2, 0, 589823, 2, 0, 524312, 2, 0, 655359, 2, 0, 589848, 2, 0, 720895, 2, 0, 655384, 2, 0, 786431, 2, 0, 720920, 2, 0, 851967, 2, 0, 786433, 2, 0, 786434, 2, 0, 786435, 2, 0, 786436, 2, 0, 786437, 2, 0, 786438, 2, 0, 786439, 2, 0, 786440, 2, 0, 786441, 2, 0, 786442, 2, 0, 786443, 2, 0, 786444, 2, 0, 786445, 2, 0, 786446, 2, 0, 786447, 2, 0, 786449, 2, 0, 786450, 2, 0, 786451, 2, 0, 786452, 2, 0, 786453, 2, 0, 786454, 2, 0, 786456, 2, 0, 851969, 2, 0, 851970, 2, 0, 851971, 2, 0, 851972, 2, 0, 851973, 2, 0, 851974, 2, 0, 851975, 2, 0, 851976, 2, 0, 851977, 2, 0, 851978, 2, 0, 851979, 2, 0, 851980, 2, 0, 851981, 2, 0, 851982, 2, 0, 851983, 2, 0, 851984, 2, 0, 851985, 2, 0, 851986, 2, 0, 851987, 2, 0, 851988, 2, 0, 851989, 2, 0, 851990, 2, 0, 851991, 2, 0, 851992, 2, 0, 917521, 2, 0, 917522, 2, 0, 917523, 2, 0, 917524, 2, 0 )
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+position = Vector2( 234, 414 )
+shape = SubResource( 1 )
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+position = Vector2( 1353, 432 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 273, -64 )
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 30720
+limit_bottom = 0
+smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="Interface" parent="Camera2D/CanvasLayer" instance=ExtResource( 4 )]
+margin_left = -1.99982
+margin_top = -8.0
+margin_right = -1.99976
+margin_bottom = -8.0
