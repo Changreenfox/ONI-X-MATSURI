@@ -21,8 +21,8 @@ public abstract class Motion : State
 
 		velocity.y = Mathf.Min(host.MaxFallSpeed, velocity.y);
 		// Might be better to not make this a state
-		if (Input.IsActionPressed("Attack"))
-			Attack();
+
+		CheckAttack();
 
 		//Update direction
 		GetInputDirection();
@@ -40,7 +40,7 @@ public abstract class Motion : State
 		return null;
 	}
 
-	protected void GetInputDirection()
+	protected virtual void GetInputDirection()
 	{
 		float goRight = Input.GetActionStrength("MoveRight");
 		float goLeft = Input.GetActionStrength("MoveLeft");
@@ -60,5 +60,14 @@ public abstract class Motion : State
 		}
 	}
 
-	protected abstract void Attack();
+	protected virtual void CheckAttack()
+	{
+		if (Input.IsActionPressed("Attack"))
+			Attack();
+	}
+
+	protected virtual void Attack()
+	{
+		return;
+	}
 }

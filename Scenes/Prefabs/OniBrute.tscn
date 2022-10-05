@@ -90,6 +90,9 @@ tracks/0/keys = {
 collision_layer = 2
 collision_mask = 25
 script = ExtResource( 1 )
+speed = 20.0
+maxSpeed = 150.0
+walkToRunSpeed = 100.0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
@@ -118,3 +121,8 @@ shape = SubResource( 3 )
 
 [node name="AttackCooldown" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="StateTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]

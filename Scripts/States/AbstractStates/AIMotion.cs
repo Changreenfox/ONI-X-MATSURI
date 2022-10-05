@@ -1,30 +1,23 @@
 using Godot;
 using System;
 
-// Base class for walking & jumping
-public abstract class AIMotion : State
+// Base class for walking & jumping of AI (Most functionality remains in Motion.cs)
+public abstract class AIMotion : Motion
 {
-    protected bool facingRight;
-
     public override void Enter()
-	{
-		facingRight = host.FacingRight;
-		PlayAnimation();
-	}
-
-    public override string HandlePhysics(float delta)
     {
-        Vector2 velocity = host.Velocity;
-		velocity.y += host.Gravity;
-		velocity.y = Mathf.Min(host.MaxFallSpeed, velocity.y);
+        base.Enter();
+    }
 
-        velocity.x = Mathf.Lerp(velocity.x, 0, 0.15f);
+    //Direction is altered in the states since it isn't user input
+    protected override void GetInputDirection()
+    {
+        return;
+    }
 
-        if(host.HP <= 0)
-            return "Death";
-
-        host.Move(velocity);
-
-        return null;
+    //Attacks are called in the states themselves, not user input
+    protected override void CheckAttack()
+    {
+        return;
     }
 }

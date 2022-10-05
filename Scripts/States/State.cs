@@ -40,4 +40,9 @@ public abstract class State : Node2D
 	{
 		return;
 	}
+
+	public virtual void HandleTimer()
+	{
+		
+	}
 }

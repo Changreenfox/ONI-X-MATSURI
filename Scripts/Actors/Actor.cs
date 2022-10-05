@@ -131,6 +131,14 @@ public abstract class Actor : KinematicBody2D
 		get{ return animator; }
 	}
 	
+	//Only used in AI currently
+	private Timer stateTimer;
+	public Timer StateTimer
+	{
+		get{ return stateTimer; }
+		set{ stateTimer = value; }
+	}
+
 
 	/*=============================================================== Methods =======================================================*/
 	
