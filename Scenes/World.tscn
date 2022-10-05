@@ -31,7 +31,7 @@ script = ExtResource( 5 )
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 273, -64 )
+position = Vector2( 271, -64 )
 collision_mask = 45
 hp = 6
 
@@ -86,10 +86,12 @@ position = Vector2( -284, 572 )
 shape = SubResource( 4 )
 
 [node name="EndWall" type="Area2D" parent="."]
+position = Vector2( -28981, -142 )
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndWall"]
-position = Vector2( 30752.5, 597.5 )
+position = Vector2( 30753, 571 )
 shape = SubResource( 5 )
 
 [connection signal="body_entered" from="Camera2D/PitCheck" to="Player" method="_on_PitCheck_body_entered"]
-[connection signal="area_entered" from="EndWall" to="Player" method="_on_EndWall_area_entered"]
+[connection signal="body_entered" from="EndWall" to="Player" method="_on_EndWall_body_entered"]
