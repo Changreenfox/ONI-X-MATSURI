@@ -7,6 +7,13 @@ using System;
 
 public class GameManager : Node
 {
+	private Player playerRef;
+	public Player PlayerRef
+	{
+		get{ return playerRef; }
+		set{ playerRef = value; }
+	}
+	
 	private int health;
 	public int Health
 	{

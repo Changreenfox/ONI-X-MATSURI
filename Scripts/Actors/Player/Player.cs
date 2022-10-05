@@ -8,6 +8,8 @@ public class Player : Actor
 	{
 		//Set the character sprite
 		base._Ready();
+		
+		GManager.PlayerRef = this;
 
 		container.SetState("Idle", new Idle(this));
 		container.SetState("Walk", new Walk(this));
@@ -36,9 +38,5 @@ public class Player : Actor
 		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, "Damage");
 		hp -= 1;
 		Position = RespawnNode.GlobalPosition;
-	}
-	private void _on_EndWall_body_entered(object body)
-	{
-		GetTree().ChangeScene("res://Scenes/BossLevel.tscn");
 	}
 }
