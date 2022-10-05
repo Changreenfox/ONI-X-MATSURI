@@ -10,8 +10,10 @@ public class OniBoss : Enemy
 		
 		container.SetState("Idle", new EnemyIdle(this));
 		container.SetState("Death", new Death(this));
+		
+		container.SetState("Moving", new Moving(this));
 
-		state = container.GetState("Idle");
+		state = container.GetState("Moving");
 		state.Enter();
 	}
 
