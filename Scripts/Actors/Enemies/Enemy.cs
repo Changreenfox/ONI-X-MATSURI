@@ -9,12 +9,6 @@ public class Enemy : Actor
 		base._Ready();
 
 		StateTimer = (Timer)GetNode("StateTimer");
-
-		container.SetState("Idle", new EnemyIdle(this));
-		container.SetState("Death", new Death(this));
-
-		state = container.GetState("Idle");
-		state.Enter();
 	}
 
 	public void HandleTimer()

@@ -6,7 +6,6 @@
 [ext_resource path="res://Level1_BG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Level1.cs" type="Script" id=5]
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scripts/Actors/Enemies/OniBrute.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/CameraController.cs" type="Script" id=8]
 [ext_resource path="res://Scenes/LeftWall.cs" type="Script" id=9]
 
@@ -31,14 +30,11 @@ script = ExtResource( 5 )
 script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 271, -64 )
-collision_mask = 45
+position = Vector2( 273, -64 )
 hp = 6
 
 [node name="OgreBrute" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1272, 0 )
-collision_mask = 24
-script = ExtResource( 7 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
