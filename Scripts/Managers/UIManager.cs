@@ -15,7 +15,7 @@ public class UIManager : Control
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		PlayerNode = GetNode<Player>("/root/BossLevel/Player");
+		PlayerNode = GetNode<Player>("/root/World/Player");
 		Heart1 = GetNode<TextureRect>("Left/Heart1");
 		Heart2 = GetNode<TextureRect>("Left/Heart2");
 		Heart3 = GetNode<TextureRect>("Left/Heart3");
