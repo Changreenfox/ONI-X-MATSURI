@@ -23,12 +23,12 @@ public class CameraController : Camera2D
 	public override void _Process(float delta)
 	{
 		//Update the Camera's position when as the player moves right
-		if (PlayerNode.Position.x > MostLeft + 15)
+		if (PlayerNode.GlobalPosition.x > MostLeft + 15)
 		{
-			Vector2 temp = Position;
-			temp.x = PlayerNode.Position.x;
-			Position = temp;
-			MostLeft = PlayerNode.Position.x - 15;
+			Vector2 temp = GlobalPosition;
+			temp.x = PlayerNode.GlobalPosition.x;
+			GlobalPosition = temp;
+			MostLeft = PlayerNode.GlobalPosition.x - 15;
 		}
 	}
 }

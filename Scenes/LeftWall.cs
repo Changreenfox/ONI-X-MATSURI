@@ -15,7 +15,6 @@ public class LeftWall : CollisionShape2D
 
 	public override void _Process(float delta)
 		{
-			GD.Print(GlobalPosition.x);
 			//Update the Camera's position when as the player moves right
 			if (GlobalPosition.x > 28750)
 			{
