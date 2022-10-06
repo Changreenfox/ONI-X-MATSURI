@@ -15,6 +15,7 @@ public class OniBoss : Enemy
 
 		state = container.GetState("Moving");
 		state.Enter();
+		
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
