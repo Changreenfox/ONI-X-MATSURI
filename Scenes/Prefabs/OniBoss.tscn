@@ -100,7 +100,7 @@ collision_layer = 0
 monitorable = false
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Contact"]
+[node name="Range" type="CollisionShape2D" parent="Contact"]
 visible = false
 shape = SubResource( 5 )
 
