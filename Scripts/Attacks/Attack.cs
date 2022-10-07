@@ -9,13 +9,13 @@ public abstract class Attack : Area2D
 
 	//Damage and knockback
 	[Export]
-	private int damage = 1;
+	protected int damage = 1;
 	public int Damage
 	{
 		get { return damage; }
 	}
 	[Export]
-	private Vector2 impulse = new Vector2(750, 500);
+	protected Vector2 impulse = new Vector2(750, 500);
 	public Vector2 Impulse
 	{
 		get { return impulse; }

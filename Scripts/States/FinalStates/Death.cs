@@ -16,18 +16,7 @@ public class Death : State
 										"Death");
 		host.Die();
 	}
-
-	public override string HandlePhysics(float delta)
-	{
-		return null;
-	}
-
-	// Called when Process is called in FSM
-	public override string HandleProcess(float delta)
-	{
-		return null;
-	}
-
+	
 	public override string StateName()
 	{
 		return "Death";
