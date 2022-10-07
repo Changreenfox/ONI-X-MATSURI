@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <help_text>// Uncomment the following line to change the fontsize and font:
+fontsize=10
+// fontfamily=SansSerif //possible: SansSerif,Serif,Monospaced
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+// Welcome to UMLet!
+//
+// Double-click on elements to add them to the diagram, or to copy them
+// Edit elements by modifying the text in this panel
+// Hold Ctrl to select multiple elements
+// Use Ctrl+mouse to select via lasso
+//
+// Use +/- or Ctrl+mouse wheel to zoom
+// Drag a whole relation at its central square icon
+//
+// Press Ctrl+C to copy the whole diagram to the system clipboard (then just paste it to, eg, Word)
+// Edit the files in the "palettes" directory to create your own element palettes
+//
+// Select "Custom Elements &gt; New..." to create new element types
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// This text will be stored with each diagram;  use it for notes.</help_text>
+  <zoom_level>6</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>930</x>
-      <y>160</y>
-      <w>100</w>
-      <h>30</h>
+      <x>822</x>
+      <y>102</y>
+      <w>60</w>
+      <h>18</h>
     </coordinates>
     <panel_attributes>KineticBody2D</panel_attributes>
     <additional_attributes/>
@@ -15,61 +39,86 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>860</x>
-      <y>240</y>
-      <w>250</w>
-      <h>430</h>
+      <x>780</x>
+      <y>150</y>
+      <w>150</w>
+      <h>366</h>
     </coordinates>
-    <panel_attributes>Actor
+    <panel_attributes>/Actor/
 --
-#int hp
-+bool HP
-#bool active
-+bool Active
-#Vector2 velocity
-#Vector2 direction
-+Vector2 Direction
-#Vector2 UP
-#Sprite character
-#bool facingRight
-+bool FacingRight
-+List&lt;BasicAttack&gt; attacks
--State state
--StateContainer container
+# gManager: GameManager
++ &lt;&lt;property&gt;&gt; GManager: GameManager
+# hp: int
++ &lt;&lt;property&gt;&gt; HP: int
+# active: bool
++ &lt;&lt;property&gt;&gt; Active: bool
+# velocity: Vector2
++ &lt;&lt;property&gt;&gt; Velocity: Vector2
+# direction: Vector2
++ &lt;&lt;property&gt;&gt; Direction: Vector2
+# speed: float
++ &lt;&lt;property&gt;&gt; Speed: float
+# maxSpeed: float
++ &lt;&lt;property&gt;&gt; MaxSpeed: float
+# gravity: float
++ &lt;&lt;property&gt;&gt; Gravity: float
+# jumpSpeed: float
++ &lt;&lt;property&gt;&gt; JumpSpeed: float
+# maxFallSpeed: float
++ &lt;&lt;property&gt;&gt; MaxFallSpeed: float
+# walkToRunSpeed: float
++ &lt;&lt;property&gt;&gt; WalkToRunSpeed: float 
+# UP: Vector2
+# character: Sprite
+# facingRight: bool
++ &lt;&lt;propert&gt;&gt; FacingRight: bool
++  attacks: List&lt;BasicAttack&gt;
++ surfaces: List&lt;ContactDamage&gt;
+- attacking: bool
++ &lt;&lt;property&gt;&gt; Attacking: bool
+# state: State
+# container: StateContainer 
+# animator: AnimationPlayer
++ &lt;&lt;readonly&gt;&gt; &lt;&lt;property&gt;&gt; Animator: AnimationPlayer 
+# stateTimer: Timer
++ &lt;&lt;property&gt;&gt; StateTimer: Timer
 -
 +void override _Ready()
 +void override _PhysicsProcess (float)
 +void override _Process (float)
-
 +void ChangeState(string)
-+Vector2 GetVelocity()
 +Vector2 Move(Vector2)
-+bool TakeDamage(int)
-+void Attack(int)
-+void PlayAnimation(string)</panel_attributes>
++voic TakeDamage(int)
++void &lt;&lt;virtual&gt;&gt; TakeKnockback(Attack)
++void Attack(int, string)
++void PlayAnimation(string)
++void &lt;&lt;virtual&gt;&gt; Die()
++void FaceAttacks()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>770</x>
-      <y>740</y>
-      <w>170</w>
-      <h>60</h>
+      <x>732</x>
+      <y>546</y>
+      <w>114</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>Player
 --
 --
-+override void _Ready()</panel_attributes>
++override void _Ready()
++override void Die()
++void _On_PitCheck_body_entered(Obj)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>970</x>
-      <y>180</y>
-      <w>50</w>
-      <h>80</h>
+      <x>846</x>
+      <y>114</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 is a</panel_attributes>
@@ -78,71 +127,52 @@ is a</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>870</x>
-      <y>660</y>
-      <w>120</w>
-      <h>100</h>
+      <x>792</x>
+      <y>510</y>
+      <w>66</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 is a</panel_attributes>
-    <additional_attributes>100.0;10.0;100.0;40.0;10.0;40.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>830</x>
-      <y>0</y>
-      <w>290</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>Ready():- Sets character to sprite ChildNode
-TakeDamage():- returns false if dead</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>90.0;10.0;90.0;30.0;10.0;30.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1100</x>
-      <y>330</y>
-      <w>120</w>
-      <h>40</h>
+      <x>924</x>
+      <y>204</y>
+      <w>102</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 has a</panel_attributes>
-    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1200</x>
-      <y>340</y>
-      <w>340</w>
-      <h>230</h>
+      <x>984</x>
+      <y>426</y>
+      <w>120</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>BasicAttack
 --
-+int damage
-+float attackTime
-+float cooldown
--bool attacking
--bool attacked
--float timer
--CollisionPolygon2D range
+- range: CollisionPolygon2D
 --
-+override void _Ready()
-+void Attack()
-+override void _Process(float)
-+void _on_Attack_body_entered(KinematicBody2D)
-+void _on_Attack_are_entered(Area2D)</panel_attributes>
+#override void GetRange()
+#override void SetColliderActive()
+#override &lt;&lt;async&gt;&gt; Task ActivateCollider()
+#override &lt;&lt;async&gt;&gt; Task WaitCooldown()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>320</x>
-      <y>360</y>
-      <w>230</w>
-      <h>150</h>
+      <x>462</x>
+      <y>318</y>
+      <w>138</w>
+      <h>90</h>
     </coordinates>
     <panel_attributes>/State/
 --
@@ -154,72 +184,74 @@ has a</panel_attributes>
 +string HandleProcess(float)
 +void _on_Animation_Finish(string)
 +string StateName()
++&lt;&lt;virtual&gt;&gt; void PlayAnimation()
++&lt;&lt;virtual&gt;&gt; void HandleTimer()
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>540</x>
-      <y>360</y>
-      <w>340</w>
-      <h>120</h>
+      <x>594</x>
+      <y>318</y>
+      <w>198</w>
+      <h>36</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;180.0;10.0;180.0;100.0;320.0;100.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+has a</panel_attributes>
+    <additional_attributes>10.0;10.0;170.0;10.0;170.0;40.0;310.0;40.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>320</x>
-      <y>560</y>
-      <w>230</w>
-      <h>190</h>
+      <x>462</x>
+      <y>438</y>
+      <w>138</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>/Motion/
 --
-#float speed
-#float maxSpeed
-#float gravity
-#float maxFallSpeed
-#Vector2 direction
-#Vector2 velocity
+#facingRight: bool
 --
 +override void Enter()
-+override void HandlePhysics(float)
-#void GetInputDirection()
-/#void Attack()/</panel_attributes>
++override string HandlePhysics(float)
+#&lt;&lt;virtual&gt;&gt; void GetInputDirection()
+#&lt;&lt;virtual&gt;&gt; void CheckAttack()
+#&lt;&lt;virtual&gt;&gt; void Attack()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>500</y>
-      <w>30</w>
-      <h>80</h>
+      <x>522</x>
+      <y>402</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+is a
+</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>470</y>
-      <w>170</w>
-      <h>60</h>
+      <x>690</x>
+      <y>348</y>
+      <w>102</w>
+      <h>72</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0;150.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+has a</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0;150.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>610</x>
-      <y>510</y>
-      <w>240</w>
-      <h>90</h>
+      <x>630</x>
+      <y>408</y>
+      <w>144</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>StateContainer
 --
@@ -232,66 +264,66 @@ has a</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>480</x>
-      <y>810</y>
-      <w>250</w>
-      <h>70</h>
+      <x>558</x>
+      <y>588</y>
+      <w>150</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>/OnGround/
 --
 --
 +override string HandlePhysics(float)
-#override void Attack()</panel_attributes>
+#override void Attack()
++override string PlayAnimation()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>0</x>
-      <y>960</y>
-      <w>240</w>
-      <h>140</h>
+      <x>270</x>
+      <y>678</y>
+      <w>144</w>
+      <h>54</h>
     </coordinates>
-    <panel_attributes>Jump
+    <panel_attributes>Jump [F]
 --
-#float jumpSpeed
-+Jump(Actor)
 --
 +override void Enter()
 +override string HandlePhysics(float)
 +override void Attack()
-+override string StateName()</panel_attributes>
++override string StateName()
++override string PlayAnimation()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>740</y>
-      <w>200</w>
-      <h>90</h>
+      <x>528</x>
+      <y>498</y>
+      <w>120</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0;180.0;40.0;180.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;120.0;180.0;120.0;180.0;150.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>90</x>
-      <y>740</y>
-      <w>370</w>
-      <h>240</h>
+      <x>324</x>
+      <y>498</y>
+      <w>222</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>350.0;10.0;350.0;40.0;10.0;40.0;10.0;220.0</additional_attributes>
+    <additional_attributes>350.0;10.0;350.0;120.0;10.0;120.0;10.0;300.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>870</y>
-      <w>200</w>
-      <h>110</h>
+      <x>528</x>
+      <y>624</y>
+      <w>120</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>180.0;10.0;180.0;40.0;10.0;40.0;10.0;90.0</additional_attributes>
@@ -299,56 +331,145 @@ has a</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>320</x>
-      <y>960</y>
-      <w>240</w>
-      <h>140</h>
+      <x>462</x>
+      <y>678</y>
+      <w>108</w>
+      <h>54</h>
     </coordinates>
-    <panel_attributes>Idle
+    <panel_attributes>Idle [F]
 --
-+Idle(Actor)
 --
 +override void Enter()
 +override string HandlePhysics(float)
-+override string StateName()</panel_attributes>
++override string StateName()
++override string PlayAnimation()
++override void Attack()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>870</y>
-      <w>200</w>
-      <h>110</h>
+      <x>630</x>
+      <y>624</y>
+      <w>138</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0;180.0;40.0;180.0;90.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;210.0;40.0;210.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>660</x>
-      <y>960</y>
-      <w>240</w>
-      <h>140</h>
+      <x>702</x>
+      <y>678</y>
+      <w>108</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>Walk
--Walk(Actor)
+    <panel_attributes>Run [F]
+--
 --
 +override void Enter()
 +override string HandlePhysics(float)
-+override string StateName()</panel_attributes>
++override string StateName()
++override string PlayAnimation()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>990</x>
-      <y>740</y>
-      <w>170</w>
-      <h>60</h>
+      <x>864</x>
+      <y>546</y>
+      <w>102</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>Enemy
+--
+--
++override void _Ready()
++void HandleTimer()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>510</y>
+      <w>78</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+is a</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0;110.0;30.0;110.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>978</x>
+      <y>546</y>
+      <w>114</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>bg=green
+_Ready calls base._Ready()
+and initializes the FSM</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1014</x>
+      <y>162</y>
+      <w>174</w>
+      <h>186</h>
+    </coordinates>
+    <panel_attributes>/Attack/
+--
+# host: Actor
+# damage: int
++ &lt;&lt;readonly&gt;&gt; &lt;&lt;property&gt;&gt; Damage: int
+# impulse: Vector2
++ &lt;&lt;readonly&gt;&gt; &lt;&lt;property&gt;&gt; Impulse: Vector2
+# active: bool
+# attacking: bool
+# waiting: bool
++ &lt;&lt;readonly&gt;&gt; &lt;&lt;property&gt;&gt; Waiting: bool
+# name: string
+# time:Timer
+# previousAnim: string
++ &lt;&lt;property&gt;&gt; PreviousAnim: string
+--
++override void _Ready()
++override void _Process(float)
++&lt;&lt;virtual&gt;&gt; void StartAttack(string)
++&lt;&lt;virtual&gt;&gt; void _on_Attack_body_entered(KinematicBody2D)
++&lt;&lt;virutal&gt;&gt; void _on_Attack_area_entered(Area2D)
+/#void GetRange()/
+/#void SetColliderActive()/
+#&lt;&lt;virtual&gt;&gt; &lt;&lt;async&gt;&gt; Task ActivateCollider()
+#&lt;&lt;virtual&gt;&gt; &lt;&lt;async&gt;&gt; Task WaitCooldown()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1038</x>
+      <y>342</y>
+      <w>24</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+is a</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>852</x>
+      <y>600</y>
+      <w>78</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>OniBoss
 --
 --
 +override void _Ready()</panel_attributes>
@@ -357,26 +478,261 @@ has a</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>960</x>
-      <y>660</y>
-      <w>120</w>
-      <h>100</h>
+      <x>882</x>
+      <y>576</y>
+      <w>42</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>50.0;10.0;50.0;30.0;10.0;30.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>948</x>
+      <y>600</y>
+      <w>126</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>OniBoss
+--
+--
++override void _Ready()
+-void _on_BossWall_body_entered(obj)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>906</x>
+      <y>576</y>
+      <w>114</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;30.0;170.0;30.0;170.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>426</y>
+      <w>96</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>ContactDamage
+--
+- range: CollisionPolygon2D
+--
+#override void GetRange()
+#override void SetColliderActive()
+#override void _on_Attack_body_entered(KinematicBody2D)
+#override &lt;&lt;async&gt;&gt; Task WaitCooldown()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1152</x>
+      <y>342</y>
+      <w>24</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 is a</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;40.0;100.0;40.0;100.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>264</x>
+      <y>306</y>
+      <w>114</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>AIMotion
+--
+--
++override void Enter()
+#override void GetInputDirection()
+#override void CheckAttack()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>264</y>
+      <w>162</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+is a</panel_attributes>
+    <additional_attributes>250.0;340.0;160.0;340.0;160.0;10.0;10.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>870</x>
-      <y>810</y>
-      <w>190</w>
-      <h>50</h>
+      <x>186</x>
+      <y>264</y>
+      <w>114</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>bg=green
-_Ready calls base._Ready()
-and initializes the FSM</panel_attributes>
+AIMotion overrides the functions
+in order to make them null
+[AI doesn't wait for user input]</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>486</x>
+      <y>222</y>
+      <w>84</w>
+      <h>42</h>
+    </coordinates>
+    <panel_attributes>Death [F]
+--
+--
++override void Enter()
++override string StateName()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>522</x>
+      <y>258</y>
+      <w>18</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>582</x>
+      <y>678</y>
+      <w>108</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>Walk [F]
+--
+--
++override void Enter()
++override string HandlePhysics(float)
++override string StateName()
++override string PlayAnimation()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>624</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>408</y>
+      <w>114</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>EnemyIdle
+--
+--
++override void Enter()
++override string HandlePhysics(float)
++override string StateName()
++override string PlayAnimation()
++override string HandleTimer()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>174</x>
+      <y>342</y>
+      <w>156</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>240.0;10.0;240.0;40.0;10.0;40.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>396</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>BossIdle
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>426</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>BossMoving</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>456</y>
+      <w>60</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>BossAttacking</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>342</y>
+      <w>60</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;80.0;40.0;80.0;100.0;30.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>342</y>
+      <w>60</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;80.0;40.0;80.0;150.0;30.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>312</x>
+      <y>342</y>
+      <w>60</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;80.0;40.0;80.0;200.0;30.0;200.0</additional_attributes>
   </element>
 </diagram>
