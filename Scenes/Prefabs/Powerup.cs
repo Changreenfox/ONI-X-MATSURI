@@ -24,7 +24,8 @@ public class Powerup : Node2D
 	{
 		EmitSignal("PowerupPicked", 0);
 		Parent.Hide();
-	}*/
+	}
+	*/
 }
 
 

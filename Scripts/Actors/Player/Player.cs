@@ -34,10 +34,13 @@ public class Player : Actor
 	
 	public void _on_PitCheck_body_entered(object body)
 	{
-		Node2D RespawnNode = GetNode<Node2D>("/root/World/Camera2D/RespawnPoint");
-		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, "Damage");
-		hp -= 1;
-		Position = RespawnNode.GlobalPosition;
+		if(body == this)
+		{
+			Node2D RespawnNode = GetNode<Node2D>("/root/World/Camera2D/RespawnPoint");
+			GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, "Damage");
+			hp -= 1;
+			Position = RespawnNode.GlobalPosition;
+		}
 	}
 	
 	public void _on_EndWall_body_entered(object body)
