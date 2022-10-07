@@ -21,13 +21,21 @@ public class OniBoss : Enemy
 	
 	private void _on_BossLeftWall_body_entered(object body)
 	{
-		direction.x = 1;
+		if(body == this) 
+		{
+			velocity.x = 0;
+			direction.x = 1;
+		}
 	}
 
 
 	private void _on_BossRightWall_body_entered(object body)
 	{
-		direction.x = -1;
+		if(body == this)
+		{
+			velocity.x = 0;
+			direction.x = -1;
+		}
 	}
 	
 }

@@ -23,28 +23,6 @@ public class Moving : AIMotion
 		host.Direction = phases[phase];
 	}
 	
-	// Input we're looking for is attacking
-	public override string HandlePhysics(float delta)
-	{
-		// Update the Direction of the enemy based on the current phase
-		if(phaseChanged)
-		{
-			phaseChanged = false;
-			host.Direction = phases[phase];
-
-			//If the phase is 1 or 3, we're moving a direction
-			if(phase == 0)
-			{
-				host.FacingRight = false;
-			}
-			else
-			{
-				host.FacingRight = true;
-			}
-		}
-		
-		return base.HandlePhysics(delta);
-	}
 	
 	public override void HandleTimer()
 	{
