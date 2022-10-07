@@ -70,5 +70,5 @@ collision_mask = 2
 position = Vector2( 1062, 108 )
 shape = SubResource( 3 )
 
-[connection signal="body_entered" from="BossLeftWall" to="OniBoss" method="_on_BossLeftWall_body_entered"]
-[connection signal="body_entered" from="BossRightWall" to="OniBoss" method="_on_BossRightWall_body_entered"]
+[connection signal="body_entered" from="BossLeftWall" to="OniBoss" method="_on_BossWall_body_entered"]
+[connection signal="body_entered" from="BossRightWall" to="OniBoss" method="_on_BossWall_body_entered"]

@@ -3,6 +3,13 @@ using System;
 
 public class OniBoss : Enemy
 {
+	private bool cycled = false;
+	public bool Cycled
+	{
+		get { return cycled; }
+		set { cycled = value; }
+	}
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -19,22 +26,12 @@ public class OniBoss : Enemy
 		
 	}
 	
-	private void _on_BossLeftWall_body_entered(object body)
+	private void _on_BossWall_body_entered(object body)
 	{
 		if(body == this) 
 		{
 			velocity.x = 0;
-			direction.x = 1;
-		}
-	}
-
-
-	private void _on_BossRightWall_body_entered(object body)
-	{
-		if(body == this)
-		{
-			velocity.x = 0;
-			direction.x = -1;
+			direction.x *= -1;
 		}
 	}
 	
