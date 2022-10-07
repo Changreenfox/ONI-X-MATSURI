@@ -31,7 +31,6 @@ script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 273, -64 )
-hp = 6
 
 [node name="OgreBrute" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1272, 0 )

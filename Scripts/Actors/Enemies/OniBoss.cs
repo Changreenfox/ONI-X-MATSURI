@@ -8,6 +8,7 @@ public class OniBoss : Enemy
 	{
 		base._Ready();
 		
+		
 		container.SetState("Idle", new EnemyIdle(this));
 		container.SetState("Death", new Death(this));
 		
@@ -17,10 +18,16 @@ public class OniBoss : Enemy
 		state.Enter();
 		
 	}
+	
+	private void _on_BossLeftWall_body_entered(object body)
+	{
+		direction.x = 1;
+	}
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+
+	private void _on_BossRightWall_body_entered(object body)
+	{
+		direction.x = -1;
+	}
+	
 }

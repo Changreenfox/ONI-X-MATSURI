@@ -7,13 +7,13 @@ public class Moving : AIMotion
 	private int phase = 0;
 	private bool phaseChanged = false;
 
-	// Called when the node enters the scene tree for the first time.
+
 	public Moving(Actor _host)
 	{
 		host = _host;
 		
-		//2 phases: WalkLeft, WalkRight
-		phases = new Vector2[] { new Vector2(1, 0), new Vector2(-1, 0) };
+		//2 phases: WalkLeft, WalkRight (Will keep walking left until some condition is met)
+		phases = new Vector2[] { new Vector2(-1, 0), new Vector2(1, 0) };
 	}
 	
 	public override void Enter()

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Actors/Enemies/OniBoss.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=2]
+
+[node name="OniBoss" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+walkToRunSpeed = 550.0
