@@ -16,10 +16,12 @@ public class OniBoss : Enemy
 		base._Ready();
 		
 		
-		container.SetState("Idle", new EnemyIdle(this));
+		container.SetState("Idle", new BossIdle(this));
 		container.SetState("Death", new Death(this));
 		
 		container.SetState("Moving", new Moving(this));
+		
+		direction.x = -1;
 
 		state = container.GetState("Moving");
 		state.Enter();

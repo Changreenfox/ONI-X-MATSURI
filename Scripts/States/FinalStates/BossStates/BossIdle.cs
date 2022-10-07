@@ -3,13 +3,40 @@ using System;
 
 public class BossIdle : OnGround
 {
-	Func<Boolean> finishCondition;
-	
+	bool finished = false;
 	
 	public BossIdle(Actor _host) 
 	{
 		host = _host;
 		//finishCondition = condition;
+	}
+	
+	public override void Enter()
+	{
+		base.Enter();
+		finished = false;
+		
+		host.StateTimer.Start(3.0f);
+	}
+	
+	public override string HandlePhysics(float delta)
+	{
+		if(finished)
+		{
+			finished = false;
+			return "Moving";
+		}
+		return null;
+	}
+	
+	public override void HandleTimer()
+	{
+		finished = true;
+	}
+	
+	public override void PlayAnimation()
+	{
+		host.PlayAnimation("IdleForward");
 	}
 
 	/*
