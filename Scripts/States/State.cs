@@ -15,7 +15,10 @@ public abstract class State : Node2D
 	}
 
 	// Called when PhysicsProcess is called in FSM
-	public abstract string HandlePhysics(float delta);
+	public virtual string HandlePhysics(float delta)
+	{
+		return null;
+	}
 
 	// Called when Process is called in FSM
 	public virtual string HandleProcess(float delta)

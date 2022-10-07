@@ -32,7 +32,7 @@ vframes = 2
 frame = 3
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2( 8, 0 )
+position = Vector2( 8, 8 )
 
 [node name="AnimationPlayer" parent="." index="2"]
 anims/Attack = SubResource( 6 )

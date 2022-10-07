@@ -19,11 +19,11 @@ public class OniBoss : Enemy
 		container.SetState("Idle", new BossIdle(this));
 		container.SetState("Death", new Death(this));
 		
-		container.SetState("Moving", new Moving(this));
+		container.SetState("Motion", new BossMotion(this));
 		
 		direction.x = -1;
 
-		state = container.GetState("Moving");
+		state = container.GetState("Motion");
 		state.Enter();
 		
 	}

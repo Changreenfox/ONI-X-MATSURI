@@ -5,7 +5,7 @@ public class BossMotion : AIMotion
 {
 	private bool finished = false;
 
-	public Moving(Actor _host)
+	public BossMotion(Actor _host)
 	{
 		host = _host;
 	}
