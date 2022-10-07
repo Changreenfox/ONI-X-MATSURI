@@ -33,7 +33,7 @@ public class AudioManager : Node
 		{
 			{"GameOver", 			(MUSIC_PATH + "lose_screen_music.mp3")},
 			{"Level1", 				(MUSIC_PATH + "main_stage_music.mp3")},
-			{"OniBoss", 			(MUSIC_PATH + "boss_stage_music.mp3")},
+			{"BossLevel", 			(MUSIC_PATH + "boss_stage_music.mp3")},
 			{"StartScreen", 		(MUSIC_PATH + "main_menu_music.mp3")},
 			{"Victory", 			(MUSIC_PATH + "win_screen_music.mp3")}		
 		};
@@ -44,7 +44,7 @@ public class AudioManager : Node
 		new Dictionary<string, Dictionary<string, string>> 
 		{
 			{
-				"OniBoss", 
+				"BossLevel", 
 				new Dictionary<string, string>
 				{	            
 					{"Damage", 			(SOUND_PATH + "enemy/enemy_oni_boss_damage.wav")},
@@ -214,7 +214,7 @@ public class AudioManager : Node
 		//Initialize pre-determined domains
 		loadedSounds = new Dictionary<string, Dictionary<string, AudioStream>> 
 		{
-			{ "OniBoss", new Dictionary<string, AudioStream>{ } },
+			{ "BossLevel", new Dictionary<string, AudioStream>{ } },
 			{ "OniBrute", new Dictionary<string, AudioStream>{ } },
 			{ "Player", new Dictionary<string, AudioStream>{ } },
 			{ "PowerUps", new Dictionary<string, AudioStream>{ } },
@@ -223,11 +223,11 @@ public class AudioManager : Node
 		
 		LoadMusic("GameOver");
 		LoadMusic("Level1");
-		LoadMusic("OniBoss");
+		LoadMusic("BossLevel");
 		LoadMusic("StartScreen");
 		LoadMusic("Victory");
 		
-		LoadDomainSounds("OniBoss");
+		LoadDomainSounds("BossLevel");
 		LoadDomainSounds("OniBrute");
 		LoadDomainSounds("Player");
 		LoadDomainSounds("PowerUps");
