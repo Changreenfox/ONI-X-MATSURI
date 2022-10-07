@@ -42,6 +42,6 @@ public class Player : Actor
 	
 	public void _on_EndWall_body_entered(object body)
 	{
-		GetTree().ChangeScene("res://Scenes/BossLevel.tscn");
+		if(body == this) GetTree().ChangeScene("res://Scenes/BossLevel.tscn");
 	}
 }

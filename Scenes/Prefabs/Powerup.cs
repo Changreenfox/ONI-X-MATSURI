@@ -3,6 +3,7 @@ using System;
 
 public class Powerup : Node2D
 {
+	/*
 	[Signal] public delegate PowerupPicked(int type);
 	protected Sprite Parent;
 	protected float yPos;
@@ -23,7 +24,7 @@ public class Powerup : Node2D
 	{
 		EmitSignal("PowerupPicked", 0);
 		Parent.Hide();
-	}
+	}*/
 }
 
 

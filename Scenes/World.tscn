@@ -86,7 +86,7 @@ position = Vector2( -28981, -142 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndWall"]
-position = Vector2( 59702, 687 )
+position = Vector2( 59717, 696 )
 shape = SubResource( 5 )
 
 [connection signal="body_entered" from="Camera2D/PitCheck" to="Player" method="_on_PitCheck_body_entered"]
