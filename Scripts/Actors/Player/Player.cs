@@ -37,7 +37,7 @@ public class Player : Actor
 		if(body == this)
 		{
 			Node2D RespawnNode = GetNode<Node2D>("/root/World/Camera2D/RespawnPoint");
-			GManager.Signals.EmitSignal(nameof(SignalManager.PlaySound2DSignal), GetType().Name, "Damage", this.Position);
+			GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, "Damage");
 			hp -= 1;
 			Position = RespawnNode.GlobalPosition;
 		}
