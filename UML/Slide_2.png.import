@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/cottoncandy.png-bf8766d15bb8c2b25a8a7beb7fe9ae0a.stex"
+path="res://.import/Slide_2.png-f865f8891a305c34e36714bc30eb00e6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/cottoncandy.png"
-dest_files=[ "res://.import/cottoncandy.png-bf8766d15bb8c2b25a8a7beb7fe9ae0a.stex" ]
+source_file="res://UML/Slide_2.png"
+dest_files=[ "res://.import/Slide_2.png-f865f8891a305c34e36714bc30eb00e6.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

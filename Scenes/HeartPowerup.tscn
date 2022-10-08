@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/sprites/cottoncandy.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 46.6717
+radius = 6.41467
 
 [sub_resource type="Animation" id=2]
 resource_name = "Animation"
@@ -31,7 +31,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, 6.7 ), Vector2( 0, 0 ) ]
+"values": [ Vector2( 0, 1 ), Vector2( 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -64,13 +64,14 @@ tracks/1/keys = {
 [node name="Node2D" type="Node2D"]
 
 [node name="Cottoncandy" type="Sprite" parent="."]
+scale = Vector2( 7, 7 )
 texture = ExtResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="Cottoncandy"]
 collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cottoncandy/Area2D"]
-position = Vector2( 0.5, 2 )
+position = Vector2( 1.05879e-22, 1.14286 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
