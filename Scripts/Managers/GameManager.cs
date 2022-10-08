@@ -65,6 +65,7 @@ public class GameManager : Node
 		
 		signals.Connect(nameof(SignalManager.SceneLoadedSignal), audio, nameof(AudioManager.PlayMusic));
 		signals.Connect(nameof(SignalManager.PlaySoundSignal), audio, nameof(AudioManager.PlaySound));
+		signals.Connect(nameof(SignalManager.PlaySound2DSignal), audio, nameof(AudioManager.PlaySound2D));
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

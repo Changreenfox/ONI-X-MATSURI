@@ -175,6 +175,22 @@ public class AudioManager : Node
 		soundPlayer.Play();
 	}
 	
+	public void PlaySound2D(string domainName, string soundName, Vector2 position)
+	{
+		AudioStreamPlayer2D soundPlayer2D = new AudioStreamPlayer2D();
+		soundPlayer2D.Stream = loadedSounds[domainName][soundName];
+		soundPlayer2D.Name = soundName;
+		soundPlayer2D.Bus = "Sounds";
+		currentSoundsNode.AddChild(soundPlayer2D);
+		soundPlayer2D.Connect("finished", 
+							this, 
+							nameof(_on_AudioStreamPlayer_finished),
+							new Godot.Collections.Array() { soundPlayer2D }
+							);
+		soundPlayer2D.Position = position;
+		soundPlayer2D.Play();
+	}
+	
 	public void SetMusicMute(bool enable)
 	{
 		AudioServer.SetBusMute(AudioServer.GetBusIndex("Music"), enable);
