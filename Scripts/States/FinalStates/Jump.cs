@@ -16,9 +16,11 @@ public class Jump : Motion
 	{
 		base.Enter();
 		face = host.FacingRight;
-		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
-								host.GetType().Name, 
-								"Jump");
+		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySound2DSignal), 
+										host.GetType().Name, 
+										"Jump",
+										host.Position
+										);
 		Vector2 velocity = host.Velocity;
 		velocity.y -= host.JumpSpeed * host.Direction.y;
 		host.Velocity = velocity;

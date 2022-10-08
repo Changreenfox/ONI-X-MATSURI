@@ -23,9 +23,11 @@ public class BasicAttack : Attack
 		host.PlayAnimation(name);
 		attacking = true;
 		host.Attacking = true;
-		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
-									host.GetType().Name,
-									"Attack");
+		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySound2DSignal), 
+										host.GetType().Name,
+										"Attack",
+										host.Position
+										);
 
 		//Enable the attack range until animation is finished
 		await ToSignal(host.Animator, "animation_finished");

@@ -11,9 +11,11 @@ public class Death : State
 	public override void Enter()
 	{
 		//host.PlayAnimation("Death");
-		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
+		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySound2DSignal), 
 										host.GetType().Name,	//Name of entityName must match name of class (standardize later) 
-										"Death");
+										"Death",
+										host.Position
+										);
 		host.Die();
 	}
 	
