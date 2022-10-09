@@ -61,11 +61,12 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 
-[node name="Node2D" type="Node2D"]
+[node name="HeartPowerup" type="Node2D"]
 
 [node name="Cottoncandy" type="Sprite" parent="."]
 scale = Vector2( 7, 7 )
 texture = ExtResource( 2 )
+offset = Vector2( 0, 1 )
 
 [node name="Area2D" type="Area2D" parent="Cottoncandy"]
 collision_layer = 4

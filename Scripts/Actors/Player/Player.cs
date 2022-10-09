@@ -47,4 +47,9 @@ public class Player : Actor
 	{
 		if(body == this) GetTree().ChangeScene("res://Scenes/BossLevel.tscn");
 	}
+	
+	public void _on_Powerup_pickup(int type)
+	{
+		GD.Print("got");
+	}
 }
