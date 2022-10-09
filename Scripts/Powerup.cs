@@ -16,13 +16,13 @@ public class Powerup : Node2D
 	private void _on_Area2D_body_entered(object body)
 	{
 		if (Name == "Cottoncandy")
-			PlayerNode._on_Powerup_pickup(1);
+			PlayerNode._on_Powerup_pickup("Health");
 		else if (Name == "Dango")
-			PlayerNode._on_Powerup_pickup(2);
+			PlayerNode._on_Powerup_pickup("Jump");
 		else if (Name == "Onigiri")
-			PlayerNode._on_Powerup_pickup(3);
+			PlayerNode._on_Powerup_pickup("Speed");
 		else if (Name == "Squid")
-			PlayerNode._on_Powerup_pickup(4);
+			PlayerNode._on_Powerup_pickup("Attack");
 		else
 			return;
 		

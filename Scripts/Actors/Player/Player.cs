@@ -48,22 +48,28 @@ public class Player : Actor
 		if(body == this) GetTree().ChangeScene("res://Scenes/BossLevel.tscn");
 	}
 	
-	public void _on_Powerup_pickup(int type)
-	{
-		if (type == 1) // 1: Health
+	public async void _on_Powerup_pickup(string type)
+	{		
+		float BoostTime = 3.0f;
+		
+		if (type == "Health")
 		{
 			if (HP < 6)
 				HP += 1;
 		}
-		else if (type == 2) // 2: Jump
+		else if (type == "Jump")
 		{
-			
+			JumpSpeed = 1500;
+			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
+			JumpSpeed = 1000;
 		}
-		else if (type == 3) // 3: Speed
+		else if (type == "Speed")
 		{
-			
+			MaxSpeed = 1000;
+			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
+			MaxSpeed = 600;
 		}
-		else if (type == 4) // 4: Attack
+		else if (type == "Attack")
 		{
 			
 		}

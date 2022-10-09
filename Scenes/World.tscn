@@ -6,7 +6,7 @@
 [ext_resource path="res://Level1_BG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Level1.cs" type="Script" id=5]
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/AttackPowerup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/SpeedPowerup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/CameraController.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/LeftWall.cs" type="Script" id=9]
 
@@ -90,8 +90,8 @@ collision_layer = 0
 position = Vector2( 59717, 696 )
 shape = SubResource( 5 )
 
-[node name="AttackPowerup" parent="." instance=ExtResource( 7 )]
-position = Vector2( 610, 841 )
+[node name="SpeedPowerup" parent="." instance=ExtResource( 7 )]
+position = Vector2( 632, 867 )
 
 [connection signal="body_entered" from="Camera2D/PitCheck" to="Player" method="_on_PitCheck_body_entered"]
 [connection signal="body_entered" from="EndWall" to="Player" method="_on_EndWall_body_entered"]
