@@ -76,13 +76,13 @@ public class AudioManager : Node
 				}
 			},
 			{
-				"PowerUps", 
+				"Powerup", 
 				new Dictionary<string, string>
 				{
-					{"AttackBoost", 	(SOUND_PATH + "powerups/attack-boost.wav")},
-					{"Heal", 			(SOUND_PATH + "powerups/heal.wav")},
-					{"JumpBoost", 		(SOUND_PATH + "powerups/jump-boost.wav")},
-					{"SpeedBoost", 		(SOUND_PATH + "powerups/speed-boost.wav")}
+					{"Cottoncandy", 	(SOUND_PATH + "powerups/heal.wav")},
+					{"Dango", 			(SOUND_PATH + "powerups/jump-boost.wav")},
+					{"Onigiri", 		(SOUND_PATH + "powerups/speed-boost.wav")},
+					{"Squid", 			(SOUND_PATH + "powerups/attack-boost.wav")}
 				}
 			},
 			{
@@ -194,6 +194,7 @@ public class AudioManager : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		AudioServer.SetBusLayout(ResourceLoader.Load<AudioBusLayout>("res://Game_Buses.tres"));
 		//gManager = (GameManager)GetNode("/root/GameManager");
 		//This Node will centralize all sounds; manage all current sounds (mute, stop, etc.)
 		currentSoundsNode = new Node();
@@ -213,7 +214,7 @@ public class AudioManager : Node
 			{ "OniBoss", new Dictionary<string, AudioStream>{ } },
 			{ "OniBrute", new Dictionary<string, AudioStream>{ } },
 			{ "Player", new Dictionary<string, AudioStream>{ } },
-			{ "PowerUps", new Dictionary<string, AudioStream>{ } },
+			{ "Powerup", new Dictionary<string, AudioStream>{ } },
 			{ "UserInterface", new Dictionary<string, AudioStream> { } }
 		};
 		
@@ -226,7 +227,7 @@ public class AudioManager : Node
 		LoadDomainSounds("OniBoss");
 		LoadDomainSounds("OniBrute");
 		LoadDomainSounds("Player");
-		LoadDomainSounds("PowerUps");
+		LoadDomainSounds("Powerup");
 		LoadDomainSounds("UserInterface");
 		
 		currentMusic = new AudioStreamPlayer();
@@ -235,7 +236,7 @@ public class AudioManager : Node
 		currentMusic.Bus = "Music";
 		currentMusicNode.AddChild(currentMusic);
 		
-		SetMasterVolume(-3f);
+		SetMasterVolume(-6f);
 		SetMusicVolume(-10f);
 	}
 	

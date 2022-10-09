@@ -26,6 +26,11 @@ public class Powerup : Node2D
 		else
 			return;
 		
+		PlayerNode.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
+												GetType().Name,
+												Name
+												);
+		
 		Parent.QueueFree();
 	}
 }

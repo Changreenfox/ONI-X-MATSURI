@@ -14,6 +14,10 @@ config/name="ONI-x-MATSURI"
 run/main_scene="res://Scenes/Start.tscn"
 config/icon="res://Assets/icon.png"
 
+[audio]
+
+default_bus_layout="res://Game_Buses.tres"
+
 [autoload]
 
 GameManager="*res://Scripts/Managers/GameManager.cs"
@@ -28,6 +32,10 @@ window/size/height=1080
 window/size/resizable=false
 window/size/borderless=true
 window/size/fullscreen=true
+
+[global]
+
+bus=false
 
 [gui]
 
