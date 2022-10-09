@@ -50,6 +50,22 @@ public class Player : Actor
 	
 	public void _on_Powerup_pickup(int type)
 	{
-		GD.Print("got");
+		if (type == 1) // 1: Health
+		{
+			if (HP < 6)
+				HP += 1;
+		}
+		else if (type == 2) // 2: Jump
+		{
+			
+		}
+		else if (type == 3) // 3: Speed
+		{
+			
+		}
+		else if (type == 4) // 4: Attack
+		{
+			
+		}
 	}
 }
