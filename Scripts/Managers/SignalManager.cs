@@ -14,5 +14,5 @@ public class SignalManager : Node
 	public delegate void PlaySoundSignal(string domainName, string soundName);
 	
 	[Signal]
-	public delegate void PlaySound2DSignal(string domainName, string soundName, Vector2 position);
+	public delegate void PlaySound2DSignal(string domainName, string soundName, Node2D entity);
 }

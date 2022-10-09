@@ -216,10 +216,9 @@ public abstract class Actor : KinematicBody2D
 	// Returns true if the actor survives and false if the actor dies
 	public void TakeDamage(Attack attack)
 	{
-		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySound2DSignal), 
+		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
 									GetType().Name,
-									"Damage",
-									this.Position
+									"Damage"
 									);
 		hp -= attack.Damage;
 		TakeKnockback(attack);
