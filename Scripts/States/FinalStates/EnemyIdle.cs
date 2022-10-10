@@ -35,10 +35,16 @@ public class EnemyIdle : AIMotion
 			if((phase + 1) % 2 == 0)
 			{
 				if(phase == 3)
+				{
 					host.FacingRight = false;
+					host.PlayAnimation("WalkLeft");
+				}
 				else
+				{
 					host.FacingRight = true;
-				host.PlayAnimation("Walk");
+					host.PlayAnimation("WalkRight");
+				}
+
 			}
 			else
 				host.PlayAnimation("IdleForward");
