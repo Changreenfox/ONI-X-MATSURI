@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class BossIdle : AIMotion
+public class BossIdle : JustGravity
 {
 	bool finished = false;
 	int next_state = 1; //if next state = -1, go into attack state, else go into moving state
