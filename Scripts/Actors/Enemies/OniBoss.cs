@@ -37,5 +37,10 @@ public class OniBoss : Enemy
 			direction.x *= -1;
 		}
 	}
+
+	public override void TakeKnockback(Attack attack)
+	{
+		return;
+	}
 	
 }
