@@ -43,4 +43,8 @@ public class OniBoss : Enemy
 		return;
 	}
 	
+	//to make stuff happen once boss deiz
+	/*public override void Die(){
+		
+	}*/
 }

@@ -1,4 +1,4 @@
-3 Functions:
+5 Functions:
 
 public Constructor(Actor _host)
 {
