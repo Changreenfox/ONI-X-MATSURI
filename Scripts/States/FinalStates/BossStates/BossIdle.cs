@@ -4,7 +4,7 @@ using System;
 public class BossIdle : JustGravity
 {
 	bool finished = false;
-	int next_state = 1; //if next state = -1, go into attack state, else go into moving state
+	int next_state = -1; //if next state = -1, go into attack state, else go into moving state
 	
 	public BossIdle(Actor _host) 
 	{
@@ -15,9 +15,15 @@ public class BossIdle : JustGravity
 	public override void Enter()
 	{
 		base.Enter();
+		GD.Print("BossIdle");
 		
 		finished = false;
-		host.StateTimer.Start(3.0f);
+		if(next_state == -1){
+			host.StateTimer.Start(3.0f);
+		}
+		else {
+			host.StateTimer.Start(1.0f);
+		}
 	}
 	
 	public override string HandlePhysics(float delta)

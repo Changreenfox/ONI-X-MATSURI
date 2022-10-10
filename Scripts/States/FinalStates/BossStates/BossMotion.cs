@@ -13,6 +13,7 @@ public class BossMotion : AIMotion
 	public override void Enter()
 	{
 		base.Enter();
+		GD.Print("BossMotion");
 		finished = false;
 		
 		RandomNumberGenerator randGenerator = new RandomNumberGenerator();
@@ -41,10 +42,4 @@ public class BossMotion : AIMotion
 	{
 		host.PlayAnimation("IdleForward");
 	}
-	
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
 }

@@ -255,11 +255,6 @@ public abstract class Actor : KinematicBody2D
 	//Will be called in the states, allowing the player to play specific animations
 	public string PlayAnimation(string name)
 	{
-		if(name == "IdleForward"){ //if the player is idle for a long time
-			animator.Play(name);
-			return name;
-		}
-
 		if(attacking)
 		{
 			foreach(Attack attack in attacks)
@@ -269,11 +264,6 @@ public abstract class Actor : KinematicBody2D
 					return name;
 				}
 		}
-
-		 //else play the correct animation
-		if(facingRight) name += "Right";
-		else name += "Left";
-		
 		animator.Play(name);
 
 		return name;
