@@ -1,16 +1,16 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/OniBrute.cs" type="Script" id=1]
-[ext_resource path="res://assets/sprites/enemy/oni_spritesheet_large_2.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/enemy/oni_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=3]
-radius = 40.0
-height = 80.0
+radius = 42.0
+height = 84.0
 
 [sub_resource type="Animation" id=4]
 resource_name = "IdleForward"
-length = 0.8
+length = 0.4
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -19,10 +19,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 0, 1 ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -95,6 +95,7 @@ maxSpeed = 150.0
 walkToRunSpeed = 100.0
 
 [node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 7, 7 )
 texture = ExtResource( 2 )
 hframes = 4
 vframes = 3
