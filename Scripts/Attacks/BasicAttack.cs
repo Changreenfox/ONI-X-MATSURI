@@ -25,7 +25,7 @@ public class BasicAttack : Attack
 			temp += "Right";
 		else
 			temp += "Left";
-		host.PlayAnimation(name);
+		host.PlayAnimation(temp);
 		
 		attacking = true;
 		host.Attacking = true;
