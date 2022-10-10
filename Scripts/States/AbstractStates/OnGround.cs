@@ -15,7 +15,12 @@ public abstract class OnGround : Motion
 	//Normal Attack
 	protected override void Attack()
 	{    
-		host.Attack(0, StateName());
+		string temp = StateName();
+		if(host.FacingRight)
+			temp += "Right";
+		else
+			temp += "Left";
+		host.Attack(0, temp);
 		//APPARENTLY THIS THING CRASHES IF entityName STARTS WITH AN UPPERCASE LETTER????
 		/*
 		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
