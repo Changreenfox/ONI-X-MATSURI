@@ -21,9 +21,9 @@ public class OniBoss : Enemy
 		
 		container.SetState("Motion", new BossMotion(this));
 		
-		direction.x = -1;
+		direction.x = 1;
 
-		state = container.GetState("Motion");
+		state = container.GetState("Idle");
 		state.Enter();
 		
 	}

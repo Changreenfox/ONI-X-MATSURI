@@ -87,7 +87,7 @@ position = Vector2( -284, 572 )
 shape = SubResource( 4 )
 
 [node name="EndWall" type="Area2D" parent="."]
-position = Vector2( -28981, -142 )
+position = Vector2( -57532, -155 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndWall"]
