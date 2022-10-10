@@ -52,7 +52,10 @@ public class Jump : Motion
 
 	public override void PlayAnimation()
 	{
-		host.PlayAnimation("Jump");
+		if(facingRight)
+			host.PlayAnimation("JumpRight");
+		else
+			host.PlayAnimation("JumpLeft");
 	}
 
 	//Will not currently work with Attack function... PlayerFSM would require attack to take an int var saying which attack to use

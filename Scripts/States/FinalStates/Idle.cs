@@ -41,7 +41,10 @@ public class Idle : OnGround
 
 	public override void PlayAnimation()
 	{
-		host.PlayAnimation("Idle");
+		if(facingRight)
+			host.PlayAnimation("IdleRight");
+		else
+			host.PlayAnimation("IdleLeft");
 	}
 
 	protected override void Attack()

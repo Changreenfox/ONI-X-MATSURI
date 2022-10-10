@@ -20,7 +20,13 @@ public class BasicAttack : Attack
 	protected override async Task ActivateCollider()
 	{
 		//Play the sound & animation (PlayAnimation MUST come before host.Attacking = true;)
+		string temp = name;
+		if(host.FacingRight)
+			temp += "Right";
+		else
+			temp += "Left";
 		host.PlayAnimation(name);
+		
 		attacking = true;
 		host.Attacking = true;
 		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 

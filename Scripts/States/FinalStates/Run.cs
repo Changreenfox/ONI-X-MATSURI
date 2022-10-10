@@ -18,7 +18,10 @@ public class Run : OnGround
 
 	public override void PlayAnimation()
 	{
-		host.PlayAnimation("Run");
+		if(facingRight)
+			host.PlayAnimation("RunRight");
+		else
+			host.PlayAnimation("RunLeft");
 	}
 
 	public override string StateName()

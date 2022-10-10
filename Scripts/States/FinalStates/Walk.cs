@@ -21,7 +21,10 @@ public class Walk : OnGround
 
 	public override void PlayAnimation()
 	{
-		host.PlayAnimation("Walk");
+		if(facingRight)
+			host.PlayAnimation("WalkRight");
+		else
+			host.PlayAnimation("WalkLeft");
 	}
 
 	public override string StateName()
