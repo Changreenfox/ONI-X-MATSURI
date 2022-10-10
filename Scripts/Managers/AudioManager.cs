@@ -76,13 +76,13 @@ public class AudioManager : Node
 				}
 			},
 			{
-				"PowerUps", 
+				"Powerup", 
 				new Dictionary<string, string>
 				{
-					{"AttackBoost", 	(SOUND_PATH + "powerups/attack-boost.wav")},
-					{"Heal", 			(SOUND_PATH + "powerups/heal.wav")},
-					{"JumpBoost", 		(SOUND_PATH + "powerups/jump-boost.wav")},
-					{"SpeedBoost", 		(SOUND_PATH + "powerups/speed-boost.wav")}
+					{"Cottoncandy", 	(SOUND_PATH + "powerups/heal.wav")},
+					{"Dango", 			(SOUND_PATH + "powerups/jump-boost.wav")},
+					{"Onigiri", 		(SOUND_PATH + "powerups/speed-boost.wav")},
+					{"Squid", 			(SOUND_PATH + "powerups/attack-boost.wav")}
 				}
 			},
 			{
@@ -164,7 +164,7 @@ public class AudioManager : Node
 		//GD.Print("Played sound: " + soundName);
 		AudioStreamPlayer soundPlayer = new AudioStreamPlayer();
 		soundPlayer.Stream = loadedSounds[domainName][soundName];
-		soundPlayer.Name = soundName;
+		soundPlayer.Name = soundName + "Sound";
 		soundPlayer.Bus = "Sounds";
 		currentSoundsNode.AddChild(soundPlayer);
 		soundPlayer.Connect("finished", 
@@ -175,29 +175,26 @@ public class AudioManager : Node
 		soundPlayer.Play();
 	}
 	
-	public void SetMusicMute(bool enable)
+	public void PlaySound2D(string domainName, string soundName, Node2D entity)
 	{
-		AudioServer.SetBusMute(AudioServer.GetBusIndex("Music"), enable);
-	}
-	
-	public void SetMusicVolume(float volumeDb)
-	{
-		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), volumeDb);
-	}
-	
-	public void SetSoundMute(bool enable)
-	{
-		AudioServer.SetBusMute(AudioServer.GetBusIndex("Sounds"), enable);
-	}
-	
-	public void SetSoundVolume(float volumeDb)
-	{
-		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sounds"), volumeDb);
+		AudioStreamPlayer2D soundPlayer2D = new AudioStreamPlayer2D();
+		soundPlayer2D.Stream = loadedSounds[domainName][soundName];
+		soundPlayer2D.Name = soundName + "Sound";
+		soundPlayer2D.Bus = "Sounds";
+		//currentSoundsNode.AddChild(soundPlayer2D);
+		soundPlayer2D.Connect("finished", 
+							this, 
+							nameof(_on_AudioStreamPlayer2D_finished),
+							new Godot.Collections.Array() { soundPlayer2D }
+							);
+		entity.AddChild(soundPlayer2D);
+		soundPlayer2D.Play();
 	}
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		AudioServer.SetBusLayout(ResourceLoader.Load<AudioBusLayout>("res://Game_Buses.tres"));
 		//gManager = (GameManager)GetNode("/root/GameManager");
 		//This Node will centralize all sounds; manage all current sounds (mute, stop, etc.)
 		currentSoundsNode = new Node();
@@ -217,7 +214,7 @@ public class AudioManager : Node
 			{ "OniBoss", new Dictionary<string, AudioStream>{ } },
 			{ "OniBrute", new Dictionary<string, AudioStream>{ } },
 			{ "Player", new Dictionary<string, AudioStream>{ } },
-			{ "PowerUps", new Dictionary<string, AudioStream>{ } },
+			{ "Powerup", new Dictionary<string, AudioStream>{ } },
 			{ "UserInterface", new Dictionary<string, AudioStream> { } }
 		};
 		
@@ -230,7 +227,7 @@ public class AudioManager : Node
 		LoadDomainSounds("OniBoss");
 		LoadDomainSounds("OniBrute");
 		LoadDomainSounds("Player");
-		LoadDomainSounds("PowerUps");
+		LoadDomainSounds("Powerup");
 		LoadDomainSounds("UserInterface");
 		
 		currentMusic = new AudioStreamPlayer();
@@ -239,13 +236,49 @@ public class AudioManager : Node
 		currentMusic.Bus = "Music";
 		currentMusicNode.AddChild(currentMusic);
 		
-		AudioServer.SetBusVolumeDb(0, -3f);
+		SetMasterVolume(-6f);
+		SetMusicVolume(-10f);
 	}
 	
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)
 	{
 		soundPlayer.QueueFree();
 		//GD.Print("Player", audioPlayer.Name, " freed");
+	}
+	
+	private void _on_AudioStreamPlayer2D_finished(AudioStreamPlayer2D soundPlayer2D)
+	{
+		soundPlayer2D.QueueFree();
+	}
+	
+	private void SetMasterMute(bool enable)
+	{
+		AudioServer.SetBusMute(0, enable);
+	}
+	
+	private void SetMasterVolume(float volumeDb)
+	{
+		AudioServer.SetBusVolumeDb(0, volumeDb);
+	}
+	
+	private void SetMusicMute(bool enable)
+	{
+		AudioServer.SetBusMute(AudioServer.GetBusIndex("Music"), enable);
+	}
+	
+	private void SetMusicVolume(float volumeDb)
+	{
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), volumeDb);
+	}
+	
+	private void SetSoundMute(bool enable)
+	{
+		AudioServer.SetBusMute(AudioServer.GetBusIndex("Sounds"), enable);
+	}
+	
+	private void SetSoundVolume(float volumeDb)
+	{
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sounds"), volumeDb);
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

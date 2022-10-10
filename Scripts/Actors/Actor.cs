@@ -217,8 +217,9 @@ public abstract class Actor : KinematicBody2D
 	public void TakeDamage(Attack attack)
 	{
 		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
-										GetType().Name,
-										"Damage");
+									GetType().Name,
+									"Damage"
+									);
 		hp -= attack.Damage;
 		TakeKnockback(attack);
 		GD.Print(hp);

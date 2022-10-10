@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Level1Generator.cs" type="Script" id=2]
@@ -6,8 +6,10 @@
 [ext_resource path="res://Level1_BG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/Level1.cs" type="Script" id=5]
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/SpeedPowerup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/CameraController.cs" type="Script" id=8]
-[ext_resource path="res://Scenes/LeftWall.cs" type="Script" id=9]
+[ext_resource path="res://Scripts/LeftWall.cs" type="Script" id=9]
+[ext_resource path="res://Scenes/JumpPowerup.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33, 620 )
@@ -55,6 +57,9 @@ margin_top = -8.0
 margin_right = -1.99976
 margin_bottom = -8.0
 
+[node name="JumpPowerup" parent="Camera2D/CanvasLayer/Interface" instance=ExtResource( 10 )]
+position = Vector2( 752, 878 )
+
 [node name="LeftWall" type="StaticBody2D" parent="Camera2D"]
 collision_layer = 0
 
@@ -88,6 +93,9 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndWall"]
 position = Vector2( 59717, 696 )
 shape = SubResource( 5 )
+
+[node name="SpeedPowerup" parent="." instance=ExtResource( 7 )]
+position = Vector2( 632, 867 )
 
 [connection signal="body_entered" from="Camera2D/PitCheck" to="Player" method="_on_PitCheck_body_entered"]
 [connection signal="body_entered" from="EndWall" to="Player" method="_on_EndWall_body_entered"]

@@ -13,6 +13,10 @@ public class UIManager : Control
 	private Texture HeartFull;
 	private Texture HeartHalf;
 	private Texture HeartEmpty;
+	
+	private TextureRect JumpBoost;
+	private TextureRect AttackBoost;
+	private TextureRect SpeedBoost;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -27,6 +31,10 @@ public class UIManager : Control
 		HeartFull = (Texture)GD.Load("res://assets/sprites/heart_full.png");
 		HeartHalf = (Texture)GD.Load("res://assets/sprites/heart_half.png");
 		HeartEmpty = (Texture)GD.Load("res://assets/sprites/heart_empty.png");
+			
+		JumpBoost = GetNode<TextureRect>("Right/VBoxContainer/JumpBoost");
+		AttackBoost = GetNode<TextureRect>("Right/VBoxContainer/AttackBoost");
+		SpeedBoost = GetNode<TextureRect>("Right/VBoxContainer/SpeedBoost");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -65,6 +73,16 @@ public class UIManager : Control
 	private void _on_Exit_pressed()
 	{
 		GetTree().Quit();
+	}
+	
+	public void Toggle_Powerup_Icon(string type)
+	{
+		if (type == "Jump")
+			JumpBoost.Visible = !JumpBoost.Visible;
+		else if (type == "Attack")
+			AttackBoost.Visible = !AttackBoost.Visible;
+		else if (type == "Speed")
+			SpeedBoost.Visible = !SpeedBoost.Visible;
 	}
 }
 

@@ -4,6 +4,8 @@ using System;
 // Finite State Machine for the Player
 public class Player : Actor
 {
+	private UIManager Interface;
+	
 	public override void _Ready()
 	{
 		//Set the character sprite
@@ -25,6 +27,8 @@ public class Player : Actor
 		*/
 
 		state = container.GetState("Idle");
+		
+		Interface = GetNode<UIManager>("/root/World/Camera2D/CanvasLayer/Interface");
 	}
 
 	public override void Die()
@@ -46,5 +50,45 @@ public class Player : Actor
 	public void _on_EndWall_body_entered(object body)
 	{
 		if(body == this) GetTree().ChangeScene("res://Scenes/BossLevel.tscn");
+	}
+	
+	public async void _on_Powerup_pickup(string type)
+	{		
+		float BoostTime = 3.0f;
+		
+		if (type == "Health")
+		{
+			if (HP < 6)
+				HP += 1;
+		}
+		else if (type == "Jump")
+		{
+			JumpSpeed = 1500;
+			Interface.Toggle_Powerup_Icon(type);
+			
+			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
+			
+			JumpSpeed = 1000;
+			Interface.Toggle_Powerup_Icon(type);
+		}
+		else if (type == "Speed")
+		{
+			MaxSpeed = 1000;
+			Interface.Toggle_Powerup_Icon(type);
+			
+			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
+			
+			MaxSpeed = 600;
+			Interface.Toggle_Powerup_Icon(type);
+		}
+		else if (type == "Attack")
+		{
+			// insert what needs to be done to adjust attack damage
+			Interface.Toggle_Powerup_Icon(type);
+			
+			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
+			
+			Interface.Toggle_Powerup_Icon(type);
+		}
 	}
 }
