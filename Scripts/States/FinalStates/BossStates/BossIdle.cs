@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class BossIdle : OnGround
+public class BossIdle : JustGravity
 {
 	bool finished = false;
 	
