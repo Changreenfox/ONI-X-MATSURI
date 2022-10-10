@@ -2,7 +2,6 @@ using Godot;
 using System;
 
 
-
 public class CameraController : Camera2D
 {
 	GameManager gManager;

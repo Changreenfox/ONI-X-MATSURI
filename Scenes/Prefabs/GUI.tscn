@@ -47,7 +47,7 @@ margin_right = 87.0
 margin_bottom = 185.0
 texture = ExtResource( 4 )
 
-[node name="AttackBoost2" type="TextureRect" parent="Right/VBoxContainer"]
+[node name="SpeedBoost" type="TextureRect" parent="Right/VBoxContainer"]
 visible = false
 margin_top = 98.0
 margin_right = 87.0

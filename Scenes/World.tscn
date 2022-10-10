@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Level1Generator.cs" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Scenes/SpeedPowerup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/CameraController.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/LeftWall.cs" type="Script" id=9]
+[ext_resource path="res://Scenes/JumpPowerup.tscn" type="PackedScene" id=10]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33, 620 )
@@ -55,6 +56,9 @@ margin_left = -1.99982
 margin_top = -8.0
 margin_right = -1.99976
 margin_bottom = -8.0
+
+[node name="JumpPowerup" parent="Camera2D/CanvasLayer/Interface" instance=ExtResource( 10 )]
+position = Vector2( 752, 878 )
 
 [node name="LeftWall" type="StaticBody2D" parent="Camera2D"]
 collision_layer = 0
