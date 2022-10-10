@@ -70,8 +70,8 @@ tracks/1/keys = {
 }
 
 [sub_resource type="CapsuleShape2D" id=5]
-radius = 20.0
-height = 10.0
+radius = 120.0
+height = 110.0
 
 [node name="OniBoss" type="KinematicBody2D"]
 collision_layer = 2
@@ -103,6 +103,7 @@ script = ExtResource( 2 )
 
 [node name="Range" type="CollisionShape2D" parent="Contact"]
 visible = false
+position = Vector2( 3, -2 )
 shape = SubResource( 5 )
 
 [node name="AttackCooldown" type="Timer" parent="."]
