@@ -1,9 +1,28 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/TileMap.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/SpeedPowerup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/JumpPowerup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/HeartPowerup.tscn" type="PackedScene" id=5]
 
 [node name="Chunk1" type="Node2D"]
 position = Vector2( 0, 56 )
+
+[node name="OniBrute2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1869, 290 )
+
+[node name="HeartPowerup" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2016, 667 )
+
+[node name="SpeedPowerup" parent="." instance=ExtResource( 3 )]
+position = Vector2( 559, 685 )
+
+[node name="OniBrute" parent="." instance=ExtResource( 2 )]
+position = Vector2( 3120, 803 )
+
+[node name="JumpPowerup" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2581, 681 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 1 )

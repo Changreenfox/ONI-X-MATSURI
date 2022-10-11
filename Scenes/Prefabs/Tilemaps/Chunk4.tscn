@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/TileMap.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/SpeedPowerup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/HeartPowerup.tscn" type="PackedScene" id=4]
 
 [node name="Chunk4" type="Node2D"]
 position = Vector2( 0, 56 )
@@ -13,3 +16,15 @@ collision_layer = 8
 collision_mask = 7
 format = 1
 tile_data = PoolIntArray( 196611, 1, 0, 262166, 7, 0, 458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0, 458756, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 2, 0, 458767, 2, 0, 458768, 2, 0, 458769, 3, 0, 458770, 4, 0, 458771, 2, 0, 458772, 2, 0, 458773, 2, 0, 458774, 2, 0, 458775, 2, 0, 458776, 2, 0, 458777, 2, 0, 458778, 2, 0, 458779, 2, 0, 458780, 2, 0, 458781, 2, 0 )
+
+[node name="OniBrute" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2687, 794 )
+
+[node name="OniBrute2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 3137, 791 )
+
+[node name="SpeedPowerup" parent="." instance=ExtResource( 2 )]
+position = Vector2( 723, 293 )
+
+[node name="HeartPowerup" parent="." instance=ExtResource( 4 )]
+position = Vector2( 3063, 440 )
