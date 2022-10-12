@@ -47,4 +47,11 @@ public class OniBoss : Enemy
 	/*public override void Die(){
 		
 	}*/
+	public void Camera_Shake(int duration, int strength)
+	{
+		CameraShake camera = (CameraShake)GetNode("/root/BossLevel/Camera2D");
+		camera.shake(duration, strength);
+		return;
+	}
 }
+

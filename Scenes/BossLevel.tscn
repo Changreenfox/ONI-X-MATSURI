@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/backgrounds/boss_background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefabs/OniBoss.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/CameraShake.cs" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 961, 60 )
@@ -75,5 +76,14 @@ shape = SubResource( 3 )
 margin_right = 1920.0
 margin_bottom = 1080.0
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 960, 536 )
+script = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="Camera2D"]
+
+[node name="Tween" type="Tween" parent="Camera2D"]
+
 [connection signal="body_entered" from="BossLeftWall" to="OniBoss" method="_on_BossWall_body_entered"]
 [connection signal="body_entered" from="BossRightWall" to="OniBoss" method="_on_BossWall_body_entered"]
+[connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_Timer_timeout"]
