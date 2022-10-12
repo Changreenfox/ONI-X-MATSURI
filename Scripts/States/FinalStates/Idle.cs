@@ -28,7 +28,7 @@ public class Idle : OnGround
 		else
 			time += delta;
 			
-		if(Mathf.Abs(host.Velocity.x) > 0.05)
+		if(Mathf.Abs(host.Velocity.x) > 0.15)
 			return "Walk";
 
 		return move;
