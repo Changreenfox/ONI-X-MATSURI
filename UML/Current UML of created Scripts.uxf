@@ -88,7 +88,7 @@ fontsize=10
 +void override _Process (float)
 +void ChangeState(string)
 +Vector2 Move(Vector2)
-+voic TakeDamage(int)
++void TakeDamage(int, Vector2, Vector2)
 +void &lt;&lt;virtual&gt;&gt; TakeKnockback(Attack)
 +void Attack(int, string)
 +void PlayAnimation(string)

@@ -1,34 +1,52 @@
 using Godot;
 using System;
 
-public class BulletSpawn : Node2D
+public class BulletSpawn : Attack
 {
 
-    //private Bullet bullet;
+    //bullet prefab
+    [Export]
+    private PackedScene bulletPrefab;
+
+    //Which direction bullets will move (set in editor)
+    [Export]
+    private Vector2 heading = new Vector2(0,0);
+
+    //relevant member variables from Attack
+    /*
+    Actor host
+    Timer time
+    */
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        //private Scene bullet = ResourceLoader.load("filepath.tscn") as Scene;
+        host = (Actor)GetParent();
+
+        bulletPrefab = GD.Load<PackedScene>("res://Scenes/Prefabs/Bullet.tscn");
+
+        //cooldown timer
+		time = (Timer)host.GetNode("AttackCooldown");
+        return;
+    }
+
+    //Do nothing instead
+    public override void _Process(float delta)
+    {
+        //Do nothing
         return;
     }
 
 
-    public void Fire(Vector2 direction)
-    {
-        Timer cooldownTimer = GetNode("CooldownTimer") as Timer;
-        if(!(bool)(cooldownTimer?.IsStopped()))
-            return;
+    //Spawn the bullet
+    //prevAnim is useless in this context
+	public override void StartAttack(string prevAnim = "")
+	{
+        GD.Print("Shooting Projectile");
         
-        cooldownTimer.Start();
-        /*
-        Bullet newBullet = bullet.instance();
-        newBullet.direction = direction;
-        addChild(newBullet);
-        */
-    }
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+        //Spawn an instance of the bullet with a specific heading
+        Bullet bullet = bulletPrefab.Instance() as Bullet;
+        bullet.Heading = heading;
+        AddChild(bullet);
+	}
 }
