@@ -49,8 +49,7 @@ public abstract class Attack : Area2D
 		GetRange();
 		
 		host = (Actor)GetParent();
-
-		Connect("area_entered", this, nameof(_on_Attack_area_entered));
+		
 		Connect("body_entered", this, nameof(_on_Attack_body_entered));
 
 		//cooldown timer
@@ -76,7 +75,7 @@ public abstract class Attack : Area2D
 	}
 
 	//Begin the attack animation
-	public virtual void StartAttack(string prevAnim)
+	public virtual void StartAttack(string prevAnim = "")
 	{
 		//If you're not waiting for the attack to finish and the Time is stopped
 		//GD.Print(!waiting, " and ", time.IsStopped());
@@ -98,18 +97,11 @@ public abstract class Attack : Area2D
 		Actor enemy = collision as Actor;
 		//enemy? means if not null, call enemy.TakeDamage, otherwise do nothing
 		GD.Print(this.Name, " Hit! ", enemy?.Name);
-		enemy?.TakeDamage(this);
+		enemy?.TakeDamage(damage, GlobalPosition, impulse);
 	}
 
-	public virtual void _on_Attack_area_entered(Area2D collision)
-	{
-		Actor enemy = collision.GetParent() as Actor;
-		enemy?.TakeDamage(this);
-		GD.Print("Hit!");
-	}
-
-	protected abstract void GetRange();
-	protected abstract void SetColliderActive();
+	protected virtual void GetRange() {}
+	protected virtual void SetColliderActive() {}
 
 	protected virtual async Task ActivateCollider() { await WaitCooldown(); }
 	protected virtual async Task WaitCooldown() { }

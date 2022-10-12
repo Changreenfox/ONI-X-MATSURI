@@ -38,7 +38,8 @@ public class OniBoss : Enemy
 		}
 	}
 
-	public override void TakeKnockback(Attack attack)
+	//Do nothing
+	public override void TakeKnockback(Vector2 collisionPosition, Vector2 impulse)
 	{
 		return;
 	}

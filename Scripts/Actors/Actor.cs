@@ -213,37 +213,32 @@ public abstract class Actor : KinematicBody2D
 		return velocity;
 	}
 
-	// Returns true if the actor survives and false if the actor dies
-	public void TakeDamage(Attack attack)
+	public void TakeDamage(int damage, Vector2 collisionPosition, Vector2 impulse)
 	{
 		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
 									GetType().Name,
 									"Damage"
 									);
-		hp -= attack.Damage;
-		TakeKnockback(attack);
+		hp -= damage;
+		TakeKnockback(collisionPosition, impulse);
 		GD.Print(hp);
 	}
 
-	//Called in TakeDamage() to cause knockback
-	public virtual void TakeKnockback(Attack attack)
+	public virtual void TakeKnockback(Vector2 collisionPosition, Vector2 impulse)
 	{
-		Vector2 impulse = attack.Impulse;
-		Vector2 attackPosition = attack.GlobalPosition;
-
+		// Determine which direction to send the player
 		int directionX = 1, directionY = -1;
-		if(attackPosition.x > GlobalPosition.x)
+
+		if(collisionPosition.x > GlobalPosition.x)
 			directionX = -1;
-		if(attackPosition.y < GlobalPosition.y)
-		{
-			GD.Print(attackPosition.y, " - ", GlobalPosition.y);
+		if(collisionPosition.y < GlobalPosition.y)
 			directionY = 1;
-		}
+		
 		impulse.x *= directionX;
 		impulse.y *= directionY;
 
-		GD.Print(impulse);
-		velocity = MoveAndSlide(impulse * attack.Damage, UP);
+		// Move the Actor
+		velocity = MoveAndSlide(impulse, UP);
 	}
 
 	// Handle the Attack here
