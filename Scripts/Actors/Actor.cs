@@ -108,9 +108,7 @@ public abstract class Actor : KinematicBody2D
 	
 	//Every Actor has a list of attacks
 	[Export]
-	public List<BasicAttack> attacks = new List<BasicAttack>();
-	[Export]
-	public List<ContactDamage> surfaces = new List<ContactDamage>();
+	public List<Attack> attacks = new List<Attack>();
 
 	private bool attacking = false;
 	public bool Attacking
@@ -159,15 +157,10 @@ public abstract class Actor : KinematicBody2D
 		
 		foreach (Node node in GetChildren())
 		{
-			if(node is BasicAttack)
+			if(node is Attack)
 			{
 				GD.Print(Name, " -> ", node.Name);
-				attacks.Add((BasicAttack)node);
-			}
-			else if(node is ContactDamage)
-			{
-				GD.Print(Name, " -> ", node.Name);
-				surfaces.Add((ContactDamage)node);
+				attacks.Add((Attack)node);
 			}
 		}
 	}
@@ -278,8 +271,6 @@ public abstract class Actor : KinematicBody2D
 		else
 			scale.x = -1;
 		foreach (Node2D node in attacks)
-			node.Scale = scale;
-		foreach (Node2D node in surfaces)
 			node.Scale = scale;
 	}
 	

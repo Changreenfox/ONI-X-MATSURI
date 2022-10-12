@@ -23,7 +23,7 @@ public class BulletSpawn : Attack
     {
         host = (Actor)GetParent();
 
-        bulletPrefab = GD.Load<PackedScene>("res://Scenes/Prefabs/bullet.tscn");
+        bulletPrefab = GD.Load<PackedScene>("res://Scenes/Prefabs/Bullet.tscn");
 
         //cooldown timer
 		time = (Timer)host.GetNode("AttackCooldown");
@@ -47,6 +47,6 @@ public class BulletSpawn : Attack
         //Spawn an instance of the bullet with a specific heading
         Bullet bullet = bulletPrefab.Instance() as Bullet;
         bullet.Heading = heading;
-        host.AddChild(bullet);
+        AddChild(bullet);
 	}
 }

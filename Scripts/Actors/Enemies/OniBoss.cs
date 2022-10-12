@@ -43,6 +43,12 @@ public class OniBoss : Enemy
 	{
 		return;
 	}
+
+	public void ShootBullets()
+	{
+		attacks[0].StartAttack();
+		attacks[1].StartAttack();
+	}
 	
 	//to make stuff happen once boss deiz
 	/*public override void Die(){

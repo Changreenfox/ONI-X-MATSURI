@@ -7,10 +7,10 @@ public class Bullet : KinematicBody2D
     private int damage = 1;
 
     [Export]
-    private float speed = 300;
+    private float speed = 30;
 
     [Export]
-    private Vector2 impulse = new Vector2(0,0);
+    private Vector2 impulse = new Vector2(500,750);
 
     private Vector2 direction = new Vector2(0,0);
     public Vector2 Heading
@@ -31,11 +31,11 @@ public class Bullet : KinematicBody2D
         KinematicCollision2D collisionInfo = MoveAndCollide(direction.Normalized() * speed);
 
         //We adjust the mask so it can only collide with a selected Actor
-        Godot.Object collision = collisionInfo.Collider;
-        if (collision != null)
+        if (collisionInfo?.Collider != null)
         {
-            Actor damaged = (Actor)collision;
+            Actor damaged = (Actor)collisionInfo.Collider;
             damaged.TakeDamage(damage, GlobalPosition, impulse);
+            QueueFree();
         }
     }
 

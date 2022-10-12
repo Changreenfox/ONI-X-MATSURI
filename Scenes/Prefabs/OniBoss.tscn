@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/OniBoss.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=2]
 [ext_resource path="res://assets/sprites/enemy/boss_spritesheet.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/Attacks/BulletSpawn.cs" type="Script" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 120.0
@@ -22,6 +23,23 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.2, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "ShootBullets"
+}, {
+"args": [  ],
+"method": "ShootBullets"
+} ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -69,6 +87,89 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 1 ) ]
 }
 
+[sub_resource type="Animation" id=7]
+resource_name = "Attack"
+length = 3.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 1.2, 1.4, 1.6, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.2, 1.6, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "ShootBullets"
+}, {
+"args": [  ],
+"method": "ShootBullets"
+}, {
+"args": [  ],
+"method": "ShootBullets"
+} ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "IdleForward"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ) ]
+}
+
+[sub_resource type="CircleShape2D" id=6]
+
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 120.0
 height = 110.0
@@ -89,6 +190,7 @@ vframes = 2
 frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 3, -2 )
 shape = SubResource( 1 )
 
@@ -97,7 +199,35 @@ anims/Attack = SubResource( 2 )
 anims/IdleForward = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+anims/Attack = SubResource( 7 )
+anims/IdleForward = SubResource( 8 )
+anims/RESET = SubResource( 9 )
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="StateTimer" type="Timer" parent="."]
+wait_time = 0.6
+
+[node name="BulletSpawner" type="Area2D" parent="."]
+position = Vector2( 0, 100 )
+script = ExtResource( 4 )
+heading = Vector2( 1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletSpawner"]
+shape = SubResource( 6 )
+
+[node name="BulletSpawner2" type="Area2D" parent="."]
+position = Vector2( 0, 100 )
+script = ExtResource( 4 )
+heading = Vector2( -1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletSpawner2"]
+shape = SubResource( 6 )
+
 [node name="Contact" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 monitorable = false
 script = ExtResource( 2 )
@@ -105,11 +235,5 @@ script = ExtResource( 2 )
 [node name="Range" type="CollisionShape2D" parent="Contact"]
 position = Vector2( 3, -2 )
 shape = SubResource( 5 )
-
-[node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 0.5
-
-[node name="StateTimer" type="Timer" parent="."]
-wait_time = 0.6
 
 [connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]
