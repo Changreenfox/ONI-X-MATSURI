@@ -19,6 +19,7 @@ public class OniBoss : Enemy
 		container.SetState("Idle", new BossIdle(this));
 		container.SetState("Death", new Death(this));
 		container.SetState("Attack", new BossAttack(this));
+		container.SetState("Phase2Attack", new BossPhase2Attack(this));
 		
 		container.SetState("Motion", new BossMotion(this));
 		
@@ -59,6 +60,11 @@ public class OniBoss : Enemy
 		CameraShake camera = (CameraShake)GetNode("/root/BossLevel/Camera2D");
 		camera.shake(duration, strength);
 		return;
+	}
+	
+	public void PlaySound(string soundName)
+	{
+		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, soundName);
 	}
 }
 
