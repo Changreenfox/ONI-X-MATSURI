@@ -26,6 +26,8 @@ public class BossAttack : JustGravity
 	public override void PlayAnimation()
 	{
 		host.PlayAnimation("Attack");
+		//host.PlayAnimation("ChargeAttack");
+		//host.GetNode<AnimationPlayer>("AnimationPlayer").Queue("Phase2Attack");
 	}
 	
 	public override void HandleTimer()

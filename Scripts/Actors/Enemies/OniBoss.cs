@@ -51,10 +51,11 @@ public class OniBoss : Enemy
 		attacks[1].StartAttack();
 	}
 	
-	//to make stuff happen once boss deiz
-	/*public override void Die(){
-		
-	}*/
+	public override void Die()
+	{
+		GetTree().ChangeScene("res://Scenes/Win.tscn");
+	}
+	
 	public void Camera_Shake(int duration, int strength)
 	{
 		CameraShake camera = (CameraShake)GetNode("/root/BossLevel/Camera2D");

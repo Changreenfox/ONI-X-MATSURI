@@ -35,7 +35,7 @@ public class AudioManager : Node
 			{"Level1", 				(MUSIC_PATH + "main_stage_music.mp3")},
 			{"BossLevel", 			(MUSIC_PATH + "boss_stage_music.mp3")},
 			{"StartScreen", 		(MUSIC_PATH + "main_menu_music.mp3")},
-			{"Victory", 			(MUSIC_PATH + "win_screen_music.mp3")}		
+			{"Win", 				(MUSIC_PATH + "win_screen_music.mp3")}		
 		};
 	
 	//Format: Dictionary<domainName, Dictionary<domain soundName, Sound path>>
@@ -222,7 +222,7 @@ public class AudioManager : Node
 		LoadMusic("Level1");
 		LoadMusic("BossLevel");
 		LoadMusic("StartScreen");
-		LoadMusic("Victory");
+		LoadMusic("Win");
 		
 		LoadDomainSounds("OniBoss");
 		LoadDomainSounds("OniBrute");
@@ -236,8 +236,8 @@ public class AudioManager : Node
 		currentMusic.Bus = "Music";
 		currentMusicNode.AddChild(currentMusic);
 		
-		SetMasterVolume(-6f);
-		SetMusicVolume(-10f);
+		SetBusVolume("Master", -6f);
+		SetBusVolume("Music", -10f);
 	}
 	
 	private void _on_AudioStreamPlayer_finished(AudioStreamPlayer soundPlayer)
@@ -251,39 +251,14 @@ public class AudioManager : Node
 		soundPlayer2D.QueueFree();
 	}
 	
-	private void SetMasterMute(bool enable)
+	private void SetBusMute(string busName, bool enable)
 	{
-		AudioServer.SetBusMute(0, enable);
+		AudioServer.SetBusMute(AudioServer.GetBusIndex(busName), enable);
 	}
 	
-	private void SetMasterVolume(float volumeDb)
+	private void SetBusVolume(string busName, float volumeDb)
 	{
-		AudioServer.SetBusVolumeDb(0, volumeDb);
-	}
-	
-	private void SetMusicMute(bool enable)
-	{
-		AudioServer.SetBusMute(AudioServer.GetBusIndex("Music"), enable);
-	}
-	
-	private void SetMusicVolume(float volumeDb)
-	{
-		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Music"), volumeDb);
-	}
-	
-	private void SetSoundMute(bool enable)
-	{
-		AudioServer.SetBusMute(AudioServer.GetBusIndex("Sounds"), enable);
-	}
-	
-	private void SetSoundVolume(float volumeDb)
-	{
-		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex("Sounds"), volumeDb);
+		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex(busName), volumeDb);
 	}
 
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
 }

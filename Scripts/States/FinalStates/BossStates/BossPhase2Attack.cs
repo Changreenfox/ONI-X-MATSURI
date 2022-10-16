@@ -18,16 +18,11 @@ public class BossPhase2Attack : AIMotion
 
 	public override string HandlePhysics(float delta)
 	{
-		string temp = base.HandlePhysics(delta); //Unless base is just State
+		base.HandlePhysics(delta); //Unless base is just State
 
-		// If you need the character to move, handle it here
+		
 
-		// Can be used to check for state switches, in which case return the name of the next state as a string
-		/* Example:
-		//	if(Input.Equals("Jump"))
-		//		return "Jump"      */
-
-		return temp; //Unless base is just State, then return null;
+		return null;
 	}
 
 	public override string StateName()
