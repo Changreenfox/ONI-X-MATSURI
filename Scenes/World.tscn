@@ -4,12 +4,13 @@
 [ext_resource path="res://Scripts/Level1Generator.cs" type="Script" id=2]
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Level1_BG.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scripts/Level1.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/Scenes/Level1.cs" type="Script" id=5]
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/SpeedPowerup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/CameraController.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/LeftWall.cs" type="Script" id=9]
 [ext_resource path="res://Scenes/JumpPowerup.tscn" type="PackedScene" id=10]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33, 620 )

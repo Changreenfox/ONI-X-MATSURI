@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scripts/GameOver.cs" type="Script" id=1]
+[ext_resource path="res://Scripts/Scenes/GameOver.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/return_button.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/return_button_pressed.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/return_button_highlighted.png" type="Texture" id=4]
