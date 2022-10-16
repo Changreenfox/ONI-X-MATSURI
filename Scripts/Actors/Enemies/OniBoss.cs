@@ -3,6 +3,12 @@ using System;
 
 public class OniBoss : Enemy
 {
+	private AnimationPlayer animations;
+	public AnimationPlayer Animations
+	{
+		get { return animations; }
+	}
+	
 	private bool cycled = false;
 	public bool Cycled
 	{
@@ -15,6 +21,7 @@ public class OniBoss : Enemy
 	{
 		base._Ready();
 		
+		animations = GetNode<AnimationPlayer>("AnimationPlayer");
 		
 		container.SetState("Idle", new BossIdle(this));
 		container.SetState("Death", new Death(this));
@@ -68,4 +75,3 @@ public class OniBoss : Enemy
 		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, soundName);
 	}
 }
-
