@@ -65,17 +65,29 @@ public class Player : Actor
 		}
 		else if (type == "Jump")
 		{
-			await PowerUpHelp(type, JumpSpeed, 500);
+			JumpSpeed += 500;
+			Interface.Toggle_Powerup_Icon(type);
+			
+			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
+			
+			JumpSpeed -= 500;
+			Interface.Toggle_Powerup_Icon(type);
 		}
 		else if (type == "Speed")
 		{
-			await PowerUpHelp(type, Speed, 400);
+			MaxSpeed += 400;
+			Interface.Toggle_Powerup_Icon(type);
+			
+			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
+			
+			MaxSpeed -= 400;
+			Interface.Toggle_Powerup_Icon(type);
 		}
-		else if(type == "Attack")
+		else if (type == "Attack")
 		{
 			foreach(Attack attack in Attacks)
 			{
-				attack.Damage += amount;
+				attack.Damage += 1;
 			}
 
 			Interface.Toggle_Powerup_Icon(type);
@@ -84,21 +96,10 @@ public class Player : Actor
 			
 			foreach(Attack attack in Attacks)
 			{
-				attack.Damage -= amount;
+				attack.Damage -= 1;
 			}
 
 			Interface.Toggle_Powerup_Icon(type);
 		}
 	}
-
-	private async void PowerUpHelp(string type, ref float value = 0, float amount = 0)
-	{
-		value += amount;
-		Interface.Toggle_Powerup_Icon(type);
-		
-		await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
-		
-		value -= amount;
-		Interface.Toggle_Powerup_Icon(type);
-	} 
 }
