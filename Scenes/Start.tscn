@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/sprites/quit_button.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/quit_button_pressed.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/start_button.png" type="Texture" id=7]
-[ext_resource path="res://Scripts/StartScreen.cs" type="Script" id=8]
+[ext_resource path="res://Scripts/Scenes/StartScreen.cs" type="Script" id=8]
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource( 8 )

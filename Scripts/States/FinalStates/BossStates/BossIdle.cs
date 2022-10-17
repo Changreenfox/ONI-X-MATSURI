@@ -17,6 +17,7 @@ public class BossIdle : JustGravity
 		base.Enter();
 		GD.Print("BossIdle");
 		
+		host.Velocity = new Vector2(0, host.Velocity.y);
 		finished = false;
 		if(next_state == -1){
 			host.StateTimer.Start(3.0f);
@@ -37,7 +38,7 @@ public class BossIdle : JustGravity
 				return "Motion";
 			}
 			next_state *= -1;
-			return "Attack";
+			return "Phase2Attack";
 		}
 		return null;
 	}

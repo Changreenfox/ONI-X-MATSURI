@@ -1,12 +1,12 @@
 using Godot;
 using System;
 
-public class Win : Node2D
+public class Win : SceneBase
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
+		base._Ready();
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -16,7 +16,7 @@ public class Win : Node2D
 //  }
 	private void _on_ReturnButton_pressed()
 	{
-		GetTree().ChangeScene("res://Scenes/StartScreen.tscn");
+		GetTree().ChangeScene("res://Scenes/Start.tscn");
 	}
 
 }

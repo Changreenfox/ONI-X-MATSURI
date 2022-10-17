@@ -3,6 +3,12 @@ using System;
 
 public class OniBoss : Enemy
 {
+	private AnimationPlayer animations;
+	public AnimationPlayer Animations
+	{
+		get { return animations; }
+	}
+	
 	private bool cycled = false;
 	public bool Cycled
 	{
@@ -15,10 +21,12 @@ public class OniBoss : Enemy
 	{
 		base._Ready();
 		
+		animations = GetNode<AnimationPlayer>("AnimationPlayer");
 		
 		container.SetState("Idle", new BossIdle(this));
 		container.SetState("Death", new Death(this));
 		container.SetState("Attack", new BossAttack(this));
+		container.SetState("Phase2Attack", new BossPhase2Attack(this));
 		
 		container.SetState("Motion", new BossMotion(this));
 		
@@ -50,14 +58,19 @@ public class OniBoss : Enemy
 		attacks[1].StartAttack();
 	}
 	
-	//to make stuff happen once boss deiz
-	/*public override void Die(){
-		
-	}*/
+	public override void Die()
+	{
+		GetTree().ChangeScene("res://Scenes/Win.tscn");
+	}
+	
 	public void Camera_Shake(int duration, int strength)
 	{
 		CameraShake camera = (CameraShake)GetNode("/root/BossLevel/Camera2D");
 		camera.shake(duration, strength);
 	}
+	
+	public void PlaySound(string soundName)
+	{
+		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, soundName);
+	}
 }
-
