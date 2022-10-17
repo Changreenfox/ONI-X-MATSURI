@@ -1,9 +1,30 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/OniBoss.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=2]
 [ext_resource path="res://assets/sprites/enemy/boss_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Attacks/BulletSpawn.cs" type="Script" id=4]
+
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+
+uniform int color = 0;
+uniform bool flashing = false;
+
+void fragment(){
+  vec4 prev = texture(TEXTURE, UV);
+  vec4 red = vec4(1.0, 0, 0, prev.a);
+  vec4 new = prev;
+  if(flashing){
+	new = red;
+  }
+  COLOR = new;
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/color = 0
+shader_param/flashing = false
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 120.0
@@ -82,6 +103,20 @@ tracks/3/keys = {
 }, {
 "args": [ 0.25, 300.0 ],
 "method": "Camera_Shake"
+} ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0, 0.0, 0.0 ],
+"method": "FlashColor"
 } ]
 }
 
@@ -267,6 +302,7 @@ maxSpeed = 150.0
 gravity = 30.0
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 10 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 3 )
 hframes = 3

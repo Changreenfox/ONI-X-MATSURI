@@ -69,4 +69,10 @@ public class OniBoss : Enemy
 	{
 		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, soundName);
 	}
+	
+	public void FlashColor(float red, float green, float blue)
+	{
+		ShaderMaterial mat = character.Material as ShaderMaterial;
+		mat.SetShaderParam("flashing", true);
+	}
 }
