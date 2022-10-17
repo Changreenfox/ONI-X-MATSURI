@@ -13,6 +13,7 @@ public abstract class Attack : Area2D
 	public int Damage
 	{
 		get { return damage; }
+		set { damage = value; }
 	}
 	[Export]
 	protected Vector2 impulse = new Vector2(750, 500);

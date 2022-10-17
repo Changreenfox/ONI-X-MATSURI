@@ -85,7 +85,7 @@ public class Player : Actor
 		}
 		else if (type == "Attack")
 		{
-			foreach(Attack attack in Attacks)
+			foreach(Attack attack in attacks)
 			{
 				attack.Damage += 1;
 			}
@@ -94,7 +94,7 @@ public class Player : Actor
 			
 			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
 			
-			foreach(Attack attack in Attacks)
+			foreach(Attack attack in attacks)
 			{
 				attack.Damage -= 1;
 			}
