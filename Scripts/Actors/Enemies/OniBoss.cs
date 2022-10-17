@@ -23,6 +23,7 @@ public class OniBoss : Enemy
 		
 		animations = GetNode<AnimationPlayer>("AnimationPlayer");
 		
+		container.SetState("Start", new Start(this));
 		container.SetState("Idle", new BossIdle(this));
 		container.SetState("Death", new Death(this));
 		container.SetState("Attack", new BossAttack(this));
@@ -32,7 +33,7 @@ public class OniBoss : Enemy
 		
 		direction.x = -1;
 
-		state = container.GetState("Idle");
+		state = container.GetState("Start");
 		state.Enter();
 		
 	}
@@ -63,7 +64,7 @@ public class OniBoss : Enemy
 		GetTree().ChangeScene("res://Scenes/Win.tscn");
 	}
 	
-	public void Camera_Shake(int duration, int strength)
+	public void Camera_Shake(float duration, float strength)
 	{
 		CameraShake camera = (CameraShake)GetNode("/root/BossLevel/Camera2D");
 		camera.shake(duration, strength);

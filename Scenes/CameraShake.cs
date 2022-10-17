@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 public class CameraShake : Camera2D
 {
-	int shake_amount = 3;
+	float shake_amount = 3;
 	bool shaking = false;
 	RandomNumberGenerator random = new RandomNumberGenerator();
 
@@ -12,30 +12,28 @@ public class CameraShake : Camera2D
 	public override void _Ready(){
 		
 		random.Randomize();
+		SetProcess(false);
 	}
 	
-	private async Task shaker()
+	public override void _Process(float delta)
 	{
-		while(shaking)
-		{
-			Offset = (new Vector2(random.RandiRange(-1 * shake_amount, shake_amount), 
-								   random.RandiRange(-1 * shake_amount, shake_amount)));
-		}
+		Offset = (new Vector2(random.RandfRange(-1 * shake_amount, shake_amount), 
+				 			  random.RandfRange(-1 * shake_amount, shake_amount))) * delta;
 	}
 
-	public void shake(int duration, int strength)
+	public void shake(float duration, float strength)
 	{
 		Timer shake_time = (Timer)GetNode("Timer");
+		shake_time.Start(duration);
 		shake_amount = strength;
-		shaking = true;
-		shaker();
+		SetProcess(true);
 		return;
 	}
 
 
-	private void _on_Timer_timeout()
+	public void _on_Timer_timeout()
 	{
-		shaking = false;
+		SetProcess(false);
 		Offset = Vector2.Zero;
 	}
 }

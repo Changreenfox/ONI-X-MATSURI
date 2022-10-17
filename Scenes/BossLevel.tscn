@@ -81,6 +81,7 @@ margin_bottom = 1080.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 960, 536 )
+current = true
 script = ExtResource( 5 )
 
 [node name="Timer" type="Timer" parent="Camera2D"]
