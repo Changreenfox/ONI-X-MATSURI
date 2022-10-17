@@ -4,16 +4,20 @@ using System;
 public class BossPhase2Attack : AIMotion
 {
 	bool finished = false;
+	private bool active = true;
+	Vector2 prevDir;
 	
 	public BossPhase2Attack(Actor _host)
 	{
 		host = _host;
+		prevDir = host.Direction;
 	}
 
 	public override void Enter()
 	{
 		base.Enter(); //Unless base is just State
 		finished = false;
+		prevDir = host.Direction;
 		//host.StateTimer.Start(3.0f);
 		PlayAnimation();
 		//Set any necessary variables here
@@ -21,13 +25,14 @@ public class BossPhase2Attack : AIMotion
 
 	public override string HandlePhysics(float delta)
 	{
+		if(!active)
+			return null;
 		base.HandlePhysics(delta); //Unless base is just State
-
-		if(finished)
+		if(prevDir.x != host.Direction.x)
 		{
-			finished = false;
+			finished = true;
+			FinishAnimation();
 			
-			return "Idle";
 		}
 		return null;
 	}
@@ -49,13 +54,16 @@ public class BossPhase2Attack : AIMotion
 	{
 		//Make any calls to playing animation in here. Should be handled in the state that calls it
 		host.PlayAnimation("ChargeAttack");
-		host.GetNode<AnimationPlayer>("AnimationPlayer").GetAnimation("Phase2Attack").SetLoop(true);
-		host.GetNode<AnimationPlayer>("AnimationPlayer").Queue("Phase2Attack");
+		host.Animator.GetAnimation("Phase2Attack").SetLoop(true);
+		host.Animator.Queue("Phase2Attack");
 	}
 	
 	private async void FinishAnimation()
 	{
-		host.GetNode<AnimationPlayer>("AnimationPlayer").GetAnimation("Phase2Attack").SetLoop(false);
-		await ToSignal(host.GetNode<AnimationPlayer>("AnimationPlayer"), "animation_finished(Phase2Attack)");
+		active = false;
+		host.Animator.GetAnimation("Phase2Attack").SetLoop(false);
+		await ToSignal(host.Animator, "animation_finished");
+		host.ChangeState("Idle");
+		active = true;
 	}
 }
