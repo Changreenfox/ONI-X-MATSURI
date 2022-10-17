@@ -40,6 +40,7 @@ public class OniBoss : Enemy
 	
 	private void _on_BossWall_body_entered(object body)
 	{
+		
 		if(body == this) 
 		{
 			velocity.x = 0;
