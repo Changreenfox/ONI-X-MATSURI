@@ -19,10 +19,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6, 1.2, 1.4, 1.6, 1.8, 2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ) ]
+"values": [ Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ) ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -31,7 +31,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1.2, 1.6, 2 ),
+"times": PoolRealArray( 0.2, 0.6, 1 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -51,15 +51,9 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.6, 1.2, 1.6, 2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0.2, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
-"args": [ "DrumCharge" ],
-"method": "PlaySound"
-}, {
-"args": [ "DrumCharge" ],
-"method": "PlaySound"
-}, {
 "args": [ "DrumAttack" ],
 "method": "PlaySound"
 }, {
@@ -68,6 +62,26 @@ tracks/2/keys = {
 }, {
 "args": [ "DrumAttack" ],
 "method": "PlaySound"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.2, 0.6, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [ 0.25, 300.0 ],
+"method": "Camera_Shake"
+}, {
+"args": [ 0.25, 300.0 ],
+"method": "Camera_Shake"
+}, {
+"args": [ 0.25, 300.0 ],
+"method": "Camera_Shake"
 } ]
 }
 
@@ -120,6 +134,7 @@ tracks/2/keys = {
 "method": "PlaySound"
 } ]
 }
+<<<<<<< Updated upstream
 tracks/3/type = "method"
 tracks/3/path = NodePath(".")
 tracks/3/interp = 1
@@ -134,6 +149,8 @@ tracks/3/keys = {
 "method": "PlaySound"
 } ]
 }
+=======
+>>>>>>> Stashed changes
 
 [sub_resource type="Animation" id=3]
 resource_name = "IdleForward"
@@ -193,6 +210,20 @@ tracks/2/keys = {
 "values": [ {
 "args": [ "DrumAttack" ],
 "method": "PlaySound"
+} ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.3, 200.0 ],
+"method": "Camera_Shake"
 } ]
 }
 
