@@ -6,7 +6,10 @@ public abstract class State : Node2D
 	protected Actor host;
 
 	// Initialize the state and change the animation
-	public abstract void Enter();
+	public virtual void Enter()
+	{
+		return;
+	}
 
 	// Clean up the state, reinitialize timers, etc, virtual because it won't always exist
 	public virtual void Exit()

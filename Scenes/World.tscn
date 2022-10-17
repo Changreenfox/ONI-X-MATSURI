@@ -11,7 +11,6 @@
 [ext_resource path="res://Scripts/LeftWall.cs" type="Script" id=9]
 [ext_resource path="res://Scenes/JumpPowerup.tscn" type="PackedScene" id=10]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33, 620 )
 
@@ -22,7 +21,7 @@ extents = Vector2( 1337.75, 10 )
 extents = Vector2( 0, 582 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 47.5, 735.5 )
+extents = Vector2( 109, 767.75 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
@@ -88,11 +87,11 @@ position = Vector2( -284, 572 )
 shape = SubResource( 4 )
 
 [node name="EndWall" type="Area2D" parent="."]
-position = Vector2( -57532, -155 )
+position = Vector2( -76070, -176 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndWall"]
-position = Vector2( 88297, 624 )
+position = Vector2( 77907, 777.25 )
 shape = SubResource( 5 )
 
 [node name="SpeedPowerup" parent="." instance=ExtResource( 7 )]

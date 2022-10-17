@@ -38,7 +38,7 @@ public class BossIdle : JustGravity
 				return "Motion";
 			}
 			next_state *= -1;
-			return "Phase2Attack";
+			return "Attack";
 		}
 		return null;
 	}
