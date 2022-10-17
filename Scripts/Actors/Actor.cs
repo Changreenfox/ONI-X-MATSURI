@@ -206,7 +206,7 @@ public abstract class Actor : KinematicBody2D
 		return velocity;
 	}
 
-	public void TakeDamage(int damage, Vector2 collisionPosition, Vector2 impulse)
+	public virtual void TakeDamage(int damage, Vector2 collisionPosition, Vector2 impulse)
 	{
 		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
 									GetType().Name,

@@ -8,23 +8,23 @@
 [sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
 
-uniform int color = 0;
-uniform bool flashing = false;
+uniform vec4 flash_color: hint_color = vec4(-0.1,-0.8,-0.8, 1);
+uniform float opacity: hint_range(0.0, 1.0) = 0.3;
+uniform bool flashing = true;
 
 void fragment(){
-  vec4 prev = texture(TEXTURE, UV);
-  vec4 red = vec4(1.0, 0, 0, prev.a);
-  vec4 new = prev;
-  if(flashing){
-	new = red;
-  }
-  COLOR = new;
+	vec4 prev = texture(TEXTURE, UV);
+	if(flashing){
+		prev.rgb = mix(prev.rgb, flash_color.rgb, opacity);
+	}
+	COLOR = prev;
 }"
 
 [sub_resource type="ShaderMaterial" id=10]
 shader = SubResource( 9 )
-shader_param/color = 0
-shader_param/flashing = false
+shader_param/flash_color = Color( -0.1, -0.8, -0.8, 1 )
+shader_param/opacity = 0.3
+shader_param/flashing = true
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 120.0
@@ -105,20 +105,6 @@ tracks/3/keys = {
 "method": "Camera_Shake"
 } ]
 }
-tracks/4/type = "method"
-tracks/4/path = NodePath(".")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0.2 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ 0.0, 0.0, 0.0 ],
-"method": "FlashColor"
-} ]
-}
 
 [sub_resource type="Animation" id=7]
 resource_name = "ChargeAttack"
@@ -165,20 +151,6 @@ tracks/2/keys = {
 "args": [ "DrumCharge" ],
 "method": "PlaySound"
 }, {
-"args": [ "DrumAttack" ],
-"method": "PlaySound"
-} ]
-}
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.1 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
 "args": [ "DrumAttack" ],
 "method": "PlaySound"
 } ]
@@ -353,4 +325,7 @@ script = ExtResource( 2 )
 position = Vector2( 3, -2 )
 shape = SubResource( 5 )
 
+[node name="ColorFlashTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]
+[connection signal="timeout" from="ColorFlashTimer" to="." method="_on_ColorFlashTimer_timeout"]
