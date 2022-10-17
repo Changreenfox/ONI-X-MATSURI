@@ -5,7 +5,7 @@ using System;
 public class CameraController : Camera2D
 {
 	GameManager gManager;
-	private Player PlayerNode;
+	//private Player gManager.PlayerRef;
 	private float MostLeft = 0;
 	// Declare member variables here. Examples:
 	// private int a = 2;
@@ -15,19 +15,18 @@ public class CameraController : Camera2D
 	public override void _Ready()
 	{
 		gManager = (GameManager)GetNode("/root/GameManager");
-		PlayerNode = gManager.PlayerRef;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(float delta)
 	{
 		//Update the Camera's position when as the player moves right
-		if (PlayerNode.GlobalPosition.x > MostLeft + 15)
+		if (gManager.PlayerRef.GlobalPosition.x > MostLeft + 15)
 		{
 			Vector2 temp = GlobalPosition;
-			temp.x = PlayerNode.GlobalPosition.x;
+			temp.x = gManager.PlayerRef.GlobalPosition.x;
 			GlobalPosition = temp;
-			MostLeft = PlayerNode.GlobalPosition.x - 15;
+			MostLeft = gManager.PlayerRef.GlobalPosition.x - 15;
 		}
 	}
 }

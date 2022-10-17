@@ -5,7 +5,7 @@ public class UIManager : Control
 {
 	private GameManager gManager;
 	
-	private Player PlayerNode;
+	//private Player PlayerNode;
 	private TextureRect Heart1;
 	private TextureRect Heart2;
 	private TextureRect Heart3;
@@ -24,7 +24,7 @@ public class UIManager : Control
 		gManager = (GameManager)GetNode("/root/GameManager");
 		gManager.InterfaceRef = this;
 		
-		PlayerNode = gManager.PlayerRef;
+		//PlayerNode = gManager.PlayerRef;
 		Heart1 = GetNode<TextureRect>("Left/Heart1");
 		Heart2 = GetNode<TextureRect>("Left/Heart2");
 		Heart3 = GetNode<TextureRect>("Left/Heart3");
@@ -42,19 +42,19 @@ public class UIManager : Control
 	public override void _Process(float delta)
 	{
 		// Set heart sprites based on player health
-		if (PlayerNode.HP <= 2)
+		if (gManager.PlayerRef.HP <= 2)
 		{
-			if(PlayerNode.HP == 1)
+			if(gManager.PlayerRef.HP == 1)
 				Heart1.Texture = HeartHalf;
 			else
 				Heart1.Texture = HeartFull;
 			Heart2.Texture = HeartEmpty;
 			Heart3.Texture = HeartEmpty;
 		}
-		else if (PlayerNode.HP <= 4)
+		else if (gManager.PlayerRef.HP <= 4)
 		{
 			Heart1.Texture = HeartFull;
-			if(PlayerNode.HP == 3)
+			if(gManager.PlayerRef.HP == 3)
 				Heart2.Texture = HeartHalf;
 			else
 				Heart2.Texture = HeartFull;
@@ -64,7 +64,7 @@ public class UIManager : Control
 		{
 			Heart1.Texture = HeartFull;
 			Heart2.Texture = HeartFull;
-			if(PlayerNode.HP == 5)
+			if(gManager.PlayerRef.HP == 5)
 				Heart3.Texture = HeartHalf;
 			else
 				Heart3.Texture = HeartFull;
