@@ -28,7 +28,7 @@ public class Player : Actor
 
 		state = container.GetState("Idle");
 		
-		Interface = GetNode<UIManager>("/root/World/Camera2D/CanvasLayer/Interface");
+		Interface = gManager.InterfaceRef;
 	}
 
 	public override void Die()

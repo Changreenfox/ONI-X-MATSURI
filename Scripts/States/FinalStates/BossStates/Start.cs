@@ -19,7 +19,7 @@ public class Start : JustGravity
 	{
 		string temp = base.HandlePhysics(delta); //Unless base is just State
 		if(host.IsOnFloor()){
-			//custom signal
+			host.GManager.Signals.EmitSignal(nameof(SignalManager.OniBossLanded));
 			return "Idle";
 		}
 		return temp;

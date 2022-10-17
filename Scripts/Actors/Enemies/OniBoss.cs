@@ -65,12 +65,6 @@ public class OniBoss : Enemy
 		GetTree().ChangeScene("res://Scenes/Win.tscn");
 	}
 	
-	public void Camera_Shake(float duration, float strength)
-	{
-		CameraShake camera = (CameraShake)GetNode("/root/BossLevel/Camera2D");
-		camera.shake(duration, strength);
-	}
-	
 	public void PlaySound(string soundName)
 	{
 		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, soundName);

@@ -6,13 +6,16 @@ using Godot;
 using System;
 
 public class SignalManager : Node
-{
+{	
 	[Signal]
-	public delegate void SceneLoadedSignal(string sceneName);
+	public delegate void OniBossLanded();
 	
 	[Signal]
 	public delegate void PlaySoundSignal(string domainName, string soundName);
 	
 	[Signal]
 	public delegate void PlaySound2DSignal(string domainName, string soundName, Node2D entity);
+	
+	[Signal]
+	public delegate void SceneLoadedSignal(string sceneName);
 }

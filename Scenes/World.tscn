@@ -26,19 +26,6 @@ extents = Vector2( 109, 767.75 )
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
 
-[node name="Background" parent="." instance=ExtResource( 4 )]
-
-[node name="LevelGenerator" type="Node2D" parent="."]
-script = ExtResource( 2 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 273, -64 )
-
-[node name="OgreBrute" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1272, 0 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 273, -64 )
 current = true
@@ -77,6 +64,19 @@ shape = SubResource( 3 )
 
 [node name="RespawnPoint" type="Node2D" parent="Camera2D"]
 position = Vector2( -699, 37 )
+
+[node name="Background" parent="." instance=ExtResource( 4 )]
+
+[node name="LevelGenerator" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 273, -64 )
+
+[node name="OgreBrute" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1272, 0 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 
 [node name="StartWall" type="StaticBody2D" parent="."]
 position = Vector2( 283, -14 )
