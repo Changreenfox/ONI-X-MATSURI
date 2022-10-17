@@ -1,18 +1,18 @@
 5 Functions:
 
-public Constructor(Actor _host)
+public Constructor(Actor _host) //necessary
 {
 	host = _host;
 }
 
-public override void Enter()
+public override void Enter()  //unnecessary
 {
 	base.Enter() //Unless base is just State
 	PlayAnimation()
 	//Set any necessary variables here
 }
 
-public override string HandlePhysics(float)
+public override string HandlePhysics(float delta)
 {
 	string temp = base.HandlePhysics() //Unless base is just State
 
