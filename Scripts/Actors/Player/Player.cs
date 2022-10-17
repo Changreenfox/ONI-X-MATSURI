@@ -5,6 +5,10 @@ using System;
 public class Player : Actor
 {
 	private UIManager Interface;
+	private float BoostTime = 3.0f;
+
+	[Export]
+	public int maxHealth = 6;
 	
 	public override void _Ready()
 	{
@@ -54,41 +58,47 @@ public class Player : Actor
 	
 	public async void _on_Powerup_pickup(string type)
 	{		
-		float BoostTime = 3.0f;
-		
 		if (type == "Health")
 		{
-			if (HP < 6)
+			if (HP < maxHealth)
 				HP += 1;
 		}
 		else if (type == "Jump")
 		{
-			JumpSpeed = 1500;
-			Interface.Toggle_Powerup_Icon(type);
-			
-			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
-			
-			JumpSpeed = 1000;
-			Interface.Toggle_Powerup_Icon(type);
+			await PowerUpHelp(type, JumpSpeed, 500);
 		}
 		else if (type == "Speed")
 		{
-			MaxSpeed = 1000;
-			Interface.Toggle_Powerup_Icon(type);
-			
-			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
-			
-			MaxSpeed = 600;
-			Interface.Toggle_Powerup_Icon(type);
+			await PowerUpHelp(type, Speed, 400);
 		}
-		else if (type == "Attack")
+		else if(type == "Attack")
 		{
-			// insert what needs to be done to adjust attack damage
+			foreach(Attack attack in Attacks)
+			{
+				attack.Damage += amount;
+			}
+
 			Interface.Toggle_Powerup_Icon(type);
 			
 			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
 			
+			foreach(Attack attack in Attacks)
+			{
+				attack.Damage -= amount;
+			}
+
 			Interface.Toggle_Powerup_Icon(type);
 		}
 	}
+
+	private async void PowerUpHelp(string type, ref float value = 0, float amount = 0)
+	{
+		value += amount;
+		Interface.Toggle_Powerup_Icon(type);
+		
+		await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
+		
+		value -= amount;
+		Interface.Toggle_Powerup_Icon(type);
+	} 
 }
