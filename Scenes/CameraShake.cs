@@ -4,13 +4,17 @@ using System.Threading.Tasks;
 
 public class CameraShake : Camera2D
 {
+	private GameManager gManager;
+	
 	float shake_amount = 3;
 	bool shaking = false;
 	RandomNumberGenerator random = new RandomNumberGenerator();
 
 	// Called when the node enters the scene tree for the first time.
-	public override void _Ready(){
-		
+	public override void _Ready()
+	{
+		gManager = (GameManager)GetNode("/root/GameManager");
+		gManager.CurrentCamera = this;
 		random.Randomize();
 		SetProcess(false);
 	}
@@ -21,7 +25,7 @@ public class CameraShake : Camera2D
 				 			  random.RandfRange(-1 * shake_amount, shake_amount))) * delta;
 	}
 
-	public void shake(float duration, float strength)
+	public void Shake(float duration, float strength)
 	{
 		Timer shake_time = (Timer)GetNode("Timer");
 		shake_time.Start(duration);

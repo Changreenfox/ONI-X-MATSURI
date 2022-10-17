@@ -39,11 +39,25 @@ public class GameManager : Node
 		get{ return textures; }
 	}
 	
+	private UIManager interfaceRef;
+	public UIManager InterfaceRef
+	{
+		get{ return interfaceRef; }
+		set{ interfaceRef = value; }
+	}
+	
 	private SceneBase currentScene;
 	public SceneBase CurrentScene
 	{
 		get{ return currentScene; }
 		set{ currentScene = value; }
+	}
+	
+	private Camera2D currentCamera;
+	public Camera2D CurrentCamera
+	{
+		get{ return currentCamera; }
+		set{ currentCamera = value; }
 	}
 	// Declare member variables here. Examples:
 	// private int a = 2;
@@ -67,7 +81,12 @@ public class GameManager : Node
 		signals.Connect(nameof(SignalManager.PlaySoundSignal), audio, nameof(AudioManager.PlaySound));
 		signals.Connect(nameof(SignalManager.PlaySound2DSignal), audio, nameof(AudioManager.PlaySound2D));
 	}
-
+	
+	
+	private void ShakeCamera()
+	{
+		
+	}
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
 //  public override void _Process(float delta)
 //  {

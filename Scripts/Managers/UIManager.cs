@@ -22,6 +22,7 @@ public class UIManager : Control
 	public override void _Ready()
 	{
 		gManager = (GameManager)GetNode("/root/GameManager");
+		gManager.InterfaceRef = this;
 		
 		PlayerNode = gManager.PlayerRef;
 		Heart1 = GetNode<TextureRect>("Left/Heart1");

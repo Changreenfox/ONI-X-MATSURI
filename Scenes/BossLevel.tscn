@@ -90,4 +90,3 @@ script = ExtResource( 5 )
 
 [connection signal="body_entered" from="BossLeftWall" to="OniBoss" method="_on_BossWall_body_entered"]
 [connection signal="body_entered" from="BossRightWall" to="OniBoss" method="_on_BossWall_body_entered"]
-[connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_Timer_timeout"]
