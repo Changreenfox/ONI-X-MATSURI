@@ -137,6 +137,8 @@ public abstract class Actor : KinematicBody2D
 		set{ stateTimer = value; }
 	}
 
+	[Export]
+	private Color toFlash = new Color();
 
 	/*=============================================================== Methods =======================================================*/
 	
@@ -214,7 +216,7 @@ public abstract class Actor : KinematicBody2D
 									);
 		hp -= damage;
 		TakeKnockback(collisionPosition, impulse);
-		GD.Print(hp);
+		FlashColor(0.5f, toFlash);
 	}
 
 	public virtual void TakeKnockback(Vector2 collisionPosition, Vector2 impulse)
@@ -272,6 +274,18 @@ public abstract class Actor : KinematicBody2D
 			scale.x = -1;
 		foreach (Node2D node in attacks)
 			node.Scale = scale;
+	}
+	
+	public async void FlashColor(float duration, Color color)
+	{
+		ShaderMaterial mat = character.Material as ShaderMaterial;
+		mat.SetShaderParam("red", color.r);
+		mat.SetShaderParam("green", color.g);
+		mat.SetShaderParam("blue", color.b);
+		mat.SetShaderParam("opacity", color.a);
+		mat.SetShaderParam("flashing", true);
+		await ToSignal(GetTree().CreateTimer(duration), "timeout");
+		mat.SetShaderParam("flashing", false);
 	}
 	
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

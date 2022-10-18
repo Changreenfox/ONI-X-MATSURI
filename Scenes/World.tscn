@@ -97,6 +97,7 @@ position = Vector2( 273, -64 )
 
 [node name="OgreBrute" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1272, 0 )
+toFlash = Color( 0.368627, 0.00392157, 0.00392157, 0.537255 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 

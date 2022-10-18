@@ -16,6 +16,8 @@ public class OniBoss : Enemy
 		set { cycled = value; }
 	}
 	
+	public int death_counter= 0;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -36,19 +38,6 @@ public class OniBoss : Enemy
 		state = container.GetState("Start");
 		state.Enter();
 		
-	}
-	
-	public override void TakeDamage(int damage, Vector2 collisionPosition, Vector2 impulse)
-	{
-		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
-									GetType().Name,
-									"Damage"
-									);
-		hp -= damage;
-		TakeKnockback(collisionPosition, impulse);
-		FlashColor(true);
-		Timer flash_time = (Timer)GetNode("ColorFlashTimer");
-		flash_time.Start(0.3f);
 	}
 	
 	private void _on_BossWall_body_entered(object body)
@@ -75,22 +64,27 @@ public class OniBoss : Enemy
 	
 	public override void Die()
 	{
+		death_counter++; //increase the number of times he has died
+		if(death_counter == 1){//if the boss has only died 1 time, enter stage 2
+			state = container.GetState("Phase2Attack");
+			state.Enter();
+			hp = 3;
+		}
+		else{ //else play die animation and show win screen after a bit
+			
+			
+		}
+	}
+	private void _on_BossDeathTimer_timeout()
+	{
 		GetTree().ChangeScene("res://Scenes/Win.tscn");
 	}
+
 	
 	public void PlaySound(string soundName)
 	{
 		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, soundName);
 	}
-	
-	private void _on_ColorFlashTimer_timeout()
-	{
-		FlashColor(false);
-	}
-	
-	public void FlashColor(bool flashing)
-	{
-		ShaderMaterial mat = character.Material as ShaderMaterial;
-		mat.SetShaderParam("flashing", flashing);
-	}
 }
+
+
