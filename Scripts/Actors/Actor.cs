@@ -161,7 +161,6 @@ public abstract class Actor : KinematicBody2D
 		{
 			if(node is Attack)
 			{
-				GD.Print(Name, " -> ", node.Name);
 				attacks.Add((Attack)node);
 			}
 		}
@@ -178,8 +177,8 @@ public abstract class Actor : KinematicBody2D
 		if(name != null)
 			ChangeState(name);
 		
-		if(!attacking)
-			FaceAttacks();
+		/*if(!attacking)
+			FaceAttacks();*/
 		
 	}
 
@@ -197,7 +196,6 @@ public abstract class Actor : KinematicBody2D
 	/*=============================================================== Helpers =======================================================*/
 	public void ChangeState(string name)
 	{
-		GD.Print(name);
 		state = container.GetState(name);
 		state.Enter();
 	}
@@ -265,7 +263,7 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	//Flips the Actor's colliders
-	public void FaceAttacks()
+	/*public void FaceAttacks()
 	{
 		Vector2 scale = new Vector2(1,1);
 		if(facingRight)
@@ -274,7 +272,7 @@ public abstract class Actor : KinematicBody2D
 			scale.x = -1;
 		foreach (Node2D node in attacks)
 			node.Scale = scale;
-	}
+	}*/
 	
 	public async void FlashColor(float duration, Color color)
 	{

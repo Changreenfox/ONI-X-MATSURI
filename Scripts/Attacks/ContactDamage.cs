@@ -13,11 +13,6 @@ public class ContactDamage : Attack
 		attacking = true;
 	}
 
-	protected override void SetColliderActive()
-	{
-		range.SetDeferred("disabled", !attacking);
-	}
-
 	public override void _on_Attack_body_entered(KinematicBody2D collision)
 	{
 		base._on_Attack_body_entered(collision);
@@ -26,13 +21,12 @@ public class ContactDamage : Attack
 
 	protected override async Task WaitCooldown()
 	{
-		attacking = false;
+		range.SetDeferred("disabled", true);
 		//Wait until timer is timed-out
-		time.Start(0);
+		time.Start(cooldown);
 		await ToSignal(time, "timeout");
 		time.Stop();
-
-		attacking = true;
+		range.SetDeferred("disabled", false);
 		waiting = false;
 	}
 }

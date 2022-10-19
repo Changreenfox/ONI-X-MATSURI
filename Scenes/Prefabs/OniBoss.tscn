@@ -275,7 +275,7 @@ anims/Phase2Attack = SubResource( 8 )
 anims/RESET = SubResource( 4 )
 
 [node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.4
 
 [node name="StateTimer" type="Timer" parent="."]
 wait_time = 0.6
@@ -283,6 +283,7 @@ wait_time = 0.6
 [node name="BulletSpawner" type="Area2D" parent="."]
 position = Vector2( 0, 100 )
 script = ExtResource( 4 )
+cooldown = 0.4
 heading = Vector2( 1, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletSpawner"]
@@ -291,6 +292,7 @@ shape = SubResource( 6 )
 [node name="BulletSpawner2" type="Area2D" parent="."]
 position = Vector2( 0, 100 )
 script = ExtResource( 4 )
+cooldown = 0.4
 heading = Vector2( -1, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BulletSpawner2"]

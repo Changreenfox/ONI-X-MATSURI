@@ -37,6 +37,9 @@ public abstract class Attack : Area2D
 	//Same Cooldown timer
 	protected Timer time;
 
+	[Export]
+	protected float cooldown = 0.6f;
+
 	//Stores which animation to continue from after the attack animation is finished
 	protected string previousAnim;
 	public string PreviousAnim
@@ -60,9 +63,6 @@ public abstract class Attack : Area2D
 	//Update state of attack
 	public override void _Process(float delta)
 	{
-		//Use this function to be collider-safe
-		SetColliderActive();
-
 		//Leave when not ready to call functions
 		if(!active)
 			return;
@@ -78,18 +78,7 @@ public abstract class Attack : Area2D
 	//Begin the attack animation
 	public virtual void StartAttack(string prevAnim = "")
 	{
-		//If you're not waiting for the attack to finish and the Time is stopped
-		//GD.Print(!waiting, " and ", time.IsStopped());
-		if(!waiting && !host.Attacking && time.IsStopped())
-		{
-			previousAnim = prevAnim;
-			//Start waiting for the attack to finish
-			waiting = true;
-
-			//Allows a single entrance into the co-routine
-			active = true;
-			GD.Print("Begin Attack");
-		}
+		return;
 	}
 
 	//Detect when an enemy is within range
@@ -104,6 +93,15 @@ public abstract class Attack : Area2D
 	protected virtual void GetRange() {}
 	protected virtual void SetColliderActive() {}
 
-	protected virtual async Task ActivateCollider() { await WaitCooldown(); }
-	protected virtual async Task WaitCooldown() { }
+	protected virtual async void ActivateCollider() { await WaitCooldown(); }
+	protected virtual async Task WaitCooldown() 
+	{ 
+		//Wait until timer is timed-out
+		time.Start(cooldown);
+		await ToSignal(time, "timeout");
+		time.Stop();
+
+		waiting = false;
+		GD.Print("Cooldown");
+	}
 }

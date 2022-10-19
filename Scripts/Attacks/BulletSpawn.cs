@@ -48,5 +48,7 @@ public class BulletSpawn : Attack
 		Bullet bullet = bulletPrefab.Instance() as Bullet;
 		bullet.Heading = heading;
 		AddChild(bullet);
+
+		active = true;
 	}
 }
