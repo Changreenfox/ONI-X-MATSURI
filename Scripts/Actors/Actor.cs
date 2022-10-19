@@ -147,6 +147,10 @@ public abstract class Actor : KinematicBody2D
 	[Export]
 	private Color toFlash = new Color();
 
+	private bool immune = false;
+	[Export]
+	private float immunityTime = 0.25f;
+
 	/*=============================================================== Methods =======================================================*/
 	
 	// Called when the node enters the scene tree for the first time.
@@ -215,13 +219,18 @@ public abstract class Actor : KinematicBody2D
 
 	public virtual void TakeDamage(int damage, Vector2 collisionPosition, Vector2 impulse)
 	{
-		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
-									GetType().Name,
-									"Damage"
-									);
-		hp -= damage;
-		TakeKnockback(collisionPosition, impulse);
-		FlashColor(0.3f, toFlash);
+		if(!immune)
+		{
+			immune = true;
+			ImmunityTimer();
+			GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
+										GetType().Name,
+										"Damage"
+										);
+			hp -= damage;
+			TakeKnockback(collisionPosition, impulse);
+			FlashColor(0.3f, toFlash);
+		}
 	}
 
 	public virtual void TakeKnockback(Vector2 collisionPosition, Vector2 impulse)
@@ -262,6 +271,12 @@ public abstract class Actor : KinematicBody2D
 		animator.Play(name);
 
 		return name;
+	}
+
+	private async void ImmunityTimer()
+	{
+		await ToSignal(GetTree().CreateTimer(immunityTime), "timeout");
+		immune = false;
 	}
 
 	public virtual void Die()
