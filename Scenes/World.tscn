@@ -114,7 +114,7 @@ position = Vector2( -76070, -176 )
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndWall"]
-position = Vector2( 77907, 777.25 )
+position = Vector2( 81937, 850 )
 shape = SubResource( 5 )
 
 [node name="SpeedPowerup" parent="." instance=ExtResource( 7 )]
