@@ -18,9 +18,12 @@ public class Bullet : KinematicBody2D
 		get{ return direction; }
 		set{ direction = value; }
 	}
+	
+	private Sprite sprite;
 
 	public override void _Ready()
 	{
+		sprite = (Sprite)GetNode("Sprite");
 		KillBulletTimer();
 	}
 
@@ -29,6 +32,8 @@ public class Bullet : KinematicBody2D
 	{
 		//Kinematic Collision captures a collision if it occurs during the movement... this is how we damage :)
 		KinematicCollision2D collisionInfo = MoveAndCollide(direction.Normalized() * speed);
+		
+		sprite.FlipH = direction.x >= 0;
 
 		//We adjust the mask so it can only collide with a selected Actor
 		if (collisionInfo?.Collider != null)
