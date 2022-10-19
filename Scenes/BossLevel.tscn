@@ -33,7 +33,7 @@ position = Vector2( 669, 1039 )
 shape = SubResource( 1 )
 
 [node name="OniBoss" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1346, -205 )
+position = Vector2( 1369, -198 )
 hp = 9
 speed = 90.0
 maxSpeed = 300.0
