@@ -3,16 +3,16 @@ using System;
 
 public class BossLevel : SceneBase
 {
-	private const float camShakeDur = 0.25f;
-	private const float camShakeStrength = 300f;
-	private const float shakeTimerDur = 1.0f;
+	private float curCamShakeStrength = 0.0f;
 	RandomNumberGenerator random = new RandomNumberGenerator();
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		base._Ready();
-		gManager.Signals.Connect(nameof(SignalManager.OniBossLanded), this, nameof(ShakeCamera));
+		
+		gManager.Signals.Connect(nameof(SignalManager.OniBossAttacked), this, nameof(On_OniBoss_Attack));
+		gManager.Signals.Connect(nameof(SignalManager.OniBossLanded), this, nameof(On_OniBoss_Land));
 		
 		random.Randomize();
 		SetProcess(false);
@@ -20,28 +20,44 @@ public class BossLevel : SceneBase
 	
 	public override void _Process(float delta)
 	{
-		gManager.CurrentCamera.Offset = (new Vector2(random.RandfRange(-1 * camShakeStrength, camShakeStrength), 
-				 			  random.RandfRange(-1 * camShakeStrength, camShakeStrength))) * delta;
+		if(curCamShakeStrength == 0)
+		{
+			SetProcess(false);
+		}
+		gManager.CurrentCamera.Offset = (new Vector2(random.RandfRange(-1 * curCamShakeStrength, curCamShakeStrength), 
+				 			  random.RandfRange(-1 * curCamShakeStrength, curCamShakeStrength))) * delta;
 	}
 
-	public void ShakeCamera()
+	public void ShakeCamera(float duration, float strength)
 	{
+		curCamShakeStrength += strength;
 		Timer shakeTimer = new Timer();
 		shakeTimer.Name = "ShakeTimer";
 		AddChild(shakeTimer);
-		shakeTimer.Connect("timeout",
-							this,
-							nameof(On_ShakeTimer_Timeout)
+		shakeTimer.Connect("timeout", 
+							this, 
+							nameof(On_ShakeTimer_Timeout),
+							new Godot.Collections.Array() { shakeTimer, strength }
 							);
-		shakeTimer.Start(shakeTimerDur);
+		shakeTimer.Start(duration);
 		SetProcess(true);
-		return;
 	}
 
 
-	public void On_ShakeTimer_Timeout()
+	public void On_OniBoss_Attack()
 	{
-		SetProcess(false);
-		gManager.CurrentCamera.Offset = Vector2.Zero;
+		ShakeCamera(0.25f, 300.0f);
+	}
+	
+	public void On_OniBoss_Land()
+	{
+		ShakeCamera(1.0f, 300.0f);
+	}
+	
+	public void On_ShakeTimer_Timeout(Timer shakeTimer, float shakeStrength)
+	{
+		curCamShakeStrength -= shakeStrength;
+		GD.Print("Timer finished");
+		shakeTimer.QueueFree();
 	}
 }

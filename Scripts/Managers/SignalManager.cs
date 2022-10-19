@@ -8,6 +8,9 @@ using System;
 public class SignalManager : Node
 {	
 	[Signal]
+	public delegate void OniBossAttacked();
+	
+	[Signal]
 	public delegate void OniBossLanded();
 	
 	[Signal]

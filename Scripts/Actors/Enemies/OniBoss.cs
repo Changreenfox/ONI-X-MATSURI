@@ -83,7 +83,13 @@ public class OniBoss : Enemy
 	
 	public void PlaySound(string soundName)
 	{
-		GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, soundName);
+		gManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, soundName);
+	}
+	
+	public void AttackShake()
+	{
+		gManager.Signals.EmitSignal(nameof(SignalManager.OniBossAttacked));
+		GD.Print("Signal emitted");
 	}
 }
 
