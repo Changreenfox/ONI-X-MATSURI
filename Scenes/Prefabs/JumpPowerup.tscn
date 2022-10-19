@@ -65,6 +65,7 @@ tracks/1/keys = {
 [node name="JumpPowerup" type="Node2D"]
 
 [node name="Dango" type="Sprite" parent="."]
+modulate = Color( 1, 1.25, 1, 1 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )

@@ -51,11 +51,6 @@ public class Player : Actor
 		}
 	}
 	
-	public void _on_EndWall_body_entered(object body)
-	{
-		if(body == this) GetTree().ChangeScene("res://Scenes/BossLevel.tscn");
-	}
-	
 	public async void _on_Powerup_pickup(string type)
 	{		
 		if (type == "Health")

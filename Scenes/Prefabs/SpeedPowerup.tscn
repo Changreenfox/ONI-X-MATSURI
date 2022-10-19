@@ -65,6 +65,8 @@ tracks/1/keys = {
 [node name="SpeedPowerup" type="Node2D"]
 
 [node name="Onigiri" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1.2, 1 )
+position = Vector2( 2, 0 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )

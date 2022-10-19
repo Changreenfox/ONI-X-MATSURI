@@ -13,6 +13,17 @@
 [ext_resource path="res://assets/backgrounds/Background_buildings.png" type="Texture" id=11]
 [ext_resource path="res://assets/backgrounds/Background_mountains.png" type="Texture" id=12]
 
+[sub_resource type="Environment" id=6]
+background_mode = 4
+glow_enabled = true
+glow_intensity = 1.0
+glow_strength = 1.19
+glow_hdr_threshold = 1.1
+glow_hdr_luminance_cap = 7.37
+glow_bicubic_upscale = true
+adjustment_enabled = true
+adjustment_contrast = 1.05
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 33, 620 )
 
@@ -22,11 +33,11 @@ extents = Vector2( 1337.75, 10 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 0, 582 )
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 109, 767.75 )
-
 [node name="World" type="Node2D"]
 script = ExtResource( 5 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 6 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 273, -64 )
@@ -108,19 +119,10 @@ collision_layer = 0
 position = Vector2( -284, 572 )
 shape = SubResource( 4 )
 
-[node name="EndWall" type="Area2D" parent="."]
-position = Vector2( -76070, -176 )
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EndWall"]
-position = Vector2( 81937, 850 )
-shape = SubResource( 5 )
-
 [node name="SpeedPowerup" parent="." instance=ExtResource( 7 )]
-position = Vector2( 632, 867 )
+position = Vector2( 1162, 860 )
 
 [node name="JumpPowerup" parent="." instance=ExtResource( 10 )]
-position = Vector2( 750, 870 )
+position = Vector2( 2419, 723 )
 
 [connection signal="body_entered" from="Camera2D/PitCheck" to="Player" method="_on_PitCheck_body_entered"]
-[connection signal="body_entered" from="EndWall" to="Player" method="_on_EndWall_body_entered"]
