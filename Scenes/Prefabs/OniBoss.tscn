@@ -4,6 +4,7 @@
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=2]
 [ext_resource path="res://assets/sprites/enemy/boss_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Attacks/BulletSpawn.cs" type="Script" id=4]
+[ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=5]
 
 [sub_resource type="Shader" id=9]
 code = "shader_type canvas_item;
