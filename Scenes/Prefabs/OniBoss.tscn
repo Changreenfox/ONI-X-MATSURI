@@ -10,7 +10,7 @@ code = "shader_type canvas_item;
 
 uniform vec4 flash_color: hint_color = vec4(-0.1,-0.8,-0.8, 1);
 uniform float opacity: hint_range(0.0, 1.0) = 0.3;
-uniform bool flashing = true;
+uniform bool flashing = false;
 
 void fragment(){
 	vec4 prev = texture(TEXTURE, UV);
@@ -24,7 +24,7 @@ void fragment(){
 shader = SubResource( 9 )
 shader_param/flash_color = Color( -0.1, -0.8, -0.8, 1 )
 shader_param/opacity = 0.3
-shader_param/flashing = true
+shader_param/flashing = false
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 120.0
