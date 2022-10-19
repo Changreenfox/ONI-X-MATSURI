@@ -4,7 +4,27 @@
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=2]
 [ext_resource path="res://assets/sprites/enemy/boss_spritesheet.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Attacks/BulletSpawn.cs" type="Script" id=4]
-[ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=5]
+
+[sub_resource type="Shader" id=9]
+code = "shader_type canvas_item;
+
+uniform vec4 flash_color: hint_color = vec4(-0.1,-0.8,-0.8, 1);
+uniform float opacity: hint_range(0.0, 1.0) = 0.3;
+uniform bool flashing = false;
+
+void fragment(){
+	vec4 prev = texture(TEXTURE, UV);
+	if(flashing){
+		prev.rgb = mix(prev.rgb, flash_color.rgb, opacity);
+	}
+	COLOR = prev;
+}"
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 9 )
+shader_param/flash_color = Color( -0.1, -0.8, -0.8, 1 )
+shader_param/opacity = 0.3
+shader_param/flashing = false
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 120.0
