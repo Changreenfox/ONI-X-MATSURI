@@ -89,6 +89,13 @@ public abstract class Actor : KinematicBody2D
 		get{ return walkToRunSpeed; }
 		set{ walkToRunSpeed = value; }
 	}
+	
+	protected int damageBoost = 0;
+	public int DamageBoost
+	{
+		get{ return damageBoost; }
+		set{ damageBoost = value; }
+	}
 
 	// Floor Normal... says a floor is anything with a normal angle of ^
 	protected Vector2 UP = new Vector2(0, -1);

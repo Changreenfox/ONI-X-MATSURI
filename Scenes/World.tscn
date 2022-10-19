@@ -6,10 +6,10 @@
 [ext_resource path="res://assets/backgrounds/Background_sky.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Scenes/Level1.cs" type="Script" id=5]
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes/Prefabs/SpeedPowerup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Prefabs/PowerUps/SpeedPowerup.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/CameraController.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/LeftWall.cs" type="Script" id=9]
-[ext_resource path="res://Scenes/Prefabs/JumpPowerup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/backgrounds/Background_buildings.png" type="Texture" id=11]
 [ext_resource path="res://assets/backgrounds/Background_mountains.png" type="Texture" id=12]
 
@@ -100,11 +100,11 @@ motion_mirroring = Vector2( 3840, 0 )
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Buildings"]
 texture = ExtResource( 11 )
 
-[node name="LevelGenerator" type="Node2D" parent="."]
-script = ExtResource( 2 )
-
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 273, -64 )
+
+[node name="LevelGenerator" type="Node2D" parent="."]
+script = ExtResource( 2 )
 
 [node name="OgreBrute" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1272, 0 )

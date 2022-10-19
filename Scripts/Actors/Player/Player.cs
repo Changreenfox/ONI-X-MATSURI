@@ -4,11 +4,12 @@ using System;
 // Finite State Machine for the Player
 public class Player : Actor
 {
-	private UIManager Interface;
-	private float BoostTime = 3.0f;
-
 	[Export]
-	public int maxHealth = 6;
+	private int maxHealth = 6;
+	public int MaxHealth
+	{
+		get{ return maxHealth; }
+	}	
 	
 	public override void _Ready()
 	{
@@ -31,8 +32,7 @@ public class Player : Actor
 		*/
 
 		state = container.GetState("Idle");
-		
-		Interface = gManager.InterfaceRef;
+	
 	}
 
 	public override void Die()
@@ -48,53 +48,6 @@ public class Player : Actor
 			GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, "Damage");
 			hp -= 1;
 			Position = RespawnNode.GlobalPosition;
-		}
-	}
-	
-	public async void _on_Powerup_pickup(string type)
-	{		
-		if (type == "Health")
-		{
-			if (HP < maxHealth)
-				HP += 1;
-		}
-		else if (type == "Jump")
-		{
-			JumpSpeed += 500;
-			Interface.Toggle_Powerup_Icon(type);
-			
-			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
-			
-			JumpSpeed -= 500;
-			Interface.Toggle_Powerup_Icon(type);
-		}
-		else if (type == "Speed")
-		{
-			MaxSpeed += 400;
-			Interface.Toggle_Powerup_Icon(type);
-			
-			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
-			
-			MaxSpeed -= 400;
-			Interface.Toggle_Powerup_Icon(type);
-		}
-		else if (type == "Attack")
-		{
-			foreach(Attack attack in attacks)
-			{
-				attack.Damage += 3;
-			}
-
-			Interface.Toggle_Powerup_Icon(type);
-			
-			await ToSignal(GetTree().CreateTimer(BoostTime), "timeout");
-			
-			foreach(Attack attack in attacks)
-			{
-				attack.Damage -= 1;
-			}
-
-			Interface.Toggle_Powerup_Icon(type);
 		}
 	}
 }

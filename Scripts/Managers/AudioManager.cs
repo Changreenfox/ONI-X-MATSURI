@@ -79,10 +79,10 @@ public class AudioManager : Node
 				"Powerup", 
 				new Dictionary<string, string>
 				{
-					{"Cottoncandy", 	(SOUND_PATH + "powerups/heal.wav")},
-					{"Dango", 			(SOUND_PATH + "powerups/jump-boost.wav")},
-					{"Onigiri", 		(SOUND_PATH + "powerups/speed-boost.wav")},
-					{"Squid", 			(SOUND_PATH + "powerups/attack-boost.wav")}
+					{"HealthPowerUp", 		(SOUND_PATH + "powerups/heal.wav")},
+					{"JumpPowerUp", 		(SOUND_PATH + "powerups/jump-boost.wav")},
+					{"SpeedPowerUp", 		(SOUND_PATH + "powerups/speed-boost.wav")},
+					{"AttackPowerUp", 		(SOUND_PATH + "powerups/attack-boost.wav")}
 				}
 			},
 			{
