@@ -24,26 +24,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 24, 25, 26, 27 ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("NormalAttack")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-} ]
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "AttackRight"
@@ -59,26 +39,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 20, 21, 22, 23 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("NormalAttack")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-} ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -146,26 +106,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 32, 33, 34, 35 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("JumpAttack")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-} ]
 }
 
 [sub_resource type="Animation" id=6]
