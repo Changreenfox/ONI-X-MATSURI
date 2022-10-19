@@ -55,8 +55,6 @@ public class BasicAttack : Attack
 			active = true;
 
 			rightAttack = host.FacingRight;
-
-
 		}
 	}
 

@@ -24,26 +24,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 24, 25, 26, 27 ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("NormalAttack")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-} ]
-}
 
 [sub_resource type="Animation" id=3]
 resource_name = "AttackRight"
@@ -59,26 +39,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 20, 21, 22, 23 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("NormalAttack")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-} ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -147,26 +107,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 32, 33, 34, 35 ]
 }
-tracks/1/type = "method"
-tracks/1/path = NodePath("JumpAttack")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-} ]
-}
 
 [sub_resource type="Animation" id=6]
 resource_name = "JumpAttackRight"
@@ -182,26 +122,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 28, 29, 30, 31, 31 ]
-}
-tracks/1/type = "method"
-tracks/1/path = NodePath("JumpAttack")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-}, {
-"args": [  ],
-"method": "updateFrame"
-} ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -321,7 +241,6 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
-z_index = 5
 collision_mask = 45
 script = ExtResource( 2 )
 hp = 6
@@ -329,6 +248,7 @@ hp = 6
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 4 )
 scale = Vector2( 7, 7 )
+z_index = 1
 texture = ExtResource( 1 )
 hframes = 4
 vframes = 11

@@ -19,16 +19,14 @@ public class StartScreen : SceneBase
 //      
 //  }
 
-	private void _on_StartButton_pressed()
+	public void _on_StartButton_pressed()
 	{
 		GetTree().ChangeScene("res://Scenes/World.tscn");
 	}
 
-	private void _on_QuitButton_pressed()
+	public void _on_QuitButton_pressed()
 	{
 		GetTree().Quit();
 	}
 
 }
-
-
