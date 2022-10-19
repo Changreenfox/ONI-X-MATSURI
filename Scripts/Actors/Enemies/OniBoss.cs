@@ -30,6 +30,8 @@ public class OniBoss : Enemy
 		container.SetState("Death", new Death(this));
 		container.SetState("Attack", new BossAttack(this));
 		container.SetState("Phase2Attack", new BossPhase2Attack(this));
+		container.SetState("Phase2Idle", new BossPhase2Idle(this));
+		container.SetState("BossAngry", new BossAngry(this));
 		
 		container.SetState("Motion", new BossMotion(this));
 		
@@ -66,13 +68,13 @@ public class OniBoss : Enemy
 	{
 		death_counter++; //increase the number of times he has died
 		if(death_counter == 1){//if the boss has only died 1 time, enter stage 2
-			state = container.GetState("Phase2Attack");
+			state = container.GetState("BossAngry");
 			state.Enter();
 			hp = 3;
 		}
-		else{ //else play die animation and show win screen after a bit
-			
-			
+		if(death_counter==2){ //else play die animation and show win screen after a bit
+			Timer timer = (Timer)GetNode("BossDeathTimer");
+			timer.Start(0.5f);
 		}
 	}
 	private void _on_BossDeathTimer_timeout()

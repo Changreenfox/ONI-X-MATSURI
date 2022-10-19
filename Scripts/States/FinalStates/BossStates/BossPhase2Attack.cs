@@ -63,7 +63,7 @@ public class BossPhase2Attack : AIMotion
 		active = false;
 		host.Animator.GetAnimation("Phase2Attack").SetLoop(false);
 		await ToSignal(host.Animator, "animation_finished");
-		host.ChangeState("Idle");
+		host.ChangeState("Phase2Idle");
 		active = true;
 	}
 }
