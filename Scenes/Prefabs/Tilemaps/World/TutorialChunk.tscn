@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/Prefabs/Tilemaps/TileMap.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/World/TileMap.tres" type="TileSet" id=1]
 
 [node name="Tutorial_space" type="Node2D"]
 position = Vector2( 0, 56 )

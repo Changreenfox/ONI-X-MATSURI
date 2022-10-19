@@ -13,7 +13,7 @@ public class Level1Generator : Node2D
 		random.Randomize();
 		
 		// Load and instance Tutorial
-		PackedScene Scene = GD.Load<PackedScene>("res://Scenes/Prefabs/Tilemaps/TutorialChunk.tscn");
+		PackedScene Scene = GD.Load<PackedScene>("res://Scenes/Prefabs/Tilemaps/World/TutorialChunk.tscn");
 		Node2D Tutorial = (Node2D)Scene.Instance();
 		AddChild(Tutorial);
 		
@@ -23,7 +23,7 @@ public class Level1Generator : Node2D
 		{
 			long rand = GD.Randi() % NumChunks;
 			
-			Scene = GD.Load<PackedScene>("res://Scenes/Prefabs/Tilemaps/Chunk" + (rand + 1) + ".tscn");
+			Scene = GD.Load<PackedScene>("res://Scenes/Prefabs/Tilemaps/World/Chunk" + (rand + 1) + ".tscn");
 			Node2D Chunk = (Node2D)Scene.Instance();
 			AddChild(Chunk);
 			
@@ -33,7 +33,7 @@ public class Level1Generator : Node2D
 		}
 		
 		// Instance End Chunk
-		Scene = GD.Load<PackedScene>("res://Scenes/Prefabs/Tilemaps/LastChunk.tscn");
+		Scene = GD.Load<PackedScene>("res://Scenes/Prefabs/Tilemaps/World/LastChunk.tscn");
 		Node2D End = (Node2D)Scene.Instance();
 		AddChild(End);
 		pos = new Vector2(MarkerX, 56);

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Scenes/Prefabs/Tilemaps/TileMap.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/World/TileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/SpeedPowerup.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefabs/AttackPowerup.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/HeartPowerup.tscn" type="PackedScene" id=4]
