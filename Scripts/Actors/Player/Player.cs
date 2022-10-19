@@ -82,7 +82,7 @@ public class Player : Actor
 		{
 			foreach(Attack attack in attacks)
 			{
-				attack.Damage += 1;
+				attack.Damage += 3;
 			}
 
 			Interface.Toggle_Powerup_Icon(type);

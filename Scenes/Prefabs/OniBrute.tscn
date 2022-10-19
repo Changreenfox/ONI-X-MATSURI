@@ -94,6 +94,7 @@ script = ExtResource( 1 )
 speed = 25.0
 maxSpeed = 150.0
 walkToRunSpeed = 100.0
+toFlash = Color( 1, 1, 1, 0.415686 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 4 )

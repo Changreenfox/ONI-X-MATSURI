@@ -214,7 +214,7 @@ public abstract class Actor : KinematicBody2D
 									);
 		hp -= damage;
 		TakeKnockback(collisionPosition, impulse);
-		FlashColor(0.5f, toFlash);
+		FlashColor(0.3f, toFlash);
 	}
 
 	public virtual void TakeKnockback(Vector2 collisionPosition, Vector2 impulse)
