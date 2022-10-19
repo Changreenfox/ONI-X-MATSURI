@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/OniBoss.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=2]
@@ -40,7 +40,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2, 1.6, 2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ) ]
@@ -52,7 +52,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.2, 0.6, 1 ),
+"times": PoolRealArray( 0.4, 1.2, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -72,7 +72,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.2, 0.6, 1 ),
+"times": PoolRealArray( 0.4, 1.2, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [ "DrumAttack" ],
@@ -92,7 +92,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.2, 0.6, 1 ),
+"times": PoolRealArray( 0.4, 1.2, 2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [ 0.25, 300.0 ],
@@ -272,9 +272,10 @@ script = ExtResource( 1 )
 speed = 25.0
 maxSpeed = 150.0
 gravity = 30.0
+toFlash = Color( 0.34902, 0, 0, 0.317647 )
 
 [node name="Sprite" type="Sprite" parent="."]
-material = SubResource( 10 )
+material = ExtResource( 5 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 3 )
 hframes = 3
@@ -294,7 +295,7 @@ anims/Phase2Attack = SubResource( 8 )
 anims/RESET = SubResource( 4 )
 
 [node name="AttackCooldown" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.4
 
 [node name="StateTimer" type="Timer" parent="."]
 wait_time = 0.6
@@ -325,7 +326,7 @@ script = ExtResource( 2 )
 position = Vector2( 3, -2 )
 shape = SubResource( 5 )
 
-[node name="ColorFlashTimer" type="Timer" parent="."]
+[node name="BossDeathTimer" type="Timer" parent="."]
 
 [connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]
-[connection signal="timeout" from="ColorFlashTimer" to="." method="_on_ColorFlashTimer_timeout"]
+[connection signal="timeout" from="BossDeathTimer" to="." method="_on_BossDeathTimer_timeout"]

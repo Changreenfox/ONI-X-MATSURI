@@ -137,6 +137,8 @@ public abstract class Actor : KinematicBody2D
 		set{ stateTimer = value; }
 	}
 
+	[Export]
+	private Color toFlash = new Color();
 
 	/*=============================================================== Methods =======================================================*/
 	
@@ -159,7 +161,6 @@ public abstract class Actor : KinematicBody2D
 		{
 			if(node is Attack)
 			{
-				GD.Print(Name, " -> ", node.Name);
 				attacks.Add((Attack)node);
 			}
 		}
@@ -176,8 +177,8 @@ public abstract class Actor : KinematicBody2D
 		if(name != null)
 			ChangeState(name);
 		
-		if(!attacking)
-			FaceAttacks();
+		/*if(!attacking)
+			FaceAttacks();*/
 		
 	}
 
@@ -195,7 +196,6 @@ public abstract class Actor : KinematicBody2D
 	/*=============================================================== Helpers =======================================================*/
 	public void ChangeState(string name)
 	{
-		GD.Print(name);
 		state = container.GetState(name);
 		state.Enter();
 	}
@@ -214,7 +214,7 @@ public abstract class Actor : KinematicBody2D
 									);
 		hp -= damage;
 		TakeKnockback(collisionPosition, impulse);
-		GD.Print(hp);
+		FlashColor(0.5f, toFlash);
 	}
 
 	public virtual void TakeKnockback(Vector2 collisionPosition, Vector2 impulse)
@@ -263,7 +263,7 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	//Flips the Actor's colliders
-	public void FaceAttacks()
+	/*public void FaceAttacks()
 	{
 		Vector2 scale = new Vector2(1,1);
 		if(facingRight)
@@ -272,6 +272,18 @@ public abstract class Actor : KinematicBody2D
 			scale.x = -1;
 		foreach (Node2D node in attacks)
 			node.Scale = scale;
+	}*/
+	
+	public async void FlashColor(float duration, Color color)
+	{
+		ShaderMaterial mat = character.Material as ShaderMaterial;
+		mat.SetShaderParam("red", color.r);
+		mat.SetShaderParam("green", color.g);
+		mat.SetShaderParam("blue", color.b);
+		mat.SetShaderParam("opacity", color.a);
+		mat.SetShaderParam("flashing", true);
+		await ToSignal(GetTree().CreateTimer(duration), "timeout");
+		mat.SetShaderParam("flashing", false);
 	}
 	
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

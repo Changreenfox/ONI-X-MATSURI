@@ -4,316 +4,180 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>680</x>
-      <y>150</y>
-      <w>140</w>
-      <h>90</h>
+      <x>190</x>
+      <y>330</y>
+      <w>320</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>BasicAttack
--
--Int animationCtr
--Collider range (Obj)
 --
-Attack()</panel_attributes>
+- range: CollisionPolygon2D
+--
+#override void GetRange()
+#override void SetColliderActive()
+#override &lt;&lt;async&gt;&gt; Task ActivateCollider()
+#override &lt;&lt;async&gt;&gt; Task WaitCooldown()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>670</x>
-      <y>380</y>
-      <w>160</w>
-      <h>80</h>
+      <x>550</x>
+      <y>90</y>
+      <w>390</w>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>Ogre
+    <panel_attributes>/Attack/
 --
--
-Attack()</panel_attributes>
+--
++override void _Process(float)
++&lt;&lt;virtual&gt;&gt; void StartAttack(string)
++&lt;&lt;virtual&gt;&gt; void _on_Attack_body_entered(KinematicBody2D)
+#&lt;&lt;virtual&gt;&gt; &lt;&lt;async&gt;&gt; Task ActivateCollider()
+#&lt;&lt;virtual&gt;&gt; &lt;&lt;async&gt;&gt; Task WaitCooldown()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>740</x>
-      <y>230</y>
-      <w>30</w>
-      <h>170</h>
+      <x>340</x>
+      <y>200</y>
+      <w>420</w>
+      <h>150</h>
     </coordinates>
-    <panel_attributes>lt=-&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-
+</panel_attributes>
+    <additional_attributes>400.0;10.0;400.0;60.0;10.0;60.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>560</x>
+      <y>330</y>
+      <w>390</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>ContactDamage
+--
+- range: CollisionShape2D
+--
+#override void GetRange()
+#override void SetColliderActive()
+#override void _on_Attack_body_entered(KinematicBody2D)
+#override &lt;&lt;async&gt;&gt; Task WaitCooldown()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>730</x>
+      <y>200</y>
+      <w>50</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+is a</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>990</x>
+      <y>330</y>
+      <w>270</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>BulletSpawn
+--
+- PackedScene bulletPrefab;
+--
++override void _Ready()
+#override void StartAttack(string)</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>790</x>
-      <y>20</y>
-      <w>180</w>
+      <x>190</x>
+      <y>110</y>
+      <w>140</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>bg=green
-Attack():
-Activates range on parent
-&amp; plays animation</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>810</x>
-      <y>280</y>
-      <w>130</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>Jumping
---
--
-Attack()</panel_attributes>
+    <panel_attributes>Since Range is a
+different type, they
+need to override both
+bg=green</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>810</x>
-      <y>150</y>
-      <w>80</w>
+      <x>730</x>
+      <y>200</y>
+      <w>410</w>
       <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;60.0;10.0;60.0;130.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>980</x>
-      <y>270</y>
-      <w>240</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>bg=red
-Children can have their own
-collider [size and orientation]
-and Attack() functionality</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>840</x>
-      <y>390</y>
-      <w>170</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>bg=red
-Called when an ogre
-enters it's "attack" state</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>400</x>
-      <y>180</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>2DNode</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>490</x>
-      <y>170</y>
-      <w>210</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-has a</panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;390.0;60.0;390.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>190</x>
-      <y>180</y>
-      <w>100</w>
-      <h>30</h>
+      <y>500</y>
+      <w>320</w>
+      <h>180</h>
     </coordinates>
-    <panel_attributes>Entity</panel_attributes>
+    <panel_attributes>BasicAttack
+--
+- range: CollisionPolygon2D[]
+- curr: int
+--
++void UpdateCurrent()
++override void _Ready()
+#override void GetRange()
+#override voide SetColliderActive(int)
+#override &lt;&lt;async&gt;&gt; Task ActivateCollider()
+#override &lt;&lt;async&gt;&gt; Task WaitCooldown
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
+    <id>UMLClass</id>
     <coordinates>
-      <x>280</x>
-      <y>170</y>
-      <w>140</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-has a</panel_attributes>
-    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>440</x>
+      <x>1190</x>
       <y>90</y>
-      <w>60</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-has a</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>400</x>
-      <y>70</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>Collider</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>490</x>
-      <y>70</y>
-      <w>360</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.
-referenced by</panel_attributes>
-    <additional_attributes>260.0;80.0;260.0;10.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>590</x>
-      <y>700</y>
-      <w>210</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>bg=black
-AttackFSM</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>890</x>
-      <y>780</y>
-      <w>130</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>/AttackState/
---
--Entity user
--
--Attack() </panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>600</x>
-      <y>760</y>
-      <w>190</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>Entity
---
-...
-- AttackState as
---
-...
-- Attack()
-- ChangeState(AttackState)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>780</x>
-      <y>790</y>
-      <w>130</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-has a</panel_attributes>
-    <additional_attributes>110.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>890</x>
-      <y>700</y>
-      <w>120</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>Get range from
-attached obj</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1080</x>
-      <y>790</y>
-      <w>150</w>
-      <h>50</h>
-    </coordinates>
-    <panel_attributes>Wait
---
-- Attack(){return;}</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1010</x>
-      <y>800</y>
-      <w>90</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;70.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>1060</x>
-      <y>630</y>
-      <w>260</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>bg=green
-Updating States // PlayerAttack
-{
-      if jumping, as = new JumpAttack()
-      if power, as = newPowerAttack()
-      etc...
-      else, as = newAttack()
-}
-      </panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>1080</x>
-      <y>550</y>
-      <w>200</w>
+      <w>220</w>
       <h>70</h>
     </coordinates>
-    <panel_attributes>bg=yellow
-Note:
-Could use a factory method or
-singletons, so we don't keep
-creating new objects</panel_attributes>
+    <panel_attributes>Combo
+--
+- attacks: Attack[]
+--
++override void StartAttack(string)</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>1220</x>
+      <y>190</y>
+      <w>160</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Composite Sequence
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1290</x>
+      <y>150</y>
+      <w>30</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
   </element>
 </diagram>

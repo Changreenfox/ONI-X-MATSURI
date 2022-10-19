@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/sprites/player/player_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Actors/Player/Player.cs" type="Script" id=2]
 [ext_resource path="res://Scenes/Prefabs/Attack.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 46.0
@@ -245,6 +246,7 @@ script = ExtResource( 2 )
 hp = 6
 
 [node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 4 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 1 )
 hframes = 4
@@ -252,22 +254,52 @@ vframes = 11
 frame = 2
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -3, -1 )
 shape = SubResource( 1 )
 
 [node name="NormalAttack" parent="." instance=ExtResource( 3 )]
+visible = false
 
-[node name="Range" type="CollisionPolygon2D" parent="NormalAttack"]
+[node name="RightRange1" type="CollisionPolygon2D" parent="NormalAttack"]
 position = Vector2( 13, 27 )
 polygon = PoolVector2Array( 86, -56, 124, -33, 138, 2, 91, 45, 51, 53, -13, 53, -101, 29, -117, 5, -69, -27, -13, -27, 35, -43 )
+disabled = true
+
+[node name="RightRange2" type="CollisionPolygon2D" parent="NormalAttack"]
+position = Vector2( 13, 27 )
+polygon = PoolVector2Array( -69, -27, -45, -27, -53, -3, 19, 21, -37, 45, -101, 29, -125, 5, -85, -19 )
+disabled = true
+
+[node name="LeftRange1" type="CollisionPolygon2D" parent="NormalAttack"]
+polygon = PoolVector2Array( 0, 0, 40, 16, 104, -16, 64, -40, -48, -48, -128, -24, -152, 16, -136, 40, -120, 56, -104, 64, -80, 72, -40, 48 )
+disabled = true
+
+[node name="LeftRange2" type="CollisionPolygon2D" parent="NormalAttack"]
+polygon = PoolVector2Array( 8, -24, 8, -24, -64, -24, -32, -48, 24, -48, 56, -40, 104, -16, 40, 16 )
+disabled = true
 
 [node name="JumpAttack" parent="." instance=ExtResource( 3 )]
+visible = false
 name = "JumpAttack"
 
-[node name="Range" type="CollisionPolygon2D" parent="JumpAttack"]
+[node name="RightRange1" type="CollisionPolygon2D" parent="JumpAttack"]
 position = Vector2( -27, 13 )
 rotation = 1.58476
-polygon = PoolVector2Array( -5.37652, -26.9276, 24.3498, -118.352, 68.0383, -140.964, 123.48, -109.735, 130.163, -60.8234, 114.5, -36.6024, 91.061, 3.72886, 35.7366, 52.5061, -19.8111, 85.2849, -35.8095, 85.5084, -44.1439, 61.6224, -44.3673, 45.624, -20.8164, 13.292, -5.15311, -10.9291 )
+polygon = PoolVector2Array( 25.7267, -91.3681, 33.5025, -107.478, 65.1643, -131.923, 123.48, -109.735, 130.163, -60.8234, 114.5, -36.6024, 91.061, 3.72886, 35.7366, 52.5061, -19.8111, 85.2849, -35.8095, 85.5084, -44.1439, 61.6224, -44.3673, 45.624, -20.8164, 13.292, -5.15311, -10.9291, 10.5102, -35.1502, 18.0626, -67.2588 )
+disabled = true
+
+[node name="RightRange2" type="CollisionPolygon2D" parent="JumpAttack"]
+polygon = PoolVector2Array( 16, 88, -40, 88, -80, 56, -104, 16, -104, -24, -88, -32, -72, -32, -32, 0, -24, 16, -48, 16, -48, 48, 16, 88 )
+disabled = true
+
+[node name="LeftRange1" type="CollisionPolygon2D" parent="JumpAttack"]
+polygon = PoolVector2Array( 0, 0, 64, -32, 88, -32, 104, -16, 104, 16, 56, 72, 8, 120, -32, 136, -80, 136, -112, 88, -112, 64, -48, 32 )
+disabled = true
+
+[node name="LeftRange2" type="CollisionPolygon2D" parent="JumpAttack"]
+polygon = PoolVector2Array( 16, -8, 64, -32, 96, -32, 104, -16, 104, 16, 88, 40, 32, 96, -16, 96, -16, 80, 32, 64, 48, 48, 48, 16 )
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/AttackLeft = SubResource( 2 )

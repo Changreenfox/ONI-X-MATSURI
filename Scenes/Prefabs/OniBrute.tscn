@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/OniBrute.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemy/oni_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=3]
+[ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=4]
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 42.0
@@ -95,6 +96,7 @@ maxSpeed = 150.0
 walkToRunSpeed = 100.0
 
 [node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 4 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 2 )
 hframes = 4
