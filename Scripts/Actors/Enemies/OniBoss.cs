@@ -3,12 +3,6 @@ using System;
 
 public class OniBoss : Enemy
 {
-	private AnimationPlayer animations;
-	public AnimationPlayer Animations
-	{
-		get { return animations; }
-	}
-	
 	private bool cycled = false;
 	public bool Cycled
 	{
@@ -22,8 +16,6 @@ public class OniBoss : Enemy
 	public override void _Ready()
 	{
 		base._Ready();
-		
-		animations = GetNode<AnimationPlayer>("AnimationPlayer");
 		
 		container.SetState("Start", new Start(this));
 		container.SetState("Idle", new BossIdle(this));
@@ -91,7 +83,6 @@ public class OniBoss : Enemy
 	public void AttackShake()
 	{
 		gManager.Signals.EmitSignal(nameof(SignalManager.OniBossAttacked));
-		GD.Print("Signal emitted");
 	}
 }
 
