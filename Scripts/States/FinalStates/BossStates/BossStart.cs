@@ -2,9 +2,9 @@ using Godot;
 using System;
 
 
-public class Start : JustGravity
+public class BossStart : JustGravity
 {
-	public Start(Actor _host)
+	public BossStart(Actor _host)
 	{
 		host = _host;
 	}
@@ -20,6 +20,7 @@ public class Start : JustGravity
 		string temp = base.HandlePhysics(delta); //Unless base is just State
 		if(host.IsOnFloor()){
 			host.GManager.Signals.EmitSignal(nameof(SignalManager.OniBossLanded));
+			host.PlaySound("Land");
 			return "Idle";
 		}
 		return temp;

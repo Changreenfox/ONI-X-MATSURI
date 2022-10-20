@@ -21,12 +21,6 @@ public abstract class OnGround : Motion
 		else
 			temp += "Left";
 		host.Attack(0, temp);
-		//APPARENTLY THIS THING CRASHES IF entityName STARTS WITH AN UPPERCASE LETTER????
-		/*
-		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
-										host.GetType().Name.ToLower(), 
-										"attack");
-		*/
 	}
 	
 }
