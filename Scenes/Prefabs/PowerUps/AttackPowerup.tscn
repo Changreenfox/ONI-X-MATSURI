@@ -83,6 +83,7 @@ collision_layer = 4
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color( 1.1, 1, 1, 1 )
 position = Vector2( 1.05879e-22, 1.14286 )
 shape = SubResource( 1 )
 

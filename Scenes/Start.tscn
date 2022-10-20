@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/backgrounds/start_screen.png" type="Texture" id=1]
 [ext_resource path="res://assets/sprites/start_button_highlighted.png" type="Texture" id=2]
@@ -8,6 +8,13 @@
 [ext_resource path="res://assets/sprites/quit_button_pressed.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/start_button.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Scenes/StartScreen.cs" type="Script" id=8]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_intensity = 8.0
+glow_strength = 1.28
+glow_bicubic_upscale = true
 
 [node name="StartScreen" type="Node2D"]
 script = ExtResource( 8 )
@@ -33,6 +40,9 @@ margin_bottom = 670.0
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 4 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]

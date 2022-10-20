@@ -63,6 +63,7 @@ tracks/1/keys = {
 radius = 6.41467
 
 [node name="HeartPowerup" type="Node2D"]
+modulate = Color( 1.1, 1, 1.1, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1.15, 1, 1.15, 1 )

@@ -6,7 +6,6 @@
 [ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerup.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/HeartPowerup.tscn" type="PackedScene" id=5]
 
-
 [node name="Chunk1" type="Node2D"]
 position = Vector2( 0, 56 )
 
