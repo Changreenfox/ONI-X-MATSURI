@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/lose_screen_music.mp3-4d2f4146a1452da62d8018d694314f14.mp3str"
+
+[deps]
+
+source_file="res://assets/music/lose_screen_music.mp3"
+dest_files=[ "res://.import/lose_screen_music.mp3-4d2f4146a1452da62d8018d694314f14.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

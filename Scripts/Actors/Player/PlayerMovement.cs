@@ -3,8 +3,6 @@ using System;
 
 public class PlayerMovement : Actor
 {
-	[Signal]
-	delegate void PlaySoundSignal(string entityName, string soundName);
 	delegate void PlayerMovementX(float distance);
 	
 	//Movement variables

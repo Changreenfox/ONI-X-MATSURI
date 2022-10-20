@@ -39,7 +39,7 @@ public class BossAttack : JustGravity
 	public override void PlayAnimation()
 	{
 		host.PlayAnimation("ChargeAttack");	//Contains the first attack
-		host.Animator.GetAnimation("Attack").SetLoop(false);
+		host.Animator.GetAnimation("Attack").Loop = false;
 		for(int i = 0; i < NUM_OF_EXTRA_ATTACKS; ++i) 
 		{
 			host.Animator.Queue("Attack");

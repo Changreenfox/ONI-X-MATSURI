@@ -11,7 +11,7 @@ public class AudioManager : Node
 	private static string SOUND_PATH = "res://assets/sounds/";
 	
 	//[Export]
-	private static string MUSIC_PATH = (SOUND_PATH + "music/");
+	private static string MUSIC_PATH = "res://assets/music/";
 	
 	private Node currentMusicNode;
 	private AudioStreamPlayer currentMusic;

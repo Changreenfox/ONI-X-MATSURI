@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/OniBrute.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemy/oni_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=3]
 [ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=4]
+[ext_resource path="res://assets/sounds/enemy/enemy_oni_damage.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/enemy/enemy_oni_death.wav" type="AudioStream" id=6]
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 42.0
@@ -128,5 +130,17 @@ wait_time = 0.5
 
 [node name="StateTimer" type="Timer" parent="."]
 wait_time = 2.0
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Damage" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 5 )
+bus = "Sounds"
+area_mask = 0
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 6 )
+bus = "Sounds"
+area_mask = 0
 
 [connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]

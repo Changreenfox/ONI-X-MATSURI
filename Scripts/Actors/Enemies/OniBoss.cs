@@ -66,7 +66,9 @@ public class OniBoss : Enemy
 		}
 		if(death_counter==2){ //else play die animation and show win screen after a bit
 			Timer timer = (Timer)GetNode("BossDeathTimer");
+			SetProcess(false);
 			timer.Start(0.5f);
+			SetProcess(true);
 		}
 	}
 	private void _on_BossDeathTimer_timeout()
@@ -74,11 +76,11 @@ public class OniBoss : Enemy
 		GetTree().ChangeScene("res://Scenes/Win.tscn");
 	}
 
-	
+	/*
 	public void PlaySound(string soundName)
 	{
 		gManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, soundName);
-	}
+	}*/
 	
 	public void AttackShake()
 	{

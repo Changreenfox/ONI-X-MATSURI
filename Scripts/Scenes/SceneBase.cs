@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 
 public class SceneBase : Node2D
 {
-	bool shaking = false;
-	
 	protected GameManager gManager;
 	
 	protected Camera2D currentCamera;

@@ -54,14 +54,14 @@ public class BossPhase2Attack : AIMotion
 	{
 		//Make any calls to playing animation in here. Should be handled in the state that calls it
 		host.PlayAnimation("ChargeAttack");
-		host.Animator.GetAnimation("Attack").SetLoop(true);
+		host.Animator.GetAnimation("Attack").Loop = true;
 		host.Animator.Queue("Attack");
 	}
 	
 	private async void FinishAnimation()
 	{
 		active = false;
-		host.Animator.GetAnimation("Attack").SetLoop(false);
+		host.Animator.GetAnimation("Attack").Loop = true;
 		await ToSignal(host.Animator, "animation_finished");
 		host.ChangeState("Phase2Idle");
 		active = true;

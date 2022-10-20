@@ -151,6 +151,12 @@ public abstract class Actor : KinematicBody2D
 	[Export]
 	private float immunityTime = 0.25f;
 
+	private Node2D sounds;
+	protected Node2D Sounds
+	{
+		get{ return sounds; }
+	}
+
 	/*=============================================================== Methods =======================================================*/
 	
 	// Called when the node enters the scene tree for the first time.
@@ -162,6 +168,7 @@ public abstract class Actor : KinematicBody2D
 		character = (Sprite)GetNode("Sprite");
 		
 		animator = (AnimationPlayer)GetNode("AnimationPlayer");
+		sounds  = (Node2D)GetNode("Sounds");
 
 		string timerName = Name + "AttackCooldown";
 		Timer timer = new Timer();
@@ -223,10 +230,7 @@ public abstract class Actor : KinematicBody2D
 		{
 			immune = true;
 			ImmunityTimer();
-			GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
-										GetType().Name,
-										"Damage"
-										);
+			PlaySound("Damage");
 			hp -= damage;
 			TakeKnockback(collisionPosition, impulse);
 			FlashColor(0.3f, toFlash);
@@ -271,6 +275,12 @@ public abstract class Actor : KinematicBody2D
 		animator.Play(name);
 
 		return name;
+	}
+
+	public void PlaySound(string soundName)
+	{
+		AudioStreamPlayer2D sound = (AudioStreamPlayer2D)sounds.GetNode(soundName);
+		sound.Play();
 	}
 
 	private async void ImmunityTimer()
