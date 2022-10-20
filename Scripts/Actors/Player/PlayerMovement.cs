@@ -87,8 +87,6 @@ public class PlayerMovement : Actor
 		{
 			if (attacking)
 				Attack();
-				//EmitSignal(nameof(PlaySoundSignal), "player", "attack");
-				//Game starts with attacking = true
 			if (jump > 0)
 				motion.y = -JUMPSPEED * jump;
 		}
