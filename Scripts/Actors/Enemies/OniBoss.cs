@@ -75,12 +75,6 @@ public class OniBoss : Enemy
 	{
 		GetTree().ChangeScene("res://Scenes/Win.tscn");
 	}
-
-	/*
-	public void PlaySound(string soundName)
-	{
-		gManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, soundName);
-	}*/
 	
 	public void AttackShake()
 	{
