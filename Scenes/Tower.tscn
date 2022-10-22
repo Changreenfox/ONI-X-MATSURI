@@ -70,6 +70,7 @@ position = Vector2( 960, -407 )
 texture = ExtResource( 3 )
 
 [node name="Mountains" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 0, -276 )
 motion_scale = Vector2( 1, 0.3 )
 
 [node name="VerticalSky" type="Sprite" parent="ParallaxBackground/Mountains"]
@@ -77,6 +78,7 @@ position = Vector2( 960, 541 )
 texture = ExtResource( 2 )
 
 [node name="Buildings" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 0, -276 )
 motion_scale = Vector2( 1, 0.5 )
 
 [node name="VerticalSky" type="Sprite" parent="ParallaxBackground/Buildings"]
@@ -84,7 +86,6 @@ position = Vector2( 960, 543 )
 texture = ExtResource( 1 )
 
 [node name="TowerPillarsBack" type="ParallaxLayer" parent="ParallaxBackground"]
-scale = Vector2( 1, -1 )
 motion_scale = Vector2( 1, 0.8 )
 motion_mirroring = Vector2( 0, 1080 )
 
