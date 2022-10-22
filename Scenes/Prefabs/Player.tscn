@@ -367,9 +367,9 @@ position = Vector2( 1, 0 )
 scale = Vector2( 7, 7 )
 z_index = 1
 texture = ExtResource( 1 )
-hframes = 7
+hframes = 4
 vframes = 11
-frame = 70
+frame = 40
 
 [node name="PlayerHitbox" type="CollisionShape2D" parent="."]
 visible = false
