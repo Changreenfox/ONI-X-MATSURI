@@ -72,6 +72,7 @@ Attack={
 2d_physics/layer_4="World"
 2d_physics/layer_5="PlayerAttack"
 2d_physics/layer_6="EnemyAttack"
+2d_physics/layer_7="Tower"
 
 [mono]
 
