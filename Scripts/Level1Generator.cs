@@ -21,9 +21,9 @@ public class Level1Generator : Node2D
 		Vector2 pos;
 		for (int i = 0; i < 7; i++)
 		{
-			long rand = GD.Randi() % NumChunks;
+			double rand = random.RandiRange(1, NumChunks);
 			
-			Scene = GD.Load<PackedScene>("res://Scenes/Prefabs/Tilemaps/World/Chunk" + (rand + 1) + ".tscn");
+			Scene = GD.Load<PackedScene>("res://Scenes/Prefabs/Tilemaps/World/Chunk" + rand + ".tscn");
 			Node2D Chunk = (Node2D)Scene.Instance();
 			AddChild(Chunk);
 			

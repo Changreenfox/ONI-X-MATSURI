@@ -1,15 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerup.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/sprites/taiko.png" type="Texture" id=4]
 
 [node name="Bottom" type="Node2D"]
 
-[node name="JumpPowerup" parent="." instance=ExtResource( 2 )]
-position = Vector2( 772, 733 )
-
-[node name="TileMap2" type="TileMap" parent="."]
+[node name="Scaffolding" type="TileMap" parent="."]
 position = Vector2( 0, 56 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 128, 128 )
@@ -19,7 +17,7 @@ collision_mask = 7
 format = 1
 tile_data = PoolIntArray( 131076, 536870916, 0, 131081, 536870916, 0, 196612, 536870916, 0, 196617, 536870916, 0, 262148, 536870916, 0, 327684, 536870916, 0 )
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Platforms" type="TileMap" parent="."]
 position = Vector2( 0, 56 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 128, 128 )
@@ -29,9 +27,28 @@ collision_mask = 7
 format = 1
 tile_data = PoolIntArray( 2, 536870915, 0, 11, 536870915, 0, 65542, 536870914, 0, 131073, 1, 0, 131080, 1, 0, 262151, 536870914, 0, 393220, 2, 0 )
 
-[node name="OniBrute2" parent="." instance=ExtResource( 3 )]
+[node name="Lanterns" type="TileMap" parent="."]
+position = Vector2( 0, 75 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+collision_layer = 0
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( 131073, 536870922, 0, 131085, 536870917, 0, 262154, 536870921, 0 )
+
+[node name="Additions" type="Node" parent="."]
+
+[node name="JumpPowerup" parent="Additions" instance=ExtResource( 2 )]
+position = Vector2( 772, 733 )
+
+[node name="OniBrute2" parent="Additions" instance=ExtResource( 3 )]
 position = Vector2( 1331, 213 )
 
-[node name="OniBrute" parent="." instance=ExtResource( 3 )]
+[node name="OniBrute" parent="Additions" instance=ExtResource( 3 )]
 position = Vector2( 229, 213 )
 collision_mask = 88
+
+[node name="Taiko" type="Sprite" parent="Additions"]
+position = Vector2( 1023, 121 )
+texture = ExtResource( 4 )

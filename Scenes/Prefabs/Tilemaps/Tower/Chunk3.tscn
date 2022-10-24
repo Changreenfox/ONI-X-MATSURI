@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Taiko.tscn" type="PackedScene" id=3]
+
+[node name="Template" type="Node2D"]
+
+[node name="Platforms" type="TileMap" parent="."]
+position = Vector2( 0, 56 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+collision_layer = 64
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( 8, 1, 0, 262147, 536870915, 0, 262154, 3, 0, 393221, 536870915, 0, 393224, 3, 0, 458753, 536870915, 0, 458764, 536870915, 0 )
+
+[node name="Scaffolding" type="TileMap" parent="."]
+position = Vector2( 0, 56 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+format = 1
+tile_data = PoolIntArray( 11, 4, 0, 65547, 4, 0, 131083, 4, 0, 196619, 4, 0 )
+
+[node name="Lanterns" type="TileMap" parent="."]
+position = Vector2( 0, 75 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+collision_layer = 64
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( 13, 10, 0, 393221, 6, 0, 393225, 8, 0 )
+
+[node name="Additions" type="Node" parent="."]
+
+[node name="Taiko" parent="Additions" instance=ExtResource( 3 )]
+position = Vector2( 511, 506 )
+
+[node name="OniBrute" parent="Additions" instance=ExtResource( 2 )]
+position = Vector2( 1188, -34 )

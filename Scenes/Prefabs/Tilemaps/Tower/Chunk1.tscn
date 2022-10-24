@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Prefabs/PowerUps/SpeedPowerup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Taiko.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Prefabs/PowerUps/HeartPowerup.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerup.tscn" type="PackedScene" id=6]
+
+[node name="Template" type="Node2D"]
+
+[node name="Scaffolding" type="TileMap" parent="."]
+position = Vector2( 0, 56 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+format = 1
+
+[node name="Platforms" type="TileMap" parent="."]
+position = Vector2( 0, 56 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+collision_layer = 64
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( 1, 536870915, 0, 5, 536870915, 0, 65545, 536870914, 0, 65546, 536870916, 0, 131082, 536870916, 0, 196618, 536870916, 0, 262154, 536870915, 0, 458753, 536870913, 0, 458763, 536870915, 0 )
+
+[node name="Lanterns" type="TileMap" parent="."]
+position = Vector2( 0, 75 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+collision_layer = 64
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( 1, 536870921, 0, 2, 536870918, 0, 5, 536870922, 0, 6, 536870917, 0, 65548, 536870919, 0, 458754, 536870920, 0, 458757, 536870920, 0 )
+
+[node name="Additions" type="Node" parent="."]
+
+[node name="SpeedPowerup" parent="Additions" instance=ExtResource( 3 )]
+position = Vector2( 1528, 876 )
+
+[node name="Taiko" parent="Additions" instance=ExtResource( 4 )]
+position = Vector2( 786, 888 )
+
+[node name="OniBrute" parent="Additions" instance=ExtResource( 2 )]
+position = Vector2( 199, 850 )
+
+[node name="HeartPowerup" parent="Additions" instance=ExtResource( 5 )]
+position = Vector2( 1336, 115 )
+
+[node name="JumpPowerup" parent="Additions" instance=ExtResource( 6 )]
+position = Vector2( 784, 757 )

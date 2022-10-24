@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Taiko.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Prefabs/PowerUps/SpeedPowerup.tscn" type="PackedScene" id=4]
+
+[node name="Template" type="Node2D"]
+
+[node name="Platforms" type="TileMap" parent="."]
+position = Vector2( 0, 56 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+collision_layer = 64
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( 65546, 3, 0, 196613, 2, 0, 458753, 1, 0, 458763, 3, 0 )
+
+[node name="Scaffolding" type="TileMap" parent="."]
+position = Vector2( 0, 56 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+format = 1
+
+[node name="Lanterns" type="TileMap" parent="."]
+position = Vector2( 0, 75 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+collision_layer = 64
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( 65547, 8, 0, 196613, 7, 0, 458753, 10, 0 )
+
+[node name="Additions" type="Node" parent="."]
+
+[node name="Taiko" parent="Additions" instance=ExtResource( 3 )]
+position = Vector2( 642, 888 )
+
+[node name="Taiko2" parent="Additions" instance=ExtResource( 3 )]
+position = Vector2( 1403, 119 )
+
+[node name="JumpPowerup" parent="Additions" instance=ExtResource( 2 )]
+position = Vector2( 1408, -6 )
+
+[node name="JumpPowerup2" parent="Additions" instance=ExtResource( 2 )]
+position = Vector2( 634, 763 )
+
+[node name="Taiko3" parent="Additions" instance=ExtResource( 3 )]
+position = Vector2( 895, 378 )
+
+[node name="SpeedPowerup" parent="Additions" instance=ExtResource( 4 )]
+position = Vector2( 1528, 891 )

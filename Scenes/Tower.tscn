@@ -7,7 +7,7 @@
 [ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sprites/tower_front.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/tower_back.png" type="Texture" id=7]
-[ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Bottom.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scripts/Level2Generator.cs" type="Script" id=8]
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -16,12 +16,13 @@ extents = Vector2( 61, 3791.5 )
 [node name="Tower" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 93, 446 )
+position = Vector2( 68, 636 )
 jumpSpeed = 1150.0
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true
 limit_left = 0
+limit_top = -6480
 limit_right = 1920
 limit_bottom = 1080
 smoothing_enabled = true
@@ -70,7 +71,8 @@ texture = ExtResource( 6 )
 motion_scale = Vector2( 1, 0.2 )
 
 [node name="VerticalSky" type="Sprite" parent="ParallaxBackground/Sky"]
-position = Vector2( 960, -407 )
+position = Vector2( 960, -431.5 )
+scale = Vector2( 1, 0.915896 )
 texture = ExtResource( 3 )
 
 [node name="Mountains" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -123,5 +125,5 @@ cell_quadrant_size = 128
 format = 1
 tile_data = PoolIntArray( 458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0, 458756, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 2, 0 )
 
-[node name="Bottom" parent="." instance=ExtResource( 8 )]
-position = Vector2( 0, 8 )
+[node name="LevelGenerator" type="Node2D" parent="."]
+script = ExtResource( 8 )

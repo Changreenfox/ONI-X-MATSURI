@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Prefabs/PowerUps/AttackPowerup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerup.tscn" type="PackedScene" id=4]
+
+[node name="Template" type="Node2D"]
+
+[node name="Platforms" type="TileMap" parent="."]
+position = Vector2( 0, 56 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+collision_layer = 64
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( 2, 3, 0, 10, 2, 0, 131080, 3, 0, 262145, 1, 0, 458753, 3, 0, 458757, 2, 0, 458762, 2, 0 )
+
+[node name="Scaffolding" type="TileMap" parent="."]
+position = Vector2( 0, 56 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+format = 1
+tile_data = PoolIntArray( 2, 4, 0, 65538, 4, 0, 131074, 4, 0, 131080, 4, 0, 196610, 4, 0, 196616, 4, 0, 262149, 4, 0, 262152, 4, 0, 327685, 4, 0, 327688, 4, 0, 393221, 4, 0, 393224, 4, 0 )
+
+[node name="Lanterns" type="TileMap" parent="."]
+position = Vector2( 0, 75 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 128, 128 )
+cell_quadrant_size = 128
+collision_layer = 64
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( 3, 10, 0, 12, 6, 0, 131081, 7, 0, 262145, 8, 0, 458758, 5, 0 )
+
+[node name="Additions" type="Node" parent="."]
+
+[node name="JumpPowerup" parent="Additions" instance=ExtResource( 4 )]
+position = Vector2( 888, 881 )
+
+[node name="AttackPowerup" parent="Additions" instance=ExtResource( 3 )]
+position = Vector2( 1140, 240 )
+
+[node name="OniBrute" parent="Additions" instance=ExtResource( 2 )]
+position = Vector2( 1361, 844 )

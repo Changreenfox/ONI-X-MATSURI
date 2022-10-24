@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lantern_purple.png-73e7e40e49e6cb34f41beddd60eccc0d.stex"
+path="res://.import/lantern_green.png-83330895a5cdddb50caf03dc8bd826d7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/lantern_purple.png"
-dest_files=[ "res://.import/lantern_purple.png-73e7e40e49e6cb34f41beddd60eccc0d.stex" ]
+source_file="res://assets/tiles/lantern_green.png"
+dest_files=[ "res://.import/lantern_green.png-83330895a5cdddb50caf03dc8bd826d7.stex" ]
 
 [params]
 
