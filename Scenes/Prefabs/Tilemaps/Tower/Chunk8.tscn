@@ -35,19 +35,17 @@ collision_mask = 7
 format = 1
 tile_data = PoolIntArray( 12, 5, 0, 65537, 6, 0, 262150, 9, 0 )
 
-[node name="Additions" type="Node" parent="."]
-
-[node name="AttackPowerup" parent="Additions" instance=ExtResource( 3 )]
+[node name="AttackPowerup" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1517, 728 )
 
-[node name="Taiko" parent="Additions" instance=ExtResource( 4 )]
+[node name="Taiko" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1533, 888 )
 
-[node name="OniBrute" parent="Additions" instance=ExtResource( 2 )]
+[node name="OniBrute" parent="." instance=ExtResource( 2 )]
 position = Vector2( 222, 856 )
 
-[node name="OniBrute2" parent="Additions" instance=ExtResource( 2 )]
+[node name="OniBrute2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 401, 474 )
 
-[node name="OniBrute3" parent="Additions" instance=ExtResource( 2 )]
+[node name="OniBrute3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 215, 86 )

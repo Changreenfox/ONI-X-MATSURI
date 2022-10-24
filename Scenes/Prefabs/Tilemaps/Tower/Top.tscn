@@ -39,15 +39,13 @@ collision_mask = 7
 format = 1
 tile_data = PoolIntArray( 10, 10, 0, 13, 8, 0, 131079, 9, 0, 131082, 5, 0, 327686, 6, 0, 458765, 7, 0 )
 
-[node name="Additions" type="Node" parent="."]
-
-[node name="HeartPowerup" parent="Additions" instance=ExtResource( 3 )]
+[node name="HeartPowerup" parent="." instance=ExtResource( 3 )]
 position = Vector2( 496, 422 )
 
-[node name="HeartPowerup2" parent="Additions" instance=ExtResource( 3 )]
+[node name="HeartPowerup2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 646, 428 )
 
-[node name="OniBrute" parent="Additions" instance=ExtResource( 2 )]
+[node name="OniBrute" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1195, 856 )
 
 [node name="EndWall" type="Area2D" parent="."]
