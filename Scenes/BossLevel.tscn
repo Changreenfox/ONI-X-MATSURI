@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefabs/OniBoss.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/CameraShake.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/CameraShake.cs" type="Script" id=5]
 [ext_resource path="res://Scripts/Scenes/BossLevel.cs" type="Script" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]

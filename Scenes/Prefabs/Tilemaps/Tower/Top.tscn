@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/HeartPowerup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/LastChunkTower.cs" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 992.125, 29.375 )
 
 [node name="Template" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="Platforms" type="TileMap" parent="."]
 position = Vector2( 0, 56 )
@@ -44,3 +49,11 @@ position = Vector2( 646, 428 )
 
 [node name="OniBrute" parent="Additions" instance=ExtResource( 2 )]
 position = Vector2( 1195, 856 )
+
+[node name="EndWall" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndWall"]
+position = Vector2( 964, -96 )
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="EndWall" to="." method="_on_EndWall_body_entered"]
