@@ -293,18 +293,6 @@ public abstract class Actor : KinematicBody2D
 	{
 		QueueFree();
 	}
-
-	//Flips the Actor's colliders
-	/*public void FaceAttacks()
-	{
-		Vector2 scale = new Vector2(1,1);
-		if(facingRight)
-			scale.x = 1;
-		else
-			scale.x = -1;
-		foreach (Node2D node in attacks)
-			node.Scale = scale;
-	}*/
 	
 	public async void FlashColor(float duration, Color color)
 	{
@@ -318,9 +306,4 @@ public abstract class Actor : KinematicBody2D
 		mat.SetShaderParam("flashing", false);
 	}
 	
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
 }

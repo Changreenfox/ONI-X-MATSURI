@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 500.0
+
+[node name="Alert" type="Area2D"]
+
+[node name="AlertCollider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )

@@ -20,11 +20,11 @@ public abstract class Motion : State
 		velocity.y += host.Gravity;
 
 		velocity.y = Mathf.Min(host.MaxFallSpeed, velocity.y);
-		// Might be better to not make this a state
 
+		//Acts different for player vs AI
 		CheckAttack();
 
-		//Update direction
+		//Update direction based on user input (AIMotion disables this inherently)
 		GetInputDirection();
 
 		//If no direction, we slow until motion.x == 0
@@ -33,8 +33,6 @@ public abstract class Motion : State
 		else
 			velocity.x += host.Direction.x * host.Speed;
 		
-		
-
 		velocity.x = Mathf.Clamp(velocity.x, -host.MaxSpeed, host.MaxSpeed);
 		host.Move(velocity);
 		return null;
