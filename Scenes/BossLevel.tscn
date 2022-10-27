@@ -21,6 +21,7 @@ script = ExtResource( 6 )
 
 [node name="Background" type="Sprite" parent="."]
 position = Vector2( 961, 539 )
+z_index = -2
 texture = ExtResource( 1 )
 
 [node name="Floor" type="StaticBody2D" parent="."]

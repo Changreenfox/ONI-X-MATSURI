@@ -126,8 +126,8 @@ collision_layer = 2
 collision_mask = 24
 script = ExtResource( 1 )
 speed = 25.0
-maxSpeed = 150.0
-walkToRunSpeed = 100.0
+maxSpeed = 300.0
+walkToRunSpeed = 300.0
 toFlash = Color( 1, 1, 1, 0.415686 )
 
 [node name="Sprite" type="Sprite" parent="."]

@@ -38,7 +38,7 @@ public abstract class Attack : Area2D
 	protected Timer time;
 
 	[Export]
-	protected float cooldown = 0.6f;
+	protected float cooldown = 0.25f;
 
 	//Stores which animation to continue from after the attack animation is finished
 	protected string previousAnim;

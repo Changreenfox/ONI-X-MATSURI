@@ -8,19 +8,38 @@ public class EnemyIdle : AIMotion
 	private int phase = 0;
 	private bool phaseChanged = false;
 
+	private float idleSpeed = 25f;
+	private float idleMaxSpeed = 150f;
+
+	private float actualSpeed;
+	private float actualMaxSpeed;
+
 	public EnemyIdle(Actor _host)
 	{
 		host = _host;
 		//4 phases: IdleForward, WalkLeft, IdleForward, WalkRight
 		phases = new Vector2[] { Vector2.Zero, new Vector2(1, 0), Vector2.Zero, new Vector2(-1, 0) };
+		actualSpeed = host.Speed;
+		actualMaxSpeed = host.MaxSpeed;
 	}
 	
 	public override void Enter()
 	{
 		base.Enter();
-		host.StateTimer.Start(0f);
+
+		//Would normally worry about power-ups, however Player never calls this function
+		host.Speed = idleSpeed;
+		host.MaxSpeed = idleMaxSpeed;
+
+		host.StateTimer.Start(3);
 		phase = 0;
 		host.Direction = phases[phase];
+	}
+
+	public override void Exit()
+	{
+		host.Speed = actualSpeed;
+		host.MaxSpeed = actualMaxSpeed;
 	}
 
 	public override string HandlePhysics(float delta)

@@ -23,7 +23,6 @@ public class OniBrute : Enemy
 	public override void HandleAlert(KinematicBody2D player)
 	{
 		alertCollider.SetDeferred("disabled", true);
-		state.Exit();
 		ChangeState("Alert");
 	}
 }

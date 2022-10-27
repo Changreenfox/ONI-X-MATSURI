@@ -214,6 +214,7 @@ public abstract class Actor : KinematicBody2D
 	/*=============================================================== Helpers =======================================================*/
 	public void ChangeState(string name)
 	{
+		state.Exit();
 		state = container.GetState(name);
 		state.Enter();
 	}
