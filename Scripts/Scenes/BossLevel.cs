@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public class BossLevel : SceneBase
 {
@@ -13,6 +14,7 @@ public class BossLevel : SceneBase
 		
 		gManager.Signals.Connect(nameof(SignalManager.OniBossAttacked), this, nameof(On_OniBoss_Attack));
 		gManager.Signals.Connect(nameof(SignalManager.OniBossLanded), this, nameof(On_OniBoss_Land));
+		gManager.Signals.Connect(nameof(SignalManager.OniBossPhase2), this, nameof(On_OniBoss_Phase2));
 		
 		random.Randomize();
 		SetProcess(false);
@@ -42,6 +44,14 @@ public class BossLevel : SceneBase
 		shakeTimer.Start(duration);
 		SetProcess(true);
 	}
+	
+	public void SpawnPowerUp(string type, Vector2 coordinates, bool gravity=false)
+	{
+		PackedScene powerUpScene = ResourceLoader.Load<PackedScene>($"res://Scenes/Prefabs/PowerUps/" + type + ".tscn");
+		Powerup powerUp = powerUpScene.Instance() as Powerup;
+		powerUp.Position = coordinates;
+		GetNode("PowerUps").AddChild(powerUp);
+	}
 
 
 	public void On_OniBoss_Attack()
@@ -52,6 +62,23 @@ public class BossLevel : SceneBase
 	public void On_OniBoss_Land()
 	{
 		ShakeCamera(1.0f, 300.0f);
+	}
+	
+	public void On_OniBoss_Phase2()
+	{
+		Sprite background = (Sprite)GetNode("Background");
+		List<string> powerUps = new List<string> { "AttackPowerup", "HeartPowerup", "JumpPowerup", "SpeedPowerup" };
+		for(int i = 0; i < 10; ++i)
+		{
+			Vector2 powerUpCoords = new Vector2(random.RandiRange(0, background.Texture.GetWidth() - 1), 
+												random.RandiRange(0, background.Texture.GetHeight() - 1)
+												);
+			powerUpCoords += background.Offset;
+			SpawnPowerUp(powerUps[random.RandiRange(0, powerUps.Count - 1)], 
+						powerUpCoords,
+						true
+						);
+		}
 	}
 	
 	public void On_ShakeTimer_Timeout(Timer shakeTimer, float shakeStrength)

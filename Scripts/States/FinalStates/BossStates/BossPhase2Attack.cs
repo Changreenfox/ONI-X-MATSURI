@@ -61,7 +61,7 @@ public class BossPhase2Attack : AIMotion
 	private async void FinishAnimation()
 	{
 		active = false;
-		host.Animator.GetAnimation("Attack").Loop = true;
+		host.Animator.GetAnimation("Attack").Loop = false;
 		await ToSignal(host.Animator, "animation_finished");
 		host.ChangeState("Phase2Idle");
 		active = true;

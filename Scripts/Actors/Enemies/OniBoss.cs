@@ -31,7 +31,6 @@ public class OniBoss : Enemy
 
 		state = container.GetState("Start");
 		state.Enter();
-		
 	}
 	
 	private void _on_BossWall_body_entered(object body)
@@ -47,6 +46,7 @@ public class OniBoss : Enemy
 	//Do nothing
 	public override void TakeKnockback(Vector2 collisionPosition, Vector2 impulse)
 	{
+		//gManager.Signals.EmitSignal(nameof(SignalManager.OniBossPhase2));
 		return;
 	}
 
@@ -66,9 +66,7 @@ public class OniBoss : Enemy
 		}
 		if(death_counter==2){ //else play die animation and show win screen after a bit
 			Timer timer = (Timer)GetNode("BossDeathTimer");
-			SetProcess(false);
 			timer.Start(0.5f);
-			SetProcess(true);
 		}
 	}
 	private void _on_BossDeathTimer_timeout()
