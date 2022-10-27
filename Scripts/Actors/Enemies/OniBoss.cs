@@ -31,7 +31,6 @@ public class OniBoss : Enemy
 
 		state = container.GetState("Start");
 		state.Enter();
-		
 	}
 	
 	private void _on_BossWall_body_entered(object body)
@@ -47,6 +46,7 @@ public class OniBoss : Enemy
 	//Do nothing
 	public override void TakeKnockback(Vector2 collisionPosition, Vector2 impulse)
 	{
+		//gManager.Signals.EmitSignal(nameof(SignalManager.OniBossPhase2));
 		return;
 	}
 

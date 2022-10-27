@@ -36,6 +36,7 @@ window/size/fullscreen=true
 [global]
 
 bus=false
+scene=false
 
 [gui]
 

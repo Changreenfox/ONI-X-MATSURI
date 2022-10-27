@@ -14,6 +14,9 @@ public class SignalManager : Node
 	public delegate void OniBossLanded();
 	
 	[Signal]
+	public delegate void OniBossPhase2();
+	
+	[Signal]
 	public delegate void PlaySoundSignal(string domainName, string soundName);
 	
 	[Signal]

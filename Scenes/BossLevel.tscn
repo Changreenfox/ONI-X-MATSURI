@@ -88,5 +88,7 @@ script = ExtResource( 5 )
 
 [node name="Tween" type="Tween" parent="Camera2D"]
 
+[node name="PowerUps" type="Node" parent="."]
+
 [connection signal="body_entered" from="BossLeftWall" to="OniBoss" method="_on_BossWall_body_entered"]
 [connection signal="body_entered" from="BossRightWall" to="OniBoss" method="_on_BossWall_body_entered"]
