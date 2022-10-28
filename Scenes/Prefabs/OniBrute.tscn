@@ -186,8 +186,8 @@ frame = 5
 
 [node name="AlertSprite" type="Sprite" parent="."]
 visible = false
-position = Vector2( 0, -110 )
-scale = Vector2( 3, 3 )
+position = Vector2( 0, -142 )
+scale = Vector2( 7, 7 )
 texture = ExtResource( 8 )
 hframes = 4
 
