@@ -2,15 +2,21 @@ using Godot;
 using System;
 
 //Meant to play a cheeky animation
-public class Alert : State
+public class Alert : JustGravity
 {
-    public Alert(Actor _host)
+    private string next;
+    private Sprite alert;
+
+    public Alert(Actor _host, string _next)
     {
         host = _host;
+        next = _next;
+        alert = (Sprite)host.GetNode("AlertSprite");
     }
 
     public override void Enter()
     {
+        alert.Visible = true;
         PlayAnimation();
         Process();
     }
@@ -18,7 +24,8 @@ public class Alert : State
     public async void Process()
     {
         await ToSignal(host.Animator, "animation_finished");
-        host.ChangeState("Approach");
+        alert.Visible = false;
+        host.ChangeState(next);
     }
 
     public override void PlayAnimation()

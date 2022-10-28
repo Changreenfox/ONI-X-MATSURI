@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/OniBrute.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemy/oni_spritesheet.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/sounds/enemy/enemy_oni_damage.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sounds/enemy/enemy_oni_death.wav" type="AudioStream" id=6]
 [ext_resource path="res://Scenes/Prefabs/AlertCollider.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sprites/enemy/exclamation_point.png" type="Texture" id=8]
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 42.0
@@ -14,17 +15,18 @@ height = 84.0
 
 [sub_resource type="Animation" id=11]
 resource_name = "Alert"
+length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("AlertSprite:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 4, 5, 8, 9 ]
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 0 ), Vector2( 2, 0 ), Vector2( 3, 0 ) ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -102,6 +104,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 0, 1 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("AlertSprite:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "WalkLeft"
@@ -170,7 +184,15 @@ hframes = 5
 vframes = 5
 frame = 5
 
+[node name="AlertSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -110 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 8 )
+hframes = 4
+
 [node name="KinematicCollider" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -189,7 +211,6 @@ monitorable = false
 script = ExtResource( 3 )
 
 [node name="Range" type="CollisionShape2D" parent="Contact"]
-visible = false
 shape = SubResource( 3 )
 
 [node name="AttackCooldown" type="Timer" parent="."]
@@ -222,8 +243,6 @@ process_material = SubResource( 10 )
 
 [node name="Alert" parent="." instance=ExtResource( 7 )]
 visible = false
-collision_layer = 0
-monitorable = false
 
 [connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]
 [connection signal="body_entered" from="Alert" to="." method="HandleAlert"]

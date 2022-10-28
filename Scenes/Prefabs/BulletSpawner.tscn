@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Attacks/BulletSpawn.cs" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=6]
+
+[node name="BulletSpawner" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource( 1 )
+heading = Vector2( 1, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 6 )

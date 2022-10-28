@@ -256,7 +256,7 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	// Handle the Attack here
-	public void Attack(int selection, string prevState)
+	public void Attack(int selection, string prevState = "")
 	{
 		attacks[selection].StartAttack(prevState);
 	}

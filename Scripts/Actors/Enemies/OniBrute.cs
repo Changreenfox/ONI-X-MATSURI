@@ -12,7 +12,7 @@ public class OniBrute : Enemy
 		alertCollider = (CollisionShape2D)alert.GetNode("AlertCollider");
 		
 		container.SetState("Idle", new EnemyIdle(this));
-		container.SetState("Alert", new Alert(this));
+		container.SetState("Alert", new Alert(this, "Approach"));
 		container.SetState("Death", new Death(this));
 		container.SetState("Approach", new Approach(this));
 

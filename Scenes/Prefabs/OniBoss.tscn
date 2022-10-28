@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/Actors/Enemies/OniBoss.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=2]
 [ext_resource path="res://assets/sprites/enemy/boss_spritesheet.png" type="Texture" id=3]
-[ext_resource path="res://Scripts/Attacks/BulletSpawn.cs" type="Script" id=4]
+[ext_resource path="res://Scenes/Prefabs/BulletSpawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=5]
 [ext_resource path="res://assets/sounds/enemy/enemy_oni_boss_damage.wav" type="AudioStream" id=6]
 [ext_resource path="res://assets/sounds/enemy/enemy_oni_boss_death.wav" type="AudioStream" id=7]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/sounds/enemy/enemy_oni_boss_groan.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/sounds/enemy/enemy_oni_boss_laugh.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/sounds/enemy/enemy_oni_boss_drop.wav" type="AudioStream" id=13]
+[ext_resource path="res://Scenes/Prefabs/BossBullet.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 120.0
@@ -233,8 +234,6 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 1 ) ]
 }
 
-[sub_resource type="CircleShape2D" id=6]
-
 [sub_resource type="CapsuleShape2D" id=5]
 radius = 120.0
 height = 110.0
@@ -274,21 +273,14 @@ wait_time = 0.4
 [node name="StateTimer" type="Timer" parent="."]
 wait_time = 0.6
 
-[node name="BulletSpawner" type="Area2D" parent="."]
+[node name="BulletSpawner" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 100 )
-script = ExtResource( 4 )
-heading = Vector2( 1, 0 )
+bulletPrefab = ExtResource( 14 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletSpawner"]
-shape = SubResource( 6 )
-
-[node name="BulletSpawner2" type="Area2D" parent="."]
+[node name="BulletSpawner2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 100 )
-script = ExtResource( 4 )
+bulletPrefab = ExtResource( 14 )
 heading = Vector2( -1, 0 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletSpawner2"]
-shape = SubResource( 6 )
 
 [node name="Contact" type="Area2D" parent="."]
 visible = false

@@ -5,7 +5,6 @@ using System;
 public class Approach : AIMotion
 {
     private Player player;
-    private bool facingRight = false;
 
     public Approach(Actor _host)
     {

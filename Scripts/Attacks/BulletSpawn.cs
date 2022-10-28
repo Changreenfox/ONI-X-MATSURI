@@ -11,6 +11,14 @@ public class BulletSpawn : Attack
 	//Which direction bullets will move (set in editor)
 	[Export]
 	private Vector2 heading = new Vector2(0,0);
+	public Vector2 Heading
+	{
+		get { return heading; }
+		set { heading = value; }
+	}
+
+	[Export]
+	private float gravity = 0;
 
 	//relevant member variables from Attack
 	/*
@@ -23,18 +31,15 @@ public class BulletSpawn : Attack
 	{
 		host = (Actor)GetParent();
 
-		bulletPrefab = GD.Load<PackedScene>("res://Scenes/Prefabs/Bullet.tscn");
-
 		//cooldown timer
 		time = (Timer)host.GetNode("AttackCooldown");
-		return;
-	}
 
-	//Do nothing instead
-	public override void _Process(float delta)
-	{
-		//Do nothing
+		if(bulletPrefab == null)
+			bulletPrefab = GD.Load<PackedScene>("res://Scenes/Prefabs/ThrowBullet.tscn");
 		return;
+
+		//Don't need to process anything
+		SetProcess(false);
 	}
 
 
@@ -47,6 +52,7 @@ public class BulletSpawn : Attack
 		//Spawn an instance of the bullet with a specific heading
 		Bullet bullet = bulletPrefab.Instance() as Bullet;
 		bullet.Heading = heading;
+		bullet.Gravity = gravity;
 		AddChild(bullet);
 
 		active = true;
