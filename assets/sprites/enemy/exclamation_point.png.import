@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/exclimation_point.png-ffd19db0ab1a0ea23dc7a6c3112a307d.stex"
+path="res://.import/exclamation_point.png-f0bd353dba908568f09f6ab8557bd831.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/player/exclimation_point.png"
-dest_files=[ "res://.import/exclimation_point.png-ffd19db0ab1a0ea23dc7a6c3112a307d.stex" ]
+source_file="res://assets/sprites/enemy/exclamation_point.png"
+dest_files=[ "res://.import/exclamation_point.png-f0bd353dba908568f09f6ab8557bd831.stex" ]
 
 [params]
 
