@@ -12,8 +12,8 @@
 [sub_resource type="Environment" id=1]
 background_mode = 4
 glow_enabled = true
-glow_intensity = 5.63
-glow_strength = 1.28
+glow_intensity = 2.19
+glow_strength = 1.15
 glow_bicubic_upscale = true
 
 [node name="StartScreen" type="Node2D"]
