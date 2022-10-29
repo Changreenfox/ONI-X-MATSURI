@@ -7,26 +7,26 @@ public class ContactDamage : Attack
 	//The range of the attack
 	private CollisionShape2D range;
 
+	public override void _Ready()
+	{
+		base._Ready();
+		SetProcess(false);
+	}
+
 	protected override void GetRange()
 	{    
 		range = (CollisionShape2D)GetNode("Range");
-		attacking = true;
 	}
 
+	//Detect when an enemy is within range
 	public override void _on_Attack_body_entered(KinematicBody2D collision)
 	{
 		base._on_Attack_body_entered(collision);
-		active = true;
+		//range.SetDeferred("disabled", true);
 	}
-
-	protected override async Task WaitCooldown()
+	
+	public void EnableCollider()
 	{
-		range.SetDeferred("disabled", true);
-		//Wait until timer is timed-out
-		time.Start(cooldown);
-		await ToSignal(time, "timeout");
-		time.Stop();
 		range.SetDeferred("disabled", false);
-		waiting = false;
 	}
 }
