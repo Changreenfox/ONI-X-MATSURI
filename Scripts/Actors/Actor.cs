@@ -149,7 +149,7 @@ public abstract class Actor : KinematicBody2D
 
 	private bool immune = false;
 	[Export]
-	private float immunityTime = 0.25f;
+	private float immunityTime = 0.5f;
 
 	private Node2D sounds;
 	protected Node2D Sounds
@@ -229,7 +229,6 @@ public abstract class Actor : KinematicBody2D
 	{
 		if(!immune)
 		{
-			immune = true;
 			ImmunityTimer();
 			PlaySound("Damage");
 			hp -= damage;
@@ -286,8 +285,18 @@ public abstract class Actor : KinematicBody2D
 
 	private async void ImmunityTimer()
 	{
+		immune = true;
+		//Need a way to dynamically know which layer to flip
+		//Currently only works on player
+		FlipCollision();
 		await ToSignal(GetTree().CreateTimer(immunityTime), "timeout");
+		FlipCollision();
 		immune = false;
+	}
+
+	public virtual void FlipCollision()
+	{
+		SetCollisionLayerBit(1, !GetCollisionLayerBit(1));
 	}
 
 	public virtual void Die()

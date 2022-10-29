@@ -175,6 +175,7 @@ speed = 25.0
 maxSpeed = 300.0
 walkToRunSpeed = 300.0
 toFlash = Color( 1, 1, 1, 0.415686 )
+immunityTime = 0.5
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 4 )

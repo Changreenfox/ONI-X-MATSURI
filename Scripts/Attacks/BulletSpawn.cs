@@ -19,6 +19,11 @@ public class BulletSpawn : Attack
 
 	[Export]
 	private float gravity = 0;
+	public float Gravity
+	{
+		get { return gravity; }
+		set { gravity = value; }
+	}
 
 	//relevant member variables from Attack
 	/*
@@ -47,14 +52,13 @@ public class BulletSpawn : Attack
 	//prevAnim is useless in this context
 	public override void StartAttack(string prevAnim = "")
 	{
-		GD.Print("Shooting Projectile");
-		
 		//Spawn an instance of the bullet with a specific heading
 		Bullet bullet = bulletPrefab.Instance() as Bullet;
 		bullet.Heading = heading;
 		bullet.Gravity = gravity;
 		AddChild(bullet);
-
-		active = true;
+		Vector2 pos = bullet.GlobalPosition;
+		bullet.SetAsToplevel(true);
+		bullet.GlobalPosition = pos;
 	}
 }

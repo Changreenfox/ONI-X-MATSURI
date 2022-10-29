@@ -49,4 +49,9 @@ public class Player : Actor
 			Position = RespawnNode.GlobalPosition;
 		}
 	}
+
+	public override void FlipCollision()
+	{
+		SetCollisionLayerBit(0, !GetCollisionLayerBit(0));
+	}
 }

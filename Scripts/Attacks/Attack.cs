@@ -102,6 +102,5 @@ public abstract class Attack : Area2D
 		time.Stop();
 
 		waiting = false;
-		GD.Print("Cooldown");
 	}
 }
