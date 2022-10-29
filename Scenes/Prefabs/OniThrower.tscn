@@ -1,0 +1,202 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://assets/sprites/enemy/oni_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=2]
+[ext_resource path="res://Scenes/Prefabs/AlertCollider.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scripts/Actors/Enemies/OniThrower.cs" type="Script" id=4]
+[ext_resource path="res://Scenes/Prefabs/BulletSpawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sounds/enemy/enemy_oni_damage.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sounds/enemy/enemy_oni_death.wav" type="AudioStream" id=7]
+[ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=8]
+[ext_resource path="res://Scenes/Prefabs/ThrowBullet.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/sprites/enemy/exclamation_point.png" type="Texture" id=10]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 42.0
+height = 84.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "Alert"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AlertSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "IdleForward"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("AlertSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "WalkLeft"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "WalkRight"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 42.0
+height = 84.0
+
+[node name="OniThrower" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 24
+script = ExtResource( 4 )
+speed = 25.0
+maxSpeed = 150.0
+walkToRunSpeed = 150.0
+toFlash = Color( 1, 1, 1, 0.415686 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0.298039, 0.34902, 0.0862745, 1 )
+material = ExtResource( 8 )
+scale = Vector2( 7, 7 )
+texture = ExtResource( 1 )
+hframes = 5
+vframes = 5
+frame = 5
+
+[node name="AlertSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -110 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 10 )
+hframes = 4
+
+[node name="KinematicCollider" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "IdleForward"
+anims/Alert = SubResource( 3 )
+anims/IdleForward = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+anims/WalkLeft = SubResource( 6 )
+anims/WalkRight = SubResource( 7 )
+
+[node name="BulletSpawner" parent="." instance=ExtResource( 5 )]
+gravity = 500.0
+bulletPrefab = ExtResource( 9 )
+heading = Vector2( 0, 0 )
+gravity = 500.0
+
+[node name="Contact" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+monitorable = false
+script = ExtResource( 2 )
+
+[node name="Range" type="CollisionShape2D" parent="Contact"]
+shape = SubResource( 2 )
+
+[node name="AttackCooldown" type="Timer" parent="."]
+
+[node name="StateTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Alert" parent="." instance=ExtResource( 3 )]
+visible = false
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Damage" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 6 )
+bus = "Sounds"
+area_mask = 0
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 7 )
+bus = "Sounds"
+area_mask = 0
+
+[connection signal="timeout" from="AttackCooldown" to="." method="HandleTimer"]
+[connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]
+[connection signal="body_entered" from="Alert" to="." method="HandleAlert"]
