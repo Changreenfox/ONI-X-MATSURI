@@ -58,7 +58,8 @@ public class OniBoss : Enemy
 	public override void Die()
 	{
 		death_counter++; //increase the number of times he has died
-		if(death_counter == 1){//if the boss has only died 1 time, enter stage 2
+		if(death_counter == 1){//if the boss has only died 1 time, enter Phase 2
+			gManager.Signals.EmitSignal(nameof(SignalManager.OniBossPhase2));
 			state = container.GetState("BossAngry");
 			state.Enter();
 			hp = 3;
