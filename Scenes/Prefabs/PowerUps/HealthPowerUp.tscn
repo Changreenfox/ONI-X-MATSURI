@@ -66,7 +66,7 @@ radius = 49.0408
 radius = 34.6482
 height = 34.3452
 
-[node name="HeartPowerup" type="KinematicBody2D"]
+[node name="HealthPowerUp" type="KinematicBody2D"]
 modulate = Color( 1.1, 1, 1.1, 1 )
 collision_layer = 0
 collision_mask = 72

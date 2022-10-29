@@ -66,7 +66,7 @@ radius = 58.0
 radius = 32.5269
 height = 66.4681
 
-[node name="AttackPowerup" type="KinematicBody2D"]
+[node name="AttackPowerUp" type="KinematicBody2D"]
 collision_layer = 0
 collision_mask = 72
 script = ExtResource( 1 )

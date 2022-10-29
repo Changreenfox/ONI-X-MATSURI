@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class JumpPowerUp : Powerup
+public class JumpPowerUp : PowerUp
 {
 	[Export]
 	private float jumpIncrease = 500;

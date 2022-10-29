@@ -1,9 +1,10 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
-[ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerup.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerUp.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/sprites/taiko.png" type="Texture" id=4]
+
 
 [node name="Bottom" type="Node2D"]
 

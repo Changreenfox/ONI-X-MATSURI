@@ -66,7 +66,7 @@ radius = 51.1566
 radius = 22.4339
 height = 73.1882
 
-[node name="JumpPowerup" type="KinematicBody2D"]
+[node name="JumpPowerUp" type="KinematicBody2D"]
 modulate = Color( 1, 1.1, 1, 1 )
 collision_layer = 0
 collision_mask = 72

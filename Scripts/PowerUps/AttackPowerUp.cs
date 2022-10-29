@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class AttackPowerUp : Powerup
+public class AttackPowerUp : PowerUp
 {
 	[Export]
 	private int damageIncrease = 1;

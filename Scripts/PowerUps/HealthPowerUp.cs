@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class HealthPowerUp : Powerup
+public class HealthPowerUp : PowerUp
 {
 	protected async override void ActivatePowerUp()
 	{

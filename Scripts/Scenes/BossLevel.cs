@@ -49,7 +49,7 @@ public class BossLevel : SceneBase
 	public void SpawnPowerUp(string type, Vector2 coordinates, bool gravity=false)
 	{
 		PackedScene powerUpScene = ResourceLoader.Load<PackedScene>($"res://Scenes/Prefabs/PowerUps/" + type + ".tscn");
-		Powerup powerUp = powerUpScene.Instance() as Powerup;
+		PowerUp powerUp = powerUpScene.Instance() as PowerUp;
 		powerUp.Position = coordinates;
 		powerUp.Gravity = 40f;
 		GetNode("PowerUps").CallDeferred("add_child", powerUp);
@@ -69,7 +69,7 @@ public class BossLevel : SceneBase
 	public void On_OniBoss_Phase2()
 	{
 		Sprite background = (Sprite)GetNode("Background");
-		List<string> powerUps = new List<string> { "AttackPowerup", "HeartPowerup", "JumpPowerup", "SpeedPowerup" };
+		List<string> powerUps = new List<string> { "AttackPowerUp", "HealthPowerUp", "JumpPowerUp", "SpeedPowerUp" };
 		for(int i = 0; i < NUM_PHASE2_POWERUPS; ++i)
 		{
 			Vector2 powerUpCoords = new Vector2(random.RandiRange(0, background.Texture.GetWidth() - 1), 

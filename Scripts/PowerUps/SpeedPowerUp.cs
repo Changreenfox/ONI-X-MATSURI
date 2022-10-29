@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class SpeedPowerUp : Powerup
+public class SpeedPowerUp : PowerUp
 {
 	[Export]
 	private float speedIncrease = 400;

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public abstract class Powerup : KinematicBody2D
+public abstract class PowerUp : KinematicBody2D
 {
 	protected GameManager gManager;
 	protected Area2D area;
