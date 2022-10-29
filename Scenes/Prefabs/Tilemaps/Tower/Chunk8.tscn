@@ -5,7 +5,6 @@
 [ext_resource path="res://Scenes/Prefabs/PowerUps/AttackPowerUp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Taiko.tscn" type="PackedScene" id=4]
 
-
 [node name="Template" type="Node2D"]
 
 [node name="Platforms" type="TileMap" parent="."]
@@ -36,7 +35,7 @@ collision_mask = 7
 format = 1
 tile_data = PoolIntArray( 12, 5, 0, 65537, 6, 0, 262150, 9, 0 )
 
-[node name="AttackPowerup" parent="." instance=ExtResource( 3 )]
+[node name="AttackPowerUp" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1517, 728 )
 
 [node name="Taiko" parent="." instance=ExtResource( 4 )]

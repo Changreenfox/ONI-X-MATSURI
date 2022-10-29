@@ -5,7 +5,6 @@
 [ext_resource path="res://Scenes/Prefabs/PowerUps/SpeedPowerUp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/AttackPowerUp.tscn" type="PackedScene" id=4]
 
-
 [node name="Chunk5" type="Node2D"]
 position = Vector2( 0, 56 )
 
@@ -25,11 +24,11 @@ position = Vector2( 3051, 793 )
 [node name="OniBrute2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2187, 249 )
 
-[node name="SpeedPowerup" parent="." instance=ExtResource( 3 )]
+[node name="SpeedPowerUp" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1462, 695 )
 
 [node name="OniBrute3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 338, 792 )
 
-[node name="AttackPowerup" parent="." instance=ExtResource( 4 )]
+[node name="AttackPowerUp" parent="." instance=ExtResource( 4 )]
 position = Vector2( 623, 425 )

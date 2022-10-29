@@ -3,7 +3,6 @@
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/HealthPowerUp.tscn" type="PackedScene" id=2]
 
-
 [node name="Template" type="Node2D"]
 
 [node name="Platforms" type="TileMap" parent="."]
@@ -34,8 +33,8 @@ collision_mask = 7
 format = 1
 tile_data = PoolIntArray( 2, 9, 0, 131080, 10, 0, 131084, 7, 0, 262148, 6, 0, 458764, 5, 0 )
 
-[node name="HeartPowerup" parent="." instance=ExtResource( 2 )]
+[node name="HealthPowerUp" parent="." instance=ExtResource( 2 )]
 position = Vector2( 320, 880 )
 
-[node name="HeartPowerup2" parent="." instance=ExtResource( 2 )]
+[node name="HealthPowerUp2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1734, 230 )

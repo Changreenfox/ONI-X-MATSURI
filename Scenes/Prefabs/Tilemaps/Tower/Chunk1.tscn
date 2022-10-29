@@ -7,7 +7,6 @@
 [ext_resource path="res://Scenes/Prefabs/PowerUps/HealthPowerUp.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerUp.tscn" type="PackedScene" id=6]
 
-
 [node name="Template" type="Node2D"]
 
 [node name="Scaffolding" type="TileMap" parent="."]
@@ -37,7 +36,7 @@ collision_mask = 7
 format = 1
 tile_data = PoolIntArray( 1, 536870921, 0, 2, 536870918, 0, 5, 536870922, 0, 6, 536870917, 0, 65548, 536870919, 0, 458754, 536870920, 0, 458757, 536870920, 0 )
 
-[node name="SpeedPowerup" parent="." instance=ExtResource( 3 )]
+[node name="SpeedPowerUp" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1528, 876 )
 
 [node name="Taiko" parent="." instance=ExtResource( 4 )]
@@ -46,8 +45,8 @@ position = Vector2( 786, 888 )
 [node name="OniBrute" parent="." instance=ExtResource( 2 )]
 position = Vector2( 199, 850 )
 
-[node name="HeartPowerup" parent="." instance=ExtResource( 5 )]
+[node name="HealthPowerUp" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1336, 115 )
 
-[node name="JumpPowerup" parent="." instance=ExtResource( 6 )]
+[node name="JumpPowerUp" parent="." instance=ExtResource( 6 )]
 position = Vector2( 784, 757 )

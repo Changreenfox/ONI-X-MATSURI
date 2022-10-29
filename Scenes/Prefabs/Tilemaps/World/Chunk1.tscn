@@ -12,16 +12,16 @@ position = Vector2( 0, 56 )
 [node name="OniBrute2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1869, 290 )
 
-[node name="HeartPowerup" parent="." instance=ExtResource( 5 )]
+[node name="HealthPowerUp" parent="." instance=ExtResource( 5 )]
 position = Vector2( 2013, 667 )
 
-[node name="SpeedPowerup" parent="." instance=ExtResource( 3 )]
+[node name="SpeedPowerUp" parent="." instance=ExtResource( 3 )]
 position = Vector2( 559, 685 )
 
 [node name="OniBrute" parent="." instance=ExtResource( 2 )]
 position = Vector2( 3120, 803 )
 
-[node name="JumpPowerup" parent="." instance=ExtResource( 4 )]
+[node name="JumpPowerUp" parent="." instance=ExtResource( 4 )]
 position = Vector2( 2581, 681 )
 
 [node name="TileMap" type="TileMap" parent="."]

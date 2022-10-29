@@ -5,7 +5,6 @@
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Taiko.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/SpeedPowerUp.tscn" type="PackedScene" id=4]
 
-
 [node name="Template" type="Node2D"]
 
 [node name="Platforms" type="TileMap" parent="."]
@@ -41,14 +40,14 @@ position = Vector2( 642, 888 )
 [node name="Taiko2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1403, 119 )
 
-[node name="JumpPowerup" parent="." instance=ExtResource( 2 )]
+[node name="JumpPowerUp" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1408, -6 )
 
-[node name="JumpPowerup2" parent="." instance=ExtResource( 2 )]
+[node name="JumpPowerUp2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 634, 763 )
 
 [node name="Taiko3" parent="." instance=ExtResource( 3 )]
 position = Vector2( 895, 378 )
 
-[node name="SpeedPowerup" parent="." instance=ExtResource( 4 )]
+[node name="SpeedPowerUp" parent="." instance=ExtResource( 4 )]
 position = Vector2( 1528, 891 )

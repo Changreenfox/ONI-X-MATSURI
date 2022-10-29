@@ -5,7 +5,6 @@
 [ext_resource path="res://Scenes/Prefabs/PowerUps/AttackPowerUp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerUp.tscn" type="PackedScene" id=4]
 
-
 [node name="Template" type="Node2D"]
 
 [node name="Platforms" type="TileMap" parent="."]
@@ -36,10 +35,10 @@ collision_mask = 7
 format = 1
 tile_data = PoolIntArray( 3, 10, 0, 12, 6, 0, 131081, 7, 0, 262145, 8, 0, 458758, 5, 0 )
 
-[node name="JumpPowerup" parent="." instance=ExtResource( 4 )]
+[node name="JumpPowerUp" parent="." instance=ExtResource( 4 )]
 position = Vector2( 888, 881 )
 
-[node name="AttackPowerup" parent="." instance=ExtResource( 3 )]
+[node name="AttackPowerUp" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1140, 240 )
 
 [node name="OniBrute" parent="." instance=ExtResource( 2 )]

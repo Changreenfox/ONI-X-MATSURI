@@ -5,7 +5,6 @@
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/HealthPowerUp.tscn" type="PackedScene" id=4]
 
-
 [node name="Chunk4" type="Node2D"]
 position = Vector2( 0, 56 )
 
@@ -25,8 +24,8 @@ position = Vector2( 2687, 794 )
 [node name="OniBrute2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 3137, 791 )
 
-[node name="SpeedPowerup" parent="." instance=ExtResource( 2 )]
+[node name="SpeedPowerUp" parent="." instance=ExtResource( 2 )]
 position = Vector2( 723, 293 )
 
-[node name="HeartPowerup" parent="." instance=ExtResource( 4 )]
+[node name="HealthPowerUp" parent="." instance=ExtResource( 4 )]
 position = Vector2( 3063, 440 )

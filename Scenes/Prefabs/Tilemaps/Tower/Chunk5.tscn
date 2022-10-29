@@ -5,7 +5,6 @@
 [ext_resource path="res://Scenes/Prefabs/PowerUps/AttackPowerUp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerUp.tscn" type="PackedScene" id=4]
 
-
 [node name="Template" type="Node2D"]
 
 [node name="Platforms" type="TileMap" parent="."]
@@ -42,8 +41,8 @@ position = Vector2( 218, 440 )
 [node name="OniBrute2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1135, 449 )
 
-[node name="JumpPowerup" parent="." instance=ExtResource( 4 )]
+[node name="JumpPowerUp" parent="." instance=ExtResource( 4 )]
 position = Vector2( 248, 868 )
 
-[node name="AttackPowerup" parent="." instance=ExtResource( 3 )]
+[node name="AttackPowerUp" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1653, 877 )
