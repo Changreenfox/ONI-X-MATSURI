@@ -16,6 +16,6 @@ public class AttackPowerUp : Powerup
 		player.DamageBoost -= damageIncrease;
 		Interface?.Toggle_Powerup_Icon("Attack");
 
-		parent.QueueFree();
+		QueueFree();
 	}
 }

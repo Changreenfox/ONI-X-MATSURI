@@ -1,25 +1,49 @@
 using Godot;
 using System;
 
-public abstract class Powerup : Area2D
+public abstract class Powerup : KinematicBody2D
 {
 	protected GameManager gManager;
-	protected Node parent;
+	protected Area2D area;
 	protected Player player;
 	protected UIManager Interface;
 
 	[Export]
 	protected float boostTime = 3.0f;
 	
+	[Export]
+	protected float gravity = 0;//40f;
+	public float Gravity
+	{
+		get{ return gravity; }
+		set{ gravity = value; }
+	}
+	
+	[Export]
+	protected float maxFallSpeed = 1000f;
+	
+	protected Vector2 velocity;
+	protected Vector2 up;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		gManager = GetNode<GameManager>("/root/GameManager");
 		//The whole GameObject
-		parent = GetParent();
+		area = GetNode<Area2D>("Area2D");
 		player = gManager.PlayerRef;
 		Interface = gManager.InterfaceRef;
+		velocity = Vector2.Zero;
+		up = new Vector2(0, -1);
 	}	
+	
+	public override void _PhysicsProcess(float delta)
+	{
+		velocity.y += gravity;
+		velocity.y = Mathf.Min(maxFallSpeed, velocity.y);
+
+		velocity = MoveAndSlide(velocity, up);
+	}
 	
 	protected virtual void _on_Area2D_body_entered(object body)
 	{
@@ -29,8 +53,8 @@ public abstract class Powerup : Area2D
 												);
 		ActivatePowerUp();
 
-		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred("disabled", true);
-		parent.GetNode<Sprite>("Sprite").Visible = false;
+		area.SetDeferred("monitoring", false);
+		GetNode<Sprite>("Sprite").Visible = false;
 	}
 
 	protected async virtual void ActivatePowerUp() {}

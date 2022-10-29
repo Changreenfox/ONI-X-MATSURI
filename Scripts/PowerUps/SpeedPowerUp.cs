@@ -16,6 +16,6 @@ public class SpeedPowerUp : Powerup
 		player.MaxSpeed -= speedIncrease;
 		Interface?.Toggle_Powerup_Icon("Speed");
 
-		parent.QueueFree();
+		QueueFree();
 	}
 }

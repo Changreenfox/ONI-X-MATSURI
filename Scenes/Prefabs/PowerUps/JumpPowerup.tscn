@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scripts/PowerUps/JumpPowerUp.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/dango.png" type="Texture" id=2]
@@ -59,11 +59,18 @@ tracks/1/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 6.41467
+[sub_resource type="CircleShape2D" id=4]
+radius = 51.1566
 
-[node name="JumpPowerup" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 22.4339
+height = 73.1882
+
+[node name="JumpPowerup" type="KinematicBody2D"]
 modulate = Color( 1, 1.1, 1, 1 )
+collision_layer = 0
+collision_mask = 72
+script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 1.25, 1, 1 )
@@ -76,13 +83,18 @@ autoplay = "Animation"
 anims/Animation = SubResource( 2 )
 anims/RESET = SubResource( 3 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 4 )
+
 [node name="Area2D" type="Area2D" parent="."]
-scale = Vector2( 7, 7 )
+position = Vector2( -39, -29 )
 collision_layer = 4
-script = ExtResource( 1 )
+monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 1.05879e-22, 1.14286 )
-shape = SubResource( 1 )
+position = Vector2( 39, 30 )
+rotation = 0.663225
+shape = SubResource( 5 )
 
-[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_Area2D_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

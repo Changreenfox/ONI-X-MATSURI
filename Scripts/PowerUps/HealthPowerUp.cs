@@ -8,6 +8,6 @@ public class HealthPowerUp : Powerup
 		if (player.HP < player.MaxHealth)
 				player.HP += 1;
 
-		parent.QueueFree();
+		QueueFree();
 	}
 }

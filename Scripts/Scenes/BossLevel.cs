@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class BossLevel : SceneBase
 {
 	private float curCamShakeStrength = 0.0f;
+	private const int NUM_PHASE2_POWERUPS = 10;
 	RandomNumberGenerator random = new RandomNumberGenerator();
 
 	// Called when the node enters the scene tree for the first time.
@@ -50,7 +51,8 @@ public class BossLevel : SceneBase
 		PackedScene powerUpScene = ResourceLoader.Load<PackedScene>($"res://Scenes/Prefabs/PowerUps/" + type + ".tscn");
 		Powerup powerUp = powerUpScene.Instance() as Powerup;
 		powerUp.Position = coordinates;
-		GetNode("PowerUps").AddChild(powerUp);
+		powerUp.Gravity = 40f;
+		GetNode("PowerUps").CallDeferred("add_child", powerUp);
 	}
 
 
@@ -68,10 +70,10 @@ public class BossLevel : SceneBase
 	{
 		Sprite background = (Sprite)GetNode("Background");
 		List<string> powerUps = new List<string> { "AttackPowerup", "HeartPowerup", "JumpPowerup", "SpeedPowerup" };
-		for(int i = 0; i < 10; ++i)
+		for(int i = 0; i < NUM_PHASE2_POWERUPS; ++i)
 		{
 			Vector2 powerUpCoords = new Vector2(random.RandiRange(0, background.Texture.GetWidth() - 1), 
-												random.RandiRange(0, background.Texture.GetHeight() - 1)
+												0	//Top of the screen starts at 0
 												);
 			powerUpCoords += background.Offset;
 			SpawnPowerUp(powerUps[random.RandiRange(0, powerUps.Count - 1)], 

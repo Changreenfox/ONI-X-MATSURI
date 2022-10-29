@@ -13,7 +13,7 @@ position = Vector2( 0, 56 )
 position = Vector2( 1869, 290 )
 
 [node name="HeartPowerup" parent="." instance=ExtResource( 5 )]
-position = Vector2( 2016, 667 )
+position = Vector2( 2013, 667 )
 
 [node name="SpeedPowerup" parent="." instance=ExtResource( 3 )]
 position = Vector2( 559, 685 )
