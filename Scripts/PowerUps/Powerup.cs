@@ -12,11 +12,11 @@ public abstract class PowerUp : KinematicBody2D
 	protected float boostTime = 3.0f;
 	
 	[Export]
-	protected float gravity = 0;//40f;
+	protected float gravity = 0f;//40f;
 	public float Gravity
 	{
 		get{ return gravity; }
-		set{ gravity = value; }
+		set{ gravity = value; CheckGravity(value); }
 	}
 	
 	[Export]
@@ -35,6 +35,7 @@ public abstract class PowerUp : KinematicBody2D
 		Interface = gManager.InterfaceRef;
 		velocity = Vector2.Zero;
 		up = new Vector2(0, -1);
+		CheckGravity(gravity);
 	}	
 	
 	public override void _PhysicsProcess(float delta)
@@ -58,4 +59,9 @@ public abstract class PowerUp : KinematicBody2D
 	}
 
 	protected async virtual void ActivatePowerUp() {}
+	
+	private void CheckGravity(float gravityValue)
+	{
+		SetPhysicsProcess(((gravityValue == 0) ? false : true));
+	}
 }

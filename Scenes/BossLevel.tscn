@@ -41,7 +41,6 @@ maxSpeed = 300.0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 242, -163 )
-collision_mask = 13
 
 [node name="WallRight" type="StaticBody2D" parent="."]
 collision_layer = 8
