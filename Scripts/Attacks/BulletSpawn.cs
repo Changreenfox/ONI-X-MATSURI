@@ -41,7 +41,6 @@ public class BulletSpawn : Attack
 
 		if(bulletPrefab == null)
 			bulletPrefab = GD.Load<PackedScene>("res://Scenes/Prefabs/ThrowBullet.tscn");
-		return;
 
 		//Don't need to process anything
 		SetProcess(false);
