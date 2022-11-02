@@ -11,7 +11,12 @@ public class AttackPowerUp : PowerUp
 		player.DamageBoost += damageIncrease;
 		Interface?.Toggle_Powerup_Icon("Attack");
 		
-		await ToSignal(GetTree().CreateTimer(boostTime), "timeout");
+		Timer newTimer = new Timer();
+		newTimer.OneShot = true;
+		AddChild(newTimer);
+		newTimer.Start(boostTime);
+
+		await ToSignal(newTimer, "timeout");
 		
 		player.DamageBoost -= damageIncrease;
 		Interface?.Toggle_Powerup_Icon("Attack");

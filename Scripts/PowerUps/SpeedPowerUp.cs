@@ -11,7 +11,12 @@ public class SpeedPowerUp : PowerUp
 		player.MaxSpeed += speedIncrease;
 		Interface?.Toggle_Powerup_Icon("Speed");
 		
-		await ToSignal(GetTree().CreateTimer(boostTime), "timeout");
+		Timer newTimer = new Timer();
+		newTimer.OneShot = true;
+		AddChild(newTimer);
+		newTimer.Start(boostTime);
+
+		await ToSignal(newTimer, "timeout");
 		
 		player.MaxSpeed -= speedIncrease;
 		Interface?.Toggle_Powerup_Icon("Speed");

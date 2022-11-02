@@ -289,7 +289,11 @@ public abstract class Actor : KinematicBody2D
 		//Need a way to dynamically know which layer to flip
 		//Currently only works on player
 		FlipCollision();
-		await ToSignal(GetTree().CreateTimer(immunityTime), "timeout");
+		Timer newTimer = new Timer();
+		newTimer.OneShot = true;
+		AddChild(newTimer);
+		newTimer.Start(immunityTime);
+		await ToSignal(newTimer, "timeout");
 		FlipCollision();
 		immune = false;
 	}
@@ -312,7 +316,11 @@ public abstract class Actor : KinematicBody2D
 		mat.SetShaderParam("blue", color.b);
 		mat.SetShaderParam("opacity", color.a);
 		mat.SetShaderParam("flashing", true);
-		await ToSignal(GetTree().CreateTimer(duration), "timeout");
+		Timer newTimer = new Timer();
+		newTimer.OneShot = true;
+		AddChild(newTimer);
+		newTimer.Start(duration);
+		await ToSignal(newTimer, "timeout");
 		mat.SetShaderParam("flashing", false);
 	}
 	

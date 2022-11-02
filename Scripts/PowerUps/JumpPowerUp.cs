@@ -11,7 +11,12 @@ public class JumpPowerUp : PowerUp
 		player.JumpSpeed += jumpIncrease;
 		Interface?.Toggle_Powerup_Icon("Jump");
 		
-		await ToSignal(GetTree().CreateTimer(boostTime), "timeout");
+		Timer newTimer = new Timer();
+		newTimer.OneShot = true;
+		AddChild(newTimer);
+		newTimer.Start(boostTime);
+
+		await ToSignal(newTimer, "timeout");
 
 		player.JumpSpeed -= jumpIncrease;
 		Interface?.Toggle_Powerup_Icon("Jump");

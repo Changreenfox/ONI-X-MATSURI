@@ -71,7 +71,11 @@ public class Bullet : KinematicBody2D
 
 	public async void KillBulletTimer()
 	{
-		await ToSignal(GetTree().CreateTimer(2), "timeout");
+		Timer newTimer = new Timer();
+		newTimer.OneShot = true;
+		AddChild(newTimer);
+		newTimer.Start(2f);
+		await ToSignal(newTimer, "timeout");
 		Vanish();
 		GD.Print("Final Height: ", GlobalPosition.y);
 		CallDeferred("queue_free");
