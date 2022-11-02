@@ -7,9 +7,6 @@ public class Bullet : KinematicBody2D
 	private int damage = 1;
 
 	[Export]
-	private float speed = 30;
-
-	[Export]
 	private float gravity = 0;
 	public float Gravity
 	{
