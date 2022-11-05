@@ -42,7 +42,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: oni-x-matsuri-windows-x86-64
-        path: ./build/win/win.exe
+        path: ./build/win/win.zip
 
       # This release action has worked well for me. However, you can most likely use any release action of your choosing.
       # https://github.com/softprops/action-gh-release
