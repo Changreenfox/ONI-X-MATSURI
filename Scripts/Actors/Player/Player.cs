@@ -32,6 +32,7 @@ public class Player : Actor
 		*/
 
 		state = container.GetState("Idle");
+		state.Enter();
 	}
 
 	public override void Die()

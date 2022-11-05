@@ -25,10 +25,10 @@ points = PoolVector2Array( 0, 0, 512, 0, 512, 32, 0, 32 )
 points = PoolVector2Array( 256, 32, 0, 32, 0, 0, 256, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=8]
-points = PoolVector2Array( 128, 32, 0, 32, 0, 0, 128, 0 )
+points = PoolVector2Array( 128, 0, 0, 0, 0, 0, 128, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=9]
-points = PoolVector2Array( 128, 96, 0, 96, 0, 64, 128, 64 )
+points = PoolVector2Array( 128, 63.7847, 0, 64.267, 0, 64, 128, 64 )
 
 [resource]
 0/name = "tower_top.png 0"
