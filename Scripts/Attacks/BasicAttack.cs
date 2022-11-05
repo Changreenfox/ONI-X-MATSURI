@@ -45,7 +45,7 @@ public class BasicAttack : Attack
 	{
 		//If you're not waiting for the attack to finish and the Time is stopped
 		//GD.Print(!waiting, " and ", time.IsStopped());
-		if(!waiting && !host.Attacking && time.IsStopped())
+		if(!waiting && host.CurrentAttack < 0 && time.IsStopped())
 		{
 			previousAnim = prevAnim;
 			//Start waiting for the attack to finish
@@ -69,7 +69,7 @@ public class BasicAttack : Attack
 		host.PlayAnimation(temp);
 		
 		attacking = true;
-		host.Attacking = true;
+		host.CurrentAttack = attackNumber;
 		
 		host.PlaySound("Attack");
 
@@ -81,7 +81,8 @@ public class BasicAttack : Attack
 
 		//Reset attacking variables
 		attacking = false;
-		host.Attacking = false;
+
+		host.CurrentAttack = -1;
 
 		//Restart previous animations
 		host.PlayAnimation(previousAnim);
@@ -105,5 +106,14 @@ public class BasicAttack : Attack
 			leftRanges[currentFrame++]?.SetDeferred("disabled", true);
 			leftRanges[currentFrame]?.SetDeferred("disabled", false);
 		}
+	}
+
+	protected override void StopAnimation()
+	{
+		if(rightAttack)
+			rightRanges[currentFrame].SetDeferred("disabled", true);
+		else
+			leftRanges[currentFrame]?.SetDeferred("disabled", true);
+		base.StopAnimation();
 	}
 }

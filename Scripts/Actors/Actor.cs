@@ -31,6 +31,10 @@ public abstract class Actor : KinematicBody2D
 		set{ active = value;}
 	}
 
+	//Can have their attacks interrupted
+	[Export]
+	protected bool interruptable = false;
+
 	// Velocity & Direction values
 	[Export]
 	protected Vector2 velocity = new Vector2(0, 0);
@@ -117,12 +121,13 @@ public abstract class Actor : KinematicBody2D
 	[Export]
 	public List<Attack> attacks = new List<Attack>();
 
-	private bool attacking = false;
-	public bool Attacking
+	protected int currentAttack = -1;
+	public int CurrentAttack
 	{
-		get{ return attacking; }
-		set{ attacking = value; }
+		get{ return currentAttack; }
+		set{ currentAttack = value; }
 	}
+
 
 
 	//FSM variables
@@ -175,13 +180,23 @@ public abstract class Actor : KinematicBody2D
 		timer.Name = timerName;
 		AddChild(timer);
 		
+		//Create list of attacks
+		int attackNum = 0;
 		foreach (Node node in GetChildren())
 		{
 			if(node is Attack)
 			{
+				Attack temp = node as Attack;
+				temp.AttackNumber = attackNum++;
 				attacks.Add((Attack)node);
 			}
 		}
+
+		//Potentially update script on Animator
+		/*if(interruptable)
+		{
+			animator.SetScript((Script)GD.Load("res://Scripts/Misc/AnimationPlayer2.cs"));
+		}*/
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -194,9 +209,6 @@ public abstract class Actor : KinematicBody2D
 
 		if(name != null)
 			ChangeState(name);
-		
-		/*if(!attacking)
-			FaceAttacks();*/
 		
 	}
 
@@ -239,6 +251,7 @@ public abstract class Actor : KinematicBody2D
 
 	public virtual void TakeKnockback(Vector2 collisionPosition, Vector2 impulse)
 	{
+		Interrupt();
 		// Determine which direction to send the player
 		int directionX = 1, directionY = -1;
 
@@ -263,16 +276,11 @@ public abstract class Actor : KinematicBody2D
 	//Will be called in the states, allowing the player to play specific animations
 	public string PlayAnimation(string name)
 	{
-		if(attacking)
-		{
-			foreach(Attack attack in attacks)
-				if (attack.Waiting)
-				{
-					attack.PreviousAnim = name;
-					return name;
-				}
-		}
-		animator.Play(name);
+		//Don't want to interrupt an attack animation from here
+		if(currentAttack >= 0)
+			attacks[0].PreviousAnim = name;
+		else
+			animator.Play(name);
 
 		return name;
 	}
@@ -323,5 +331,13 @@ public abstract class Actor : KinematicBody2D
 		await ToSignal(newTimer, "timeout");
 		mat.SetShaderParam("flashing", false);
 	}
-	
+
+	protected void Interrupt()
+	{
+		if(!interruptable || currentAttack < 0)
+			return;
+		
+		//Interrupt the user's current attack
+		attacks[currentAttack].Cancel();
+	}
 }

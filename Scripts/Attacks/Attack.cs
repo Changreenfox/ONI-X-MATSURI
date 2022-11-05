@@ -40,6 +40,13 @@ public abstract class Attack : Area2D
 	[Export]
 	protected float cooldown = 0.25f;
 
+	protected int attackNumber = 0;
+	public int AttackNumber
+	{
+		get {return attackNumber; }
+		set {attackNumber = value; }
+	}
+
 	//Stores which animation to continue from after the attack animation is finished
 	protected string previousAnim;
 	public string PreviousAnim
@@ -102,5 +109,18 @@ public abstract class Attack : Area2D
 		time.Stop();
 
 		waiting = false;
+	}
+
+	// Cancel the attack functionality and animation
+	public void Cancel()
+	{
+		//Stop the animation (should cancel the attack)
+		StopAnimation();
+		host.PlayAnimation(previousAnim);
+	}
+
+	protected virtual void StopAnimation()
+	{
+		host.Animator.Stop(true);
 	}
 }
