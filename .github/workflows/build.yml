@@ -1,0 +1,53 @@
+# Workflow : build.yml
+# Details  :
+#   Exports the project as a Godot project.
+# Source   : https://github.com/marketplace/actions/godot-export
+on: 
+  push:
+    # uncomment to push only on version releases
+    # tags:
+    #   - "v*"
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    name: Export Game
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      # get the entire project history
+      with:
+        fetch-depth: 0
+  
+    # automatically stores the tag name for later use
+    # - name: Get tag from version
+    #   id: tag_version
+    #   run: |
+    #       echo ::set-output name=TAG_VERSION::${GITHUB_REF#refs/tags/v}
+  
+    - name: Export game
+      id: export
+      # use latest version (see releases for all versions)
+      uses: firebelley/godot-export@v4.2.0
+      with:
+        # defining all the required inputs
+        godot_executable_download_url: https://github.com/godotengine/godot/releases/download/3.4.4-stable/Godot_v3.4.4-stable_linux_headless.64.zip
+        godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/3.4.4-stable/Godot_v3.4.4-stable_export_templates.tpz
+        relative_project_path: ./
+        archive_output: true
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: oni-x-matsuri-windows-x86-64
+        path: ./build/win/win.exe
+
+      # This release action has worked well for me. However, you can most likely use any release action of your choosing.
+      # https://github.com/softprops/action-gh-release
+    # - name: Create release
+    #   uses: softprops/action-gh-release@v0.1.14
+    #   with:
+    #     token: ${{ secrets.GITHUB_TOKEN }}
+    #     generate_release_notes: true
+    #     tag_name: ${{ steps.tag_version.outputs.TAG_VERSION }}
+    #     files: ${{ steps.export.outputs.archive_directory }}/*
