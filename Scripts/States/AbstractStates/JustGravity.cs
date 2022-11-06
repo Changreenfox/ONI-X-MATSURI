@@ -4,6 +4,7 @@ using System;
 public abstract class JustGravity : State
 {
 	protected bool facingRight;
+	protected Vector2 velocity;
 
 	public override void Enter()
 	{
@@ -13,7 +14,7 @@ public abstract class JustGravity : State
 
 	public override string HandlePhysics(float delta)
 	{
-		Vector2 velocity = host.Velocity;
+		velocity = host.Velocity;
 
 		velocity.y += host.Gravity;
 		velocity.y = Mathf.Min(host.MaxFallSpeed, velocity.y);

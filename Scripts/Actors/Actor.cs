@@ -34,6 +34,7 @@ public abstract class Actor : KinematicBody2D
 	//Can have their attacks interrupted
 	[Export]
 	protected bool interruptable = false;
+	public bool Interruptable { get; set; }
 
 	// Velocity & Direction values
 	[Export]
@@ -162,12 +163,19 @@ public abstract class Actor : KinematicBody2D
 		get{ return sounds; }
 	}
 
+	[Export]
+	protected int layer = 1;
+
 	/*=============================================================== Methods =======================================================*/
-	
+
+	public override void _EnterTree()
+	{
+		gManager = (GameManager)GetNode("/root/GameManager");
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		gManager = (GameManager)GetNode("/root/GameManager");
 		//So long as any children call base._Ready() if overriden, all sprites
 		//will be found dynamically 
 		character = (Sprite)GetNode("Sprite");
@@ -191,12 +199,6 @@ public abstract class Actor : KinematicBody2D
 				attacks.Add((Attack)node);
 			}
 		}
-
-		//Potentially update script on Animator
-		/*if(interruptable)
-		{
-			animator.SetScript((Script)GD.Load("res://Scripts/Misc/AnimationPlayer2.cs"));
-		}*/
 	}
 
 	public override void _PhysicsProcess(float delta)
@@ -228,6 +230,7 @@ public abstract class Actor : KinematicBody2D
 	{
 		state.Exit();
 		state = container.GetState(name);
+		GD.Print(state.StateName());
 		state.Enter();
 	}
 
@@ -308,12 +311,18 @@ public abstract class Actor : KinematicBody2D
 
 	public virtual void FlipCollision()
 	{
-		SetCollisionLayerBit(1, !GetCollisionLayerBit(1));
+		SetCollisionLayerBit(layer, !GetCollisionLayerBit(1));
 	}
 
 	public virtual void Die()
 	{
 		QueueFree();
+	}
+
+	//Called if additional handling required after attack ends
+	public virtual void AfterAttack()
+	{
+		return;
 	}
 	
 	public async void FlashColor(float duration, Color color)
@@ -332,7 +341,7 @@ public abstract class Actor : KinematicBody2D
 		mat.SetShaderParam("flashing", false);
 	}
 
-	protected void Interrupt()
+	public void Interrupt()
 	{
 		if(!interruptable || currentAttack < 0)
 			return;

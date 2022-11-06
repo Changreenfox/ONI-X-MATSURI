@@ -5,21 +5,20 @@ using System.Threading.Tasks;
 
 public class BasicAttack : Attack
 {
+	[Signal]
+	public delegate void AttackFinished();
+
 	//The range of the attack
 	private List<CollisionPolygon2D> leftRanges;
 	private List<CollisionPolygon2D> rightRanges;
 	private bool rightAttack = true;
 	private int currentFrame = 0;
 
-	public override void _Ready()
-	{
-		leftRanges = new List<CollisionPolygon2D>();
-		rightRanges = new List<CollisionPolygon2D>();
-		base._Ready();
-	}
-
 	protected override void GetRange()
 	{    
+		leftRanges = new List<CollisionPolygon2D>();
+		rightRanges = new List<CollisionPolygon2D>();
+
 		//The first frame of attack doesn't have a collider
 		rightRanges.Add(null);
 		leftRanges.Add(null);
@@ -43,10 +42,11 @@ public class BasicAttack : Attack
 
 	public override void StartAttack(string prevAnim = "")
 	{
+		GD.Print("StartAttack? ", !waiting, " ", host.CurrentAttack < 0, " ", time.IsStopped());
 		//If you're not waiting for the attack to finish and the Time is stopped
-		//GD.Print(!waiting, " and ", time.IsStopped());
 		if(!waiting && host.CurrentAttack < 0 && time.IsStopped())
 		{
+			GD.Print("StartAttack called");
 			previousAnim = prevAnim;
 			//Start waiting for the attack to finish
 			waiting = true;
@@ -56,6 +56,13 @@ public class BasicAttack : Attack
 
 			rightAttack = host.FacingRight;
 		}
+	}
+
+	public void FinishAttack()
+	{
+		GD.Print(host.Name, " Finished");
+		//Emit Signal
+		EmitSignal(nameof(AttackFinished));
 	}
 
 	protected override async void ActivateCollider()
@@ -74,13 +81,10 @@ public class BasicAttack : Attack
 		host.PlaySound("Attack");
 
 		//Enable the attack range until animation is finished
-		await ToSignal(host.Animator, "animation_finished");
+		await ToSignal(this, "AttackFinished");
 
 		//Reset currentFrame
 		currentFrame = 0;
-
-		//Reset attacking variables
-		attacking = false;
 
 		host.CurrentAttack = -1;
 
@@ -92,28 +96,46 @@ public class BasicAttack : Attack
 		await WaitCooldown();
 	}
 
+	protected override async Task WaitCooldown()
+	{
+		await base.WaitCooldown();
+		host.AfterAttack();
+	}
+
 	//Called in animation player when the next collider is required
 	public void updateFrame()
 	{
 		//?. operator means it calls if and only if the var is not null
 		if(rightAttack)
 		{
+			if (currentFrame >= rightRanges.Count - 1)
+			{
+				FinishAttack();
+				return;
+			}
 			rightRanges[currentFrame++]?.SetDeferred("disabled", true);
 			rightRanges[currentFrame]?.SetDeferred("disabled", false);
 		}
 		else
 		{
+			if (currentFrame >= leftRanges.Count - 1)
+			{
+				FinishAttack();
+				return;
+			}
 			leftRanges[currentFrame++]?.SetDeferred("disabled", true);
 			leftRanges[currentFrame]?.SetDeferred("disabled", false);
 		}
 	}
 
-	protected override void StopAnimation()
+	public override void Cancel()
 	{
+		GD.Print(host.Name, " Cancelled an attack");
 		if(rightAttack)
-			rightRanges[currentFrame].SetDeferred("disabled", true);
+			rightRanges[currentFrame]?.SetDeferred("disabled", true);
 		else
 			leftRanges[currentFrame]?.SetDeferred("disabled", true);
-		base.StopAnimation();
+		host.Animator.Stop(true);
+		FinishAttack();
 	}
 }

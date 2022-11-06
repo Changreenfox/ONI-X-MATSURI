@@ -57,9 +57,8 @@ public abstract class Attack : Area2D
 	
 	public override void _Ready()
 	{
-		GetRange();
-		
 		host = (Actor)GetParent();
+		GetRange();
 		
 		Connect("body_entered", this, nameof(_on_Attack_body_entered));
 
@@ -108,19 +107,13 @@ public abstract class Attack : Area2D
 		await ToSignal(time, "timeout");
 		time.Stop();
 
+		GD.Print("Waiting changed");
 		waiting = false;
 	}
 
 	// Cancel the attack functionality and animation
-	public void Cancel()
+	public virtual void Cancel()
 	{
 		//Stop the animation (should cancel the attack)
-		StopAnimation();
-		host.PlayAnimation(previousAnim);
-	}
-
-	protected virtual void StopAnimation()
-	{
-		host.Animator.Stop(true);
 	}
 }

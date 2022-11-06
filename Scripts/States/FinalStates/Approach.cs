@@ -14,7 +14,8 @@ public class Approach : AIMotion
 
     public override void Enter()
     {
-        facingRight = host.GlobalPosition.DirectionTo(player.GlobalPosition).x >= 0;
+        host.FacingRight = host.GlobalPosition.DirectionTo(player.GlobalPosition).x >= 0;
+        facingRight = host.FacingRight;
         PlayAnimation();
     }
 
@@ -23,10 +24,10 @@ public class Approach : AIMotion
         Vector2 direction = host.GlobalPosition.DirectionTo(player.GlobalPosition);
         direction.y = 0;
         host.Direction = direction;
-        bool newFace = host.GlobalPosition.DirectionTo(player.GlobalPosition).x >= 0;
-        if(facingRight != newFace)
+        facingRight = host.GlobalPosition.DirectionTo(player.GlobalPosition).x >= 0;
+        if(host.FacingRight != facingRight)
         {
-            facingRight = newFace;
+            host.FacingRight = facingRight;
             PlayAnimation();
         }
 
@@ -39,5 +40,10 @@ public class Approach : AIMotion
             host.PlayAnimation("WalkRight");
         else
             host.PlayAnimation("WalkLeft");
+    }
+
+    public override string StateName()
+    {
+        return "Approach";
     }
 }
