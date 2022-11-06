@@ -86,7 +86,6 @@ public class BossLevel : SceneBase
 	public void On_ShakeTimer_Timeout(Timer shakeTimer, float shakeStrength)
 	{
 		curCamShakeStrength -= shakeStrength;
-		GD.Print("Timer finished");
 		shakeTimer.QueueFree();
 	}
 }

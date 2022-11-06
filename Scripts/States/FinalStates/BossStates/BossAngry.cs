@@ -14,7 +14,6 @@ public class BossAngry : JustGravity
 	public override void Enter()
 	{
 		base.Enter();
-		GD.Print("BossAngry");
 		
 		host.Velocity = new Vector2(0, host.Velocity.y);
 		finished = false;

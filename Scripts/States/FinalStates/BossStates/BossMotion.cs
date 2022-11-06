@@ -13,7 +13,6 @@ public class BossMotion : AIMotion
 	public override void Enter()
 	{
 		base.Enter();
-		GD.Print("BossMotion");
 		finished = false;
 		
 		RandomNumberGenerator randGenerator = new RandomNumberGenerator();

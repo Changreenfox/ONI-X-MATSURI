@@ -16,7 +16,6 @@ public class BossAttack : JustGravity
 	{
 		base.Enter();
 		//finished = false;
-		GD.Print("BossAttack");
 		//host.StateTimer.Start(3.0f);
 		
 	}

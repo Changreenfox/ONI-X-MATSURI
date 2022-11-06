@@ -70,7 +70,6 @@ public class ThrowAndRun : AIMotion
 
         //This should be shown in Attack
         bs.Heading = heading;
-        GD.Print(heading);
         host.Attack(0);
 
         //Wait until the attack animation is complete

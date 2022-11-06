@@ -40,8 +40,6 @@ public class Bullet : KinematicBody2D
 	{
 		//direction.x is constant
 		//direction.y can be affected by gravity
-		//GD.Print("Change = ", gravity * delta);
-		//GD.Print("Y = ", velocity.y);
 		velocity.y += gravity * delta;
 
 		//Kinematic Collision captures a collision if it occurs during the movement... this is how we damage :)
@@ -74,7 +72,6 @@ public class Bullet : KinematicBody2D
 		newTimer.Start(2f);
 		await ToSignal(newTimer, "timeout");
 		Vanish();
-		GD.Print("Final Height: ", GlobalPosition.y);
 		CallDeferred("queue_free");
 	}
 
@@ -86,7 +83,6 @@ public class Bullet : KinematicBody2D
 	//Called when the bullet collides with the actor
 	public void PlayerCollision(KinematicBody2D collision)
 	{
-		GD.Print((GetNode<CollisionShape2D>("CollisionShape2D")).Disabled);
 		Actor damaged = collision as Actor;
 		damaged.TakeDamage(damage, GlobalPosition, impulse);
 		Vanish();
