@@ -461,25 +461,21 @@ current = true
 
 [node name="Sounds" type="Node2D" parent="."]
 
-[node name="Attack" type="AudioStreamPlayer2D" parent="Sounds"]
+[node name="Attack" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 5 )
 bus = "Sounds"
-area_mask = 0
 
-[node name="Damage" type="AudioStreamPlayer2D" parent="Sounds"]
+[node name="Damage" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 6 )
 bus = "Sounds"
-area_mask = 0
 
-[node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
+[node name="Death" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 7 )
 bus = "Sounds"
-area_mask = 0
 
-[node name="Jump" type="AudioStreamPlayer2D" parent="Sounds"]
+[node name="Jump" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource( 8 )
 bus = "Sounds"
-area_mask = 0
 
 [node name="Particles_Right" type="Particles2D" parent="."]
 visible = false

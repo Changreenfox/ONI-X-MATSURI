@@ -76,7 +76,7 @@ public class AudioManager : Node
 				}
 			},
 			{
-				"Powerup", 
+				"PowerUp", 
 				new Dictionary<string, string>
 				{
 					{"HealthPowerUp", 		(SOUND_PATH + "powerups/heal.wav")},
@@ -237,7 +237,7 @@ public class AudioManager : Node
 		LoadDomainSounds("OniBoss");
 		LoadDomainSounds("OniBrute");
 		LoadDomainSounds("Player");
-		LoadDomainSounds("Powerup");
+		LoadDomainSounds("PowerUp");
 		LoadDomainSounds("UserInterface");
 		
 		/*

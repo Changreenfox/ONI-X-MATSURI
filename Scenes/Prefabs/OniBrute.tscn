@@ -296,6 +296,9 @@ wait_time = 2.0
 
 [node name="Sounds" type="Node2D" parent="."]
 
+[node name="Attack" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 10 )
+
 [node name="Damage" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource( 5 )
 bus = "Sounds"
@@ -305,9 +308,6 @@ area_mask = 0
 stream = ExtResource( 6 )
 bus = "Sounds"
 area_mask = 0
-
-[node name="Attack" type="AudioStreamPlayer2D" parent="Sounds"]
-stream = ExtResource( 10 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 visible = false
