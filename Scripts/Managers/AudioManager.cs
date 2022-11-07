@@ -98,6 +98,17 @@ public class AudioManager : Node
 	
 	/*=============================================================== Methods =======================================================*/
 	
+	public void AddSound(Node parent, string domainName, string soundName)
+	{
+		AudioStreamPlayer soundPlayer = CreateSoundPlayer(domainName, soundName);
+		parent.AddChild(soundPlayer);
+	}
+	
+	public void AddSound2D(Node parent, string domainName, string soundName)
+	{
+		
+	}
+	
 	public void LoadMusic(string trackName, bool forceLoad = false)
 	{
 		string musicTrackPathRef = "";
@@ -138,7 +149,7 @@ public class AudioManager : Node
 			//If entry exists and forceLoad == true, assign value (Used for reloading sounds)
 			if(domainDictRef.TryGetValue(entry.Key, out AudioStream streamRef))
 			{
-				streamRef = forceLoad ? ResourceLoader.Load<AudioStream>(entry.Value) : streamRef;
+				streamRef = forceLoad ? ResourceLoader.Load<AudioStream>(entry.Value, "", forceLoad) : streamRef;
 			}
 			//If sound entry doesn't exist
 			else
@@ -162,10 +173,7 @@ public class AudioManager : Node
 	public void PlaySound(string domainName, string soundName) 
 	{
 		//GD.Print("Played sound: " + soundName);
-		AudioStreamPlayer soundPlayer = new AudioStreamPlayer();
-		soundPlayer.Stream = loadedSounds[domainName][soundName];
-		soundPlayer.Name = soundName + "Sound";
-		soundPlayer.Bus = "Sounds";
+		AudioStreamPlayer soundPlayer = CreateSoundPlayer(domainName, soundName);
 		currentSoundsNode.AddChild(soundPlayer);
 		soundPlayer.Connect("finished", 
 							this, 
@@ -218,11 +226,13 @@ public class AudioManager : Node
 			{ "UserInterface", new Dictionary<string, AudioStream> { } }
 		};
 		
+		/*
 		LoadMusic("GameOver");
 		LoadMusic("Level1");
 		LoadMusic("BossLevel");
 		LoadMusic("StartScreen");
 		LoadMusic("Win");
+		*/
 		
 		LoadDomainSounds("OniBoss");
 		LoadDomainSounds("OniBrute");
@@ -230,11 +240,13 @@ public class AudioManager : Node
 		LoadDomainSounds("Powerup");
 		LoadDomainSounds("UserInterface");
 		
+		/*
 		currentMusic = new AudioStreamPlayer();
 		currentMusic.Stream = loadedMusic["Level1"];
 		currentMusic.Name = "Level1";
 		currentMusic.Bus = "Music";
 		currentMusicNode.AddChild(currentMusic);
+		*/
 		
 		SetBusVolume("Master", -6f);
 		SetBusVolume("Music", -10f);
@@ -259,6 +271,15 @@ public class AudioManager : Node
 	private void SetBusVolume(string busName, float volumeDb)
 	{
 		AudioServer.SetBusVolumeDb(AudioServer.GetBusIndex(busName), volumeDb);
+	}
+	
+	private AudioStreamPlayer CreateSoundPlayer(string domainName, string soundName)
+	{
+		AudioStreamPlayer soundPlayer = new AudioStreamPlayer();
+		soundPlayer.Stream = loadedSounds[domainName][soundName];
+		soundPlayer.Name = soundName + "Sound";
+		soundPlayer.Bus = "Sounds";
+		return soundPlayer;
 	}
 
 }

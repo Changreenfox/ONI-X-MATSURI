@@ -19,9 +19,9 @@ public class SceneBase : Node2D
 		//SHOULD ONLY PLAY MUSIC AFTER THE SCREEN IS SHOWING (MAYBE NEED TO ADD CHECKS?) - RICARDO
 		gManager = (GameManager)GetNode("/root/GameManager");
 		gManager.CurrentScene = this;
-		gManager.Signals.EmitSignal(
+		/*gManager.Signals.EmitSignal(
 									nameof(SignalManager.SceneLoadedSignal),
 									GetType().Name
-									);		
+									);*/
 	}	
 }
