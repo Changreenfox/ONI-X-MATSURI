@@ -32,7 +32,6 @@ jobs:
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
-#          cd $EXPORT_NAME # game is not in a subfolder ... See: https://github.com/abarichello/godot-ci/issues/87
           godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
