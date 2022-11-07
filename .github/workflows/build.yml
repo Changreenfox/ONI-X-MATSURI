@@ -22,20 +22,20 @@ jobs:
       image: barichello/godot-ci:mono-3.3.4 # use 'mono' for C#
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           lfs: true
       - name: Setup Godot Mono
         run: |
           mkdir -v -p ~/.local/share/godot/templates
-          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/templates/${GODOT_VERSION}.stable.mono
       - name: Windows Build
         run: |
           mkdir -v -p build/windows
-          cd $EXPORT_NAME
-          godot -v --export "Windows Desktop" ../build/windows/$EXPORT_NAME.exe
+#          cd $EXPORT_NAME # game is not in a subfolder ... See: https://github.com/abarichello/godot-ci/issues/87
+          godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
       - name: Upload Artifact
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: windows
           path: build/windows
