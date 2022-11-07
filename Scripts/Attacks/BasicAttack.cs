@@ -42,11 +42,10 @@ public class BasicAttack : Attack
 
 	public override void StartAttack(string prevAnim = "")
 	{
-		GD.Print("StartAttack? ", !waiting, " ", host.CurrentAttack < 0, " ", time.IsStopped());
+		//GD.Print("StartAttack? ", !waiting, " ", host.CurrentAttack < 0, " ", time.IsStopped());
 		//If you're not waiting for the attack to finish and the Time is stopped
 		if(!waiting && host.CurrentAttack < 0 && time.IsStopped())
 		{
-			GD.Print("StartAttack called");
 			previousAnim = prevAnim;
 			//Start waiting for the attack to finish
 			waiting = true;
@@ -60,7 +59,6 @@ public class BasicAttack : Attack
 
 	public void FinishAttack()
 	{
-		GD.Print(host.Name, " Finished");
 		//Emit Signal
 		EmitSignal(nameof(AttackFinished));
 	}

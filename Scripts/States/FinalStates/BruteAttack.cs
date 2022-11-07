@@ -11,7 +11,6 @@ public class BruteAttack : JustGravity
     public override void Enter()
     {
         base.Enter();
-        GD.Print(host.FacingRight);
         host.Velocity = Vector2.Zero;
         velocity = host.Velocity;
         host.Attack(0);
@@ -27,7 +26,6 @@ public class BruteAttack : JustGravity
 
     public override void Exit()
     {
-        GD.Print("Exit");
         //Interrupt if attack is still occuring
         host.Interrupt();
     }
