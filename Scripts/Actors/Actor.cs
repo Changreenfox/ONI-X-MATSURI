@@ -102,6 +102,8 @@ public abstract class Actor : KinematicBody2D
 		set{ damageBoost = value; }
 	}
 
+	protected Area2D hitbox;
+
 	// Floor Normal... says a floor is anything with a normal angle of ^
 	protected Vector2 UP = new Vector2(0, -1);
 	
@@ -153,7 +155,6 @@ public abstract class Actor : KinematicBody2D
 	[Export]
 	private Color toFlash = new Color();
 
-	private bool immune = false;
 	[Export]
 	private float immunityTime = 0.5f;
 
@@ -179,7 +180,7 @@ public abstract class Actor : KinematicBody2D
 		//So long as any children call base._Ready() if overriden, all sprites
 		//will be found dynamically 
 		character = (Sprite)GetNode("Sprite");
-		
+		hitbox = (Area2D)GetNode("Hitbox");
 		animator = (AnimationPlayer)GetNode("AnimationPlayer");
 		sounds  = (Node2D)GetNode("Sounds");
 
@@ -242,14 +243,11 @@ public abstract class Actor : KinematicBody2D
 
 	public virtual void TakeDamage(int damage, Vector2 collisionPosition, Vector2 impulse)
 	{
-		if(!immune)
-		{
-			ImmunityTimer();
-			PlaySound("Damage");
-			hp -= damage;
-			TakeKnockback(collisionPosition, impulse);
-			FlashColor(0.3f, toFlash);
-		}
+		ImmunityTimer();
+		PlaySound("Damage");
+		hp -= damage;
+		TakeKnockback(collisionPosition, impulse);
+		FlashColor(0.3f, toFlash);
 	}
 
 	public virtual void TakeKnockback(Vector2 collisionPosition, Vector2 impulse)
@@ -296,22 +294,18 @@ public abstract class Actor : KinematicBody2D
 
 	private async void ImmunityTimer()
 	{
-		immune = true;
-		//Need a way to dynamically know which layer to flip
-		//Currently only works on player
-		FlipCollision();
+		//Turn off the hitbox
+		hitbox.SetDeferred("Monitorable", false);
+
+		//Create a timer child dynamically that controls immunity
 		Timer newTimer = new Timer();
 		newTimer.OneShot = true;
 		AddChild(newTimer);
 		newTimer.Start(immunityTime);
 		await ToSignal(newTimer, "timeout");
-		FlipCollision();
-		immune = false;
-	}
 
-	public virtual void FlipCollision()
-	{
-		SetCollisionLayerBit(layer, !GetCollisionLayerBit(1));
+		//Turn on the hitbox
+		hitbox.SetDeferred("Monitorable", true);
 	}
 
 	public virtual void Die()

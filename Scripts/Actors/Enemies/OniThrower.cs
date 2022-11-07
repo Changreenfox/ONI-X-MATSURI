@@ -7,9 +7,7 @@ public class OniThrower : Enemy
 	public override void _Ready()
 	{
 		base._Ready();
-		Area2D alert = (Area2D)GetNode("Alert");
-
-		alertCollider = (CollisionShape2D)alert.GetNode("AlertCollider");
+		alertArea = GetNode<Area2D>("Alert");
 		
         //Function similarly to OniBrute, but doesn't have to move to continuously attack
 		container.SetState("Idle", new EnemyIdle(this));
@@ -23,7 +21,7 @@ public class OniThrower : Enemy
 
 	public override void HandleAlert(KinematicBody2D player)
 	{
-		alertCollider.SetDeferred("disabled", true);
+		alertArea.SetDeferred("Monitoring", false);
 		ChangeState("Alert");
 	}
 }

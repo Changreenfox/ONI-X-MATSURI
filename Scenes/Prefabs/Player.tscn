@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://assets/sprites/player/player_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Actors/Player/Player.cs" type="Script" id=2]
@@ -15,6 +15,10 @@ height = 39.0
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 21, 7 )
+
+[sub_resource type="CapsuleShape2D" id=20]
+radius = 40.0
+height = 68.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "AttackLeft"
@@ -370,7 +374,7 @@ radial_accel = 0.48
 color_ramp = SubResource( 17 )
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 13
+collision_mask = 8
 script = ExtResource( 2 )
 hp = 6
 maxFallSpeed = 2500.0
@@ -386,16 +390,29 @@ hframes = 4
 vframes = 11
 frame = 40
 
-[node name="PlayerHitbox_1" type="CollisionShape2D" parent="."]
+[node name="Collider_1" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( 0, -6 )
 shape = SubResource( 1 )
 
-[node name="PlayerHitbox_2" type="CollisionShape2D" parent="."]
+[node name="Collider_2" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -5.9, 63.2 )
 shape = SubResource( 19 )
 
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, 6 )
+shape = SubResource( 20 )
+
 [node name="NormalAttack" parent="." instance=ExtResource( 3 )]
 visible = false
+collision_layer = 0
+collision_mask = 32
 
 [node name="RightRange1" type="CollisionPolygon2D" parent="NormalAttack"]
 position = Vector2( 13, 27 )
@@ -417,6 +434,8 @@ disabled = true
 
 [node name="JumpAttack" parent="." instance=ExtResource( 3 )]
 visible = false
+collision_layer = 0
+collision_mask = 32
 name = "JumpAttack"
 
 [node name="RightRange1" type="CollisionPolygon2D" parent="JumpAttack"]

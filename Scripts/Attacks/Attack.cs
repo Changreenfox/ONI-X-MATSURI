@@ -61,6 +61,7 @@ public abstract class Attack : Area2D
 		GetRange();
 		
 		Connect("body_entered", this, nameof(_on_Attack_body_entered));
+		Connect("area_entered", this, nameof(_on_Attack_area_entered));
 
 		//cooldown timer
 		time = (Timer)host.GetNode("AttackCooldown");
@@ -91,6 +92,15 @@ public abstract class Attack : Area2D
 	public virtual void _on_Attack_body_entered(KinematicBody2D collision)
 	{
 		Actor enemy = collision as Actor;
+		//enemy? means if not null, call enemy.TakeDamage, otherwise do nothing
+		GD.Print(this.Name, " Hit! ", enemy?.Name);
+		enemy?.TakeDamage(damage + host.DamageBoost, GlobalPosition, impulse);
+	}
+
+	//Detect when an enemy hitbox is within range
+	public virtual void _on_Attack_area_entered(KinematicBody2D collision)
+	{
+		Actor enemy = collision.GetParent() as Actor;
 		//enemy? means if not null, call enemy.TakeDamage, otherwise do nothing
 		GD.Print(this.Name, " Hit! ", enemy?.Name);
 		enemy?.TakeDamage(damage + host.DamageBoost, GlobalPosition, impulse);
