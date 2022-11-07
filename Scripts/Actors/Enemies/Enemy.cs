@@ -3,7 +3,8 @@ using System;
 
 public class Enemy : Actor
 {
-	protected CollisionShape2D alertCollider = null;
+	protected Area2D alertArea = null;
+	protected Area2D lostArea = null;
 
 	//Enemy Functionality
 	public override void _Ready()
@@ -19,6 +20,11 @@ public class Enemy : Actor
 	}
 
 	public virtual void HandleAlert(KinematicBody2D player)
+	{
+		return;
+	}
+
+	public virtual void HandleLost(KinematicBody2D player)
 	{
 		return;
 	}

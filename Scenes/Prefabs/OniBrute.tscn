@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/OniBrute.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemy/oni_spritesheet.png" type="Texture" id=2]
@@ -7,11 +7,16 @@
 [ext_resource path="res://assets/sounds/enemy/enemy_oni_damage.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/sounds/enemy/enemy_oni_death.wav" type="AudioStream" id=6]
 [ext_resource path="res://Scenes/Prefabs/AlertCollider.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/sprites/enemy/exclamation_point.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/enemy/emotes.png" type="Texture" id=8]
 [ext_resource path="res://Scripts/Attacks/BasicAttack.cs" type="Script" id=9]
 [ext_resource path="res://assets/sounds/nosound.wav" type="AudioStream" id=10]
+[ext_resource path="res://Scenes/Prefabs/Lost.tscn" type="PackedScene" id=11]
 
 [sub_resource type="CapsuleShape2D" id=3]
+radius = 42.0
+height = 84.0
+
+[sub_resource type="CapsuleShape2D" id=20]
 radius = 42.0
 height = 84.0
 
@@ -28,7 +33,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1, 0 ), Vector2( 2, 0 ), Vector2( 3, 0 ) ]
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 3, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AlertSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -124,6 +141,34 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "Lost"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AlertSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AlertSprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 0 ), Vector2( 2, 0 ), Vector2( 3, 0 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -243,10 +288,20 @@ position = Vector2( 0, -142 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 8 )
 hframes = 4
+vframes = 2
 
-[node name="KinematicCollider" type="CollisionShape2D" parent="."]
+[node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource( 3 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 20 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "IdleForward"
@@ -254,11 +309,14 @@ anims/Alert = SubResource( 11 )
 anims/AttackLeft = SubResource( 12 )
 anims/AttackRight = SubResource( 13 )
 anims/IdleForward = SubResource( 4 )
+anims/Lost = SubResource( 15 )
 anims/RESET = SubResource( 5 )
 anims/WalkLeft = SubResource( 6 )
 anims/WalkRight = SubResource( 7 )
 
 [node name="BasicAttack" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
 monitorable = false
 script = ExtResource( 9 )
 cooldown = 0.1
@@ -282,6 +340,7 @@ polygon = PoolVector2Array( 32, -8, 72, 24, 88, 64, 88, 88, 16, 48, 16, 40, 40, 
 [node name="Contact" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
+collision_mask = 16
 monitorable = false
 script = ExtResource( 3 )
 
@@ -322,15 +381,18 @@ process_material = SubResource( 10 )
 [node name="Alert" parent="." instance=ExtResource( 7 )]
 visible = false
 
+[node name="Lost" parent="." instance=ExtResource( 11 )]
+
 [node name="BeginAttack" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BeginAttack"]
-visible = false
 position = Vector2( 0, 16 )
 shape = SubResource( 14 )
 
 [connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]
 [connection signal="body_entered" from="Alert" to="." method="HandleAlert"]
+[connection signal="body_exited" from="Lost" to="." method="HandleLost"]
 [connection signal="body_entered" from="BeginAttack" to="." method="OnAttackAreaEntered"]

@@ -2,14 +2,11 @@ using Godot;
 using System;
 
 //Meant to play a cheeky animation
-public class Alert : JustGravity
+public class Lost : JustGravity
 {
-    private string next;
-
-    public Alert(Actor _host, string _next)
+    public Lost(Actor _host)
     {
         host = _host;
-        next = _next;
     }
 
     public override void Enter()
@@ -21,11 +18,11 @@ public class Alert : JustGravity
     public async void Process()
     {
         await ToSignal(host.Animator, "animation_finished");
-        host.ChangeState(next);
+        host.ChangeState("Idle");
     }
 
     public override void PlayAnimation()
     {
-        host.PlayAnimation("Alert");
+        host.PlayAnimation("Lost");
     }
 }

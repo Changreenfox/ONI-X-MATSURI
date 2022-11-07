@@ -8,13 +8,13 @@ public class OniBrute : Enemy
 	public override void _Ready()
 	{
 		base._Ready();
-		Area2D alert = (Area2D)GetNode("Alert");
-
-		alertCollider = (CollisionShape2D)alert.GetNode("AlertCollider");
+		alertArea = GetNode<Area2D>("Alert");
+		lostArea = GetNode<Area2D>("Lost");
 		attackCollider = (Area2D)GetNode("BeginAttack");
 		
 		container.SetState("Idle", new EnemyIdle(this));
 		container.SetState("Alert", new Alert(this, "Approach"));
+		container.SetState("Lost", new Lost(this));
 		container.SetState("Death", new Death(this));
 		container.SetState("Approach", new Approach(this));
 		container.SetState("Attacking", new BruteAttack(this));
@@ -25,8 +25,16 @@ public class OniBrute : Enemy
 
 	public override void HandleAlert(KinematicBody2D player)
 	{
-		alertCollider.SetDeferred("disabled", true);
+		alertArea.SetDeferred("monitoring", false);
+		lostArea.SetDeferred("monitoring", true);
 		ChangeState("Alert");
+	}
+
+	public override void HandleLost(KinematicBody2D player)
+	{
+		alertArea.SetDeferred("monitoring", true);
+		lostArea.SetDeferred("monitoring", false);
+		ChangeState("Lost");
 	}
 
 	public void OnAttackAreaEntered(KinematicBody2D body)
@@ -37,7 +45,6 @@ public class OniBrute : Enemy
 
 	public override void AfterAttack()
 	{
-		GD.Print("AfterAttack");
 		attackCollider.SetDeferred("monitoring", true);
 		ChangeState("Approach");
 	}
