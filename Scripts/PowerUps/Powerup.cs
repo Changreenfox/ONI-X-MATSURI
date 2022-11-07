@@ -48,10 +48,10 @@ public abstract class PowerUp : KinematicBody2D
 	
 	protected virtual void _on_Area2D_body_entered(object body)
 	{
-		gManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
+		/*gManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
 												"Powerup",
 												GetType().Name
-												);
+												);*/
 		ActivatePowerUp();
 
 		area.SetDeferred("monitoring", false);
