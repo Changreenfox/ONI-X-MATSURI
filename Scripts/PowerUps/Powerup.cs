@@ -58,10 +58,13 @@ public abstract class PowerUp : KinematicBody2D
 		GetNode<Sprite>("Sprite").Visible = false;
 	}
 
-	protected async virtual void ActivatePowerUp() {}
+	protected async virtual void ActivatePowerUp() 
+	{
+	}
 	
 	private void CheckGravity(float gravityValue)
 	{
 		SetPhysicsProcess(((gravityValue == 0) ? false : true));
 	}
+	
 }

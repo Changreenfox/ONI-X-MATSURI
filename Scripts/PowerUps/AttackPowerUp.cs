@@ -15,6 +15,9 @@ public class AttackPowerUp : PowerUp
 		newTimer.OneShot = true;
 		AddChild(newTimer);
 		newTimer.Start(boostTime);
+		
+		AudioStreamPlayer sound = GetNode<AudioStreamPlayer>("ActivationSound");
+		sound.Play();
 
 		await ToSignal(newTimer, "timeout");
 		

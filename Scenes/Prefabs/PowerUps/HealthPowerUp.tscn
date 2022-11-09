@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/PowerUps/HealthPowerUp.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/cottoncandy.png" type="Texture" id=2]
+[ext_resource path="res://assets/sounds/powerups/heal.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=2]
 resource_name = "Animation"
@@ -95,5 +96,10 @@ monitorable = false
 position = Vector2( -0.142857, 0.142857 )
 rotation = 0.785398
 shape = SubResource( 5 )
+
+[node name="ActivationSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -12.0
+bus = "Sounds"
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

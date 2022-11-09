@@ -222,7 +222,7 @@ public class AudioManager : Node
 			{ "OniBoss", new Dictionary<string, AudioStream>{ } },
 			{ "OniBrute", new Dictionary<string, AudioStream>{ } },
 			{ "Player", new Dictionary<string, AudioStream>{ } },
-			{ "Powerup", new Dictionary<string, AudioStream>{ } },
+			{ "PowerUp", new Dictionary<string, AudioStream>{ } },
 			{ "UserInterface", new Dictionary<string, AudioStream> { } }
 		};
 		
