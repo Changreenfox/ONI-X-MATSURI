@@ -9,7 +9,7 @@ public class OniThrower : Enemy
 		base._Ready();
 		alertArea = GetNode<Area2D>("Alert");
 		
-        //Function similarly to OniBrute, but doesn't have to move to continuously attack
+		//Function similarly to OniBrute, but doesn't have to move to continuously attack
 		container.SetState("Idle", new EnemyIdle(this));
 		container.SetState("Alert", new Alert(this, "Throwing"));
 		container.SetState("Death", new Death(this));
