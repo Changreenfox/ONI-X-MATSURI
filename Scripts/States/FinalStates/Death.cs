@@ -25,6 +25,7 @@ public class Death : State
 	
 	private async void Process()
 	{
+		host.SetProcess(false);
 		await ToSignal(host.Animator, "animation_finished");
 		host.Die();
 	}
