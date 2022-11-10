@@ -4,26 +4,26 @@ using System;
 
 public class CameraController : Camera2D
 {
-	GameManager gManager;
+	private GameManager gManager;
+	private Node2D player;
 	//private Player gManager.PlayerRef;
 	private float MostLeft = 0;
 
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		gManager = (GameManager)GetNode("/root/GameManager");
+		player = gManager.PlayerRef;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(float delta)
+	public override void _PhysicsProcess(float delta)
 	{
 		//Update the Camera's position when as the player moves right
-		if (gManager.PlayerRef.GlobalPosition.x > MostLeft + 15)
+		if (player.GlobalPosition.x > MostLeft + 15)
 		{
 			Vector2 temp = GlobalPosition;
-			temp.x = gManager.PlayerRef.GlobalPosition.x;
+			temp.x = player.GlobalPosition.x;
 			GlobalPosition = temp;
-			MostLeft = gManager.PlayerRef.GlobalPosition.x - 15;
+			MostLeft = player.GlobalPosition.x - 15;
 		}
 	}
 }
