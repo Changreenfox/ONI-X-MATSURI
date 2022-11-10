@@ -261,12 +261,13 @@ linear_accel = 5.86
 color_ramp = SubResource( 9 )
 
 [sub_resource type="CircleShape2D" id=14]
-radius = 88.3629
+radius = 176.0
 
 [node name="OniBrute" type="KinematicBody2D"]
 collision_layer = 2
 collision_mask = 24
 script = ExtResource( 1 )
+interruptable = true
 speed = 25.0
 maxSpeed = 300.0
 walkToRunSpeed = 300.0
@@ -321,19 +322,23 @@ cooldown = 0.1
 
 [node name="LeftRange1" type="CollisionPolygon2D" parent="BasicAttack"]
 visible = false
-polygon = PoolVector2Array( -32, -40, -64, -8, -80, 48, -88, 80, -80, 88, -24, 56, -24, 24, -32, 8 )
+polygon = PoolVector2Array( 48, -144, -48, -144, -80, -136, -120, -104, -144, -80, -176, -24, -184, 88, -112, 80, -24, 24, -48, -16, -48, -56, -24, -80, 104, -88, 80, -120 )
+disabled = true
 
 [node name="LeftRange2" type="CollisionPolygon2D" parent="BasicAttack"]
 visible = false
-polygon = PoolVector2Array( -40, -8, -72, 24, -80, 40, -80, 56, -80, 88, -24, 56, -24, 40, -40, 32, -40, 8 )
+polygon = PoolVector2Array( -120, -104, -144, -80, -176, -24, -184, 32, -176, 88, -88, 64, -24, 24, -40, 8, -72, 0, -96, -16, -128, -56 )
+disabled = true
 
 [node name="RightRange1" type="CollisionPolygon2D" parent="BasicAttack"]
 visible = false
-polygon = PoolVector2Array( 24, 32, 32, 8, 32, -32, 48, -24, 72, 0, 80, 24, 88, 48, 88, 88, 24, 56 )
+polygon = PoolVector2Array( 48, -24, 40, -64, -32, -88, -104, -88, -72, -128, -40, -144, 48, -144, 96, -128, 144, -80, 160, -64, 168, -24, 184, 64, 168, 88, 80, 64, 24, 24 )
+disabled = true
 
 [node name="RightRange2" type="CollisionPolygon2D" parent="BasicAttack"]
 visible = false
-polygon = PoolVector2Array( 32, -8, 72, 24, 88, 64, 88, 88, 16, 48, 16, 40, 40, 32, 40, 8 )
+polygon = PoolVector2Array( 80, 0, 112, -32, 120, -56, 120, -80, 120, -112, 160, -64, 176, -24, 184, 72, 168, 80, 128, 80, 72, 56, 24, 16 )
+disabled = true
 
 [node name="Contact" type="Area2D" parent="."]
 visible = false

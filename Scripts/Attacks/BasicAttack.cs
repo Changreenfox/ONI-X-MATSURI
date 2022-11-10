@@ -128,7 +128,6 @@ public class BasicAttack : Attack
 
 	public override void Cancel()
 	{
-		GD.Print(host.Name, " Cancelled an attack");
 		if(rightAttack)
 			rightRanges[currentFrame]?.SetDeferred("disabled", true);
 		else
