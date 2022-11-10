@@ -1,6 +1,6 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://assets/sprites/enemy/oni_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/enemy/oni_thrower_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=2]
 [ext_resource path="res://Scenes/Prefabs/AlertCollider.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/Actors/Enemies/OniThrower.cs" type="Script" id=4]
@@ -29,6 +29,38 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "AttackLeft"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 15, 16, 17, 19 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "AttackRight"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 20, 21, 22, 24 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -101,7 +133,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 8, 9, 10, 11 ]
+"values": [ 5, 6, 7, 8 ]
 }
 
 [sub_resource type="Animation" id=7]
@@ -118,7 +150,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 4, 5, 6, 7 ]
+"values": [ 10, 11, 12, 13 ]
 }
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -135,7 +167,6 @@ walkToRunSpeed = 150.0
 toFlash = Color( 1, 1, 1, 0.415686 )
 
 [node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.298039, 0.34902, 0.0862745, 1 )
 material = ExtResource( 8 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 1 )
@@ -157,6 +188,8 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "IdleForward"
 anims/Alert = SubResource( 3 )
+anims/AttackLeft = SubResource( 8 )
+anims/AttackRight = SubResource( 9 )
 anims/IdleForward = SubResource( 4 )
 anims/RESET = SubResource( 5 )
 anims/WalkLeft = SubResource( 6 )
