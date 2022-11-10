@@ -14,6 +14,7 @@ public class Alert : JustGravity
 
     public override void Enter()
     {
+        host.Velocity = new Vector2(0, host.Velocity.y);
         PlayAnimation();
         Process();
     }
@@ -22,6 +23,11 @@ public class Alert : JustGravity
     {
         await ToSignal(host.Animator, "animation_finished");
         host.ChangeState(next);
+    }
+
+    public override void Exit()
+    {
+        host.AfterAlert();
     }
 
     public override void PlayAnimation()

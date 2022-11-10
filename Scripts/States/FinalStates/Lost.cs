@@ -11,6 +11,7 @@ public class Lost : JustGravity
 
     public override void Enter()
     {
+        host.Velocity = new Vector2(0, host.Velocity.y);
         PlayAnimation();
         Process();
     }
@@ -19,6 +20,11 @@ public class Lost : JustGravity
     {
         await ToSignal(host.Animator, "animation_finished");
         host.ChangeState("Idle");
+    }
+
+    public override void Exit()
+    {
+        host.AfterLost();
     }
 
     public override void PlayAnimation()

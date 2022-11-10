@@ -48,4 +48,14 @@ public class OniBrute : Enemy
 		attackCollider.SetDeferred("monitoring", true);
 		ChangeState("Approach");
 	}
+
+	public override void AfterAlert()
+	{
+		attackCollider.SetDeferred("monitoring", true);
+	}
+
+	public override void AfterLost()
+	{
+		attackCollider.SetDeferred("monitoring", false);
+	}
 }

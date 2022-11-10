@@ -329,6 +329,16 @@ public abstract class Actor : KinematicBody2D
 	{
 		return;
 	}
+
+	public virtual void AfterAlert()
+	{
+		return;
+	}
+
+	public virtual void AfterLost()
+	{
+		return;
+	}
 	
 	public async void FlashColor(float duration, Color color)
 	{
