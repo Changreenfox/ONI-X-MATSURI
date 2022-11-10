@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/OniBrute.cs" type="Script" id=1]
-[ext_resource path="res://assets/sprites/enemy/oni_spritesheet.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/enemy/oni_big_weapon_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=3]
 [ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=4]
 [ext_resource path="res://assets/sounds/enemy/enemy_oni_damage.wav" type="AudioStream" id=5]
@@ -50,7 +50,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=12]
 resource_name = "AttackLeft"
-length = 0.7
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -58,10 +58,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 15, 16, 17, 18, 19 ]
+"values": [ 15, 16, 17, 18 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath("BasicAttack")
@@ -70,7 +70,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.4, 0.5, 0.6, 0.7 ),
+"times": PoolRealArray( 0.4, 0.5, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -89,7 +89,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=13]
 resource_name = "AttackRight"
-length = 0.7
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -97,10 +97,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 20, 21, 22, 23, 24 ]
+"values": [ 20, 21, 22, 23 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath("BasicAttack")
@@ -109,7 +109,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.4, 0.5, 0.6, 0.7 ),
+"times": PoolRealArray( 0.4, 0.5, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -267,12 +267,10 @@ radius = 88.3629
 collision_layer = 2
 collision_mask = 24
 script = ExtResource( 1 )
-interruptable = true
 speed = 25.0
 maxSpeed = 300.0
 walkToRunSpeed = 300.0
 toFlash = Color( 1, 1, 1, 0.415686 )
-layer = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 4 )
