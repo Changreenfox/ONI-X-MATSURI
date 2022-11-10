@@ -30,7 +30,6 @@ public class Death : State
 	private async void Process()
 	{
 		await ToSignal(host.Animator, "animation_finished");
-		await ToSignal(deathSound, "finished");
 		host.Die();
 	}
 	
