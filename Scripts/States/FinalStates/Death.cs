@@ -3,6 +3,8 @@ using System;
 
 public class Death : State
 {
+	private AudioStreamPlayer2D deathSound;
+	
 	public Death(Actor _host)
 	{
 		host = _host;
@@ -10,9 +12,11 @@ public class Death : State
 
 	public override void Enter()
 	{
-		//host.PlayAnimation("Death");
+		deathSound = host.GetNode("Sounds").GetNode<AudioStreamPlayer2D>("Death");
+
 		host.AfterLost();
 		host.CancelAttack();
+		//host.SetProcess(false);
 		PlayDeathSound();
 		PlayAnimation();
 		Process();
@@ -25,23 +29,20 @@ public class Death : State
 	
 	private async void Process()
 	{
-		host.SetProcess(false);
 		await ToSignal(host.Animator, "animation_finished");
+		await ToSignal(deathSound, "finished");
 		host.Die();
 	}
 	
 	private async void PlayDeathSound()
 	{
 		/*
-		This is to remove any sort of collisions or behavior with the Actor
-		Sounds are played at the 2D position of the Actor
-		Allows the Death sound to finish playing before deleting the Actor's node
-		*/
 		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
 										host.GetType().Name,
 										"Death"
 										);
-		//await ToSignal(host.GetNode("DeathSound"), "finished");
+		*/
+		deathSound.Play();
 	}
 	
 	public override void PlayAnimation()
