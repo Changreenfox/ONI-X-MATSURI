@@ -27,14 +27,18 @@ public abstract class Actor : KinematicBody2D
 	protected bool active = true;
 	public bool Active
 	{
-		get{ return active;}
-		set{ active = value;}
+		get{ return active; }
+		set{ active = value; }
 	}
 
 	//Can have their attacks interrupted
 	[Export]
 	protected bool interruptable = false;
-	public bool Interruptable { get; set; }
+	public bool Interruptable {
+		get { return interruptable; }
+	}
+
+	protected bool immune = false;
 
 	// Velocity & Direction values
 	[Export]
@@ -153,7 +157,7 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	[Export]
-	private Color toFlash = new Color();
+	protected Color toFlash = new Color();
 
 	[Export]
 	private float immunityTime = 0.5f;
@@ -231,7 +235,6 @@ public abstract class Actor : KinematicBody2D
 	{
 		state.Exit();
 		state = container.GetState(name);
-		GD.Print(state.StateName());
 		state.Enter();
 	}
 
@@ -243,6 +246,8 @@ public abstract class Actor : KinematicBody2D
 
 	public virtual void TakeDamage(int damage, Vector2 collisionPosition, Vector2 impulse)
 	{
+		if(immune)
+			return;
 		ImmunityTimer();
 		PlaySound("Damage");
 		hp -= damage;
@@ -296,7 +301,7 @@ public abstract class Actor : KinematicBody2D
 	{
 		//Turn off the hitbox
 		hitbox.SetDeferred("Monitorable", false);
-
+		immune = true;
 		//Create a timer child dynamically that controls immunity
 		Timer newTimer = new Timer();
 		newTimer.OneShot = true;
@@ -306,6 +311,12 @@ public abstract class Actor : KinematicBody2D
 
 		//Turn on the hitbox
 		hitbox.SetDeferred("Monitorable", true);
+		immune = false;
+	}
+
+	public virtual void Reset(int damage = 0, Node2D RespawnNode = null)
+	{
+		QueueFree();
 	}
 
 	public virtual void Die()
