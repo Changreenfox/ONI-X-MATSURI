@@ -8,7 +8,6 @@
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/SpeedPowerUp.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/CameraController.cs" type="Script" id=8]
-[ext_resource path="res://Scripts/LeftWall.cs" type="Script" id=9]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerUp.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/backgrounds/Background_buildings.png" type="Texture" id=11]
 [ext_resource path="res://assets/backgrounds/Background_mountains.png" type="Texture" id=12]
@@ -32,6 +31,9 @@ extents = Vector2( 33, 620 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 1337.75, 10 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 29, 616 )
 
 [sub_resource type="CanvasItemMaterial" id=7]
 
@@ -68,7 +70,6 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/LeftWall"]
 position = Vector2( -992, 660 )
 shape = SubResource( 1 )
-script = ExtResource( 9 )
 
 [node name="PitCheck" type="Area2D" parent="Camera2D"]
 collision_layer = 0
@@ -79,6 +80,13 @@ shape = SubResource( 3 )
 
 [node name="RespawnPoint" type="Node2D" parent="Camera2D"]
 position = Vector2( -699, 37 )
+
+[node name="DeathWall" type="Area2D" parent="Camera2D"]
+position = Vector2( -273, 64 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DeathWall"]
+position = Vector2( -969, 596 )
+shape = SubResource( 8 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 offset = Vector2( 0, 540 )
@@ -114,8 +122,6 @@ script = ExtResource( 2 )
 
 [node name="OgreBrute" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1272, 0 )
-interruptable = false
-layer = 1
 
 [node name="StartWall" type="StaticBody2D" parent="."]
 position = Vector2( 283, -14 )
