@@ -11,13 +11,22 @@ public class Death : State
 	public override void Enter()
 	{
 		//host.PlayAnimation("Death");
+		host.AfterLost();
+		host.CancelAttack();
 		PlayDeathSound();
-		host.Die();
+		PlayAnimation();
+		Process();
 	}
 	
 	public override string StateName()
 	{
 		return "Death";
+	}
+	
+	private async void Process()
+	{
+		await ToSignal(host.Animator, "animation_finished");
+		host.Die();
 	}
 	
 	private async void PlayDeathSound()
@@ -32,5 +41,10 @@ public class Death : State
 										"Death"
 										);
 		//await ToSignal(host.GetNode("DeathSound"), "finished");
+	}
+	
+	public override void PlayAnimation()
+	{
+		host.PlayAnimation("Death");
 	}
 }

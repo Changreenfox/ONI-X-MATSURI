@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/OniBoss.cs" type="Script" id=1]
 [ext_resource path="res://Scripts/Attacks/ContactDamage.cs" type="Script" id=2]
@@ -181,6 +181,9 @@ tracks/2/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=11]
+resource_name = "Death"
+
 [sub_resource type="Animation" id=3]
 resource_name = "IdleForward"
 length = 0.8
@@ -277,6 +280,7 @@ shape = SubResource( 10 )
 anims/Angry = SubResource( 9 )
 anims/Attack = SubResource( 8 )
 anims/ChargeAttack = SubResource( 7 )
+anims/Death = SubResource( 11 )
 anims/IdleForward = SubResource( 3 )
 anims/RESET = SubResource( 4 )
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/sprites/player/player_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Actors/Player/Player.cs" type="Script" id=2]
@@ -97,6 +97,9 @@ tracks/1/keys = {
 "method": "updateFrame"
 } ]
 }
+
+[sub_resource type="Animation" id=21]
+resource_name = "Death"
 
 [sub_resource type="Animation" id=4]
 resource_name = "IdleForward"
@@ -459,6 +462,7 @@ disabled = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/AttackLeft = SubResource( 2 )
 anims/AttackRight = SubResource( 3 )
+anims/Death = SubResource( 21 )
 anims/IdleForward = SubResource( 4 )
 anims/IdleLeft = SubResource( 12 )
 anims/IdleRight = SubResource( 13 )

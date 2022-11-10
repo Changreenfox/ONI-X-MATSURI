@@ -358,10 +358,15 @@ public abstract class Actor : KinematicBody2D
 
 	public void Interrupt()
 	{
-		if(!interruptable || currentAttack < 0)
+		if(!interruptable)
 			return;
 		
-		//Interrupt the user's current attack
-		attacks[currentAttack].Cancel();
+		CancelAttack();
+	}
+	
+	public void CancelAttack()
+	{
+		if(currentAttack >= 0)
+			attacks[currentAttack].Cancel();	
 	}
 }
