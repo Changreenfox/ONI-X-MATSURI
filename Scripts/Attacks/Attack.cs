@@ -93,7 +93,6 @@ public abstract class Attack : Area2D
 	{
 		Actor enemy = collision as Actor;
 		//enemy? means if not null, call enemy.TakeDamage, otherwise do nothing
-		GD.Print(this.Name, " Hit! ", enemy?.Name);
 		enemy?.TakeDamage(damage + host.DamageBoost, GlobalPosition, impulse);
 	}
 
@@ -101,8 +100,7 @@ public abstract class Attack : Area2D
 	public virtual void _on_Attack_area_entered(KinematicBody2D collision)
 	{
 		Actor enemy = collision.GetParent() as Actor;
-		//enemy? means if not null, call enemy.TakeDamage, otherwise do nothing
-		GD.Print(this.Name, " Hit! ", enemy?.Name);
+		//GD.Print(this.Name, " Hit! ", enemy?.Name);
 		enemy?.TakeDamage(damage + host.DamageBoost, GlobalPosition, impulse);
 	}
 
@@ -117,7 +115,6 @@ public abstract class Attack : Area2D
 		await ToSignal(time, "timeout");
 		time.Stop();
 
-		GD.Print("Waiting changed");
 		waiting = false;
 	}
 
