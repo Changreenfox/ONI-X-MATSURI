@@ -523,10 +523,9 @@ walkToRunSpeed = 300.0
 toFlash = Color( 1, 1, 1, 0.415686 )
 
 [node name="DeadSprite" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
+visible = false
 scale = Vector2( 7, 7 )
 texture = ExtResource( 12 )
-offset = Vector2( 0, -35 )
 hframes = 3
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -538,6 +537,7 @@ vframes = 5
 frame = 5
 
 [node name="AlertSprite" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0, -142 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 8 )
@@ -600,6 +600,7 @@ disabled = true
 visible = false
 collision_layer = 0
 collision_mask = 16
+monitoring = false
 monitorable = false
 script = ExtResource( 3 )
 
@@ -660,6 +661,7 @@ scale = Vector2( 7, 7 )
 emitting = false
 amount = 2
 lifetime = 0.5
+one_shot = true
 speed_scale = 0.82
 explosiveness = 1.0
 randomness = 1.0
@@ -673,6 +675,7 @@ position = Vector2( 1.52588e-05, 44 )
 scale = Vector2( 7, 7 )
 emitting = false
 amount = 2
+one_shot = true
 speed_scale = 0.82
 explosiveness = 1.0
 randomness = 1.0

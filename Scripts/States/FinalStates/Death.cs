@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class Death : State
 {
@@ -8,18 +10,29 @@ public class Death : State
 	public Death(Actor _host)
 	{
 		host = _host;
+		deathSound = host.GetNode("Sounds").GetNodeOrNull<AudioStreamPlayer2D>("Death");
 	}
 
 	public override void Enter()
 	{
-		deathSound = host.GetNode("Sounds").GetNode<AudioStreamPlayer2D>("Death");
-
+		host.Velocity = Vector2.Zero;
+		host.Disable();
 		host.AfterLost();
-		host.CancelAttack();
+
 		//host.SetProcess(false);
-		PlayDeathSound();
+
 		PlayAnimation();
 		Process();
+	}
+
+	//Stop checking for death
+	public override string HandlePhysics(float delta)
+	{
+		return null;
+	}
+	public override string HandleProcess(float delta)
+	{
+		return null;
 	}
 	
 	public override string StateName()
@@ -27,13 +40,22 @@ public class Death : State
 		return "Death";
 	}
 	
-	private async void Process()
+	private async Task Process()
 	{
-		await ToSignal(host.Animator, "animation_finished");
+		Task Task1 = PlayDeathAnimation();
+		Task Task2 = PlayDeathSound();
+		var allTasks = new Task[2] {Task1, Task2};
+		await Task.WhenAll(allTasks);
 		host.Die();
 	}
 	
-	private async void PlayDeathSound()
+	private async Task PlayDeathAnimation()
+	{
+		PlayAnimation();
+		await ToSignal(host.Animator, "animation_finished");
+	}
+
+	private async Task PlayDeathSound()
 	{
 		/*
 		host.GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), 
@@ -41,7 +63,10 @@ public class Death : State
 										"Death"
 										);
 		*/
-		deathSound.Play();
+		deathSound?.Play();
+		if(deathSound is null)
+			return;
+		await ToSignal(deathSound, "finished");
 	}
 	
 	public override void PlayAnimation()

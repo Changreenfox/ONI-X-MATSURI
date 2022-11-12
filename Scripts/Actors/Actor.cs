@@ -293,8 +293,8 @@ public abstract class Actor : KinematicBody2D
 
 	public void PlaySound(string soundName)
 	{
-		AudioStreamPlayer2D sound = (AudioStreamPlayer2D)sounds.GetNode(soundName);
-		sound.Play();
+		AudioStreamPlayer2D sound = sounds.GetNodeOrNull<AudioStreamPlayer2D>(soundName);
+		sound?.Play();
 	}
 
 	private async void ImmunityTimer()
@@ -368,5 +368,10 @@ public abstract class Actor : KinematicBody2D
 	{
 		if(currentAttack >= 0)
 			attacks[currentAttack].Cancel();	
+	}
+
+	public void Disable()
+	{
+		CancelAttack();
 	}
 }
