@@ -60,10 +60,18 @@ public class GameManager : Node
 		set{ currentCamera = value; }
 	}
 	
+	[Export]
 	private int gameScore = 0;
 	public int GameScore
 	{
 		get{ return gameScore; }
+	}
+	
+	[Export]
+	private float playTime = 0;
+	public float PlayTime
+	{
+		get { return playTime; }
 	}
 
 	// Called when the node enters the scene tree for the first time.
@@ -79,11 +87,19 @@ public class GameManager : Node
 		signals.Connect(nameof(SignalManager.EnemyDied), this, nameof(this.SetGameScore));
 	}
 	
+	public override void _Process(float delta)
+	{
+		if(currentScene.IsGameplay)
+		{
+			playTime += delta;
+		}
+	}
+	
 	
 	private void SetGameScore(int scoreValue)
 	{
 		gameScore += scoreValue;
-		GD.Print(gameScore);
+		//GD.Print(gameScore);
 		//Update UI score
 	}
 

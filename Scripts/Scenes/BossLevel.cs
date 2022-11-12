@@ -12,6 +12,7 @@ public class BossLevel : SceneBase
 	public override void _Ready()
 	{
 		base._Ready();
+		isGameplay = true;
 		
 		gManager.Signals.Connect(nameof(SignalManager.OniBossAttacked), this, nameof(On_OniBoss_Attack));
 		gManager.Signals.Connect(nameof(SignalManager.OniBossLanded), this, nameof(On_OniBoss_Land));
