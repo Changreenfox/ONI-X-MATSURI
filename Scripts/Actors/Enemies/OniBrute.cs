@@ -12,6 +12,8 @@ public class OniBrute : Enemy
 		lostArea = GetNode<Area2D>("Lost");
 		attackCollider = (Area2D)GetNode("BeginAttack");
 		
+		scoreValue = 1;
+		
 		container.SetState("Idle", new EnemyIdle(this));
 		container.SetState("Alert", new Alert(this, "Approach"));
 		container.SetState("Lost", new Lost(this));

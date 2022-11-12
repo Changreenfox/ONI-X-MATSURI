@@ -63,6 +63,7 @@ public class Death : State
 										"Death"
 										);
 		*/
+		GD.Print("Played sound");
 		deathSound?.Play();
 		if(deathSound is null)
 			return;

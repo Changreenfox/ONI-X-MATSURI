@@ -59,16 +59,12 @@ public class GameManager : Node
 		get{ return currentCamera; }
 		set{ currentCamera = value; }
 	}
-	// Declare member variables here. Examples:
-	// private int a = 2;
-	// private string b = "text";
-	/*
-	private CustomSignals signals;
-	public CustomSignals Signals
+	
+	private int gameScore = 0;
+	public int GameScore
 	{
-		get{ return signals; }
+		get{ return gameScore; }
 	}
-	*/
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -80,16 +76,15 @@ public class GameManager : Node
 		signals.Connect(nameof(SignalManager.SceneLoadedSignal), audio, nameof(AudioManager.PlayMusic));
 		signals.Connect(nameof(SignalManager.PlaySoundSignal), audio, nameof(AudioManager.PlaySound));
 		signals.Connect(nameof(SignalManager.PlaySound2DSignal), audio, nameof(AudioManager.PlaySound2D));
+		signals.Connect(nameof(SignalManager.EnemyDied), this, nameof(this.SetGameScore));
 	}
 	
 	
-	private void ShakeCamera()
+	private void SetGameScore(int scoreValue)
 	{
-		
+		gameScore += scoreValue;
+		GD.Print(gameScore);
+		//Update UI score
 	}
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+
 }

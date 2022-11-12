@@ -8,6 +8,9 @@ using System;
 public class SignalManager : Node
 {	
 	[Signal]
+	public delegate void EnemyDied(int scoreValue);
+	
+	[Signal]
 	public delegate void EntityCreated(string domainName);
 	
 	[Signal]

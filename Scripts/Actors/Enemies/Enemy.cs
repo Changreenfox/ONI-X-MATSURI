@@ -5,6 +5,8 @@ public class Enemy : Actor
 {
 	protected Area2D alertArea = null;
 	protected Area2D lostArea = null;
+	
+	protected int scoreValue = 0;
 
 	//Enemy Functionality
 	public override void _Ready()
@@ -27,5 +29,13 @@ public class Enemy : Actor
 	public virtual void HandleLost(KinematicBody2D player)
 	{
 		return;
+	}
+	
+	public override void Die()
+	{
+		gManager.Signals.EmitSignal(nameof(SignalManager.EnemyDied),
+									scoreValue
+									);
+		base.Die();
 	}
 }       
