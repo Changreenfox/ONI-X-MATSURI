@@ -58,7 +58,7 @@ public abstract class PowerUp : KinematicBody2D
 		GetNode<Sprite>("Sprite").Visible = false;
 	}
 
-	protected async virtual void ActivatePowerUp() 
+	protected virtual void ActivatePowerUp() 
 	{
 	}
 	
