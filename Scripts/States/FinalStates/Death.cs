@@ -40,7 +40,7 @@ public class Death : State
 		return "Death";
 	}
 	
-	private async Task Process()
+	private async void Process()
 	{
 		Task Task1 = PlayDeathAnimation();
 		Task Task2 = PlayDeathSound();
