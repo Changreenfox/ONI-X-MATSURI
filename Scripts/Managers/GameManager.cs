@@ -61,6 +61,8 @@ public class GameManager : Node
 		get{ return gameScore; }
 	}
 	
+	private Label gameScoreDisplay;
+	
 	[Export]
 	private float playTime = 0;
 	public float PlayTime
@@ -93,8 +95,9 @@ public class GameManager : Node
 	{
 		PlayerCoinGet(scoreValue);
 		gameScore += scoreValue;
-		//GD.Print(gameScore);
-		//Update UI score
+		signals.EmitSignal(nameof(SignalManager.UpdatedGameScore),
+							gameScore
+							);
 	}
 	
 	private async void PlayerCoinGet(int scoreValue)

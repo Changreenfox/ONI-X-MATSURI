@@ -30,4 +30,7 @@ public class SignalManager : Node
 	
 	[Signal]
 	public delegate void SceneLoadedSignal(string sceneName);
+	
+	[Signal]
+	public delegate void UpdatedGameScore(int gameScore);
 }

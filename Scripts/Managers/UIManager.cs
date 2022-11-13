@@ -4,6 +4,7 @@ using System;
 public class UIManager : Control
 {
 	private GameManager gManager;
+	private Label scoreLabel;
 	
 	//private Player PlayerNode;
 	private TextureRect Heart1;
@@ -24,6 +25,8 @@ public class UIManager : Control
 		gManager = (GameManager)GetNode("/root/GameManager");
 		gManager.InterfaceRef = this;
 		
+		gManager.Signals.Connect(nameof(SignalManager.UpdatedGameScore), this, nameof(SetScoreDisplay));
+		
 		//PlayerNode = gManager.PlayerRef;
 		Heart1 = GetNode<TextureRect>("Left/Heart1");
 		Heart2 = GetNode<TextureRect>("Left/Heart2");
@@ -36,6 +39,8 @@ public class UIManager : Control
 		JumpBoost = GetNode<TextureRect>("Right/VBoxContainer/JumpBoost");
 		AttackBoost = GetNode<TextureRect>("Right/VBoxContainer/AttackBoost");
 		SpeedBoost = GetNode<TextureRect>("Right/VBoxContainer/SpeedBoost");
+		
+		scoreLabel = GetNodeOrNull<HBoxContainer>("Center").GetNodeOrNull<Label>("Label");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -94,6 +99,11 @@ public class UIManager : Control
 			AttackBoost.Visible = false;
 		else if (type == "Speed")
 			SpeedBoost.Visible = false;
+	}
+	
+	private void SetScoreDisplay(string scoreValue)
+	{
+		scoreLabel.Text = scoreValue;
 	}
 }
 
