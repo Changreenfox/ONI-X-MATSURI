@@ -91,9 +91,20 @@ public class GameManager : Node
 	
 	private void SetGameScore(int scoreValue)
 	{
+		PlayerCoinGet(scoreValue);
 		gameScore += scoreValue;
 		//GD.Print(gameScore);
 		//Update UI score
+	}
+	
+	private async void PlayerCoinGet(int scoreValue)
+	{
+		PackedScene coinScene = ResourceLoader.Load<PackedScene>($"res://Scenes/Prefabs/Coin.tscn");
+		Sprite coin = coinScene.Instance() as Sprite;
+		coin.Position = playerRef.Position;
+		CallDeferred("add_child", coin);	//Add as child of Player so the sprite moves with the Player
+		AnimationPlayer coinAnimations = coin.GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
+		coinAnimations?.Play("PlayerGet");	//Handles freeing the node
 	}
 
 }
