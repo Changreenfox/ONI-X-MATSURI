@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/buttons/return_button_pressed.png" type="Texture" id=1]
+[ext_resource path="res://assets/buttons/return_button_highlighted.png" type="Texture" id=2]
+[ext_resource path="res://assets/buttons/return_button.png" type="Texture" id=3]
+[ext_resource path="res://assets/buttons/quit_button_highlighted.png" type="Texture" id=4]
+[ext_resource path="res://assets/buttons/quit_button_pressed.png" type="Texture" id=5]
+[ext_resource path="res://assets/buttons/quit_button.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Prefabs/TextFont.tres" type="DynamicFont" id=7]
+
+[node name="PauseScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.45098 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -231.0
+margin_top = -241.0
+margin_right = 231.0
+margin_bottom = 241.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_right = 462.0
+margin_bottom = 487.0
+custom_constants/separation = 33
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 462.0
+margin_bottom = 103.0
+custom_fonts/font = ExtResource( 7 )
+text = "PAUSED"
+align = 1
+
+[node name="Control" type="Control" parent="CenterContainer/VBoxContainer"]
+margin_top = 136.0
+margin_right = 462.0
+margin_bottom = 136.0
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer"]
+margin_top = 169.0
+margin_right = 462.0
+margin_bottom = 487.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/CenterContainer"]
+margin_left = 44.0
+margin_right = 417.0
+margin_bottom = 318.0
+custom_constants/separation = 38
+
+[node name="Return" type="TextureButton" parent="CenterContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+margin_right = 373.0
+margin_bottom = 140.0
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+
+[node name="Quit" type="TextureButton" parent="CenterContainer/VBoxContainer/CenterContainer/VBoxContainer"]
+margin_top = 178.0
+margin_right = 373.0
+margin_bottom = 318.0
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 4 )
