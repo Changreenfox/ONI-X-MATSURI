@@ -5,7 +5,7 @@ public class Level1Generator : Node2D
 {
 	public override void _Ready()
 	{
-		int NumChunks = 5; // Total number of unique chunks (not including tutorial and end)
+		int NumChunks = 6; // Total number of unique chunks (not including tutorial and end)
 		int MarkerX = 1920; // Holds location information for loading the next chunk
 		
 		// Set up RNG
