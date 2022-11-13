@@ -33,12 +33,6 @@ public class GameManager : Node
 		get{ return signals; }
 	}
 	
-	private TextureManager textures;
-	public TextureManager Textures
-	{
-		get{ return textures; }
-	}
-	
 	private UIManager interfaceRef;
 	public UIManager InterfaceRef
 	{
@@ -79,7 +73,6 @@ public class GameManager : Node
 	{
 		audio = (AudioManager)GetNode("/root/AudioManager");
 		signals = (SignalManager)GetNode("/root/SignalManager");
-		textures = (TextureManager)GetNode("/root/TextureManager");
 		
 		signals.Connect(nameof(SignalManager.SceneLoadedSignal), audio, nameof(AudioManager.PlayMusic));
 		signals.Connect(nameof(SignalManager.PlaySoundSignal), audio, nameof(AudioManager.PlaySound));
