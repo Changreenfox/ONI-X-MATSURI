@@ -9,7 +9,7 @@ public class JumpPowerUp : PowerUp
 	protected async override void ActivatePowerUp()
 	{
 		player.JumpSpeed += jumpIncrease;
-		Interface?.Toggle_Powerup_Icon("Jump");
+		Interface?.Display_Powerup_Icon("Jump");
 		
 		Timer newTimer = new Timer();
 		newTimer.OneShot = true;
@@ -22,7 +22,7 @@ public class JumpPowerUp : PowerUp
 		await ToSignal(newTimer, "timeout");
 
 		player.JumpSpeed -= jumpIncrease;
-		Interface?.Toggle_Powerup_Icon("Jump");
+		Interface?.Hide_Powerup_Icon("Jump");
 
 		QueueFree();
 	}

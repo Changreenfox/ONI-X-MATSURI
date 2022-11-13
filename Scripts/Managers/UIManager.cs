@@ -76,14 +76,24 @@ public class UIManager : Control
 		GetTree().Quit();
 	}
 	
-	public void Toggle_Powerup_Icon(string type)
+	public void Display_Powerup_Icon(string type)
 	{
 		if (type == "Jump")
-			JumpBoost.Visible = !JumpBoost.Visible;
+			JumpBoost.Visible = true;
 		else if (type == "Attack")
-			AttackBoost.Visible = !AttackBoost.Visible;
+			AttackBoost.Visible = true;
 		else if (type == "Speed")
-			SpeedBoost.Visible = !SpeedBoost.Visible;
+			SpeedBoost.Visible = true;
+	}
+	
+	public void Hide_Powerup_Icon(string type)
+	{
+		if (type == "Jump")
+			JumpBoost.Visible = false;
+		else if (type == "Attack")
+			AttackBoost.Visible = false;
+		else if (type == "Speed")
+			SpeedBoost.Visible = false;
 	}
 }
 

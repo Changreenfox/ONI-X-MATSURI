@@ -110,6 +110,7 @@ motion_scale = Vector2( 0.7, 1 )
 motion_mirroring = Vector2( 3840, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Buildings"]
+position = Vector2( 0, 55 )
 texture = ExtResource( 11 )
 
 [node name="LevelGenerator" type="Node2D" parent="."]
