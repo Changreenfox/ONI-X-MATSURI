@@ -12,4 +12,4 @@ dest_files=[ "res://.import/boss_stage_music.ogg-0b86029002474cef99db594777b8d21
 [params]
 
 loop=true
-loop_offset=0
+loop_offset=3.33
