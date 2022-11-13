@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Cooler_Ninjari_Ninjarous.ogg-8108a261fc88de25fa901a5196c04881.oggstr"
+
+[deps]
+
+source_file="res://assets/music_ogg/Cooler_Ninjari_Ninjarous.ogg"
+dest_files=[ "res://.import/Cooler_Ninjari_Ninjarous.ogg-8108a261fc88de25fa901a5196c04881.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=17.65
