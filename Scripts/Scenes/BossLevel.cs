@@ -70,7 +70,7 @@ public class BossLevel : SceneBase
 	public void On_OniBoss_Phase2()
 	{
 		Sprite background = (Sprite)GetNode("Background");
-		List<string> powerUps = new List<string> { "AttackPowerUp", "HealthPowerUp", "JumpPowerUp", "SpeedPowerUp" };
+		List<string> powerUps = new List<string> { "AttackPowerUp", "HealthPowerUp", "JumpPowerUp" };
 		for(int i = 0; i < NUM_PHASE2_POWERUPS; ++i)
 		{
 			Vector2 powerUpCoords = new Vector2(random.RandiRange(0, background.Texture.GetWidth() - 1), 
