@@ -27,6 +27,11 @@ public class Lost : JustGravity
         host.AfterLost();
     }
 
+    public override string StateName()
+    {
+        return "Lost";
+    }
+
     public override void PlayAnimation()
     {
         host.PlayAnimation("Lost");

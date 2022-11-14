@@ -25,6 +25,11 @@ public class Alert : JustGravity
 		host.ChangeState(next);
 	}
 
+	public override string StateName()
+	{
+		return "Alert";
+	}
+
 	public override void Exit()
 	{
 		host.AfterAlert();

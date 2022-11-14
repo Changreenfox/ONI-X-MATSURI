@@ -34,6 +34,8 @@ public class OniBrute : Enemy
 
 	public override void HandleLost(KinematicBody2D player)
 	{
+		if(!lostArea.Monitoring)
+			return;
 		alertArea.SetDeferred("monitoring", true);
 		lostArea.SetDeferred("monitoring", false);
 		ChangeState("Lost");
@@ -41,6 +43,8 @@ public class OniBrute : Enemy
 
 	public void OnAttackAreaEntered(KinematicBody2D body)
 	{
+		if(hp <= 0)
+			return;
 		attackCollider.SetDeferred("monitoring", false);
 		ChangeState("Attacking");
 	}
@@ -48,7 +52,8 @@ public class OniBrute : Enemy
 	public override void AfterAttack()
 	{
 		attackCollider.SetDeferred("monitoring", true);
-		ChangeState("Approach");
+		if(hp > 0)
+			ChangeState("Approach");
 	}
 
 	public override void AfterAlert()
@@ -60,4 +65,10 @@ public class OniBrute : Enemy
 	{
 		attackCollider.SetDeferred("monitoring", false);
 	}
+
+    public override void Disable()
+    {
+		attackCollider.SetDeferred("monitoring", false);
+        base.Disable();
+    }
 }

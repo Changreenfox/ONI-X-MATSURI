@@ -370,7 +370,7 @@ public abstract class Actor : KinematicBody2D
 			attacks[currentAttack].Cancel();	
 	}
 
-	public void Disable()
+	public virtual void Disable()
 	{
 		CancelAttack();
 	}

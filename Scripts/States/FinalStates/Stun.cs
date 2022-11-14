@@ -19,4 +19,10 @@ public class Stun : JustGravity
 	{
 		return base.HandlePhysics(delta);
 	}
+
+	public override string StateName()
+    {
+        return "Stun";
+    }
+
 }

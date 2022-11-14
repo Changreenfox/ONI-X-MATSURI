@@ -30,4 +30,10 @@ public class Throw : JustGravity
 		else
 			host.PlayAnimation("AttackRight");
 	}
+
+	public override string StateName()
+    {
+        return "Throw";
+    }
+
 }

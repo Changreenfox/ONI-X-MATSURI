@@ -17,7 +17,6 @@ public class Death : State
 	{
 		host.Velocity = Vector2.Zero;
 		host.Disable();
-		host.AfterLost();
 
 		//host.SetProcess(false);
 
@@ -30,6 +29,8 @@ public class Death : State
 	{
 		return null;
 	}
+
+	//Stop checking for death
 	public override string HandleProcess(float delta)
 	{
 		return null;
@@ -63,7 +64,6 @@ public class Death : State
 										"Death"
 										);
 		*/
-		GD.Print("Played sound");
 		deathSound?.Play();
 		if(deathSound is null)
 			return;

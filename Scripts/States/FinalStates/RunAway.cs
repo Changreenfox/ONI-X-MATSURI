@@ -49,4 +49,10 @@ public class RunAway : AIMotion
         host.FacingRight = facingRight;
         PlayAnimation();
     }
+
+    public override string StateName()
+    {
+        return "RunAway";
+    }
+
 }
