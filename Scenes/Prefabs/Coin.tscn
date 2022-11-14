@@ -38,6 +38,7 @@ tracks/1/keys = {
 }
 
 [node name="Coin" type="Sprite"]
+show_behind_parent = true
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 

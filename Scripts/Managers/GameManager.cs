@@ -61,8 +61,6 @@ public class GameManager : Node
 		get{ return gameScore; }
 	}
 	
-	private Label gameScoreDisplay;
-	
 	[Export]
 	private float playTime = 0;
 	public float PlayTime
@@ -100,14 +98,22 @@ public class GameManager : Node
 							);
 	}
 	
-	private async void PlayerCoinGet(int scoreValue)
+	private void PlayerCoinGet(int scoreValue)
 	{
 		PackedScene coinScene = ResourceLoader.Load<PackedScene>($"res://Scenes/Prefabs/Coin.tscn");
-		Sprite coin = coinScene.Instance() as Sprite;
-		coin.Position = playerRef.Position;
-		playerRef.CallDeferred("add_child", coin);	//Add as child of Player so the sprite moves with the Player
-		AnimationPlayer coinAnimations = coin.GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
-		coinAnimations?.Play("PlayerGet");	//Handles freeing the node
+		Timer delayTimer = new Timer();
+		delayTimer.Name = "CoinTimer";
+		AddChild(delayTimer);
+		for(int i = 0; i < scoreValue && delayTimer.IsStopped(); ++i)
+		{
+			Sprite coin = coinScene.Instance() as Sprite;
+			coin.Position = playerRef.Position;
+			CallDeferred("add_child", coin);	//Add as child of Player so the sprite moves with the Player
+			AnimationPlayer coinAnimations = coin.GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
+			coinAnimations?.Play("PlayerGet");	//Handles freeing the node
+			delayTimer.Start(0.5f);
+		}
+		delayTimer.QueueFree();
 	}
 
 }
