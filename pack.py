@@ -30,7 +30,7 @@ def ext(target: str) -> str:
     if target.lower().count('windows') == True: 
         return '.exe'
     elif target.lower().count('macos') == True:
-        return '.dmg'
+        return '.app'
     else:
         return ''
 

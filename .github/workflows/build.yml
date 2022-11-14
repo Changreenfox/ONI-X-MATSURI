@@ -66,10 +66,10 @@ jobs:
       - name: Build for macOS platform
         run: |
           mkdir -v -p build/macos
-          godot -v --export "macos" ./build/macos/$EXPORT_NAME.dmg
+          godot -v --export "macos" ./build/macos/$EXPORT_NAME.app
 
       - name: Upload artifact
-        if: github.ref_type == 'tag'
+        # if: github.ref_type == 'tag'
         uses: actions/upload-artifact@v3
         with:
           name: oni-x-matsuri-macos-x86-64
