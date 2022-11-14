@@ -33,8 +33,8 @@ public class Enemy : Actor
 
 	public override void Disable()
 	{
-		alertArea.SetDeferred("monitoring", false);
-		lostArea.SetDeferred("monitoring", false);
+		alertArea?.SetDeferred("monitoring", false);
+		lostArea?.SetDeferred("monitoring", false);
 		base.Disable();
 	}
 	
