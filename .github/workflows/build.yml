@@ -69,7 +69,7 @@ jobs:
           godot -v --export "macos" ./build/macos/$EXPORT_NAME.zip
 
       - name: Upload artifact
-        # if: github.ref_type == 'tag'
+        if: github.ref_type == 'tag'
         uses: actions/upload-artifact@v3
         with:
           name: oni-x-matsuri-macos-x86-64
@@ -100,14 +100,14 @@ jobs:
 
       - name: Package contents
         run: |
-          python ./pack.py windows-x86-64
-          python ./pack.py macos-x86-64
+          python ./tools/pack.py windows-x86-64
+          python ./tools/pack.py macos-x86-64
 
       - name: Verify release notes
-        run: python ./gen_release_notes.py ${{ github.ref_name }}
+        run: python ./tools/gen_release_notes.py ${{ github.ref_name }}
 
       - name: Write release notes
-        run: echo "$(python ./gen_release_notes.py ${{ github.ref_name }})" > ./RELEASE_NOTES.md
+        run: echo "$(python ./tools/gen_release_notes.py ${{ github.ref_name }})" > ./RELEASE_NOTES.md
 
       - name: Upload releases
         uses: ncipollo/release-action@v1

@@ -30,7 +30,7 @@ def ext(target: str) -> str:
     if target.lower().count('windows') == True: 
         return '.exe'
     elif target.lower().count('macos') == True:
-        return '.app'
+        return '.zip'
     else:
         return ''
 
@@ -70,6 +70,8 @@ def main():
     # pack(root, './target/release/install'+ext(target), '/install'+ext(target))
     # place readme at root
     # pack(root, "./docs/pack/README.txt", "/README.txt")
+    if target.lower().count('macos') == True:
+        pack(root, './tools/repair', '/repair')
 
     # compress data
     shutil.make_archive(pkg, 'zip', os.path.dirname(root), base_dir=pkg)
