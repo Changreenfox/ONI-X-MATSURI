@@ -5,8 +5,9 @@ DIR="$(dirname "$0")"
 # verify the app exists in the current directory
 if [ -d "$DIR/$APP" ]; then
     xattr -cr "$DIR/$APP"
+    echo "info: Successfully repaired \"$DIR/$APP\""
     exit 0
 else
-    echo "error: directory \"$DIR/$APP\" does not exist in the current working directory" 
+    echo "error: Directory \"$DIR/$APP\" does not exist in the current working directory" 
     exit 101   
 fi
