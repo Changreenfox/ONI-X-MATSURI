@@ -68,10 +68,6 @@ jobs:
           mkdir -v -p build/macos
           godot -v --export "macos" ./build/macos/$EXPORT_NAME.dmg
 
-      - name: Package contents
-        run: |
-          python ./pack.py macos-x86-64
-
       - name: Upload artifact
         if: github.ref_type == 'tag'
         uses: actions/upload-artifact@v3
