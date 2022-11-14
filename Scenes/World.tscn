@@ -133,6 +133,7 @@ modulate = Color( 1, 1, 1, 1 )
 position = Vector2( 1162, 860 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 13 )
 autoplay = true
 bus = "Music"

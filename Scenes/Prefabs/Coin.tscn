@@ -40,7 +40,6 @@ tracks/1/keys = {
 [node name="Coin" type="Sprite"]
 show_behind_parent = true
 texture = ExtResource( 1 )
-offset = Vector2( 0, -150 )
 script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

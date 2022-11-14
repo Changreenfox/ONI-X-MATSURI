@@ -66,9 +66,9 @@ public class OniBrute : Enemy
 		attackCollider.SetDeferred("monitoring", false);
 	}
 
-    public override void Disable()
-    {
+	public override void Disable()
+	{
 		attackCollider.SetDeferred("monitoring", false);
-        base.Disable();
-    }
+		base.Disable();
+	}
 }

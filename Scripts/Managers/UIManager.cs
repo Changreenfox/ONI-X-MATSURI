@@ -75,11 +75,6 @@ public class UIManager : Control
 				Heart3.Texture = HeartFull;
 		}
 	}
-
-	private void _on_Exit_pressed()
-	{
-		GetTree().Quit();
-	}
 	
 	public void Display_Powerup_Icon(string type)
 	{
