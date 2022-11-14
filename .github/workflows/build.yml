@@ -36,7 +36,7 @@ jobs:
       - name: Build for windows platform
         run: |
           mkdir -v -p build/windows
-          godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
+          godot -v --export "windows" ./build/windows/$EXPORT_NAME.exe
 
       - name: Upload artifact
         if: github.ref_type == 'tag'
@@ -45,9 +45,37 @@ jobs:
           name: oni-x-matsuri-windows-x86-64
           path: build/windows
 
+  export-macos:
+    name: macOS Export
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci:mono-3.3.4 # use 'mono' for C#
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          lfs: true
+      - name: Setup Godot mono
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable.mono ~/.local/share/godot/templates/${GODOT_VERSION}.stable.mono
+        
+      - name: Build for macOS platform
+        run: |
+          mkdir -v -p build/macos
+          godot -v --export "macos" ./build/macos/$EXPORT_NAME.dmg
+
+      - name: Upload artifact
+        if: github.ref_type == 'tag'
+        uses: actions/upload-artifact@v3
+        with:
+          name: oni-x-matsuri-macos-x86-64
+          path: build/macos
+
+
 
   release:
-    needs: [export-windows]
+    needs: [export-windows, export-macos]
     name: Release
     if: github.ref_type == 'tag'
     runs-on: ubuntu-20.04
