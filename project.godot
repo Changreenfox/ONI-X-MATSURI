@@ -22,6 +22,7 @@ default_bus_layout="res://Game_Buses.tres"
 
 GameManager="*res://Scripts/Managers/GameManager.cs"
 SignalManager="*res://Scripts/Managers/SignalManager.cs"
+TextureManager="*res://Scripts/Managers/TextureManager.cs"
 AudioManager="*res://Scripts/Managers/AudioManager.cs"
 
 [display]
