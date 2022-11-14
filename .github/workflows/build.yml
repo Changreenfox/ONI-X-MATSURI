@@ -88,6 +88,9 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v3
 
+      - name: Display filesystem contents
+        run: ls -R
+
       - name: Setup python
         uses: actions/setup-python@v4
         with:
