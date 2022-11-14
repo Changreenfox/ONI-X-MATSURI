@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/World/TileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/SpeedPowerUp.tscn" type="PackedScene" id=2]
@@ -7,8 +7,10 @@
 [ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Prefabs/Camera2D.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/CameraController.cs" type="Script" id=7]
+[ext_resource path="res://Scripts/Scenes/SceneBase.cs" type="Script" id=8]
 
 [node name="TestWorld" type="Node2D"]
+script = ExtResource( 8 )
 
 [node name="Chunk5" type="Node2D" parent="."]
 position = Vector2( 0, 56 )
