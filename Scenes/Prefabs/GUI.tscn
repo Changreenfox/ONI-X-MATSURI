@@ -9,7 +9,7 @@
 [ext_resource path="res://assets/sprites/heart_full.png" type="Texture" id=7]
 [ext_resource path="res://Scripts/Managers/UIManager.cs" type="Script" id=8]
 [ext_resource path="res://assets/pixelmix.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://assets/sprites/coin_large.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/Coin/coin_large.png" type="Texture" id=10]
 [ext_resource path="res://Scenes/Prefabs/Pause.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
