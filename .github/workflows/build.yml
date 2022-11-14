@@ -39,7 +39,7 @@ jobs:
           godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
 
       - name: Upload artifact
-        if: github.ref.type == 'tag'
+        if: github.ref_type == 'tag'
         uses: actions/upload-artifact@v3
         with:
           name: oni-x-matsuri-windows-x86-64
@@ -47,8 +47,9 @@ jobs:
 
 
   release:
+    needs: [export-windows]
     name: Release
-    if: github.ref.type == 'tag'
+    if: github.ref_type == 'tag'
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout repository
@@ -65,10 +66,10 @@ jobs:
           python-version: 3.x
 
       - name: Verify release notes
-        run: python ./gen_release_notes.py ${{ github.ref.name }}
+        run: python ./gen_release_notes.py ${{ github.ref_name }}
 
       - name: Write release notes
-        run: echo "$(python ./gen_release_notes.py ${{ github.ref.name }})" > ./RELEASE_NOTES.md
+        run: echo "$(python ./gen_release_notes.py ${{ github.ref_name }})" > ./RELEASE_NOTES.md
 
       - name: Upload releases
         uses: ncipollo/release-action@v1
@@ -76,4 +77,4 @@ jobs:
           artifacts: '**/oni-x-matsuri-*.zip'
           bodyFile: ./RELEASE_NOTES.md
           token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref.name}}
+          tag: ${{ github.ref_name}}
