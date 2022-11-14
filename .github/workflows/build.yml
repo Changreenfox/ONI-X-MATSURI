@@ -13,7 +13,7 @@ on:
     #   - "v*"
 
 env:
-  GODOT_VERSION: 3.3.4
+  GODOT_VERSION: 3.4.5
   EXPORT_NAME: oni-x-matsuri
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
     name: Windows Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:mono-3.3.4 # use 'mono' for C#
+      image: barichello/godot-ci:mono-3.4.5 # use 'mono' for C#
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -51,7 +51,7 @@ jobs:
     name: macOS Export
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci:mono-3.3.4 # use 'mono' for C#
+      image: barichello/godot-ci:mono-3.4.5 # use 'mono' for C#
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
