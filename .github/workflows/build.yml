@@ -39,6 +39,7 @@ jobs:
           godot -v --export "Windows Desktop" ./build/windows/$EXPORT_NAME.exe
 
       - name: Upload artifact
+        if: github.ref.type == 'tag'
         uses: actions/upload-artifact@v3
         with:
           name: oni-x-matsuri-windows-x86-64
