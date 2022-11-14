@@ -106,7 +106,7 @@ def main():
         if is_finalized(version_header) == False:
             exit('error: most recent changelog version entry '+current_version+' is marked as \'unreleased\'')
 
-        info = extract_version_changes(contents, i, FOOTER_END)
+        info = extract_version_changes(contents, i+1, FOOTER_END)
 
         if len(info) == 0:
             exit('error: document all changes before releasing version '+current_version)
