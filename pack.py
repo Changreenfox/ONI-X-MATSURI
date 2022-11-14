@@ -62,8 +62,8 @@ def main():
     # append '.exe' to grab windows executable or '.dmg' for macos
     bin = '/'+project+ext(target)
 
-    # place binary in bin/
-    pack(root, './build/'+folder(target)+bin, bin)
+    # place binary in root of export folder
+    pack(root, './'+pkg+bin, bin)
     # place license at root
     pack(root, './LICENSE', '/LICENSE')
     # place installer at root
