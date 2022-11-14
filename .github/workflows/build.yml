@@ -38,12 +38,16 @@ jobs:
           mkdir -v -p build/windows
           godot -v --export "windows" ./build/windows/$EXPORT_NAME.exe
 
+      - name: Package contents
+        run: |
+          python ./pack.py windows-x86-64
+
       - name: Upload artifact
         if: github.ref_type == 'tag'
         uses: actions/upload-artifact@v3
         with:
           name: oni-x-matsuri-windows-x86-64
-          path: build/windows
+          path: oni-x-matsuri-windows-x86-64.zip
 
   export-macos:
     name: macOS Export
@@ -65,14 +69,16 @@ jobs:
           mkdir -v -p build/macos
           godot -v --export "macos" ./build/macos/$EXPORT_NAME.dmg
 
+      - name: Package contents
+        run: |
+          python ./pack.py macos-x86-64
+
       - name: Upload artifact
         if: github.ref_type == 'tag'
         uses: actions/upload-artifact@v3
         with:
           name: oni-x-matsuri-macos-x86-64
-          path: build/macos
-
-
+          path: oni-x-matsuri-macos-x86-64.zip
 
   release:
     needs: [export-windows, export-macos]
@@ -84,7 +90,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           lfs: true
-
       - name: Download artifacts
         uses: actions/download-artifact@v3
 
