@@ -24,8 +24,8 @@ public class Pause : Control
 	private void _on_Quit_pressed()
 	{
 		Hide();
-		GetTree().Quit();
-		//GetTree().ChangeScene("res://Scenes/Start.tscn");
+		GetTree().Paused = false;
+		GetTree().ChangeScene("res://Scenes/Start.tscn");
 	}
 }
 
