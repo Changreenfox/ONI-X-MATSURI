@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scripts/PowerUps/SpeedPowerUp.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/onigiri.png" type="Texture" id=2]
+[ext_resource path="res://assets/sounds/powerups/speed-boost.wav" type="AudioStream" id=3]
 
 [sub_resource type="Animation" id=2]
 resource_name = "Animation"
@@ -96,5 +97,9 @@ monitorable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( 1.05879e-22, 1.14286 )
 shape = SubResource( 5 )
+
+[node name="ActivationSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -15.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

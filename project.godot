@@ -29,9 +29,8 @@ AudioManager="*res://Scripts/Managers/AudioManager.cs"
 
 window/size/width=1920
 window/size/height=1080
-window/size/resizable=false
-window/size/borderless=true
-window/size/fullscreen=true
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [global]
 
@@ -96,8 +95,8 @@ ArrowUp={
 2d_physics/layer_2="Enemies"
 2d_physics/layer_3="Power-ups"
 2d_physics/layer_4="World"
-2d_physics/layer_5="PlayerAttack"
-2d_physics/layer_6="EnemyAttack"
+2d_physics/layer_5="PlayerHitbox"
+2d_physics/layer_6="EnemyHitbox"
 2d_physics/layer_7="Tower"
 
 [mono]

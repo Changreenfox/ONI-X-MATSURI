@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerUp.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/sprites/taiko.png" type="Texture" id=4]
+[ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Taiko.tscn" type="PackedScene" id=4]
 
 [node name="Bottom" type="Node2D"]
 
@@ -39,6 +39,9 @@ tile_data = PoolIntArray( 131073, 536870922, 0, 131085, 536870917, 0, 262154, 53
 
 [node name="Additions" type="Node" parent="."]
 
+[node name="Taiko2" parent="Additions" instance=ExtResource( 4 )]
+position = Vector2( 1015, 120 )
+
 [node name="JumpPowerUp" parent="Additions" instance=ExtResource( 2 )]
 position = Vector2( 772, 733 )
 
@@ -48,7 +51,3 @@ position = Vector2( 1331, 213 )
 [node name="OniBrute" parent="Additions" instance=ExtResource( 3 )]
 position = Vector2( 229, 213 )
 collision_mask = 88
-
-[node name="Taiko" type="Sprite" parent="Additions"]
-position = Vector2( 1023, 121 )
-texture = ExtResource( 4 )

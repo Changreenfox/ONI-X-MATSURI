@@ -1,0 +1,62 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/sprites/Coin/coin_7.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Misc/Coin.cs" type="Script" id=2]
+[ext_resource path="res://assets/sounds/coin.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/sprites/Coin/coin_10.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/Coin/coin_6.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/Coin/coin_5.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/Coin/coin_1.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/Coin/coin_2.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/Coin/coin_8.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/Coin/coin_9.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/Coin/coin_3.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/Coin/coin_11.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/Coin/coin_4.png" type="Texture" id=13]
+
+[sub_resource type="Animation" id=1]
+resource_name = "PlayerGet"
+length = 0.5
+step = 0.04
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 11 ), ExtResource( 13 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 4 ), ExtResource( 12 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Retrieved" ],
+"method": "PlaySound"
+}, {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+
+[node name="Coin" type="Sprite"]
+show_behind_parent = true
+texture = ExtResource( 7 )
+offset = Vector2( 0, -150 )
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/PlayerGet = SubResource( 1 )
+
+[node name="Retrieved" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -12.0

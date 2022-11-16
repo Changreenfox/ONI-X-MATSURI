@@ -1,15 +1,46 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/sprites/enemy/bullet_spritesheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/enemy/bean_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Attacks/Bullet.cs" type="Script" id=2]
 
-[sub_resource type="CapsuleShape2D" id=4]
-radius = 36.9996
-height = 202.001
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 3 ]
+}
 
-[sub_resource type="CapsuleShape2D" id=5]
-radius = 40.0
-height = 212.0
+[sub_resource type="Animation" id=7]
+resource_name = "Thrown"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 17.0
+height = 0.0
+
+[sub_resource type="CircleShape2D" id=8]
+radius = 27.0
 
 [node name="ThrowBullet" type="KinematicBody2D"]
 collision_layer = 32
@@ -17,15 +48,21 @@ collision_mask = 8
 script = ExtResource( 2 )
 destroyOnWall = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite")
+autoplay = "Thrown"
+anims/RESET = SubResource( 6 )
+anims/Thrown = SubResource( 7 )
+
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 7, 7 )
+scale = Vector2( 10, 10 )
 texture = ExtResource( 1 )
-flip_h = true
-hframes = 3
+hframes = 4
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -10, 3 )
-rotation = 1.5708
+visible = false
+position = Vector2( 0, -3 )
 shape = SubResource( 4 )
 
 [node name="DamageDealer" type="Area2D" parent="."]
@@ -33,9 +70,8 @@ collision_layer = 0
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageDealer"]
-visible = false
-position = Vector2( -10, 3 )
+position = Vector2( 0, -3 )
 rotation = 1.5708
-shape = SubResource( 5 )
+shape = SubResource( 8 )
 
 [connection signal="body_entered" from="DamageDealer" to="." method="PlayerCollision"]

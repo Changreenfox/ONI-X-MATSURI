@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://assets/sprites/player/player_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Actors/Player/Player.cs" type="Script" id=2]
@@ -11,7 +11,14 @@
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 46.0
-height = 50.0
+height = 39.0
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 21, 7 )
+
+[sub_resource type="CapsuleShape2D" id=20]
+radius = 40.0
+height = 68.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "AttackLeft"
@@ -35,9 +42,12 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "updateFrame"
+}, {
 "args": [  ],
 "method": "updateFrame"
 }, {
@@ -71,8 +81,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "updateFrame"
@@ -82,7 +92,26 @@ tracks/1/keys = {
 }, {
 "args": [  ],
 "method": "updateFrame"
+}, {
+"args": [  ],
+"method": "updateFrame"
 } ]
+}
+
+[sub_resource type="Animation" id=21]
+resource_name = "Death"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 33, 29, 25, 21 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -158,9 +187,12 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "updateFrame"
+}, {
 "args": [  ],
 "method": "updateFrame"
 }, {
@@ -194,9 +226,12 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0.1, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "values": [ {
+"args": [  ],
+"method": "updateFrame"
+}, {
 "args": [  ],
 "method": "updateFrame"
 }, {
@@ -355,7 +390,7 @@ radial_accel = 0.48
 color_ramp = SubResource( 17 )
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 13
+collision_mask = 8
 script = ExtResource( 2 )
 hp = 6
 maxFallSpeed = 2500.0
@@ -371,13 +406,29 @@ hframes = 4
 vframes = 11
 frame = 40
 
-[node name="PlayerHitbox" type="CollisionShape2D" parent="."]
+[node name="Collider_1" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( -3, -1 )
+position = Vector2( 0, -6 )
 shape = SubResource( 1 )
+
+[node name="Collider_2" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -5.9, 63.2 )
+shape = SubResource( 19 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, 6 )
+shape = SubResource( 20 )
 
 [node name="NormalAttack" parent="." instance=ExtResource( 3 )]
 visible = false
+collision_layer = 0
+collision_mask = 32
 
 [node name="RightRange1" type="CollisionPolygon2D" parent="NormalAttack"]
 position = Vector2( 13, 27 )
@@ -399,6 +450,8 @@ disabled = true
 
 [node name="JumpAttack" parent="." instance=ExtResource( 3 )]
 visible = false
+collision_layer = 0
+collision_mask = 32
 name = "JumpAttack"
 
 [node name="RightRange1" type="CollisionPolygon2D" parent="JumpAttack"]
@@ -422,6 +475,7 @@ disabled = true
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/AttackLeft = SubResource( 2 )
 anims/AttackRight = SubResource( 3 )
+anims/Death = SubResource( 21 )
 anims/IdleForward = SubResource( 4 )
 anims/IdleLeft = SubResource( 12 )
 anims/IdleRight = SubResource( 13 )
@@ -446,22 +500,18 @@ current = true
 [node name="Attack" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource( 5 )
 bus = "Sounds"
-area_mask = 0
 
 [node name="Damage" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource( 6 )
 bus = "Sounds"
-area_mask = 0
 
 [node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource( 7 )
 bus = "Sounds"
-area_mask = 0
 
 [node name="Jump" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource( 8 )
 bus = "Sounds"
-area_mask = 0
 
 [node name="Particles_Right" type="Particles2D" parent="."]
 visible = false

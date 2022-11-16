@@ -8,6 +8,12 @@ using System;
 public class SignalManager : Node
 {	
 	[Signal]
+	public delegate void EnemyDied(int scoreValue);
+	
+	[Signal]
+	public delegate void EntityCreated(string domainName);
+	
+	[Signal]
 	public delegate void OniBossAttacked();
 	
 	[Signal]
@@ -24,4 +30,7 @@ public class SignalManager : Node
 	
 	[Signal]
 	public delegate void SceneLoadedSignal(string sceneName);
+	
+	[Signal]
+	public delegate void UpdatedGameScore(int gameScore);
 }

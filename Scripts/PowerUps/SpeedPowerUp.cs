@@ -9,17 +9,20 @@ public class SpeedPowerUp : PowerUp
 	protected async override void ActivatePowerUp()
 	{
 		player.MaxSpeed += speedIncrease;
-		Interface?.Toggle_Powerup_Icon("Speed");
+		Interface?.Display_Powerup_Icon("Speed");
 		
 		Timer newTimer = new Timer();
 		newTimer.OneShot = true;
 		AddChild(newTimer);
 		newTimer.Start(boostTime);
 
+		AudioStreamPlayer sound = GetNode<AudioStreamPlayer>("ActivationSound");
+		sound.Play();
+
 		await ToSignal(newTimer, "timeout");
 		
 		player.MaxSpeed -= speedIncrease;
-		Interface?.Toggle_Powerup_Icon("Speed");
+		Interface?.Hide_Powerup_Icon("Speed");
 
 		QueueFree();
 	}

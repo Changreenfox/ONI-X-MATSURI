@@ -28,6 +28,7 @@ public abstract class State : Node2D
 	{
 		if(host.HP <= 0)
 			return "Death";
+		
 		return null;
 	}
 

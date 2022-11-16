@@ -12,6 +12,7 @@ public class BossLevel : SceneBase
 	public override void _Ready()
 	{
 		base._Ready();
+		isGameplay = true;
 		
 		gManager.Signals.Connect(nameof(SignalManager.OniBossAttacked), this, nameof(On_OniBoss_Attack));
 		gManager.Signals.Connect(nameof(SignalManager.OniBossLanded), this, nameof(On_OniBoss_Land));
@@ -69,7 +70,7 @@ public class BossLevel : SceneBase
 	public void On_OniBoss_Phase2()
 	{
 		Sprite background = (Sprite)GetNode("Background");
-		List<string> powerUps = new List<string> { "AttackPowerUp", "HealthPowerUp", "JumpPowerUp", "SpeedPowerUp" };
+		List<string> powerUps = new List<string> { "AttackPowerUp", "HealthPowerUp", "JumpPowerUp" };
 		for(int i = 0; i < NUM_PHASE2_POWERUPS; ++i)
 		{
 			Vector2 powerUpCoords = new Vector2(random.RandiRange(0, background.Texture.GetWidth() - 1), 
@@ -86,7 +87,6 @@ public class BossLevel : SceneBase
 	public void On_ShakeTimer_Timeout(Timer shakeTimer, float shakeStrength)
 	{
 		curCamShakeStrength -= shakeStrength;
-		GD.Print("Timer finished");
 		shakeTimer.QueueFree();
 	}
 }

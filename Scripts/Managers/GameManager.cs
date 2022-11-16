@@ -33,12 +33,6 @@ public class GameManager : Node
 		get{ return signals; }
 	}
 	
-	private TextureManager textures;
-	public TextureManager Textures
-	{
-		get{ return textures; }
-	}
-	
 	private UIManager interfaceRef;
 	public UIManager InterfaceRef
 	{
@@ -59,37 +53,68 @@ public class GameManager : Node
 		get{ return currentCamera; }
 		set{ currentCamera = value; }
 	}
-	// Declare member variables here. Examples:
-	// private int a = 2;
-	// private string b = "text";
-	/*
-	private CustomSignals signals;
-	public CustomSignals Signals
+	
+	[Export]
+	private int gameScore = 0;
+	public int GameScore
 	{
-		get{ return signals; }
+		get{ return gameScore; }
 	}
-	*/
+	
+	[Export]
+	private float playTime = 0;
+	public float PlayTime
+	{
+		get { return playTime; }
+	}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		audio = (AudioManager)GetNode("/root/AudioManager");
 		signals = (SignalManager)GetNode("/root/SignalManager");
-		textures = (TextureManager)GetNode("/root/TextureManager");
 		
 		signals.Connect(nameof(SignalManager.SceneLoadedSignal), audio, nameof(AudioManager.PlayMusic));
 		signals.Connect(nameof(SignalManager.PlaySoundSignal), audio, nameof(AudioManager.PlaySound));
 		signals.Connect(nameof(SignalManager.PlaySound2DSignal), audio, nameof(AudioManager.PlaySound2D));
+		signals.Connect(nameof(SignalManager.EnemyDied), this, nameof(this.SetGameScore));
 	}
 	
-	
-	private void ShakeCamera()
+	public override void _Process(float delta)
 	{
-		
+		if(currentScene.IsGameplay)
+		{
+			playTime += delta;
+		}
 	}
-//  // Called every frame. 'delta' is the elapsed time since the previous frame.
-//  public override void _Process(float delta)
-//  {
-//      
-//  }
+	
+	
+	private void SetGameScore(int scoreValue)
+	{
+		PlayerCoinGet(scoreValue);
+		gameScore += scoreValue;
+		signals.EmitSignal(nameof(SignalManager.UpdatedGameScore),
+							gameScore
+							);
+	}
+	
+	private async void PlayerCoinGet(int scoreValue)
+	{
+		PackedScene coinScene = ResourceLoader.Load<PackedScene>($"res://Scenes/Prefabs/Coin.tscn");
+		Timer delayTimer = new Timer();
+		delayTimer.Name = "CoinTimer";
+		AddChild(delayTimer);
+		for(int i = 0; i < scoreValue; ++i)
+		{
+			Sprite coin = coinScene.Instance() as Sprite;
+			coin.Position = playerRef.Position;
+			CallDeferred("add_child", coin);	//Add as child of Player so the sprite moves with the Player
+			AnimationPlayer coinAnimations = coin.GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
+			coinAnimations?.Play("PlayerGet");	//Handles freeing the node
+			delayTimer.Start(0.2f);
+			await ToSignal(delayTimer, "timeout");
+		}
+		delayTimer.QueueFree();
+	}
+
 }

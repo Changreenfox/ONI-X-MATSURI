@@ -27,9 +27,18 @@ public abstract class Actor : KinematicBody2D
 	protected bool active = true;
 	public bool Active
 	{
-		get{ return active;}
-		set{ active = value;}
+		get{ return active; }
+		set{ active = value; }
 	}
+
+	//Can have their attacks interrupted
+	[Export]
+	protected bool interruptable = false;
+	public bool Interruptable {
+		get { return interruptable; }
+	}
+
+	protected bool immune = false;
 
 	// Velocity & Direction values
 	[Export]
@@ -97,6 +106,8 @@ public abstract class Actor : KinematicBody2D
 		set{ damageBoost = value; }
 	}
 
+	protected Area2D hitbox;
+
 	// Floor Normal... says a floor is anything with a normal angle of ^
 	protected Vector2 UP = new Vector2(0, -1);
 	
@@ -117,12 +128,13 @@ public abstract class Actor : KinematicBody2D
 	[Export]
 	public List<Attack> attacks = new List<Attack>();
 
-	private bool attacking = false;
-	public bool Attacking
+	protected int currentAttack = -1;
+	public int CurrentAttack
 	{
-		get{ return attacking; }
-		set{ attacking = value; }
+		get{ return currentAttack; }
+		set{ currentAttack = value; }
 	}
+
 
 
 	//FSM variables
@@ -145,9 +157,8 @@ public abstract class Actor : KinematicBody2D
 	}
 
 	[Export]
-	private Color toFlash = new Color();
+	protected Color toFlash = new Color();
 
-	private bool immune = false;
 	[Export]
 	private float immunityTime = 0.5f;
 
@@ -157,16 +168,23 @@ public abstract class Actor : KinematicBody2D
 		get{ return sounds; }
 	}
 
+	[Export]
+	protected int layer = 1;
+
 	/*=============================================================== Methods =======================================================*/
-	
+
+	public override void _EnterTree()
+	{
+		gManager = (GameManager)GetNode("/root/GameManager");
+	}
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		gManager = (GameManager)GetNode("/root/GameManager");
 		//So long as any children call base._Ready() if overriden, all sprites
 		//will be found dynamically 
 		character = (Sprite)GetNode("Sprite");
-		
+		hitbox = (Area2D)GetNode("Hitbox");
 		animator = (AnimationPlayer)GetNode("AnimationPlayer");
 		sounds  = (Node2D)GetNode("Sounds");
 
@@ -175,10 +193,14 @@ public abstract class Actor : KinematicBody2D
 		timer.Name = timerName;
 		AddChild(timer);
 		
+		//Create list of attacks
+		int attackNum = 0;
 		foreach (Node node in GetChildren())
 		{
 			if(node is Attack)
 			{
+				Attack temp = node as Attack;
+				temp.AttackNumber = attackNum++;
 				attacks.Add((Attack)node);
 			}
 		}
@@ -194,9 +216,6 @@ public abstract class Actor : KinematicBody2D
 
 		if(name != null)
 			ChangeState(name);
-		
-		/*if(!attacking)
-			FaceAttacks();*/
 		
 	}
 
@@ -227,18 +246,18 @@ public abstract class Actor : KinematicBody2D
 
 	public virtual void TakeDamage(int damage, Vector2 collisionPosition, Vector2 impulse)
 	{
-		if(!immune)
-		{
-			ImmunityTimer();
-			PlaySound("Damage");
-			hp -= damage;
-			TakeKnockback(collisionPosition, impulse);
-			FlashColor(0.3f, toFlash);
-		}
+		if(immune)
+			return;
+		ImmunityTimer();
+		PlaySound("Damage");
+		hp -= damage;
+		TakeKnockback(collisionPosition, impulse);
+		FlashColor(0.3f, toFlash);
 	}
 
 	public virtual void TakeKnockback(Vector2 collisionPosition, Vector2 impulse)
 	{
+		Interrupt();
 		// Determine which direction to send the player
 		int directionX = 1, directionY = -1;
 
@@ -263,49 +282,62 @@ public abstract class Actor : KinematicBody2D
 	//Will be called in the states, allowing the player to play specific animations
 	public string PlayAnimation(string name)
 	{
-		if(attacking)
-		{
-			foreach(Attack attack in attacks)
-				if (attack.Waiting)
-				{
-					attack.PreviousAnim = name;
-					return name;
-				}
-		}
-		animator.Play(name);
+		//Don't want to interrupt an attack animation from here
+		if(currentAttack >= 0)
+			attacks[0].PreviousAnim = name;
+		else
+			animator.Play(name);
 
 		return name;
 	}
 
 	public void PlaySound(string soundName)
 	{
-		AudioStreamPlayer2D sound = (AudioStreamPlayer2D)sounds.GetNode(soundName);
-		sound.Play();
+		AudioStreamPlayer2D sound = sounds.GetNodeOrNull<AudioStreamPlayer2D>(soundName);
+		sound?.Play();
 	}
 
 	private async void ImmunityTimer()
 	{
+		//Turn off the hitbox
+		hitbox.SetDeferred("Monitorable", false);
 		immune = true;
-		//Need a way to dynamically know which layer to flip
-		//Currently only works on player
-		FlipCollision();
+		//Create a timer child dynamically that controls immunity
 		Timer newTimer = new Timer();
 		newTimer.OneShot = true;
 		AddChild(newTimer);
 		newTimer.Start(immunityTime);
 		await ToSignal(newTimer, "timeout");
-		FlipCollision();
+
+		//Turn on the hitbox
+		hitbox.SetDeferred("Monitorable", true);
 		immune = false;
 	}
 
-	public virtual void FlipCollision()
+	public virtual void Reset(int damage = 0, Node2D RespawnNode = null)
 	{
-		SetCollisionLayerBit(1, !GetCollisionLayerBit(1));
+		QueueFree();
 	}
 
 	public virtual void Die()
 	{
 		QueueFree();
+	}
+
+	//Called if additional handling required after attack ends
+	public virtual void AfterAttack()
+	{
+		return;
+	}
+
+	public virtual void AfterAlert()
+	{
+		return;
+	}
+
+	public virtual void AfterLost()
+	{
+		return;
 	}
 	
 	public async void FlashColor(float duration, Color color)
@@ -323,5 +355,23 @@ public abstract class Actor : KinematicBody2D
 		await ToSignal(newTimer, "timeout");
 		mat.SetShaderParam("flashing", false);
 	}
+
+	public void Interrupt()
+	{
+		if(!interruptable)
+			return;
+		
+		CancelAttack();
+	}
 	
+	public void CancelAttack()
+	{
+		if(currentAttack >= 0)
+			attacks[currentAttack].Cancel();	
+	}
+
+	public virtual void Disable()
+	{
+		CancelAttack();
+	}
 }

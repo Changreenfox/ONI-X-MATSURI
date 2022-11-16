@@ -40,6 +40,13 @@ public abstract class Attack : Area2D
 	[Export]
 	protected float cooldown = 0.25f;
 
+	protected int attackNumber = 0;
+	public int AttackNumber
+	{
+		get {return attackNumber; }
+		set {attackNumber = value; }
+	}
+
 	//Stores which animation to continue from after the attack animation is finished
 	protected string previousAnim;
 	public string PreviousAnim
@@ -50,11 +57,11 @@ public abstract class Attack : Area2D
 	
 	public override void _Ready()
 	{
+		host = (Actor)GetParent();
 		GetRange();
 		
-		host = (Actor)GetParent();
-		
 		Connect("body_entered", this, nameof(_on_Attack_body_entered));
+		Connect("area_entered", this, nameof(_on_Attack_area_entered));
 
 		//cooldown timer
 		time = (Timer)host.GetNode("AttackCooldown");
@@ -86,7 +93,14 @@ public abstract class Attack : Area2D
 	{
 		Actor enemy = collision as Actor;
 		//enemy? means if not null, call enemy.TakeDamage, otherwise do nothing
-		GD.Print(this.Name, " Hit! ", enemy?.Name);
+		enemy?.TakeDamage(damage + host.DamageBoost, GlobalPosition, impulse);
+	}
+
+	//Detect when an enemy hitbox is within range
+	public virtual void _on_Attack_area_entered(KinematicBody2D collision)
+	{
+		Actor enemy = collision.GetParent() as Actor;
+		//GD.Print(this.Name, " Hit! ", enemy?.Name);
 		enemy?.TakeDamage(damage + host.DamageBoost, GlobalPosition, impulse);
 	}
 
@@ -102,5 +116,11 @@ public abstract class Attack : Area2D
 		time.Stop();
 
 		waiting = false;
+	}
+
+	// Cancel the attack functionality and animation
+	public virtual void Cancel()
+	{
+		//Stop the animation (should cancel the attack)
 	}
 }

@@ -12,16 +12,21 @@ public class SceneBase : Node2D
 		get{ return currentCamera; }
 		set{ currentCamera = value; }
 	}
+	
+	protected bool isGameplay = false;
+	public bool IsGameplay
+	{
+		get { return isGameplay; }
+	}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		//SHOULD ONLY PLAY MUSIC AFTER THE SCREEN IS SHOWING (MAYBE NEED TO ADD CHECKS?) - RICARDO
-		gManager = (GameManager)GetNode("/root/GameManager");
+		gManager = GetNodeOrNull<GameManager>("/root/GameManager");
 		gManager.CurrentScene = this;
-		gManager.Signals.EmitSignal(
+		/*gManager.Signals.EmitSignal(
 									nameof(SignalManager.SceneLoadedSignal),
 									GetType().Name
-									);		
+									);*/
 	}	
 }

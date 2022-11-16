@@ -1,17 +1,19 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Level1Generator.cs" type="Script" id=2]
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/backgrounds/Background_sky.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Scenes/Level1.cs" type="Script" id=5]
-[ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Prefabs/Camera2D.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/SpeedPowerUp.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/CameraController.cs" type="Script" id=8]
 [ext_resource path="res://Scripts/LeftWall.cs" type="Script" id=9]
-[ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerUp.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/backgrounds/Background_buildings.png" type="Texture" id=11]
 [ext_resource path="res://assets/backgrounds/Background_mountains.png" type="Texture" id=12]
+[ext_resource path="res://assets/music_ogg/main_stage_music.ogg" type="AudioStream" id=13]
+[ext_resource path="res://Scripts/Misc/PitCheck.cs" type="Script" id=14]
+[ext_resource path="res://Scripts/DeathWall.cs" type="Script" id=15]
 
 [sub_resource type="Environment" id=6]
 background_mode = 4
@@ -26,10 +28,13 @@ glow_bicubic_upscale = true
 adjustment_enabled = true
 adjustment_contrast = 1.05
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 33, 620 )
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 29, 616 )
+
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 1337.75, 10 )
 
 [sub_resource type="CanvasItemMaterial" id=7]
@@ -43,41 +48,43 @@ script = ExtResource( 5 )
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 6 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 273, -64 )
-current = true
-limit_left = 0
-limit_top = 0
-limit_right = 30720
-limit_bottom = 0
-smoothing_enabled = true
+[node name="Camera2D" parent="." instance=ExtResource( 6 )]
 script = ExtResource( 8 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
-
-[node name="Interface" parent="Camera2D/CanvasLayer" instance=ExtResource( 6 )]
-margin_left = -1.99982
-margin_top = -8.0
-margin_right = -1.99976
-margin_bottom = -8.0
 
 [node name="LeftWall" type="StaticBody2D" parent="Camera2D"]
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/LeftWall"]
 position = Vector2( -992, 660 )
-shape = SubResource( 1 )
+shape = SubResource( 8 )
 script = ExtResource( 9 )
+limit = 27850.0
 
-[node name="PitCheck" type="Area2D" parent="Camera2D"]
-collision_layer = 0
+[node name="DeathWall" type="Area2D" parent="Camera2D"]
+position = Vector2( -273, 64 )
+monitorable = false
+script = ExtResource( 15 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/PitCheck"]
-position = Vector2( 321, 1249 )
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DeathWall"]
+position = Vector2( -969, 596 )
+shape = SubResource( 9 )
+script = ExtResource( 9 )
+limit = 27577.0
 
 [node name="RespawnPoint" type="Node2D" parent="Camera2D"]
 position = Vector2( -699, 37 )
+
+[node name="PitCheck" type="Area2D" parent="Camera2D"]
+collision_layer = 0
+monitorable = false
+script = ExtResource( 14 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/PitCheck"]
+position = Vector2( 321, 1249 )
+shape = SubResource( 10 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 273, -64 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 offset = Vector2( 0, 540 )
@@ -103,18 +110,15 @@ motion_scale = Vector2( 0.7, 1 )
 motion_mirroring = Vector2( 3840, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Buildings"]
+position = Vector2( 0, 55 )
 texture = ExtResource( 11 )
-
-[node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 273, -64 )
 
 [node name="LevelGenerator" type="Node2D" parent="."]
 script = ExtResource( 2 )
 
-[node name="OgreBrute" parent="." instance=ExtResource( 3 )]
+[node name="OniBrute" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1272, 0 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+interruptable = false
 
 [node name="StartWall" type="StaticBody2D" parent="."]
 position = Vector2( 283, -14 )
@@ -128,7 +132,10 @@ shape = SubResource( 4 )
 modulate = Color( 1, 1, 1, 1 )
 position = Vector2( 1162, 860 )
 
-[node name="JumpPowerup" parent="." instance=ExtResource( 10 )]
-position = Vector2( 2419, 723 )
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 13 )
+autoplay = true
+bus = "Music"
 
-[connection signal="body_entered" from="Camera2D/PitCheck" to="Player" method="_on_PitCheck_body_entered"]
+[connection signal="body_entered" from="Camera2D/PitCheck" to="Camera2D/PitCheck" method="OnPitCheck"]

@@ -11,6 +11,12 @@ public class Player : Actor
 		get{ return maxHealth; }
 	}	
 	
+	public override void _EnterTree()
+	{
+		base._EnterTree();
+		gManager.PlayerRef = this;
+	}
+
 	public override void _Ready()
 	{
 		//Set the character sprite
@@ -32,26 +38,26 @@ public class Player : Actor
 		*/
 
 		state = container.GetState("Idle");
+		state.Enter();
 	}
 
 	public override void Die()
 	{
 		GetTree().ChangeScene("res://Scenes/GameOver.tscn");
 	}
-	
-	public void _on_PitCheck_body_entered(object body)
-	{
-		if(body == this)
-		{
-			Node2D RespawnNode = GetNode<Node2D>("/root/World/Camera2D/RespawnPoint");
-			GManager.Signals.EmitSignal(nameof(SignalManager.PlaySoundSignal), GetType().Name, "Damage");
-			hp -= 1;
-			Position = RespawnNode.GlobalPosition;
-		}
-	}
 
-	public override void FlipCollision()
+	public override void Reset(int damage = 0, Node2D RespawnNode = null)
 	{
-		SetCollisionLayerBit(0, !GetCollisionLayerBit(0));
+		if(damage != 0)
+		{
+			PlaySound("Damage");
+			hp -= damage;
+			FlashColor(0.3f, toFlash);
+		}
+		if(RespawnNode != null)
+		{
+			Position = RespawnNode.GlobalPosition;
+			velocity.y = 0;
+		}
 	}
 }

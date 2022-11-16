@@ -17,6 +17,8 @@ public class OniBoss : Enemy
 	{
 		base._Ready();
 		
+		scoreValue = 10;
+		
 		container.SetState("Start", new BossStart(this));
 		container.SetState("Idle", new BossIdle(this));
 		container.SetState("Death", new Death(this));

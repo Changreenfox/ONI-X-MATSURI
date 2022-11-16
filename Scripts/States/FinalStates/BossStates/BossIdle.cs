@@ -15,7 +15,6 @@ public class BossIdle : JustGravity
 	public override void Enter()
 	{
 		base.Enter();
-		GD.Print("BossIdle");
 		
 		host.Velocity = new Vector2(0, host.Velocity.y);
 		finished = false;

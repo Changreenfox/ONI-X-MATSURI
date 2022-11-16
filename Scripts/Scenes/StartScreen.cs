@@ -10,6 +10,7 @@ public class StartScreen : SceneBase
 	public override void _Ready()
 	{
 		base._Ready();
+		isGameplay = false;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

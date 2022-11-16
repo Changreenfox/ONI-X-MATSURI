@@ -19,7 +19,7 @@ public class BulletSpawn : Attack
 
 	[Export]
 	private float gravity = 0;
-	public float Gravity
+	public float Grav
 	{
 		get { return gravity; }
 		set { gravity = value; }

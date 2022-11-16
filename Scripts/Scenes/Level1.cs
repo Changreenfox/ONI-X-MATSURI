@@ -11,6 +11,7 @@ public class Level1 : SceneBase
 	public override void _Ready()
 	{
 		base._Ready();
+		isGameplay = true;
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.

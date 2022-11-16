@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 600.0
+
+[node name="Lost" type="Area2D"]
+visible = false
+collision_layer = 0
+monitoring = false
+monitorable = false
+
+[node name="LostCollider" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
