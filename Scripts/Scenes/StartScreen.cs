@@ -3,8 +3,18 @@ using System;
 
 public class StartScreen : SceneBase
 {
-	// the selected button can either be 'start/play' or not 'start/play' ('quit')
-	private bool isStartSel = true;
+
+	// the order of the available menu options from left to right
+	enum Option {
+		Start,
+		Credits,
+		Quit,
+	}
+
+	private const Option LEFT_BOUND_OPTION = Option.Start;
+	private const Option RIGHT_BOUND_OPTION = Option.Quit;
+
+	private Option optSel = Option.Start;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -14,31 +24,10 @@ public class StartScreen : SceneBase
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(float delta)
-	{
-		// update the current selected on-screen button (play or quit)
-		bool toggleR = Input.IsActionPressed("ArrowRight");
-		bool toggleL = Input.IsActionPressed("ArrowLeft");
-		// move to the 'quit' button
-		if (toggleR == true && isStartSel == true) {
-			isStartSel = false;
-		// move to the 'play' button
-		} else if (toggleL == true && isStartSel == false) {
-			isStartSel = true;
-		}
+	// public override void _Process(float delta)
+	// {
 
-		// check if the user as confirmed their choice
-		bool isReqAct = Input.IsActionPressed("ActionA");
-		if (isReqAct == true) {
-			// play :)
-			if (isStartSel == true) {
-				GetTree().ChangeScene("res://Scenes/World.tscn");
-			// quit :(
-			} else {
-				GetTree().Quit();
-			}
-		}
-	}
+	// }
 
 	public void _on_StartButton_pressed()
 	{
@@ -48,6 +37,57 @@ public class StartScreen : SceneBase
 	public void _on_QuitButton_pressed()
 	{
 		GetTree().Quit();
+	}
+
+	public void _on_CreditsButton_pressed()
+	{
+		GetTree().ChangeScene("res://Scenes/Credits.tscn");
+	}
+
+	public override void _UnhandledInput(InputEvent @event)
+	{
+		if (@event is InputEventKey eventKey) {
+			if (eventKey.Pressed == true) {
+				switch (eventKey.Scancode) {
+					// move to the left
+					case (int)KeyList.A : {
+						if (optSel > LEFT_BOUND_OPTION) {
+							optSel -= 1;
+						}
+						break;
+					}
+					// move to the right
+					case (int)KeyList.D : {
+						if (optSel < RIGHT_BOUND_OPTION) {
+							optSel += 1;
+						}
+						break;
+					}
+					// select the highlighted option
+					case (int)KeyList.Space : {
+						switch (optSel) {
+							case Option.Start : {
+								_on_StartButton_pressed();
+								break;
+							}
+							case Option.Credits : {
+								_on_CreditsButton_pressed();
+								break;
+							}
+							case Option.Quit : {
+								_on_QuitButton_pressed();
+								break;
+							}
+						}
+						break;
+					}
+					default : {
+						// do nothing
+						break;
+					}
+				}
+			}
+		}
 	}
 
 }
