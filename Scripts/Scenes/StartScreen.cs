@@ -5,11 +5,15 @@ public class StartScreen : SceneBase
 {
 
 	// the order of the available menu options from left to right
+	// note: The names of the options must match the node prefix names in Start.tscn, i.e. "Start" for node "StartButton"
 	enum Option {
 		Start,
 		Credits,
 		Quit,
 	}
+
+	TextureButton butSel;
+	Texture normTexture;
 
 	private const Option LEFT_BOUND_OPTION = Option.Start;
 	private const Option RIGHT_BOUND_OPTION = Option.Quit;
@@ -21,6 +25,23 @@ public class StartScreen : SceneBase
 	{
 		base._Ready();
 		isGameplay = false;
+		butSel = GetNode<TextureButton>("CenterContainer/HBoxContainer/"+optSel.ToString()+"Button");
+		// save the normal texture for new button
+		normTexture = butSel.GetNormalTexture();
+		// highlight the new button
+		butSel.SetNormalTexture(butSel.GetHoverTexture());
+	}
+
+	private void update_highlighted_button(Option next) {
+		TextureButton butNext = GetNode<TextureButton>("CenterContainer/HBoxContainer/"+next.ToString()+"Button");
+		// restore current highlighted to normal
+		butSel.SetNormalTexture(normTexture);
+		// save the normal texture for new button
+		normTexture = butNext.GetNormalTexture();
+		// highlight the new button
+		butNext.SetNormalTexture(butNext.GetHoverTexture());
+		// update the current button
+		butSel = butNext;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -53,6 +74,7 @@ public class StartScreen : SceneBase
 					case (int)KeyList.A : {
 						if (optSel > LEFT_BOUND_OPTION) {
 							optSel -= 1;
+							update_highlighted_button(optSel);
 						}
 						break;
 					}
@@ -60,6 +82,7 @@ public class StartScreen : SceneBase
 					case (int)KeyList.D : {
 						if (optSel < RIGHT_BOUND_OPTION) {
 							optSel += 1;
+							update_highlighted_button(optSel);
 						}
 						break;
 					}

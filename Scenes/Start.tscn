@@ -50,6 +50,7 @@ alignment = 1
 [node name="StartButton" type="TextureButton" parent="CenterContainer/HBoxContainer"]
 margin_right = 373.0
 margin_bottom = 140.0
+toggle_mode = true
 texture_normal = ExtResource( 7 )
 texture_pressed = ExtResource( 3 )
 texture_hover = ExtResource( 2 )
@@ -71,4 +72,5 @@ texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 4 )
 
 [connection signal="pressed" from="CenterContainer/HBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="CenterContainer/HBoxContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
