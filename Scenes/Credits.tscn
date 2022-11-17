@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/backgrounds/credits2.png" type="Texture" id=1]
 [ext_resource path="res://assets/backgrounds/credits.png" type="Texture" id=2]
@@ -6,9 +6,16 @@
 [ext_resource path="res://assets/sprites/board.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/ema.png" type="Texture" id=5]
 [ext_resource path="res://Scripts/Scenes/CreditsScreen.cs" type="Script" id=6]
+[ext_resource path="res://assets/buttons/arrow_right_pressed.png" type="Texture" id=7]
+[ext_resource path="res://assets/buttons/arrow_right_highlighted.png" type="Texture" id=8]
+[ext_resource path="res://assets/buttons/arrow_right.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 31
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 28
 font_data = ExtResource( 3 )
 
 [node name="CreditsScreen" type="Node2D"]
@@ -17,11 +24,13 @@ script = ExtResource( 6 )
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 
-[node name="Backdrop" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.180392 )
+color = Color( 0, 0, 0, 0.494118 )
 
 [node name="FirstPage" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -30,10 +39,10 @@ texture = ExtResource( 2 )
 
 [node name="Roles" type="Control" parent="FirstPage"]
 
-[node name="EC Credits" type="Control" parent="FirstPage/Roles"]
+[node name="Liz Credits" type="Control" parent="FirstPage/Roles"]
 margin_top = -6.0
 
-[node name="TextureRect2" type="TextureRect" parent="FirstPage/Roles/EC Credits"]
+[node name="TextureRect2" type="TextureRect" parent="FirstPage/Roles/Liz Credits"]
 margin_left = 205.0
 margin_top = 212.0
 margin_right = 425.0
@@ -41,7 +50,7 @@ margin_bottom = 426.0
 rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 
-[node name="TextureRect3" type="TextureRect" parent="FirstPage/Roles/EC Credits"]
+[node name="TextureRect3" type="TextureRect" parent="FirstPage/Roles/Liz Credits"]
 margin_left = 205.0
 margin_top = 380.0
 margin_right = 425.0
@@ -49,7 +58,7 @@ margin_bottom = 594.0
 rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 
-[node name="TextureRect4" type="TextureRect" parent="FirstPage/Roles/EC Credits"]
+[node name="TextureRect4" type="TextureRect" parent="FirstPage/Roles/Liz Credits"]
 margin_left = 205.0
 margin_top = 566.0
 margin_right = 425.0
@@ -58,7 +67,7 @@ rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 flip_h = true
 
-[node name="TextureRect5" type="TextureRect" parent="FirstPage/Roles/EC Credits"]
+[node name="TextureRect5" type="TextureRect" parent="FirstPage/Roles/Liz Credits"]
 margin_left = 205.0
 margin_top = 733.0
 margin_right = 425.0
@@ -66,7 +75,7 @@ margin_bottom = 947.0
 rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 
-[node name="TextureRect6" type="TextureRect" parent="FirstPage/Roles/EC Credits"]
+[node name="TextureRect6" type="TextureRect" parent="FirstPage/Roles/Liz Credits"]
 margin_left = 205.0
 margin_top = 909.0
 margin_right = 425.0
@@ -122,8 +131,9 @@ texture = ExtResource( 5 )
 flip_h = true
 
 [node name="Chandler Credits" type="Control" parent="FirstPage/Roles"]
-margin_left = 316.0
+margin_left = 630.0
 margin_top = -6.0
+margin_right = 630.0
 
 [node name="TextureRect2" type="TextureRect" parent="FirstPage/Roles/Chandler Credits"]
 margin_left = 205.0
@@ -159,6 +169,100 @@ rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 
 [node name="TextureRect6" type="TextureRect" parent="FirstPage/Roles/Chandler Credits"]
+margin_left = 205.0
+margin_top = 909.0
+margin_right = 425.0
+margin_bottom = 1123.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+flip_h = true
+
+[node name="Chase Credits" type="Control" parent="FirstPage/Roles"]
+margin_left = 940.0
+margin_top = -6.0
+margin_right = 940.0
+
+[node name="TextureRect2" type="TextureRect" parent="FirstPage/Roles/Chase Credits"]
+margin_left = 205.0
+margin_top = 212.0
+margin_right = 425.0
+margin_bottom = 426.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+flip_h = true
+
+[node name="TextureRect3" type="TextureRect" parent="FirstPage/Roles/Chase Credits"]
+margin_left = 205.0
+margin_top = 380.0
+margin_right = 425.0
+margin_bottom = 594.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="TextureRect4" type="TextureRect" parent="FirstPage/Roles/Chase Credits"]
+margin_left = 205.0
+margin_top = 566.0
+margin_right = 425.0
+margin_bottom = 780.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="TextureRect5" type="TextureRect" parent="FirstPage/Roles/Chase Credits"]
+margin_left = 205.0
+margin_top = 733.0
+margin_right = 425.0
+margin_bottom = 947.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="TextureRect6" type="TextureRect" parent="FirstPage/Roles/Chase Credits"]
+margin_left = 205.0
+margin_top = 909.0
+margin_right = 425.0
+margin_bottom = 1123.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+flip_h = true
+
+[node name="Rachel Credits" type="Control" parent="FirstPage/Roles"]
+margin_left = 1257.0
+margin_top = -6.0
+margin_right = 1257.0
+
+[node name="TextureRect2" type="TextureRect" parent="FirstPage/Roles/Rachel Credits"]
+margin_left = 205.0
+margin_top = 212.0
+margin_right = 425.0
+margin_bottom = 426.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+flip_h = true
+
+[node name="TextureRect3" type="TextureRect" parent="FirstPage/Roles/Rachel Credits"]
+margin_left = 205.0
+margin_top = 380.0
+margin_right = 425.0
+margin_bottom = 594.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="TextureRect4" type="TextureRect" parent="FirstPage/Roles/Rachel Credits"]
+margin_left = 205.0
+margin_top = 566.0
+margin_right = 425.0
+margin_bottom = 780.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="TextureRect5" type="TextureRect" parent="FirstPage/Roles/Rachel Credits"]
+margin_left = 205.0
+margin_top = 733.0
+margin_right = 425.0
+margin_bottom = 947.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="TextureRect6" type="TextureRect" parent="FirstPage/Roles/Rachel Credits"]
 margin_left = 205.0
 margin_top = 909.0
 margin_right = 425.0
@@ -283,3 +387,188 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
+
+[node name="Roles" type="Control" parent="SecondPage"]
+
+[node name="Music" type="Control" parent="SecondPage/Roles"]
+
+[node name="TextureRect" type="TextureRect" parent="SecondPage/Roles/Music"]
+margin_left = 423.0
+margin_top = 208.0
+margin_right = 643.0
+margin_bottom = 422.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="TextureRect2" type="TextureRect" parent="SecondPage/Roles/Music"]
+margin_left = 423.0
+margin_top = 384.0
+margin_right = 643.0
+margin_bottom = 598.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="TextureRect3" type="TextureRect" parent="SecondPage/Roles/Music"]
+margin_left = 423.0
+margin_top = 558.0
+margin_right = 643.0
+margin_bottom = 772.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+flip_h = true
+
+[node name="TextureRect4" type="TextureRect" parent="SecondPage/Roles/Music"]
+margin_left = 423.0
+margin_top = 732.0
+margin_right = 643.0
+margin_bottom = 946.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+flip_h = true
+
+[node name="Sounds" type="Control" parent="SecondPage/Roles"]
+margin_left = 496.0
+margin_right = 496.0
+
+[node name="TextureRect" type="TextureRect" parent="SecondPage/Roles/Sounds"]
+margin_left = 423.0
+margin_top = 208.0
+margin_right = 643.0
+margin_bottom = 422.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="TextureRect2" type="TextureRect" parent="SecondPage/Roles/Sounds"]
+margin_left = 423.0
+margin_top = 384.0
+margin_right = 643.0
+margin_bottom = 598.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+flip_h = true
+
+[node name="TextureRect3" type="TextureRect" parent="SecondPage/Roles/Sounds"]
+margin_left = 423.0
+margin_top = 558.0
+margin_right = 643.0
+margin_bottom = 772.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+flip_h = true
+
+[node name="TextureRect4" type="TextureRect" parent="SecondPage/Roles/Sounds"]
+margin_left = 423.0
+margin_top = 732.0
+margin_right = 643.0
+margin_bottom = 946.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="Special Thanks" type="Control" parent="SecondPage/Roles"]
+margin_left = 987.0
+margin_right = 987.0
+
+[node name="TextureRect" type="TextureRect" parent="SecondPage/Roles/Special Thanks"]
+margin_left = 423.0
+margin_top = 208.0
+margin_right = 643.0
+margin_bottom = 422.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+flip_h = true
+
+[node name="Label" type="Label" parent="SecondPage/Roles/Special Thanks/TextureRect"]
+margin_left = 10.6667
+margin_top = 121.333
+margin_right = 212.667
+margin_bottom = 137.333
+custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Jeremiah
+Blanchard"
+align = 1
+
+[node name="TextureRect2" type="TextureRect" parent="SecondPage/Roles/Special Thanks"]
+margin_left = 423.0
+margin_top = 384.0
+margin_right = 643.0
+margin_bottom = 598.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="Label2" type="Label" parent="SecondPage/Roles/Special Thanks/TextureRect2"]
+margin_left = 10.6667
+margin_top = 122.667
+margin_right = 212.667
+margin_bottom = 181.667
+custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Andrew
+Watson"
+align = 1
+
+[node name="Categories" type="HBoxContainer" parent="SecondPage"]
+margin_left = 360.0
+margin_top = 100.0
+margin_right = 40.0
+margin_bottom = 40.0
+custom_constants/separation = 197
+
+[node name="Music" type="TextureRect" parent="SecondPage/Categories"]
+margin_right = 293.0
+margin_bottom = 93.0
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="SecondPage/Categories/Music"]
+margin_left = 9.0
+margin_top = 29.0
+margin_right = 294.0
+margin_bottom = 82.0
+custom_colors/font_color = Color( 0.341176, 0.223529, 0.113725, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Music by"
+align = 1
+
+[node name="Sounds" type="TextureRect" parent="SecondPage/Categories"]
+margin_left = 490.0
+margin_right = 783.0
+margin_bottom = 93.0
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="SecondPage/Categories/Sounds"]
+margin_left = 9.0
+margin_top = 29.0
+margin_right = 294.0
+margin_bottom = 82.0
+custom_colors/font_color = Color( 0.341176, 0.223529, 0.113725, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Sounds"
+align = 1
+
+[node name="Special Thanks" type="TextureRect" parent="SecondPage/Categories"]
+margin_left = 980.0
+margin_right = 1273.0
+margin_bottom = 93.0
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="SecondPage/Categories/Special Thanks"]
+margin_left = 9.0
+margin_top = 15.0
+margin_right = 294.0
+margin_bottom = 94.0
+custom_colors/font_color = Color( 0.341176, 0.223529, 0.113725, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Special
+Thanks"
+align = 1
+
+[node name="ContinueButton" type="TextureButton" parent="."]
+margin_left = 1799.0
+margin_top = 958.0
+margin_right = 1886.0
+margin_bottom = 1051.0
+texture_normal = ExtResource( 9 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 8 )
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_ContinueButton_pressed"]

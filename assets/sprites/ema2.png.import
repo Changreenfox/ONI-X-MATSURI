@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/credits2.png-68a3825af99eaed3779203186da89930.stex"
+path="res://.import/ema2.png-f43148cf83c1cd5d0ab9eabed2cd4d43.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/backgrounds/credits2.png"
-dest_files=[ "res://.import/credits2.png-68a3825af99eaed3779203186da89930.stex" ]
+source_file="res://assets/sprites/ema2.png"
+dest_files=[ "res://.import/ema2.png-f43148cf83c1cd5d0ab9eabed2cd4d43.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

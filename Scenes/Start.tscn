@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/backgrounds/start_screen.png" type="Texture" id=1]
 [ext_resource path="res://assets/buttons/start_button_highlighted.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/buttons/credits_button.png" type="Texture" id=10]
 [ext_resource path="res://assets/buttons/credits_button_pressed.png" type="Texture" id=11]
 [ext_resource path="res://assets/buttons/credits_button_highlighted.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/Credits.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -31,6 +32,7 @@ texture = ExtResource( 1 )
 environment = SubResource( 1 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 9 )
 autoplay = true
 bus = "Music"
@@ -70,6 +72,10 @@ margin_bottom = 140.0
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 4 )
+
+[node name="CreditsScreen" parent="." instance=ExtResource( 13 )]
+pause_mode = 2
+visible = false
 
 [connection signal="pressed" from="CenterContainer/HBoxContainer/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="CenterContainer/HBoxContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]

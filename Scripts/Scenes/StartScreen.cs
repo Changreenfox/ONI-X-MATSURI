@@ -19,6 +19,8 @@ public class StartScreen : SceneBase
 	private const Option RIGHT_BOUND_OPTION = Option.Quit;
 
 	private Option optSel = Option.Start;
+	
+	private Node2D CreditsScreen;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -30,6 +32,8 @@ public class StartScreen : SceneBase
 		normTexture = butSel.GetNormalTexture();
 		// highlight the new button
 		butSel.SetNormalTexture(butSel.GetHoverTexture());
+		
+		CreditsScreen = GetNode<Node2D>("CreditsScreen");
 	}
 
 	private void update_highlighted_button(Option next) {
@@ -44,12 +48,6 @@ public class StartScreen : SceneBase
 		butSel = butNext;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	// public override void _Process(float delta)
-	// {
-
-	// }
-
 	public void _on_StartButton_pressed()
 	{
 		GetTree().ChangeScene("res://Scenes/World.tscn");
@@ -62,7 +60,8 @@ public class StartScreen : SceneBase
 
 	public void _on_CreditsButton_pressed()
 	{
-		GetTree().ChangeScene("res://Scenes/Credits.tscn");
+		CreditsScreen.Show();
+		GetTree().Paused = true;
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
