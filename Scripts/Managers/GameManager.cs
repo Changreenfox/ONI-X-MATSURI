@@ -7,6 +7,8 @@ using System;
 
 public class GameManager : Node
 {
+	private PlayerData playerData = null;
+	
 	private Player playerRef;
 	public Player PlayerRef
 	{
@@ -78,6 +80,9 @@ public class GameManager : Node
 		signals.Connect(nameof(SignalManager.PlaySoundSignal), audio, nameof(AudioManager.PlaySound));
 		signals.Connect(nameof(SignalManager.PlaySound2DSignal), audio, nameof(AudioManager.PlaySound2D));
 		signals.Connect(nameof(SignalManager.EnemyDied), this, nameof(this.SetGameScore));
+		
+		signals.Connect(nameof(SignalManager.PlayerLoaded), this, nameof(this.LoadPlayer));
+		signals.Connect(nameof(SignalManager.SceneChangeCall), this, nameof(this.HandleSceneChange));
 	}
 	
 	public override void _Process(float delta)
@@ -116,5 +121,21 @@ public class GameManager : Node
 		}
 		delayTimer.QueueFree();
 	}
-
+	
+	private void HandleSceneChange(string newSceneName)
+	{
+		playerData = new PlayerData(playerRef);
+		
+		//Handle scene transitions
+		currentScene.GetTree().ChangeScene(newSceneName);
+	}
+	
+	private void LoadPlayer(Player player)
+	{
+		playerRef = player;
+		if(playerData != null)
+		{
+			playerRef.HP = playerData.HealthPoints;
+		}
+	}
 }

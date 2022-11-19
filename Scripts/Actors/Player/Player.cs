@@ -14,7 +14,10 @@ public class Player : Actor
 	public override void _EnterTree()
 	{
 		base._EnterTree();
-		gManager.PlayerRef = this;
+		GManager.Signals.EmitSignal(nameof(SignalManager.PlayerLoaded),
+									this
+									);
+		//gManager.PlayerRef = this;
 	}
 
 	public override void _Ready()
@@ -22,7 +25,10 @@ public class Player : Actor
 		//Set the character sprite
 		base._Ready();
 		
-		GManager.PlayerRef = this;
+		GManager.Signals.EmitSignal(nameof(SignalManager.PlayerLoaded),
+									this
+									);
+		//GManager.PlayerRef = this;
 
 		container.SetState("Idle", new Idle(this));
 		container.SetState("Walk", new Walk(this));

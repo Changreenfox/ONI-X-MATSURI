@@ -23,10 +23,16 @@ public class SignalManager : Node
 	public delegate void OniBossPhase2();
 	
 	[Signal]
+	public delegate void PlayerLoaded(Player player);
+	
+	[Signal]
 	public delegate void PlaySoundSignal(string domainName, string soundName);
 	
 	[Signal]
 	public delegate void PlaySound2DSignal(string domainName, string soundName, Node2D entity);
+	
+	[Signal]
+	public delegate void SceneChangeCall(string newSceneName);
 	
 	[Signal]
 	public delegate void SceneLoadedSignal(string sceneName);
