@@ -14,10 +14,7 @@ public class Player : Actor
 	public override void _EnterTree()
 	{
 		base._EnterTree();
-		GManager.Signals.EmitSignal(nameof(SignalManager.PlayerLoaded),
-									this
-									);
-		//gManager.PlayerRef = this;
+		gManager.PlayerRef = this;
 	}
 
 	public override void _Ready()
@@ -49,7 +46,8 @@ public class Player : Actor
 
 	public override void Die()
 	{
-		GetTree().ChangeScene("res://Scenes/GameOver.tscn");
+		gManager.Signals.EmitSignal(nameof(SignalManager.PlayerDied));
+		//GetTree().ChangeScene("res://Scenes/GameOver.tscn");
 	}
 
 	public override void Reset(int damage = 0, Node2D RespawnNode = null)

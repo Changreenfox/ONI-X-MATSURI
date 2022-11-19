@@ -23,6 +23,9 @@ public class SignalManager : Node
 	public delegate void OniBossPhase2();
 	
 	[Signal]
+	public delegate void PlayerDied();
+	
+	[Signal]
 	public delegate void PlayerLoaded(Player player);
 	
 	[Signal]

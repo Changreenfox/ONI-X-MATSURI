@@ -50,7 +50,10 @@ public class StartScreen : SceneBase
 
 	public void _on_StartButton_pressed()
 	{
-		GetTree().ChangeScene("res://Scenes/World.tscn");
+		gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
+									"res://Scenes/World.tscn"
+									);
+		//GetTree().ChangeScene("res://Scenes/World.tscn");
 	}
 
 	public void _on_QuitButton_pressed()

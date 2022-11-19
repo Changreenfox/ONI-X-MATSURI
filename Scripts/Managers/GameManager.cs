@@ -81,7 +81,9 @@ public class GameManager : Node
 		signals.Connect(nameof(SignalManager.PlaySound2DSignal), audio, nameof(AudioManager.PlaySound2D));
 		signals.Connect(nameof(SignalManager.EnemyDied), this, nameof(this.SetGameScore));
 		
+		signals.Connect(nameof(SignalManager.PlayerDied), this, nameof(this.HandlePlayerDeath));
 		signals.Connect(nameof(SignalManager.PlayerLoaded), this, nameof(this.LoadPlayer));
+		
 		signals.Connect(nameof(SignalManager.SceneChangeCall), this, nameof(this.HandleSceneChange));
 	}
 	
@@ -122,12 +124,25 @@ public class GameManager : Node
 		delayTimer.QueueFree();
 	}
 	
+	private void HandlePlayerDeath()
+	{
+		playerRef = null;
+		playerData = null;
+		HandleSceneChange("res://Scenes/GameOver.tscn");
+	}
+	
 	private void HandleSceneChange(string newSceneName)
 	{
-		playerData = new PlayerData(playerRef);
+		if(playerRef != null)
+		{
+			playerData = new PlayerData(playerRef);
+		}
 		
 		//Handle scene transitions
-		currentScene.GetTree().ChangeScene(newSceneName);
+		if(currentScene != null)
+		{
+			currentScene.GetTree().ChangeScene(newSceneName);
+		}
 	}
 	
 	private void LoadPlayer(Player player)

@@ -18,7 +18,10 @@ public class GameOver : SceneBase
 
 	private void _on_ReturnButton_pressed()
 	{
-		GetTree().ChangeScene("res://Scenes/Start.tscn");
+		gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
+									"res://Scenes/Start.tscn"
+									);
+		//GetTree().ChangeScene("res://Scenes/Start.tscn");
 	}
 
 }

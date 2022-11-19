@@ -73,7 +73,10 @@ public class OniBoss : Enemy
 	}
 	private void _on_BossDeathTimer_timeout()
 	{
-		GetTree().ChangeScene("res://Scenes/Win.tscn");
+		gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
+									"res://Scenes/Win.tscn"
+									);
+		//GetTree().ChangeScene("res://Scenes/Win.tscn");
 	}
 	
 	public void AttackShake()
