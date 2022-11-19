@@ -46,7 +46,13 @@ public class GameManager : Node
 	public SceneBase CurrentScene
 	{
 		get{ return currentScene; }
-		set{ currentScene = value; }
+		set
+		{ 
+			currentScene = value; 
+			signals.EmitSignal(nameof(SignalManager.UpdatedGameScore),
+							gameScore
+							);
+		}
 	}
 	
 	private Camera2D currentCamera;
