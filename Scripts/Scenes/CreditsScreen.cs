@@ -36,7 +36,7 @@ public class CreditsScreen : SceneBase
 		}
 	}
 	
-	public override void _Input(InputEvent @event)
+	public override void _UnhandledInput(InputEvent @event)
 	{
 		if (@event is InputEventKey eventKey) {
 			if (eventKey.Pressed == true) {
