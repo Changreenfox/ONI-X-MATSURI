@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://assets/backgrounds/Background_buildings.png" type="Texture" id=1]
+[ext_resource path="res://assets/backgrounds/Buildings_animated.tres" type="Texture" id=1]
 [ext_resource path="res://assets/backgrounds/Background_mountains.png" type="Texture" id=2]
 [ext_resource path="res://assets/backgrounds/Vertical_sky.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/World/TileMap.tres" type="TileSet" id=4]

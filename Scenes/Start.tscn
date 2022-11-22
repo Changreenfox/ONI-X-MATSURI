@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://assets/backgrounds/start_screen.png" type="Texture" id=1]
+[ext_resource path="res://assets/backgrounds/start_screen_wcredits.png" type="Texture" id=1]
 [ext_resource path="res://assets/buttons/start_button_highlighted.png" type="Texture" id=2]
 [ext_resource path="res://assets/buttons/start_button_pressed.png" type="Texture" id=3]
 [ext_resource path="res://assets/buttons/quit_button_highlighted.png" type="Texture" id=4]
