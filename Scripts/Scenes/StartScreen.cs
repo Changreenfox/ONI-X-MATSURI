@@ -29,9 +29,9 @@ public class StartScreen : SceneBase
 		isGameplay = false;
 		butSel = GetNode<TextureButton>("CenterContainer/HBoxContainer/"+optSel.ToString()+"Button");
 		// save the normal texture for new button
-		normTexture = butSel.GetNormalTexture();
+		normTexture = butSel.TextureNormal;
 		// highlight the new button
-		butSel.SetNormalTexture(butSel.GetHoverTexture());
+		butSel.TextureNormal = butSel.TextureHover;
 		
 		CreditsScreen = GetNode<Node2D>("CreditsScreen");
 	}
@@ -39,11 +39,11 @@ public class StartScreen : SceneBase
 	private void update_highlighted_button(Option next) {
 		TextureButton butNext = GetNode<TextureButton>("CenterContainer/HBoxContainer/"+next.ToString()+"Button");
 		// restore current highlighted to normal
-		butSel.SetNormalTexture(normTexture);
+		butSel.TextureNormal = normTexture;
 		// save the normal texture for new button
-		normTexture = butNext.GetNormalTexture();
+		normTexture = butNext.TextureNormal;
 		// highlight the new button
-		butNext.SetNormalTexture(butNext.GetHoverTexture());
+		butNext.TextureNormal = butNext.TextureHover;
 		// update the current button
 		butSel = butNext;
 	}
