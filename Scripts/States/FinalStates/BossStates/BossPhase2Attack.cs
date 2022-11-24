@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class BossPhase2Attack : AIMotion
+public class BossPhase2Attack : Motion
 {
 	bool finished = false;
 	private bool active = true;

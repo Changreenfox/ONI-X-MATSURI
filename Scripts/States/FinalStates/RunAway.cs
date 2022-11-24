@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public class RunAway : AIMotion
+public class RunAway : Motion
 {
     //BulletSpawner is stored in host.attacks[0]
     private Actor player;

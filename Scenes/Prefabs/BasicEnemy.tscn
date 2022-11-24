@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/Actors/Enemies/OniBrute.cs" type="Script" id=1]
+[ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=4]
+[ext_resource path="res://Scenes/Prefabs/AlertCollider.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sprites/enemy/emotes.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/Prefabs/Lost.tscn" type="PackedScene" id=11]
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 42.0
+height = 84.0
+
+[sub_resource type="CapsuleShape2D" id=20]
+radius = 42.0
+height = 84.0
+
+[node name="EnemyName" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 24
+script = ExtResource( 1 )
+interruptable = true
+speed = 25.0
+maxSpeed = 300.0
+walkToRunSpeed = 300.0
+toFlash = Color( 1, 1, 1, 0.415686 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 4 )
+scale = Vector2( 7, 7 )
+hframes = 5
+vframes = 5
+frame = 20
+
+[node name="AlertSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -142 )
+scale = Vector2( 7, 7 )
+texture = ExtResource( 8 )
+hframes = 4
+vframes = 2
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 3 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 20 )
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="StateTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Damage" type="AudioStreamPlayer2D" parent="Sounds"]
+bus = "Sounds"
+area_mask = 0
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
+bus = "Sounds"
+area_mask = 0
+
+[node name="Alert" parent="." instance=ExtResource( 7 )]
+visible = false
+
+[node name="Lost" parent="." instance=ExtResource( 11 )]
+
+[connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]
+[connection signal="body_entered" from="Alert" to="." method="HandleAlert"]
+[connection signal="body_exited" from="Lost" to="." method="HandleLost"]

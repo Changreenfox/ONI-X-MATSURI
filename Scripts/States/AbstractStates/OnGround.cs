@@ -1,7 +1,8 @@
 using Godot;
 using System;
 
-public abstract class OnGround : Motion
+//Base class for player walking & jumping state
+public abstract class OnGround : PlayerMotion
 {
 	public override string HandlePhysics(float delta)
 	{

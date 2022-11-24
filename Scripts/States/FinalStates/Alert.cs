@@ -4,7 +4,7 @@ using System;
 //Meant to play a cheeky animation
 public class Alert : JustGravity
 {
-	private string next;
+	protected string next;
 
 	public Alert(Actor _host, string _next)
 	{
@@ -21,8 +21,10 @@ public class Alert : JustGravity
 
 	public async void Process()
 	{
+		GD.Print("Waiting");
 		await ToSignal(host.Animator, "animation_finished");
 		host.ChangeState(next);
+		GD.Print("done");
 	}
 
 	public override string StateName()

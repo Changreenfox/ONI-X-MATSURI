@@ -1,10 +1,8 @@
 using Godot;
 using System;
 
-public class Jump : Motion
+public class Jump : PlayerMotion
 {
-
-
 	private bool face;
 
 	public Jump(Actor _host)

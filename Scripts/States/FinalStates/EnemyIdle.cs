@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 // Will inherit from enemy AI
-public class EnemyIdle : AIMotion
+public class EnemyIdle : Motion
 {
 	private Vector2[] phases;
 	private int phase = 0;

@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-// Base class for walking & jumping
+// Base class for movement physics
 public abstract class Motion : State
 {
 	protected bool facingRight;
@@ -38,31 +38,9 @@ public abstract class Motion : State
 		return null;
 	}
 
-	protected virtual void GetInputDirection()
-	{
-		float goRight = Input.GetActionStrength("MoveRight");
-		float goLeft = Input.GetActionStrength("MoveLeft");
-		float jump = Input.GetActionStrength("Jump");
-		Vector2 direction = new Vector2(goRight - goLeft, jump);
-		host.Direction = direction;
+	protected virtual void GetInputDirection() {}
 
-		//Set facing direction
-		if(goRight != goLeft)
-		{
-			facingRight = goRight > goLeft;
-			if(facingRight != host.FacingRight)
-			{
-				host.FacingRight = facingRight;
-				PlayAnimation();
-			}
-		}
-	}
-
-	protected virtual void CheckAttack()
-	{
-		if (Input.IsActionPressed("Attack"))
-			Attack();
-	}
+	protected virtual void CheckAttack() {}
 
 	protected virtual void Attack()
 	{
