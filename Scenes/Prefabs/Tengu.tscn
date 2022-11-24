@@ -1,0 +1,138 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scripts/Actors/Enemies/Tengu.cs" type="Script" id=1]
+[ext_resource path="res://assets/sprites/enemy/oni_big_weapon_spritesheet.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=4]
+[ext_resource path="res://assets/sprites/enemy/emotes.png" type="Texture" id=8]
+
+[sub_resource type="Animation" id=29]
+resource_name = "Alert"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("AlertSprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ), Vector2( 1, 1 ), Vector2( 2, 1 ), Vector2( 3, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AlertSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.49 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "AttackLeft"
+
+[sub_resource type="Animation" id=23]
+resource_name = "AttackRight"
+
+[sub_resource type="Animation" id=24]
+resource_name = "Dive"
+
+[sub_resource type="Animation" id=25]
+resource_name = "FlyLeft"
+
+[sub_resource type="Animation" id=26]
+resource_name = "FlyRight"
+
+[sub_resource type="Animation" id=27]
+resource_name = "Idle"
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 42.0
+height = 84.0
+
+[sub_resource type="CapsuleShape2D" id=20]
+radius = 42.0
+height = 84.0
+
+[sub_resource type="CapsuleShape2D" id=28]
+radius = 320.0
+height = 784.0
+
+[node name="Tengu" type="KinematicBody2D"]
+collision_layer = 128
+collision_mask = 0
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 4 )
+scale = Vector2( 7, 7 )
+z_index = 1
+texture = ExtResource( 2 )
+hframes = 5
+vframes = 5
+frame = 20
+
+[node name="AlertSprite" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0, -142 )
+scale = Vector2( 7, 7 )
+texture = ExtResource( 8 )
+hframes = 4
+vframes = 2
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Dive"
+anims/Alert = SubResource( 29 )
+anims/AttackLeft = SubResource( 22 )
+anims/AttackRight = SubResource( 23 )
+anims/Dive = SubResource( 24 )
+anims/FlyLeft = SubResource( 25 )
+anims/FlyRight = SubResource( 26 )
+anims/Idle = SubResource( 27 )
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 3 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+visible = false
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource( 20 )
+
+[node name="AttackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="StateTimer" type="Timer" parent="."]
+wait_time = 2.0
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="Damage" type="AudioStreamPlayer2D" parent="Sounds"]
+bus = "Sounds"
+area_mask = 0
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
+bus = "Sounds"
+area_mask = 0
+
+[node name="Alert" type="Area2D" parent="."]
+collision_layer = 0
+monitorable = false
+
+[node name="AlertCollider" type="CollisionShape2D" parent="Alert"]
+position = Vector2( 16, 328 )
+rotation = 1.5708
+shape = SubResource( 28 )
+
+[connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]
+[connection signal="body_entered" from="Alert" to="." method="HandleAlert"]
