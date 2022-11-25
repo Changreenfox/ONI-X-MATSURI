@@ -38,9 +38,8 @@ public class Pause : Control
 		GetTree().ChangeScene(\"res://Scenes/Start.tscn\");
 	}
 }
-
-
 "
+
 
 [node name="PauseScreen" type="Control"]
 pause_mode = 2

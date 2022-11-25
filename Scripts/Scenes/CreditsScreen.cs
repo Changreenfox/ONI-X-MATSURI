@@ -47,6 +47,7 @@ public class CreditsScreen : SceneBase
 			}
 		}
 	}
+	
 	private void _on_ContinueButton_pressed()
 	{
 		_on_any_input_pressed();

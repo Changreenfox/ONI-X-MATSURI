@@ -19,6 +19,8 @@ public class UIManager : Control
 	private TextureRect AttackBoost;
 	private TextureRect SpeedBoost;
 
+	private Control pauseMenu;
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -39,6 +41,8 @@ public class UIManager : Control
 		JumpBoost = GetNode<TextureRect>("Right/VBoxContainer/JumpBoost");
 		AttackBoost = GetNode<TextureRect>("Right/VBoxContainer/AttackBoost");
 		SpeedBoost = GetNode<TextureRect>("Right/VBoxContainer/SpeedBoost");
+
+		pauseMenu = GetNode<Control>("PauseScreen");
 		
 		scoreLabel = GetNodeOrNull<HBoxContainer>("Center").GetNodeOrNull<Label>("Label");
 	}
@@ -99,6 +103,25 @@ public class UIManager : Control
 	private void SetScoreDisplay(string scoreValue)
 	{
 		scoreLabel.Text = scoreValue;
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (@event is InputEventKey eventKey) {
+			if (eventKey.Pressed == true) {
+				switch (eventKey.Scancode) {
+					// enter pause state
+					case (int)KeyList.P : {
+						GetTree().Paused = true;
+						pauseMenu.Show();
+						break;
+					}
+					default : {
+						break;
+					}
+				}
+			}
+		}
 	}
 }
 
