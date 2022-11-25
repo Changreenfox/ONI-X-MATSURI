@@ -20,7 +20,9 @@ public class StartScreen : SceneBase
 
 	private Option optSel = Option.Start;
 	
-	private Node2D CreditsScreen;
+	private Node2D creditsScreen;
+
+	bool wasPauseLast = false;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -33,7 +35,7 @@ public class StartScreen : SceneBase
 		// highlight the new button
 		butSel.TextureNormal = butSel.TextureHover;
 		
-		CreditsScreen = GetNode<Node2D>("CreditsScreen");
+		creditsScreen = GetNode<Node2D>("CreditsScreen");
 	}
 
 	private void update_highlighted_button(Option next) {
@@ -63,13 +65,15 @@ public class StartScreen : SceneBase
 
 	public void _on_CreditsButton_pressed()
 	{
-		CreditsScreen.Show();
+		creditsScreen.Show();
 		GetTree().Paused = true;
+		wasPauseLast = false;
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (@event is InputEventKey eventKey) {
+		if (wasPauseLast == false && @event is InputEventKey eventKey) {
+			// GD.Print("here start");
 			if (eventKey.Pressed == true) {
 				switch (eventKey.Scancode) {
 					// move to the left
@@ -113,6 +117,8 @@ public class StartScreen : SceneBase
 				}
 			}
 		}
+		// update the variable with last state of pause
+		wasPauseLast = GetTree().Paused;
 	}
 
 }

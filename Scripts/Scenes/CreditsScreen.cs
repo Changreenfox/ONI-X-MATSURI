@@ -6,6 +6,8 @@ public class CreditsScreen : SceneBase
 	private int PageNum;
 	private TextureRect FirstPage;
 	private TextureRect SecondPage;
+
+	bool allowNext = false;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -16,18 +18,18 @@ public class CreditsScreen : SceneBase
 		PageNum = 1;
 		FirstPage = GetNode<TextureRect>("FirstPage");
 		SecondPage = GetNode<TextureRect>("SecondPage");
+		FirstPage.Show();
+		SecondPage.Hide();
 	}
 
 	public void _on_any_input_pressed()
 	{
-		if (PageNum == 1)
-		{
+		if (PageNum == 1) {
 			FirstPage.Hide();
 			SecondPage.Show();
 			PageNum++;
 		}
-		else if (PageNum == 2)
-		{
+		else if (PageNum == 2) {
 			PageNum = 1;
 			FirstPage.Show();
 			SecondPage.Hide();
@@ -38,14 +40,12 @@ public class CreditsScreen : SceneBase
 	
 	public override void _UnhandledInput(InputEvent @event)
 	{
-		if (@event is InputEventKey eventKey) {
+		if (GetTree().Paused == true && @event is InputEventKey eventKey) {
+			// GD.Print("here credit "+PageNum);
 			if (eventKey.Pressed == true) {
 				_on_any_input_pressed();
 			}
 		}
-		//if (@event is InputEventMouseButton eventMouseButton) {
-		//	_on_any_input_pressed();
-		//}
 	}
 	private void _on_ContinueButton_pressed()
 	{
