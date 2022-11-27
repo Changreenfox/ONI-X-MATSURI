@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/OniBrute.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemy/oni_big_weapon_spritesheet.png" type="Texture" id=2]
@@ -455,12 +455,12 @@ particles_anim_h_frames = 3
 particles_anim_v_frames = 2
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id=23]
+[sub_resource type="Gradient" id=27]
 offsets = PoolRealArray( 0, 0.00894188, 0.988078 )
 colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture" id=24]
-gradient = SubResource( 23 )
+gradient = SubResource( 27 )
 
 [sub_resource type="ParticlesMaterial" id=25]
 resource_local_to_scene = true
@@ -480,7 +480,7 @@ anim_offset = 0.79
 [sub_resource type="StreamTexture" id=26]
 load_path = "res://.import/effects.png-0576e1f97a709f05413c09d96a3e1722.stex"
 
-[sub_resource type="ParticlesMaterial" id=27]
+[sub_resource type="ParticlesMaterial" id=30]
 resource_local_to_scene = true
 emission_shape = 2
 emission_box_extents = Vector3( 5, 5, 1 )
@@ -497,6 +497,13 @@ color_ramp = SubResource( 24 )
 [sub_resource type="StreamTexture" id=28]
 load_path = "res://.import/effects.png-0576e1f97a709f05413c09d96a3e1722.stex"
 
+[sub_resource type="Gradient" id=23]
+offsets = PoolRealArray( 0, 0.00894188, 0.988078 )
+colors = PoolColorArray( 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=31]
+gradient = SubResource( 23 )
+
 [sub_resource type="ParticlesMaterial" id=29]
 resource_local_to_scene = true
 emission_shape = 2
@@ -509,7 +516,7 @@ gravity = Vector3( 0, 0, 0 )
 initial_velocity = 5.56
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-color_ramp = SubResource( 24 )
+color_ramp = SubResource( 31 )
 anim_offset = 0.53
 
 [node name="OniBrute" type="KinematicBody2D"]
@@ -678,7 +685,7 @@ one_shot = true
 speed_scale = 0.82
 explosiveness = 1.0
 randomness = 1.0
-process_material = SubResource( 27 )
+process_material = SubResource( 30 )
 texture = SubResource( 28 )
 
 [node name="Particles2D4" type="Particles2D" parent="."]

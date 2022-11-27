@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/PowerUps/HealthPowerUp.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/cottoncandy.png" type="Texture" id=2]
 [ext_resource path="res://assets/sounds/powerups/heal.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/effects/Light_temp.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=2]
 resource_name = "Animation"
@@ -89,6 +90,7 @@ visible = false
 shape = SubResource( 4 )
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 collision_layer = 4
 monitorable = false
 
@@ -101,5 +103,12 @@ shape = SubResource( 5 )
 stream = ExtResource( 3 )
 volume_db = -12.0
 bus = "Sounds"
+
+[node name="Light2D" type="Light2D" parent="."]
+show_behind_parent = true
+position = Vector2( 1, -1 )
+texture = ExtResource( 4 )
+color = Color( 0.980392, 0.392157, 0.980392, 0.117647 )
+mode = 2
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

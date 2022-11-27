@@ -22,6 +22,7 @@ public class BossStart : JustGravity
 			host.GManager.Signals.EmitSignal(nameof(SignalManager.OniBossLanded));
 			host.PlaySound("Land");
 			return "Idle";
+			
 		}
 		return temp;
 	}

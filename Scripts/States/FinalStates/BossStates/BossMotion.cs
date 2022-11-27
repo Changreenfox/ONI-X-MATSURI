@@ -39,6 +39,6 @@ public class BossMotion : Motion
 	
 	public override void PlayAnimation()
 	{
-		host.PlayAnimation("IdleForward");
+		host.PlayAnimation("Movement");
 	}
 }

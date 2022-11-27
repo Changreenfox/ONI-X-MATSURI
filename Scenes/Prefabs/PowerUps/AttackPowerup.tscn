@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/PowerUps/AttackPowerUp.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/squid.png" type="Texture" id=2]
 [ext_resource path="res://assets/sounds/powerups/attack-boost.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/effects/Light_temp.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=2]
 resource_name = "Animation"
@@ -90,6 +91,7 @@ position = Vector2( 0, -3 )
 shape = SubResource( 5 )
 
 [node name="Area2D" type="Area2D" parent="."]
+visible = false
 position = Vector2( 2, 0 )
 collision_layer = 4
 monitorable = false
@@ -104,5 +106,12 @@ shape = SubResource( 6 )
 stream = ExtResource( 3 )
 volume_db = -20.0
 bus = "Sounds"
+
+[node name="Light2D" type="Light2D" parent="."]
+show_behind_parent = true
+position = Vector2( -1, -1 )
+texture = ExtResource( 4 )
+color = Color( 1, 0.745098, 0.745098, 0.392157 )
+mode = 2
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

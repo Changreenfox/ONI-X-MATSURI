@@ -66,7 +66,7 @@ public class OniBoss : Enemy
 			state.Enter();
 			hp = 3;
 		}
-		if(death_counter==2){ //else play die animation and show win screen after a bit
+		else{ //else play die animation and show win screen after a bit
 			Timer timer = (Timer)GetNode("BossDeathTimer");
 			timer.Start(0.5f);
 		}

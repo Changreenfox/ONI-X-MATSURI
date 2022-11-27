@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scripts/PowerUps/SpeedPowerUp.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/onigiri.png" type="Texture" id=2]
 [ext_resource path="res://assets/sounds/powerups/speed-boost.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/effects/Light_temp.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=2]
 resource_name = "Animation"
@@ -101,5 +102,12 @@ shape = SubResource( 5 )
 [node name="ActivationSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -15.0
+
+[node name="Light2D" type="Light2D" parent="."]
+show_behind_parent = true
+position = Vector2( 2.00001, 0.999996 )
+texture = ExtResource( 4 )
+color = Color( 0.745098, 0.745098, 1, 0.392157 )
+mode = 2
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -46,6 +46,7 @@ glow_strength = 1.15
 glow_bicubic_upscale = true
 
 [node name="StartScreen" type="Node2D"]
+position = Vector2( 4, 0 )
 script = ExtResource( 8 )
 
 [node name="Background" type="Node2D" parent="."]

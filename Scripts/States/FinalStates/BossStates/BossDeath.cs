@@ -23,6 +23,6 @@ public class BossDeath : JustGravity
 	
 	public override void PlayAnimation()
 	{
-		host.PlayAnimation("Angry");
+		host.PlayAnimation("Death");
 	}
 }
