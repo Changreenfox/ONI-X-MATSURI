@@ -10,8 +10,6 @@ public class OniBoss : Enemy
 		set { cycled = value; }
 	}
 	
-	public int death_counter= 0;
-	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -21,7 +19,7 @@ public class OniBoss : Enemy
 		
 		container.SetState("Start", new BossStart(this));
 		container.SetState("Idle", new BossIdle(this));
-		container.SetState("Death", new Death(this));
+		container.SetState("Death", new BossDeath(this));
 		container.SetState("Attack", new BossAttack(this));
 		container.SetState("Phase2Attack", new BossPhase2Attack(this));
 		container.SetState("Phase2Idle", new BossPhase2Idle(this));
@@ -59,18 +57,9 @@ public class OniBoss : Enemy
 	
 	public override void Die()
 	{
-		death_counter++; //increase the number of times he has died
-		if(death_counter == 1){//if the boss has only died 1 time, enter Phase 2
-			gManager.Signals.EmitSignal(nameof(SignalManager.OniBossPhase2));
-			state = container.GetState("BossAngry");
-			state.Enter();
-			hp = 3;
-		}
-		else{ //else play die animation and show win screen after a bit
-			Timer timer = (Timer)GetNode("BossDeathTimer");
-			timer.Start(0.5f);
-		}
+		base.Die();
 	}
+	
 	private void _on_BossDeathTimer_timeout()
 	{
 		gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
@@ -83,6 +72,7 @@ public class OniBoss : Enemy
 	{
 		gManager.Signals.EmitSignal(nameof(SignalManager.OniBossAttacked));
 	}
+	
 }
 
 

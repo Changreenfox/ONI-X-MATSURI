@@ -374,4 +374,9 @@ public abstract class Actor : KinematicBody2D
 	{
 		CancelAttack();
 	}
+	
+	public void EmitManagedSignal(string signalName)	//Used only for BossDeath state
+	{
+		gManager.Signals.EmitSignal(signalName);
+	}
 }
