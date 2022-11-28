@@ -20,7 +20,7 @@ public class GameOver : SceneBase
 
 	private void _on_ReturnButton_pressed()
 	{
-		Transition.SceneTransition("res://Scenes/World.tscn");
+		Transition.SceneTransition("res://Scenes/Start.tscn");
 		//gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
 		//							"res://Scenes/Start.tscn"
 		//							);

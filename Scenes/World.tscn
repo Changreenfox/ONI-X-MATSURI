@@ -115,6 +115,7 @@ position = Vector2( 0, 55 )
 texture = ExtResource( 11 )
 
 [node name="LevelGenerator" type="Node2D" parent="."]
+z_index = -1
 script = ExtResource( 2 )
 
 [node name="OniBrute" parent="." instance=ExtResource( 3 )]

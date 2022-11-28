@@ -123,6 +123,7 @@ shape = SubResource( 1 )
 
 [node name="Ground" type="TileMap" parent="."]
 position = Vector2( 0, 56 )
+z_index = -1
 tile_set = ExtResource( 4 )
 cell_size = Vector2( 128, 128 )
 cell_quadrant_size = 128
@@ -131,6 +132,7 @@ format = 1
 tile_data = PoolIntArray( 458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0, 458756, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 2, 0 )
 
 [node name="LevelGenerator" type="Node2D" parent="."]
+z_index = -1
 script = ExtResource( 8 )
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
