@@ -142,11 +142,21 @@ public class GameManager : Node
 		HandleSceneChange("res://Scenes/GameOver.tscn");
 	}
 	
-	private async void HandleSceneChange(string newSceneName)
+	private void HandleSceneChange(string newSceneName)
 	{
 		if(playerRef != null)
 		{
 			playerData = new PlayerData(playerRef);
+		}
+		else
+		{
+			playerData = null;
+		}
+		
+		if(!currentScene.IsGameplay)
+		{
+			playerRef = null;
+			playerData = null;
 		}
 		
 		//Handle scene transitions

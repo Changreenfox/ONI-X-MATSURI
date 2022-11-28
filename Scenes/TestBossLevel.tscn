@@ -1,0 +1,183 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://assets/backgrounds/stage_1.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Prefabs/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/CameraShake.cs" type="Script" id=5]
+[ext_resource path="res://Scripts/Scenes/BossLevel.cs" type="Script" id=6]
+[ext_resource path="res://assets/music_ogg/boss_stage_music.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Scenes/Prefabs/FadeTransition.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/backgrounds/Boss_bg.png" type="Texture" id=9]
+[ext_resource path="res://assets/backgrounds/stage_3.png" type="Texture" id=10]
+[ext_resource path="res://assets/backgrounds/Boss_clouds.png" type="Texture" id=11]
+[ext_resource path="res://assets/backgrounds/stage_2.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/Prefabs/Platform.tscn" type="PackedScene" id=13]
+
+[sub_resource type="Animation" id=4]
+resource_name = "Clouds"
+length = 30.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Clouds:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 30 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 540 ), Vector2( 1915, 540 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Clouds:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 536 ) ]
+}
+
+[sub_resource type="AnimatedTexture" id=6]
+flags = 4
+frames = 4
+fps = 3.5
+frame_0/texture = ExtResource( 1 )
+frame_1/texture = ExtResource( 12 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 10 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 12 )
+frame_3/delay_sec = 0.0
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 961, 60 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 28, 463 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 22.5, 516 )
+
+[node name="BossLevel" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Clouds"
+anims/Clouds = SubResource( 4 )
+anims/RESET = SubResource( 5 )
+
+[node name="Clouds" type="Sprite" parent="."]
+position = Vector2( 1, 536 )
+texture = ExtResource( 11 )
+
+[node name="Stage" type="Sprite" parent="."]
+position = Vector2( 961, 539 )
+texture = SubResource( 6 )
+
+[node name="Background" type="Sprite" parent="."]
+position = Vector2( 961, 539 )
+z_index = -2
+texture = ExtResource( 9 )
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2( 291, -75 )
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2( 669, 1039 )
+shape = SubResource( 1 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 242, -163 )
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="WallRight"]
+position = Vector2( 1888, 440 )
+shape = SubResource( 2 )
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="WallLeft"]
+position = Vector2( 30, 440 )
+shape = SubResource( 2 )
+
+[node name="BossLeftWall" type="Area2D" parent="."]
+position = Vector2( 574, 407 )
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossLeftWall"]
+position = Vector2( -114, 102 )
+shape = SubResource( 3 )
+
+[node name="BossRightWall" type="Area2D" parent="."]
+position = Vector2( 406, 393 )
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossRightWall"]
+position = Vector2( 1062, 108 )
+shape = SubResource( 3 )
+
+[node name="Interface" parent="." instance=ExtResource( 4 )]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 960, 536 )
+current = true
+script = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="Camera2D"]
+
+[node name="Tween" type="Tween" parent="Camera2D"]
+
+[node name="PowerUps" type="Node" parent="."]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 7 )
+autoplay = true
+bus = "Music"
+
+[node name="TransitionScreen" parent="." instance=ExtResource( 8 )]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2( -1, 277 )
+collision_layer = 0
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
+position = Vector2( 414.031, 459 )
+one_way_collision = true
+
+[node name="Sprite" type="Sprite" parent="StaticBody2D"]
+visible = false
+position = Vector2( 414, 510 )
+
+[node name="Platforms" type="Node" parent="."]
+
+[node name="PlatformLeft" parent="Platforms" instance=ExtResource( 13 )]
+position = Vector2( 455, 780 )
+
+[node name="PlatformMiddle" parent="Platforms" instance=ExtResource( 13 )]
+position = Vector2( 960, 600 )
+
+[node name="PlatformRight" parent="Platforms" instance=ExtResource( 13 )]
+position = Vector2( 1465, 780 )
