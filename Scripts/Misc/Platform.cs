@@ -46,7 +46,6 @@ public class Platform : StaticBody2D
 			sprite?.SetFrame(3);
 			
 			CallDeferred("set_process", false);
-			
 			respawnTimer.Start();
 		}
 	}
@@ -54,12 +53,8 @@ public class Platform : StaticBody2D
 	private void _on_RespawnTimer_timeout()
 	{
 		decayDurability = 3.0f;
-		
-		decayArea?.SetDeferred("monitoring", true);
-		hitbox?.SetDeferred("disabled", false);
-		sprite?.SetDeferred("visible", true);
+		SetActive(true);
 		sprite?.SetFrame(0);
-		
 		GD.Print("Platform respawned!!");
 	}
 	
@@ -77,5 +72,12 @@ public class Platform : StaticBody2D
 		{
 			CallDeferred("set_process", false);
 		}
+	}
+	
+	private void SetActive(bool enable)
+	{
+		decayArea?.SetDeferred("monitoring", enable);
+		hitbox?.SetDeferred("disabled", !enable);
+		sprite?.SetDeferred("visible", enable);
 	}
 }

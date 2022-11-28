@@ -41,11 +41,6 @@ __meta__ = {
 "_editor_description_": "This timer will queue the Platform to be respawned by the next OniBoss attack after the Timer has finished."
 }
 
-[node name="DecayTimer" type="Timer" parent="."]
-wait_time = 5.0
-one_shot = true
-
 [connection signal="body_entered" from="DecayArea" to="." method="_on_DecayArea_body_entered"]
 [connection signal="body_exited" from="DecayArea" to="." method="_on_DecayArea_body_exited"]
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_RespawnTimer_timeout"]
-[connection signal="timeout" from="DecayTimer" to="." method="_on_DecayTimer_timeout"]
