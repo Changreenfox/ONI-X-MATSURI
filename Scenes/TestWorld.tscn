@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/World/TileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=2]
@@ -27,6 +27,9 @@ extents = Vector2( 40, 40 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 100, 100 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 965, 10 )
 
 [node name="TestWorld" type="Node2D"]
 script = ExtResource( 8 )
@@ -170,5 +173,15 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0, 458756, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 2, 0 )
 
+[node name="BonkArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonkArea"]
+position = Vector2( 962, -304 )
+shape = SubResource( 6 )
+
 [connection signal="body_entered" from="TenguSpots/LeftCorner" to="Tengu" method="TargetReached"]
 [connection signal="body_entered" from="TenguSpots/LeftCorner2" to="Tengu" method="TargetReached"]
+[connection signal="body_entered" from="BonkArea" to="Tengu" method="BonkHead"]

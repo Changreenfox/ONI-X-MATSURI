@@ -25,7 +25,8 @@ public class Tengu : Enemy
         container.SetState("Falling", new Falling(this));
         container.SetState("Alert", new TenguAlert(this, "Fly"));
         container.SetState("Fly", new TenguFly(this));
-        container.SetState("Attack", new TenguAttack(this));
+        //This would be a different state, but out of scope for current project
+        container.SetState("BonkHead", new FlyAway(this));
 
         state = container.GetState("Falling");
         state.Enter();
@@ -67,6 +68,11 @@ public class Tengu : Enemy
         {
             spawners[i].StartAttack();
         }
+    }
+
+    public void BonkHead(KinematicBody2D actor)
+    {
+        ChangeState("BonkHead");
     }
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
