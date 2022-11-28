@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/sprites/platform_small.png" type="Texture" id=1]
+[ext_resource path="res://assets/tiles/BreakingPlatforms.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Misc/Platform.cs" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 128, 13 )
+extents = Vector2( 147, 14 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 120, 1.5 )
+extents = Vector2( 146.5, 1.25 )
 
 [node name="Platform" type="StaticBody2D"]
 collision_layer = 8
@@ -15,7 +15,10 @@ collision_mask = 5
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -51 )
+scale = Vector2( 7, 7 )
 texture = ExtResource( 1 )
+hframes = 4
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -51 )
@@ -24,10 +27,11 @@ one_way_collision = true
 one_way_collision_margin = 3.0
 
 [node name="DecayArea" type="Area2D" parent="."]
+position = Vector2( -3, -17 )
 collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DecayArea"]
-position = Vector2( 0, -63.5 )
+position = Vector2( 2.5, -47.25 )
 shape = SubResource( 2 )
 
 [node name="RespawnTimer" type="Timer" parent="."]

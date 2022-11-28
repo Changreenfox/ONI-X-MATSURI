@@ -33,12 +33,17 @@ public class Platform : StaticBody2D
 	{
 		//Should only be processed if >= 1 object is standing on the platform
 		decayDurability -= delta;
+		
+		if(decayDurability <= 2.0f) sprite?.SetFrame(1);
+		
+		if(decayDurability <= 1.0f) sprite?.SetFrame(2);
+		
 		if(decayDurability <= 0.0f)
 		{
 			//Platform breaks
 			decayArea?.SetDeferred("monitoring", false);
 			hitbox?.SetDeferred("disabled", true);
-			sprite?.SetDeferred("visible", false);
+			sprite?.SetFrame(3);
 			
 			CallDeferred("set_process", false);
 			
@@ -53,6 +58,7 @@ public class Platform : StaticBody2D
 		decayArea?.SetDeferred("monitoring", true);
 		hitbox?.SetDeferred("disabled", false);
 		sprite?.SetDeferred("visible", true);
+		sprite?.SetFrame(0);
 		
 		GD.Print("Platform respawned!!");
 	}
