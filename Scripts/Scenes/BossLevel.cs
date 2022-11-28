@@ -15,6 +15,7 @@ public class BossLevel : SceneBase
 		isGameplay = true;
 		
 		gManager.Signals.Connect(nameof(SignalManager.OniBossAttacked), this, nameof(On_OniBoss_Attack));
+		gManager.Signals.Connect(nameof(SignalManager.OniBossDied), this, nameof(On_OniBoss_Death));
 		gManager.Signals.Connect(nameof(SignalManager.OniBossLanded), this, nameof(On_OniBoss_Land));
 		gManager.Signals.Connect(nameof(SignalManager.OniBossPhase2), this, nameof(On_OniBoss_Phase2));
 		
@@ -60,6 +61,17 @@ public class BossLevel : SceneBase
 	public void On_OniBoss_Attack()
 	{
 		ShakeCamera(0.25f, 300.0f);
+	}
+	
+	private async void On_OniBoss_Death()
+	{
+		Timer coinTimer = new Timer();
+		AddChild(coinTimer);
+		coinTimer.Start(3.0f);
+		await ToSignal(coinTimer, "timeout");
+		gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
+									"res://Scenes/Win.tscn"
+									);
 	}
 	
 	public void On_OniBoss_Land()

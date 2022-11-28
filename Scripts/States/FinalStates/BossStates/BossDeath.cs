@@ -24,9 +24,10 @@ public class BossDeath : JustGravity
 			host.HP = 3;
 		}
 		else if(deathCounter==2){ //else play die animation and show win screen after a bit
-			Timer timer = (Timer)host.GetNode("BossDeathTimer");
-			timer.Start(0.5f);
+			//Timer timer = (Timer)host.GetNode("BossDeathTimer");
+			//timer.Start(0.5f);
 			//State abstract class will enter Death state
+			host.ChangeState("FinalDeath");
 		}
 	}
 	

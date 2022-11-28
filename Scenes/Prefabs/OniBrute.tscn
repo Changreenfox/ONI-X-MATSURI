@@ -298,6 +298,20 @@ tracks/13/keys = {
 "update": 1,
 "values": [ true ]
 }
+tracks/14/type = "method"
+tracks/14/path = NodePath(".")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "EmitDeathSignal"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "IdleForward"
@@ -607,6 +621,7 @@ disabled = true
 visible = false
 collision_layer = 0
 collision_mask = 16
+monitoring = false
 monitorable = false
 script = ExtResource( 3 )
 

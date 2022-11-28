@@ -25,6 +25,8 @@ public class OniBoss : Enemy
 		container.SetState("Phase2Idle", new BossPhase2Idle(this));
 		container.SetState("BossAngry", new BossAngry(this));
 		
+		container.SetState("FinalDeath", new Death(this));
+		
 		container.SetState("Motion", new BossMotion(this));
 		
 		direction.x = -1;
@@ -57,14 +59,16 @@ public class OniBoss : Enemy
 	
 	public override void Die()
 	{
+		gManager.Signals.EmitSignal(nameof(SignalManager.OniBossDied));
 		base.Die();
 	}
 	
 	private void _on_BossDeathTimer_timeout()
 	{
-		gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
+		/*gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
 									"res://Scenes/Win.tscn"
 									);
+		*/
 		//GetTree().ChangeScene("res://Scenes/Win.tscn");
 	}
 	

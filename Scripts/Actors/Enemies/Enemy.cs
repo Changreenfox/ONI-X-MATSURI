@@ -40,9 +40,19 @@ public class Enemy : Actor
 	
 	public override void Die()
 	{
+		/*
+		Signal is emitted in each Enemy's AnimationPlayer (not good practice !!) - Ricardo
 		gManager.Signals.EmitSignal(nameof(SignalManager.EnemyDied),
 									scoreValue
 									);
+		*/
 		base.Die();
+	}
+	
+	protected void EmitDeathSignal()
+	{
+		gManager.Signals.EmitSignal(nameof(SignalManager.EnemyDied),
+									scoreValue
+									);
 	}
 }       

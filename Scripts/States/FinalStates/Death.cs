@@ -19,8 +19,6 @@ public class Death : State
 		host.Disable();
 
 		//host.SetProcess(false);
-
-		PlayAnimation();
 		Process();
 	}
 

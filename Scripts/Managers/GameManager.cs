@@ -4,6 +4,9 @@ References:
 */
 using Godot;
 using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class GameManager : Node
 {
@@ -105,10 +108,6 @@ public class GameManager : Node
 	private void SetGameScore(int scoreValue)
 	{
 		PlayerCoinGet(scoreValue);
-		gameScore += scoreValue;
-		signals.EmitSignal(nameof(SignalManager.UpdatedGameScore),
-							gameScore
-							);
 	}
 	
 	private async void PlayerCoinGet(int scoreValue)
@@ -121,9 +120,15 @@ public class GameManager : Node
 		{
 			Sprite coin = coinScene.Instance() as Sprite;
 			coin.Position = playerRef.Position;
-			CallDeferred("add_child", coin);	//Add as child of Player so the sprite moves with the Player
+			CallDeferred("add_child", coin);	//(DOESNT WORK) Add as child of Player so the sprite moves with the Player
 			AnimationPlayer coinAnimations = coin.GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
 			coinAnimations?.Play("PlayerGet");	//Handles freeing the node
+			
+			gameScore += 1;
+			signals.EmitSignal(nameof(SignalManager.UpdatedGameScore),
+							gameScore
+							);
+							
 			delayTimer.Start(0.2f);
 			await ToSignal(delayTimer, "timeout");
 		}
@@ -137,7 +142,7 @@ public class GameManager : Node
 		HandleSceneChange("res://Scenes/GameOver.tscn");
 	}
 	
-	private void HandleSceneChange(string newSceneName)
+	private async void HandleSceneChange(string newSceneName)
 	{
 		if(playerRef != null)
 		{

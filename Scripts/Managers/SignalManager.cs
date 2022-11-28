@@ -17,6 +17,9 @@ public class SignalManager : Node
 	public delegate void OniBossAttacked();
 	
 	[Signal]
+	public delegate void OniBossDied();
+	
+	[Signal]
 	public delegate void OniBossLanded();
 	
 	[Signal]
