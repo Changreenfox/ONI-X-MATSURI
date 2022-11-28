@@ -21,8 +21,10 @@ public class StartScreen : SceneBase
 	private Option optSel = Option.Start;
 	
 	private Node2D creditsScreen;
+	private FadeTransition Transition;
 
 	bool wasPauseLast = false;
+	
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -36,6 +38,7 @@ public class StartScreen : SceneBase
 		butSel.TextureNormal = butSel.TextureHover;
 		
 		creditsScreen = GetNode<Node2D>("CreditsScreen");
+		Transition = GetNode<FadeTransition>("TransitionScreen");
 	}
 
 	private void update_highlighted_button(Option next) {
@@ -52,9 +55,10 @@ public class StartScreen : SceneBase
 
 	public void _on_StartButton_pressed()
 	{
-		gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
-									"res://Scenes/World.tscn"
-									);
+		Transition.SceneTransition("res://Scenes/World.tscn");
+		//gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
+		//							"res://Scenes/World.tscn"
+		//							);
 		//GetTree().ChangeScene("res://Scenes/World.tscn");
 	}
 

@@ -78,8 +78,6 @@ stream = ExtResource( 6 )
 autoplay = true
 bus = "Music"
 
-[node name="TransitionScreen" parent="." instance=ExtResource( 7 )]
-
 [node name="Backdrop" type="Node2D" parent="."]
 
 [node name="Clouds" type="Sprite" parent="Backdrop"]
@@ -108,5 +106,7 @@ root_node = NodePath("../..")
 autoplay = "RESET"
 anims/RESET = SubResource( 2 )
 anims/clouds = SubResource( 3 )
+
+[node name="TransitionScreen" parent="." instance=ExtResource( 7 )]
 
 [connection signal="pressed" from="ReturnButton" to="." method="_on_ReturnButton_pressed"]
