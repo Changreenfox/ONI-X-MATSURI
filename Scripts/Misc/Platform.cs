@@ -19,7 +19,7 @@ public class Platform : StaticBody2D
 	{
 		decayObjects = new HashSet<object>();
 		
-		decayDurability = 3.0f;	//Standing on a platform for a total of 5 seconds will cause it to break
+		decayDurability = 1.0f;	//Standing on a platform for a total of 5 seconds will cause it to break
 		decayArea = GetNodeOrNull<Area2D>("DecayArea");
 		hitbox = GetNodeOrNull<CollisionShape2D>("Hitbox");
 		sprite = GetNodeOrNull<Sprite>("Sprite");
@@ -37,9 +37,9 @@ public class Platform : StaticBody2D
 		//Should only be processed if >= 1 object is standing on the platform
 		decayDurability -= delta;
 		
-		if(decayDurability <= 2.0f) sprite?.SetFrame(1);
+		if(decayDurability <= 0.7f) sprite?.SetFrame(1);
 		
-		if(decayDurability <= 1.0f) sprite?.SetFrame(2);
+		if(decayDurability <= 0.4f) sprite?.SetFrame(2);
 		
 		if(decayDurability <= 0.0f)
 		{
@@ -57,7 +57,7 @@ public class Platform : StaticBody2D
 	
 	private void _on_RespawnTimer_timeout()
 	{
-		decayDurability = 3.0f;
+		decayDurability = 1.0f;
 		SetActive(true);
 		sprite.Modulate = new Color(255, 255, 255, 255);
 		sprite?.SetFrame(0);
