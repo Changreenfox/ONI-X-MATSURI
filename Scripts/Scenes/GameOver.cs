@@ -7,7 +7,6 @@ public class GameOver : SceneBase
 	public override void _Ready()
 	{
 		base._Ready();
-		gManager.Audio.PlaySound("OniBoss", "Laugh");
 	}
 
 //  // Called every frame. 'delta' is the elapsed time since the previous frame.
