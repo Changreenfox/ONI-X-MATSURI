@@ -40,9 +40,9 @@ public class Pause : Control
 }
 "
 
-
 [node name="PauseScreen" type="Control"]
 pause_mode = 2
+light_mask = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = SubResource( 1 )

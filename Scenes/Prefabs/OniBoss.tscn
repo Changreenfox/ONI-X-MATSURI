@@ -476,6 +476,7 @@ anim_offset = 0.22
 load_path = "res://.import/effects.png-0576e1f97a709f05413c09d96a3e1722.stex"
 
 [node name="OniBoss" type="KinematicBody2D"]
+z_index = -1
 collision_layer = 2
 collision_mask = 24
 script = ExtResource( 1 )

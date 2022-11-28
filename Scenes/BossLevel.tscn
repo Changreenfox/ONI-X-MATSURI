@@ -140,10 +140,6 @@ collision_mask = 2
 position = Vector2( 1062, 108 )
 shape = SubResource( 3 )
 
-[node name="Interface" parent="." instance=ExtResource( 4 )]
-margin_right = 1920.0
-margin_bottom = 1080.0
-
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 960, 536 )
 current = true
@@ -154,6 +150,10 @@ script = ExtResource( 5 )
 [node name="Tween" type="Tween" parent="Camera2D"]
 
 [node name="PowerUps" type="Node" parent="."]
+
+[node name="Interface" parent="." instance=ExtResource( 4 )]
+margin_right = 1920.0
+margin_bottom = 1080.0
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 pause_mode = 2

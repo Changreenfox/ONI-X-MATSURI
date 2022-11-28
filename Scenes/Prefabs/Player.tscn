@@ -400,7 +400,6 @@ toFlash = Color( 1, 1, 1, 0.584314 )
 material = ExtResource( 4 )
 position = Vector2( 1, 0 )
 scale = Vector2( 7, 7 )
-z_index = 1
 texture = ExtResource( 1 )
 hframes = 4
 vframes = 11
