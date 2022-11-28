@@ -9,9 +9,15 @@ public class CameraController : Camera2D
 	//private Player gManager.PlayerRef;
 	private float MostLeft = 0;
 
-	public override void _Ready()
+	public override void _EnterTree()
 	{
 		gManager = (GameManager)GetNode("/root/GameManager");
+		if(Current)
+			gManager.CurrentCamera = this;
+	}
+
+	public override void _Ready()
+	{
 		player = gManager.PlayerRef;
 	}
 
