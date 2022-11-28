@@ -438,12 +438,12 @@ wait_time = 0.6
 [node name="BulletSpawner" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 100 )
 bulletPrefab = ExtResource( 14 )
-heading = Vector2( 500, 0 )
+heading = Vector2( 750, 0 )
 
 [node name="BulletSpawner2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 100 )
 bulletPrefab = ExtResource( 14 )
-heading = Vector2( -500, 0 )
+heading = Vector2( -750, 0 )
 
 [node name="Contact" type="Area2D" parent="."]
 visible = false
