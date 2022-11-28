@@ -67,6 +67,7 @@ extents = Vector2( 28, 463 )
 extents = Vector2( 22.5, 516 )
 
 [node name="BossLevel" type="Node2D"]
+position = Vector2( -2, 0 )
 script = ExtResource( 6 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -161,21 +162,6 @@ autoplay = true
 bus = "Music"
 
 [node name="TransitionScreen" parent="." instance=ExtResource( 8 )]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
-position = Vector2( -1, 277 )
-collision_layer = 0
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-visible = false
-position = Vector2( 414.031, 459 )
-one_way_collision = true
-
-[node name="Sprite" type="Sprite" parent="StaticBody2D"]
-visible = false
-position = Vector2( 414, 510 )
 
 [connection signal="body_entered" from="BossLeftWall" to="OniBoss" method="_on_BossWall_body_entered"]
 [connection signal="body_entered" from="BossRightWall" to="OniBoss" method="_on_BossWall_body_entered"]
