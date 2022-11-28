@@ -41,6 +41,11 @@ public class TenguFly : Fly
     public override void Exit()
     {
         host.SetProcess(true);
+        
+        //We never re-enter, so delete the targets
+        Node positionList = host.GetParent().GetNode("TenguSpots");
+        positionList.QueueFree();
+
         host.Velocity = Vector2.Zero;
     }
 

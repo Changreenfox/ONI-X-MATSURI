@@ -73,12 +73,15 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=24]
 resource_name = "Dive"
+loop = true
 
 [sub_resource type="Animation" id=25]
 resource_name = "FlyLeft"
+loop = true
 
 [sub_resource type="Animation" id=26]
 resource_name = "FlyRight"
+loop = true
 
 [sub_resource type="Animation" id=27]
 resource_name = "Idle"
