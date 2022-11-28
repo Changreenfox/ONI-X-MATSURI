@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/Tengu.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemy/oni_big_weapon_spritesheet.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Prefabs/BulletSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=4]
+[ext_resource path="res://Scenes/Prefabs/ThrowBullet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sprites/enemy/emotes.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=29]
@@ -35,9 +37,39 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=22]
 resource_name = "AttackLeft"
+length = 1.2
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "ShootLeft"
+} ]
+}
 
 [sub_resource type="Animation" id=23]
 resource_name = "AttackRight"
+length = 1.2
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "ShootRight"
+} ]
+}
 
 [sub_resource type="Animation" id=24]
 resource_name = "Dive"
@@ -67,6 +99,7 @@ height = 784.0
 collision_layer = 128
 collision_mask = 0
 script = ExtResource( 1 )
+maxSpeed = 1500.0
 
 [node name="Sprite" type="Sprite" parent="."]
 material = ExtResource( 4 )
@@ -84,7 +117,7 @@ scale = Vector2( 7, 7 )
 texture = ExtResource( 8 )
 hframes = 4
 vframes = 2
-frame = 4
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Dive"
@@ -97,7 +130,6 @@ anims/FlyRight = SubResource( 26 )
 anims/Idle = SubResource( 27 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource( 3 )
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -133,6 +165,43 @@ monitorable = false
 position = Vector2( 16, 328 )
 rotation = 1.5708
 shape = SubResource( 28 )
+
+[node name="BulletSpawns" type="Node2D" parent="."]
+
+[node name="BulletSpawner" parent="BulletSpawns" instance=ExtResource( 3 )]
+gravity = 1500.0
+bulletPrefab = ExtResource( 5 )
+heading = Vector2( 1500, 0 )
+gravity = 1500.0
+
+[node name="BulletSpawner2" parent="BulletSpawns" instance=ExtResource( 3 )]
+gravity = 1500.0
+bulletPrefab = ExtResource( 5 )
+heading = Vector2( 500, 0 )
+gravity = 1500.0
+
+[node name="BulletSpawner3" parent="BulletSpawns" instance=ExtResource( 3 )]
+gravity = 1500.0
+bulletPrefab = ExtResource( 5 )
+gravity = 1500.0
+
+[node name="BulletSpawner4" parent="BulletSpawns" instance=ExtResource( 3 )]
+gravity = 1500.0
+bulletPrefab = ExtResource( 5 )
+heading = Vector2( -1, 0 )
+gravity = 1500.0
+
+[node name="BulletSpawner5" parent="BulletSpawns" instance=ExtResource( 3 )]
+gravity = 1500.0
+bulletPrefab = ExtResource( 5 )
+heading = Vector2( -500, 0 )
+gravity = 1500.0
+
+[node name="BulletSpawner6" parent="BulletSpawns" instance=ExtResource( 3 )]
+gravity = 1500.0
+bulletPrefab = ExtResource( 5 )
+heading = Vector2( -1500, 0 )
+gravity = 1500.0
 
 [connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]
 [connection signal="body_entered" from="Alert" to="." method="HandleAlert"]

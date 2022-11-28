@@ -21,10 +21,8 @@ public class Alert : JustGravity
 
 	public async void Process()
 	{
-		GD.Print("Waiting");
 		await ToSignal(host.Animator, "animation_finished");
 		host.ChangeState(next);
-		GD.Print("done");
 	}
 
 	public override string StateName()

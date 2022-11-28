@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/World/TileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=2]
@@ -9,6 +9,24 @@
 [ext_resource path="res://Scripts/CameraController.cs" type="Script" id=7]
 [ext_resource path="res://Scripts/Scenes/SceneBase.cs" type="Script" id=8]
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Taiko.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scripts/TowerCamera.cs" type="Script" id=11]
+[ext_resource path="res://Scripts/FollowScreen.cs" type="Script" id=12]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 36.2215
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 40, 40 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 100, 100 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 40, 40 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 100, 100 )
 
 [node name="TestWorld" type="Node2D"]
 script = ExtResource( 8 )
@@ -16,13 +34,91 @@ script = ExtResource( 8 )
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 312, 840 )
 
-[node name="Camera2D" parent="." instance=ExtResource( 6 )]
+[node name="TowerCamera" type="Camera2D" parent="Player"]
+current = true
+limit_left = 0
+limit_top = -6480
+limit_right = 1920
+limit_bottom = 1080
+smoothing_enabled = true
+script = ExtResource( 11 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/TowerCamera"]
+
+[node name="Interface" parent="Player/TowerCamera/CanvasLayer" instance=ExtResource( 10 )]
+margin_left = -1.99982
+margin_top = -8.0
+margin_right = -1.99976
+margin_bottom = -8.0
+
+[node name="LevelCamera" parent="." instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 0, 0 )
+current = false
 script = ExtResource( 7 )
 
 [node name="Tengu" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1008, -320 )
+position = Vector2( 1015, -56 )
 collision_mask = 64
 gravity = 0.0
+
+[node name="TenguSpots" type="Node2D" parent="."]
+position = Vector2( 0, 136 )
+script = ExtResource( 12 )
+
+[node name="LeftCorner" type="Area2D" parent="TenguSpots"]
+position = Vector2( 100, 100 )
+collision_layer = 0
+collision_mask = 128
+monitorable = false
+
+[node name="Collider" type="CollisionShape2D" parent="TenguSpots/LeftCorner"]
+shape = SubResource( 1 )
+
+[node name="Static" type="StaticBody2D" parent="TenguSpots/LeftCorner"]
+visible = false
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TenguSpots/LeftCorner/Static"]
+position = Vector2( -80, 0 )
+rotation = 1.5708
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TenguSpots/LeftCorner/Static"]
+position = Vector2( 0, -184 )
+rotation = -3.14159
+shape = SubResource( 3 )
+one_way_collision = true
+
+[node name="LeftCorner2" type="Area2D" parent="TenguSpots"]
+position = Vector2( 1820, 100 )
+collision_layer = 0
+collision_mask = 128
+monitoring = false
+monitorable = false
+
+[node name="Collider" type="CollisionShape2D" parent="TenguSpots/LeftCorner2"]
+shape = SubResource( 1 )
+
+[node name="Static2" type="StaticBody2D" parent="TenguSpots/LeftCorner2"]
+visible = false
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TenguSpots/LeftCorner2/Static2"]
+position = Vector2( 80, 0 )
+rotation = -1.5708
+shape = SubResource( 4 )
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TenguSpots/LeftCorner2/Static2"]
+position = Vector2( 0, -184 )
+rotation = -3.14159
+shape = SubResource( 5 )
+one_way_collision = true
+one_way_collision_margin = 100.0
 
 [node name="Bottom" type="Node2D" parent="."]
 
@@ -73,3 +169,6 @@ collision_layer = 8
 collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0, 458756, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 2, 0 )
+
+[connection signal="body_entered" from="TenguSpots/LeftCorner" to="Tengu" method="TargetReached"]
+[connection signal="body_entered" from="TenguSpots/LeftCorner2" to="Tengu" method="TargetReached"]

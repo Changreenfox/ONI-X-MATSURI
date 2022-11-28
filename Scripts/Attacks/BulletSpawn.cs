@@ -10,7 +10,7 @@ public class BulletSpawn : Attack
 
 	//Which direction bullets will move (set in editor)
 	[Export]
-	private Vector2 heading = new Vector2(0,0);
+	private Vector2 heading = Vector2.Zero;
 	public Vector2 Heading
 	{
 		get { return heading; }
@@ -34,7 +34,7 @@ public class BulletSpawn : Attack
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		host = (Actor)GetParent();
+		FindHost();
 
 		//cooldown timer
 		time = (Timer)host.GetNode("AttackCooldown");

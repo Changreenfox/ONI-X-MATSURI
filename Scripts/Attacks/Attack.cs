@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 public abstract class Attack : Area2D
 {
 	// Attack functionality shared by all attacks
+	[Export]
 	protected Actor host;
 
 	//Damage and knockback
@@ -57,14 +58,35 @@ public abstract class Attack : Area2D
 	
 	public override void _Ready()
 	{
-		host = (Actor)GetParent();
+		FindHost();
+
+		//Get the range
 		GetRange();
 		
+		//Connect the attack signals
 		Connect("body_entered", this, nameof(_on_Attack_body_entered));
 		Connect("area_entered", this, nameof(_on_Attack_area_entered));
 
 		//cooldown timer
 		time = (Timer)host.GetNode("AttackCooldown");
+	}
+
+	protected void FindHost()
+	{
+		//Find the host
+		Node node = this;
+		Node root = GetNode("/root");
+		while(node != root && !(node is Actor))
+		{
+			node = node.GetParent();
+		}
+		if(node is Actor)
+			host = (Actor)node;
+		else
+		{
+			GD.Print("You have messed up the heirarchy in some way");
+			return;
+		}
 	}
 
 	//Update state of attack
