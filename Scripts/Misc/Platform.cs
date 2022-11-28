@@ -10,6 +10,7 @@ public class Platform : StaticBody2D
 	private Area2D decayArea;
 	private CollisionShape2D hitbox;
 	private Sprite sprite;
+	private AnimationPlayer animationPlayer;
 	
 	private Timer respawnTimer;
 	
@@ -24,6 +25,8 @@ public class Platform : StaticBody2D
 		sprite = GetNodeOrNull<Sprite>("Sprite");
 		
 		respawnTimer = GetNodeOrNull<Timer>("RespawnTimer");
+		
+		animationPlayer = GetNodeOrNull<AnimationPlayer>("AnimationPlayer");
 		
 		CallDeferred("set_process", false);
 	}
@@ -45,6 +48,8 @@ public class Platform : StaticBody2D
 			hitbox?.SetDeferred("disabled", true);
 			sprite?.SetFrame(3);
 			
+			animationPlayer?.Play("fading");
+			
 			CallDeferred("set_process", false);
 			respawnTimer.Start();
 		}
@@ -54,7 +59,10 @@ public class Platform : StaticBody2D
 	{
 		decayDurability = 3.0f;
 		SetActive(true);
+		sprite.Modulate = new Color(255, 255, 255, 255);
 		sprite?.SetFrame(0);
+		animationPlayer.Play("default");
+		
 		GD.Print("Platform respawned!!");
 	}
 	
