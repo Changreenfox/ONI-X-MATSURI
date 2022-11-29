@@ -197,6 +197,36 @@ Please, visit [this site](https://help.github.com/en/github/authenticating-to-gi
 *added*
 - *collaborations:* you can now invite other users for a collaboration in your repositories. If the user has been invited successfully, they will receive an email with an invitation to accept/decline. Users that have repositories in collaboration will see these repositories marked with a new icon inside their repositories list. Collaborators can work with this repositories as they are their own repositories (based on the permissions granted), so teamworking will be much faster.
 
+-----------------
+**version 1.3.0**  
+*fixes*
+- layering on boss
+- player health now resets on restart
+- credits can exit using keys
+
+*additions*
+- keyboard support for gui elements such as buttons and pausing
+- fade transitions between scenes
+- coins playing after boss death
+- various animations to scenes during gameplay such as tower lanterns glowing
+- animations for start and win screen
+- improved motion
+- pause functionality
+- dropped coins animate a spin
+- breakable platforms appear during final boss stage
+- introduces new enemy: tengu
+
+*changes*
+- updated boss scene animations
+- ui score updates on achieving a coin
+- oni brute can lose track of player if given far enough distance
+- oni brute swings at player when within range
+- boss bullets are faster
+
+-----------------
+**version 1.3.1**  
+*fixes*
+- no longer errors in loading powerup resources during start due to file naming issue for release mode
 
 > This text file was created via [TextEditor Integration](https://github.com/fenix-hub/godot-engine.text-editor) inside Godot Engine's Editor.
 
