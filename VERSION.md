@@ -223,6 +223,10 @@ Please, visit [this site](https://help.github.com/en/github/authenticating-to-gi
 - oni brute swings at player when within range
 - boss bullets are faster
 
+-----------------
+**version 1.3.1**  
+*fixes*
+- no longer errors in loading powerup resources during start due to file naming issue for release mode
 
 > This text file was created via [TextEditor Integration](https://github.com/fenix-hub/godot-engine.text-editor) inside Godot Engine's Editor.
 
