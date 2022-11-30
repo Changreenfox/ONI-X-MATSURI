@@ -51,7 +51,14 @@ public class UIManager : Control
 	public override void _Process(float delta)
 	{
 		// Set heart sprites based on player health
-		if (gManager.PlayerRef.HP <= 2)
+		if (gManager.PlayerRef?.HP <= 0)
+		{
+			Heart1.Texture = HeartEmpty;
+			Heart2.Texture = HeartEmpty;
+			Heart3.Texture = HeartEmpty;
+		}
+		
+		else if (gManager.PlayerRef?.HP <= 2)
 		{
 			if(gManager.PlayerRef.HP == 1)
 				Heart1.Texture = HeartHalf;
@@ -60,7 +67,7 @@ public class UIManager : Control
 			Heart2.Texture = HeartEmpty;
 			Heart3.Texture = HeartEmpty;
 		}
-		else if (gManager.PlayerRef.HP <= 4)
+		else if (gManager.PlayerRef?.HP <= 4)
 		{
 			Heart1.Texture = HeartFull;
 			if(gManager.PlayerRef.HP == 3)
@@ -73,7 +80,7 @@ public class UIManager : Control
 		{
 			Heart1.Texture = HeartFull;
 			Heart2.Texture = HeartFull;
-			if(gManager.PlayerRef.HP == 5)
+			if(gManager.PlayerRef?.HP == 5)
 				Heart3.Texture = HeartHalf;
 			else
 				Heart3.Texture = HeartFull;
