@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-public class Death : State
+public class Death : JustGravity
 {
 	private AudioStreamPlayer2D deathSound;
 	
@@ -20,12 +20,6 @@ public class Death : State
 
 		//host.SetProcess(false);
 		Process();
-	}
-
-	//Stop checking for death
-	public override string HandlePhysics(float delta)
-	{
-		return null;
 	}
 
 	//Stop checking for death
