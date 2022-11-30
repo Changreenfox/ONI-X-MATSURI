@@ -57,6 +57,8 @@ margin_right = 211.333
 margin_bottom = 180.333
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Art &
+Animation"
 align = 1
 
 [node name="TextureRect3" type="TextureRect" parent="FirstPage/Roles/Liz Credits"]
@@ -74,6 +76,8 @@ margin_right = 211.333
 margin_bottom = 180.333
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Boss
+Design"
 align = 1
 
 [node name="TextureRect4" type="TextureRect" parent="FirstPage/Roles/Liz Credits"]
@@ -92,6 +96,8 @@ margin_right = 211.333
 margin_bottom = 183.0
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Particle
+Effects"
 align = 1
 
 [node name="TextureRect5" type="TextureRect" parent="FirstPage/Roles/Liz Credits"]
@@ -109,6 +115,8 @@ margin_right = 211.333
 margin_bottom = 184.333
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Camera
+Handling"
 align = 1
 
 [node name="TextureRect6" type="TextureRect" parent="FirstPage/Roles/Liz Credits"]
@@ -121,12 +129,13 @@ texture = ExtResource( 5 )
 flip_h = true
 
 [node name="Label15" type="Label" parent="FirstPage/Roles/Liz Credits/TextureRect6"]
-margin_left = 9.33334
+margin_left = 6.0
 margin_top = 122.667
-margin_right = 211.333
+margin_right = 219.0
 margin_bottom = 181.667
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Programming"
 align = 1
 
 [node name="Ricardo Credits" type="Control" parent="FirstPage/Roles"]
@@ -235,12 +244,14 @@ texture = ExtResource( 5 )
 flip_h = true
 
 [node name="Label21" type="Label" parent="FirstPage/Roles/Chandler Credits/TextureRect2"]
-margin_left = 9.33337
-margin_top = 118.667
+margin_left = 9.333
+margin_top = 124.0
 margin_right = 211.333
-margin_bottom = 177.667
+margin_bottom = 183.0
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "SCRUM
+Master"
 align = 1
 
 [node name="TextureRect3" type="TextureRect" parent="FirstPage/Roles/Chandler Credits"]
@@ -258,6 +269,8 @@ margin_right = 211.333
 margin_bottom = 183.0
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Gameplay
+Design"
 align = 1
 
 [node name="TextureRect4" type="TextureRect" parent="FirstPage/Roles/Chandler Credits"]
@@ -269,12 +282,14 @@ rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 
 [node name="Label23" type="Label" parent="FirstPage/Roles/Chandler Credits/TextureRect4"]
-margin_left = 9.33337
-margin_top = 118.667
-margin_right = 211.333
-margin_bottom = 177.667
+margin_left = 6.667
+margin_top = 124.0
+margin_right = 219.667
+margin_bottom = 183.0
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Player 
+Mechanics"
 align = 1
 
 [node name="TextureRect5" type="TextureRect" parent="FirstPage/Roles/Chandler Credits"]
@@ -292,6 +307,7 @@ margin_right = 211.333
 margin_bottom = 184.333
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Enemy AI"
 align = 1
 
 [node name="TextureRect6" type="TextureRect" parent="FirstPage/Roles/Chandler Credits"]
@@ -304,12 +320,13 @@ texture = ExtResource( 5 )
 flip_h = true
 
 [node name="Label25" type="Label" parent="FirstPage/Roles/Chandler Credits/TextureRect6"]
-margin_left = 9.33337
-margin_top = 120.0
-margin_right = 211.333
-margin_bottom = 179.0
+margin_left = 6.0
+margin_top = 124.0
+margin_right = 217.0
+margin_bottom = 183.0
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Programming"
 align = 1
 
 [node name="Chase Credits" type="Control" parent="FirstPage/Roles"]
@@ -419,10 +436,10 @@ texture = ExtResource( 5 )
 flip_h = true
 
 [node name="Label31" type="Label" parent="FirstPage/Roles/Rachel Credits/TextureRect2"]
-margin_left = 5.33337
-margin_top = 121.333
+margin_left = 5.333
+margin_top = 124.0
 margin_right = 207.333
-margin_bottom = 180.333
+margin_bottom = 183.0
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Art &
@@ -457,10 +474,10 @@ rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 
 [node name="Label33" type="Label" parent="FirstPage/Roles/Rachel Credits/TextureRect4"]
-margin_left = 8.0
-margin_top = 126.667
-margin_right = 210.0
-margin_bottom = 185.667
+margin_left = 13.333
+margin_top = 124.0
+margin_right = 215.333
+margin_bottom = 183.0
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "User
