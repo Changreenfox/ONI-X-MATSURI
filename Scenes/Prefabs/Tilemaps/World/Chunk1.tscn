@@ -10,7 +10,7 @@
 position = Vector2( 0, 56 )
 
 [node name="OniBrute2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1869, 290 )
+position = Vector2( 1256, 800 )
 
 [node name="HealthPowerUp" parent="." instance=ExtResource( 5 )]
 position = Vector2( 2013, 667 )

@@ -6,7 +6,7 @@
 [ext_resource path="res://Scenes/Prefabs/PowerUps/HealthPowerUp.tscn" type="PackedScene" id=4]
 
 [node name="Chunk4" type="Node2D"]
-position = Vector2( 0, 56 )
+position = Vector2( 528, 24 )
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
@@ -22,7 +22,7 @@ tile_data = PoolIntArray( 196611, 1, 0, 262166, 7, 0, 262171, 9, 0, 458752, 2, 0
 position = Vector2( 2687, 794 )
 
 [node name="OniBrute2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 3137, 791 )
+position = Vector2( 1792, 794 )
 
 [node name="SpeedPowerUp" parent="." instance=ExtResource( 2 )]
 position = Vector2( 723, 293 )

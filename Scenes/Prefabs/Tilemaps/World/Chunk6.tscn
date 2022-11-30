@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/World/TileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/HealthPowerUp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerUp.tscn" type="PackedScene" id=4]
-
+[ext_resource path="res://Scenes/Prefabs/OniThrower.tscn" type="PackedScene" id=5]
 
 [node name="Chunk5" type="Node2D"]
 position = Vector2( 0, 56 )
@@ -30,3 +30,6 @@ position = Vector2( 288, 819 )
 
 [node name="OniBrute2" parent="TileMap" instance=ExtResource( 2 )]
 position = Vector2( 3277, 791 )
+
+[node name="OniThrower" parent="." instance=ExtResource( 5 )]
+position = Vector2( 2312, 296 )

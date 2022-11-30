@@ -3,10 +3,13 @@ using System;
 
 public class Throw : JustGravity
 {
+	private Actor player;
+
 	public Throw(Actor _host)
 	{
 		host = _host;
 		host.Velocity = new Vector2(0, host.Velocity.y);
+		player = host.GManager.PlayerRef;
 	}
 
 	public override void Enter()
@@ -22,10 +25,11 @@ public class Throw : JustGravity
 		return base.HandlePhysics(delta);
 	}
 
-	//He will throw behind him
 	public override void PlayAnimation()
 	{
-		if(host.FacingRight)
+		//Always shoot towards the player
+		Vector2 direction = host.GlobalPosition.DirectionTo(player.GlobalPosition);
+		if(direction.x < 0)
 			host.PlayAnimation("AttackLeft");
 		else
 			host.PlayAnimation("AttackRight");

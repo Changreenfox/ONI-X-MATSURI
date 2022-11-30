@@ -5,6 +5,7 @@ public class RunAway : Motion
 {
     //BulletSpawner is stored in host.attacks[0]
     private Actor player;
+    private int runningDirection = 1;
 
     public RunAway(Actor _host)
     {
@@ -16,11 +17,12 @@ public class RunAway : Motion
     {
         PlayAnimation();
         host.StateTimer.Start(0.5f);
-    }
-
-    public override string HandlePhysics(float delta)
-    {
-        return base.HandlePhysics(delta);
+        //Run away if within 500 horizontal ft
+        Vector2 distance = player.GlobalPosition - host.GlobalPosition;
+        if(Mathf.Abs(distance.x) < 500)
+            runningDirection = -1;
+        else
+            runningDirection = 1;
     }
 
     public override void PlayAnimation()
@@ -40,10 +42,11 @@ public class RunAway : Motion
     //Overriden because direction is updated every physics frame
     protected override void GetInputDirection()
     {
+        
         Vector2 direction = host.GlobalPosition.DirectionTo(player.GlobalPosition);
         direction.y = 0;
-        //We're running away!
-        direction.x *= -1;
+        direction.x *= runningDirection;
+        
         host.Direction = direction;
         facingRight = direction.x > 0;
         host.FacingRight = facingRight;

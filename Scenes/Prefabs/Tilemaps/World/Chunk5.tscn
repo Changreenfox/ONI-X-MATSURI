@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/World/TileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/SpeedPowerUp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/AttackPowerUp.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Prefabs/OniThrower.tscn" type="PackedScene" id=5]
 
 [node name="Chunk5" type="Node2D"]
-position = Vector2( 0, 56 )
+position = Vector2( 8, 56 )
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
@@ -21,9 +22,6 @@ tile_data = PoolIntArray( 196624, 1, 0, 262147, 7, 0, 393226, 0, 0, 458752, 2, 0
 [node name="OniBrute" parent="." instance=ExtResource( 2 )]
 position = Vector2( 3051, 793 )
 
-[node name="OniBrute2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 2187, 249 )
-
 [node name="SpeedPowerUp" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1462, 695 )
 
@@ -32,3 +30,6 @@ position = Vector2( 338, 792 )
 
 [node name="AttackPowerUp" parent="." instance=ExtResource( 4 )]
 position = Vector2( 623, 425 )
+
+[node name="OniThrower" parent="." instance=ExtResource( 5 )]
+position = Vector2( 640, 408 )
