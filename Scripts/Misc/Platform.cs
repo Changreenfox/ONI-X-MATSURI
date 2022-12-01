@@ -35,18 +35,23 @@ public class Platform : StaticBody2D
 	public override void _Process(float delta)
 	{
 		//Should only be processed if >= 1 object is standing on the platform
+		if(sprite == null)
+		{
+			GD.Print("Error with decay: no sprite!");
+			return;
+		}
 		decayDurability -= delta;
 		
-		if(decayDurability <= 0.7f) sprite?.SetFrame(1);
+		if(decayDurability <= 0.7f) sprite.Frame = 1;
 		
-		if(decayDurability <= 0.4f) sprite?.SetFrame(2);
+		if(decayDurability <= 0.4f) sprite.Frame = 2;
 		
 		if(decayDurability <= 0.0f)
 		{
 			//Platform breaks
 			decayArea?.SetDeferred("monitoring", false);
 			hitbox?.SetDeferred("disabled", true);
-			sprite?.SetFrame(3);
+			sprite.Frame = 3;
 			
 			animationPlayer?.Play("fading");
 			
@@ -60,7 +65,7 @@ public class Platform : StaticBody2D
 		decayDurability = 1.0f;
 		SetActive(true);
 		sprite.Modulate = new Color(255, 255, 255, 255);
-		sprite?.SetFrame(0);
+		sprite.Frame = 0;
 		animationPlayer.Play("default");
 		
 		GD.Print("Platform respawned!!");

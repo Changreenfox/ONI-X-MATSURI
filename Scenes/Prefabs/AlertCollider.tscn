@@ -5,6 +5,7 @@ radius = 500.0
 
 [node name="Alert" type="Area2D"]
 collision_layer = 0
+collision_mask = 16
 monitorable = false
 
 [node name="AlertCollider" type="CollisionShape2D" parent="."]

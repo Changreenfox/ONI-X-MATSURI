@@ -4,10 +4,13 @@ using System;
 public class FadeTransition : CanvasLayer
 {
 	private GameManager gManager;
+	private Timer timer;
 	
 	public override void _Ready()
 	{
 		gManager = GetNode<GameManager>("/root/GameManager");
+		timer = new Timer();
+		AddChild(timer);
 		((AnimationPlayer)GetNode("AnimationPlayer")).Play("fade_to_normal");
 	}
 	
@@ -19,7 +22,8 @@ public class FadeTransition : CanvasLayer
 	protected async void _TransitionScene(string SceneName)
 	{
 		((AnimationPlayer)GetNode("AnimationPlayer")).Play("fade_to_black");
-		await ToSignal(GetTree().CreateTimer(0.5f), "timeout");
+		timer.Start(0.5f);
+		await ToSignal(timer, "timeout");
 		gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
 									SceneName
 									);

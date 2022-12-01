@@ -21,12 +21,12 @@ public class Enemy : Actor
 		state.HandleTimer();
 	}
 
-	public virtual void HandleAlert(KinematicBody2D player)
+	public virtual void HandleAlert(Area2D player)
 	{
 		return;
 	}
 
-	public virtual void HandleLost(KinematicBody2D player)
+	public virtual void HandleLost(Area2D player)
 	{
 		return;
 	}

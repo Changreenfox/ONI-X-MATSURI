@@ -28,14 +28,14 @@ public class OniThrower : Enemy
 		state.Enter();
 	}
 
-	public override void HandleAlert(KinematicBody2D player)
+	public override void HandleAlert(Area2D player)
 	{
 		alertArea.SetDeferred("monitoring", false);
 		lostArea.SetDeferred("monitoring", true);
 		ChangeState("Alert");
 	}
 
-	public override void HandleLost(KinematicBody2D player)
+	public override void HandleLost(Area2D player)
 	{
 		alertArea.SetDeferred("monitoring", true);
 		lostArea.SetDeferred("monitoring", false);

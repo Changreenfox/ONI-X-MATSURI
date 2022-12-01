@@ -352,7 +352,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.49 ),
+"times": PoolRealArray( 0.05, 0.49 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -666,6 +666,7 @@ visible = false
 [node name="BeginAttack" type="Area2D" parent="."]
 visible = false
 collision_layer = 0
+collision_mask = 16
 monitoring = false
 monitorable = false
 
@@ -718,6 +719,6 @@ process_material = SubResource( 29 )
 texture = SubResource( 28 )
 
 [connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]
-[connection signal="body_entered" from="Alert" to="." method="HandleAlert"]
-[connection signal="body_exited" from="Lost" to="." method="HandleLost"]
-[connection signal="body_entered" from="BeginAttack" to="." method="OnAttackAreaEntered"]
+[connection signal="area_entered" from="Alert" to="." method="HandleAlert"]
+[connection signal="area_exited" from="Lost" to="." method="HandleLost"]
+[connection signal="area_entered" from="BeginAttack" to="." method="OnAttackAreaEntered"]

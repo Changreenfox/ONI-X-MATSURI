@@ -162,6 +162,7 @@ area_mask = 0
 
 [node name="Alert" type="Area2D" parent="."]
 collision_layer = 0
+collision_mask = 16
 monitorable = false
 
 [node name="AlertCollider" type="CollisionShape2D" parent="Alert"]
@@ -207,4 +208,4 @@ heading = Vector2( -1500, 0 )
 gravity = 1500.0
 
 [connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]
-[connection signal="body_entered" from="Alert" to="." method="HandleAlert"]
+[connection signal="area_entered" from="Alert" to="." method="HandleAlert"]

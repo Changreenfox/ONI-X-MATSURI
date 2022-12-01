@@ -120,10 +120,22 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 2 ),
+"times": PoolRealArray( 0.05, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Hitbox:collision_layer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -418,12 +430,10 @@ vframes = 12
 frame = 40
 
 [node name="Collider_1" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, -6 )
 shape = SubResource( 1 )
 
 [node name="Collider_2" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( -5.9, 63.2 )
 shape = SubResource( 19 )
 
