@@ -100,6 +100,8 @@ shape = SubResource( 1 )
 
 [node name="OniBoss" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1297, -187 )
+z_index = 0
+collision_mask = 16
 hp = 9
 speed = 90.0
 maxSpeed = 300.0
@@ -168,6 +170,8 @@ bus = "Music"
 
 [node name="PlatformLeft" parent="Platforms" instance=ExtResource( 13 )]
 position = Vector2( 455, 780 )
+collision_layer = 0
+collision_mask = 1
 
 [node name="PlatformMiddle" parent="Platforms" instance=ExtResource( 13 )]
 position = Vector2( 960, 600 )
