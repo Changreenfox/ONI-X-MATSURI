@@ -90,7 +90,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=30]
 resource_name = "FlipUp"
-length = 0.4
+loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -98,10 +98,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 33, 34, 35, 36 ]
+"values": [ 33, 34, 35, 36, 37, 38, 39 ]
 }
 
 [sub_resource type="Animation" id=25]
@@ -228,7 +228,7 @@ z_index = 1
 texture = ExtResource( 2 )
 offset = Vector2( 0, -2.37865 )
 hframes = 8
-vframes = 5
+vframes = 7
 frame = 8
 
 [node name="AlertSprite" type="Sprite" parent="."]
