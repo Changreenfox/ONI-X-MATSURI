@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://assets/sprites/player/player_spritesheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Actors/Player/Player.cs" type="Script" id=2]
@@ -10,11 +10,8 @@
 [ext_resource path="res://assets/sounds/player/player_jump.wav" type="AudioStream" id=8]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 46.0
-height = 39.0
-
-[sub_resource type="RectangleShape2D" id=19]
-extents = Vector2( 21, 7 )
+radius = 40.0
+height = 60.0
 
 [sub_resource type="CapsuleShape2D" id=20]
 radius = 40.0
@@ -431,14 +428,10 @@ vframes = 12
 frame = 40
 
 [node name="Collider_1" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -6 )
 shape = SubResource( 1 )
 
-[node name="Collider_2" type="CollisionShape2D" parent="."]
-position = Vector2( -5.9, 63.2 )
-shape = SubResource( 19 )
-
 [node name="Hitbox" type="Area2D" parent="."]
+visible = false
 collision_layer = 16
 collision_mask = 0
 monitoring = false

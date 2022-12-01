@@ -47,7 +47,6 @@ public class Player : Actor
 	public override void Die()
 	{
 		gManager.Signals.EmitSignal(nameof(SignalManager.PlayerDied));
-		//GetTree().ChangeScene("res://Scenes/GameOver.tscn");
 	}
 
 	public override void Reset(int damage = 0, Node2D RespawnNode = null)

@@ -169,9 +169,6 @@ public abstract class Actor : KinematicBody2D
 		get{ return sounds; }
 	}
 
-	[Export]
-	protected int layer = 1;
-
 	/*=============================================================== Methods =======================================================*/
 
 	public override void _EnterTree()
@@ -284,7 +281,7 @@ public abstract class Actor : KinematicBody2D
 	public string PlayAnimation(string name)
 	{
 		//Don't want to interrupt an attack animation from here
-		if(attackAnimationFirst && currentAttack >= 0)
+		if(attackAnimationFirst && hp > 0 && currentAttack >= 0)
 			attacks[0].PreviousAnim = name;
 		else
 			animator.Play(name);
