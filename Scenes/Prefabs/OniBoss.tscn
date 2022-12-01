@@ -524,11 +524,13 @@ wait_time = 0.6
 
 [node name="BulletSpawner" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 100 )
+z_index = -2
 bulletPrefab = ExtResource( 14 )
 heading = Vector2( 750, 0 )
 
 [node name="BulletSpawner2" parent="." instance=ExtResource( 4 )]
 position = Vector2( 0, 100 )
+z_index = -2
 bulletPrefab = ExtResource( 14 )
 heading = Vector2( -750, 0 )
 

@@ -282,7 +282,6 @@ anims/clouds = SubResource( 3 )
 [node name="Particles2D" type="Particles2D" parent="Particles"]
 position = Vector2( 225, 192 )
 z_index = -1
-emitting = false
 amount = 50
 lifetime = 10.0
 speed_scale = 5.0
