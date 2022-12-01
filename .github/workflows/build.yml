@@ -104,10 +104,10 @@ jobs:
           python ./tools/pack.py macos-x86-64
 
       - name: Verify release notes
-        run: python ./tools/gen_release_notes.py ${{ github.ref_name }}
+        run: python ./tools/GenReleaseNotes.py ${{ github.ref_name }}
 
       - name: Write release notes
-        run: echo "$(python ./tools/gen_release_notes.py ${{ github.ref_name }})" > ./RELEASE_NOTES.md
+        run: echo "$(python ./tools/GenReleaseNotes.py ${{ github.ref_name }})" > ./RELEASE_NOTES.md
 
       - name: Upload releases
         uses: ncipollo/release-action@v1
