@@ -418,6 +418,7 @@ collision_mask = 8
 script = ExtResource( 2 )
 hp = 6
 maxFallSpeed = 2500.0
+attackAnimationFirst = true
 toFlash = Color( 1, 1, 1, 0.584314 )
 
 [node name="Sprite" type="Sprite" parent="."]
