@@ -350,6 +350,8 @@ margin_right = 211.333
 margin_bottom = 183.0
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Development
+Operations"
 align = 1
 
 [node name="TextureRect3" type="TextureRect" parent="FirstPage/Roles/Chase Credits"]
@@ -367,6 +369,7 @@ margin_right = 211.333
 margin_bottom = 183.0
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Controls"
 align = 1
 
 [node name="TextureRect4" type="TextureRect" parent="FirstPage/Roles/Chase Credits"]
@@ -384,6 +387,7 @@ margin_right = 211.333
 margin_bottom = 177.667
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Programming"
 align = 1
 
 [node name="TextureRect5" type="TextureRect" parent="FirstPage/Roles/Chase Credits"]
