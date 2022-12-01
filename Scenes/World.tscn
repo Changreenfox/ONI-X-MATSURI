@@ -119,7 +119,6 @@ script = ExtResource( 2 )
 
 [node name="OniBrute" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1272, 0 )
-interruptable = false
 
 [node name="StartWall" type="StaticBody2D" parent="."]
 position = Vector2( 283, -14 )

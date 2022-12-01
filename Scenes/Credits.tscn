@@ -152,12 +152,14 @@ texture = ExtResource( 5 )
 flip_h = true
 
 [node name="Label16" type="Label" parent="FirstPage/Roles/Ricardo Credits/TextureRect2"]
-margin_left = 9.33331
-margin_top = 124.0
+margin_left = 9.333
+margin_top = 125.3
 margin_right = 211.333
-margin_bottom = 183.0
+margin_bottom = 184.3
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Sound 
+Effects"
 align = 1
 
 [node name="TextureRect3" type="TextureRect" parent="FirstPage/Roles/Ricardo Credits"]
@@ -169,12 +171,13 @@ rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 
 [node name="Label17" type="Label" parent="FirstPage/Roles/Ricardo Credits/TextureRect3"]
-margin_left = 9.33331
-margin_top = 126.667
+margin_left = 9.333
+margin_top = 125.3
 margin_right = 211.333
-margin_bottom = 185.667
+margin_bottom = 184.3
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Music"
 align = 1
 
 [node name="TextureRect4" type="TextureRect" parent="FirstPage/Roles/Ricardo Credits"]
@@ -186,12 +189,14 @@ rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 
 [node name="Label18" type="Label" parent="FirstPage/Roles/Ricardo Credits/TextureRect4"]
-margin_left = 9.33331
-margin_top = 124.0
+margin_left = 9.333
+margin_top = 125.3
 margin_right = 211.333
-margin_bottom = 183.0
+margin_bottom = 184.3
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Boss
+Design"
 align = 1
 
 [node name="TextureRect5" type="TextureRect" parent="FirstPage/Roles/Ricardo Credits"]
@@ -203,12 +208,14 @@ rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 
 [node name="Label19" type="Label" parent="FirstPage/Roles/Ricardo Credits/TextureRect5"]
-margin_left = 9.33331
-margin_top = 117.333
+margin_left = 9.333
+margin_top = 125.3
 margin_right = 211.333
-margin_bottom = 176.333
+margin_bottom = 184.3
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Singleton
+Design"
 align = 1
 
 [node name="TextureRect6" type="TextureRect" parent="FirstPage/Roles/Ricardo Credits"]
@@ -221,12 +228,14 @@ texture = ExtResource( 5 )
 flip_h = true
 
 [node name="Label20" type="Label" parent="FirstPage/Roles/Ricardo Credits/TextureRect6"]
-margin_left = 9.33331
-margin_top = 122.667
+margin_left = 9.333
+margin_top = 125.3
 margin_right = 211.333
-margin_bottom = 181.667
+margin_bottom = 184.3
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Game
+Mechanics"
 align = 1
 
 [node name="Chandler Credits" type="Control" parent="FirstPage/Roles"]
@@ -350,6 +359,8 @@ margin_right = 211.333
 margin_bottom = 183.0
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Development
+Operations"
 align = 1
 
 [node name="TextureRect3" type="TextureRect" parent="FirstPage/Roles/Chase Credits"]
@@ -367,6 +378,7 @@ margin_right = 211.333
 margin_bottom = 183.0
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Controls"
 align = 1
 
 [node name="TextureRect4" type="TextureRect" parent="FirstPage/Roles/Chase Credits"]
@@ -384,6 +396,7 @@ margin_right = 211.333
 margin_bottom = 177.667
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Programming"
 align = 1
 
 [node name="TextureRect5" type="TextureRect" parent="FirstPage/Roles/Chase Credits"]

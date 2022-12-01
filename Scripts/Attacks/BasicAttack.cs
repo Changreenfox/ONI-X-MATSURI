@@ -94,13 +94,10 @@ public class BasicAttack : Attack
 
 		rightAttack = host.FacingRight;
 
-		await WaitCooldown();
-	}
 
-	protected override async Task WaitCooldown()
-	{
 		await base.WaitCooldown();
 		host.AfterAttack();
+
 	}
 
 	//Called in animation player when the next collider is required
