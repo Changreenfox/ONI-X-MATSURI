@@ -55,7 +55,7 @@ anims/RESET = SubResource( 6 )
 anims/Thrown = SubResource( 7 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 10, 10 )
+scale = Vector2( 7, 7 )
 texture = ExtResource( 1 )
 hframes = 4
 frame = 3
