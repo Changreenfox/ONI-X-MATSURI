@@ -33,6 +33,7 @@ anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0.494118 )
 
 [node name="FirstPage" type="TextureRect" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 2 )
@@ -644,7 +645,6 @@ West"
 align = 1
 
 [node name="SecondPage" type="TextureRect" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 1 )
@@ -691,6 +691,8 @@ margin_right = 101.334
 margin_bottom = 49.398
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "SOUND
+AIRYLUVS"
 align = 1
 
 [node name="TextureRect3" type="TextureRect" parent="SecondPage/Roles/Music"]
@@ -709,6 +711,7 @@ margin_right = 208.667
 margin_bottom = 188.334
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Skyrunner"
 align = 1
 
 [node name="TextureRect4" type="TextureRect" parent="SecondPage/Roles/Music"]
@@ -752,6 +755,8 @@ margin_right = 214.0
 margin_bottom = 180.333
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Taira
+Komori"
 align = 1
 
 [node name="TextureRect2" type="TextureRect" parent="SecondPage/Roles/Sounds"]
@@ -770,6 +775,8 @@ margin_right = 214.0
 margin_bottom = 181.667
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Subspace
+Audio"
 align = 1
 
 [node name="TextureRect3" type="TextureRect" parent="SecondPage/Roles/Sounds"]
@@ -788,6 +795,7 @@ margin_right = 214.0
 margin_bottom = 181.667
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "moludar"
 align = 1
 
 [node name="TextureRect4" type="TextureRect" parent="SecondPage/Roles/Sounds"]
@@ -805,6 +813,25 @@ margin_right = 214.0
 margin_bottom = 184.333
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "ColorAlpha"
+align = 1
+
+[node name="TextureRect5" type="TextureRect" parent="SecondPage/Roles/Sounds"]
+margin_left = 424.0
+margin_top = 906.0
+margin_right = 644.0
+margin_bottom = 1120.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="Label3" type="Label" parent="SecondPage/Roles/Sounds/TextureRect5"]
+margin_left = 12.0
+margin_top = 125.333
+margin_right = 214.0
+margin_bottom = 184.333
+custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "Nintendo"
 align = 1
 
 [node name="Special Thanks" type="Control" parent="SecondPage/Roles"]
