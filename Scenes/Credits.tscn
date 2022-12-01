@@ -649,12 +649,14 @@ rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 
 [node name="Label10" type="Label" parent="SecondPage/Roles/Music/TextureRect"]
-margin_left = 6.66669
-margin_top = 825.333
-margin_right = 208.667
-margin_bottom = 884.333
+margin_left = -4.0
+margin_top = 118.667
+margin_right = 226.0
+margin_bottom = 177.667
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
+text = "Bandai
+Namco"
 align = 1
 
 [node name="TextureRect2" type="TextureRect" parent="SecondPage/Roles/Music"]
@@ -666,10 +668,14 @@ rect_scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 5 )
 
 [node name="Label9" type="Label" parent="SecondPage/Roles/Music/TextureRect2"]
-margin_left = 6.66669
-margin_top = 358.667
-margin_right = 208.667
-margin_bottom = 417.667
+anchor_left = 0.5
+anchor_top = 0.643
+anchor_right = 0.5
+anchor_bottom = 0.643
+margin_left = -100.667
+margin_top = -9.60201
+margin_right = 101.334
+margin_bottom = 49.398
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
 align = 1
@@ -684,10 +690,10 @@ texture = ExtResource( 5 )
 flip_h = true
 
 [node name="Label8" type="Label" parent="SecondPage/Roles/Music/TextureRect3"]
-margin_left = 6.66669
-margin_top = -110.667
+margin_left = 6.66663
+margin_top = 129.333
 margin_right = 208.667
-margin_bottom = -51.6666
+margin_bottom = 188.334
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
 align = 1
@@ -702,10 +708,14 @@ texture = ExtResource( 5 )
 flip_h = true
 
 [node name="Label7" type="Label" parent="SecondPage/Roles/Music/TextureRect4"]
-margin_left = 6.66669
-margin_top = -577.333
-margin_right = 208.667
-margin_bottom = -518.333
+anchor_left = 0.5
+anchor_top = -2.56
+anchor_right = 0.5
+anchor_bottom = -2.56
+margin_left = -106.0
+margin_top = 679.84
+margin_right = 96.0003
+margin_bottom = 738.84
 custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
 align = 1
@@ -788,6 +798,23 @@ align = 1
 margin_left = 987.0
 margin_right = 987.0
 
+[node name="Font" type="TextureRect" parent="SecondPage/Roles/Special Thanks"]
+margin_left = 362.0
+margin_top = 602.0
+margin_right = 655.0
+margin_bottom = 695.0
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="SecondPage/Roles/Special Thanks/Font"]
+margin_left = 7.0
+margin_top = 28.0
+margin_right = 292.0
+margin_bottom = 107.0
+custom_colors/font_color = Color( 0.341176, 0.223529, 0.113725, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "Font"
+align = 1
+
 [node name="TextureRect" type="TextureRect" parent="SecondPage/Roles/Special Thanks"]
 margin_left = 423.0
 margin_top = 208.0
@@ -825,6 +852,24 @@ custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
 custom_fonts/font = SubResource( 2 )
 text = "Andrew
 Watson"
+align = 1
+
+[node name="TextureRect3" type="TextureRect" parent="SecondPage/Roles/Special Thanks"]
+margin_left = 423.0
+margin_top = 732.0
+margin_right = 643.0
+margin_bottom = 946.0
+rect_scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 5 )
+
+[node name="Label2" type="Label" parent="SecondPage/Roles/Special Thanks/TextureRect3"]
+margin_left = 10.6667
+margin_top = 122.667
+margin_right = 212.667
+margin_bottom = 181.667
+custom_colors/font_color = Color( 0.290196, 0.176471, 0.0588235, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "PixelMix"
 align = 1
 
 [node name="Categories" type="HBoxContainer" parent="SecondPage"]
