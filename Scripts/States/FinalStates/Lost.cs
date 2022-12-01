@@ -19,7 +19,6 @@ public class Lost : JustGravity
     {
         PlayAnimation();
         await ToSignal(host.Animator, "animation_finished");
-        GD.Print("Animation finished?");
         host.ChangeState("Idle");
     }
 

@@ -36,7 +36,6 @@ public class OniBrute : Enemy
 	public override void HandleLost(Area2D player)
 	{
 		lost = true;
-		//GD.Print(1);
 		if(!lostArea.Monitoring)
 			return;
 		alertArea.SetDeferred("monitoring", true);
@@ -55,7 +54,6 @@ public class OniBrute : Enemy
 	public override void AfterAttack()
 	{
 		attackCollider.SetDeferred("monitoring", true);
-		//GD.Print("Here");
 		if(hp > 0 && !lost)
 			ChangeState("Approach");
 	}
@@ -67,7 +65,6 @@ public class OniBrute : Enemy
 
 	public override void AfterLost()
 	{
-		//GD.Print(2);
 		lost = false;
 		attackCollider.SetDeferred("monitoring", false);
 	}
