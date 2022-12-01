@@ -75,4 +75,4 @@ position = Vector2( 0, -3 )
 rotation = 1.5708
 shape = SubResource( 8 )
 
-[connection signal="body_entered" from="DamageDealer" to="." method="PlayerCollision"]
+[connection signal="area_entered" from="DamageDealer" to="." method="PlayerCollision"]

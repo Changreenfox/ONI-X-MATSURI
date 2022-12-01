@@ -81,9 +81,9 @@ public class Bullet : KinematicBody2D
 	}
 
 	//Called when the bullet collides with the actor
-	public void PlayerCollision(KinematicBody2D collision)
+	public void PlayerCollision(Area2D collision)
 	{
-		Actor damaged = collision as Actor;
+		Actor damaged = collision.GetParent() as Actor;
 		damaged.TakeDamage(damage, GlobalPosition, impulse);
 		Vanish();
 	}
