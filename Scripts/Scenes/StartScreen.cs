@@ -39,7 +39,7 @@ public class StartScreen : SceneBase
 		creditsScreen = GetNode<Node2D>("CreditsScreen");
 	}
 
-	private void update_highlighted_button(Option next) {
+	private void updateHighlightedButton(Option next) {
 		TextureButton butNext = GetNode<TextureButton>("CenterContainer/HBoxContainer/"+next.ToString()+"Button");
 		// restore current highlighted to normal
 		butSel.TextureNormal = normTexture;
@@ -81,7 +81,7 @@ public class StartScreen : SceneBase
 					case (int)KeyList.A : {
 						if (optSel > LEFT_BOUND_OPTION) {
 							optSel -= 1;
-							update_highlighted_button(optSel);
+							updateHighlightedButton(optSel);
 						}
 						break;
 					}
@@ -89,7 +89,7 @@ public class StartScreen : SceneBase
 					case (int)KeyList.D : {
 						if (optSel < RIGHT_BOUND_OPTION) {
 							optSel += 1;
-							update_highlighted_button(optSel);
+							updateHighlightedButton(optSel);
 						}
 						break;
 					}
