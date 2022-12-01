@@ -72,6 +72,7 @@ height = 66.4681
 collision_layer = 0
 collision_mask = 72
 script = ExtResource( 1 )
+damageIncrease = 2
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 1.5, 1, 1, 1 )

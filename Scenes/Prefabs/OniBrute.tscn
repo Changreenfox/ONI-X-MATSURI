@@ -549,6 +549,7 @@ anim_offset = 0.53
 collision_layer = 2
 collision_mask = 24
 script = ExtResource( 1 )
+hp = 2
 interruptable = true
 speed = 25.0
 maxSpeed = 300.0
