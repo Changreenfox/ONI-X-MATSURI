@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://assets/backgrounds/win_overlay.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Scenes/Win.cs" type="Script" id=2]
@@ -227,6 +227,16 @@ tracks/4/keys = {
 "values": [ true, false, true, false, true, false ]
 }
 
+[sub_resource type="Environment" id=26]
+background_mode = 4
+ambient_light_color = Color( 1, 1, 1, 1 )
+tonemap_exposure = 1.2
+glow_enabled = true
+glow_intensity = 2.73
+glow_strength = 1.14
+glow_hdr_scale = 1.69
+glow_bicubic_upscale = true
+
 [node name="Win" type="Node2D"]
 script = ExtResource( 2 )
 
@@ -279,7 +289,9 @@ anims/RESET = SubResource( 2 )
 anims/clouds = SubResource( 3 )
 
 [node name="WinText" type="Sprite" parent="Backdrop"]
-position = Vector2( 959, 241 )
+modulate = Color( 1.1, 1.1, 1.1, 1 )
+light_mask = 0
+position = Vector2( 959, 405 )
 texture = ExtResource( 7 )
 
 [node name="Particles" type="Node" parent="."]
@@ -347,5 +359,8 @@ process_material = SubResource( 24 )
 root_node = NodePath("../Particles2D")
 autoplay = "Fireworkds"
 anims/Fireworkds = SubResource( 25 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 26 )
 
 [connection signal="pressed" from="ReturnButton" to="." method="_on_ReturnButton_pressed"]
