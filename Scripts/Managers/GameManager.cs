@@ -19,13 +19,6 @@ public class GameManager : Node
 		set{ playerRef = value; }
 	}
 	
-	private int health;
-	public int Health
-	{
-		get{ return health; }
-		set{ health = value; }
-	}
-	
 	private AudioManager audio;
 	public AudioManager Audio
 	{
@@ -53,8 +46,8 @@ public class GameManager : Node
 		{ 
 			currentScene = value; 
 			signals.EmitSignal(nameof(SignalManager.UpdatedGameScore),
-							gameScore
-							);
+								gameScore
+								);
 		}
 	}
 	
@@ -91,8 +84,10 @@ public class GameManager : Node
 		signals.Connect(nameof(SignalManager.EnemyDied), this, nameof(this.SetGameScore));
 		
 		signals.Connect(nameof(SignalManager.PlayerDied), this, nameof(this.HandlePlayerDeath));
-		signals.Connect(nameof(SignalManager.PlayerLoaded), this, nameof(this.LoadPlayer));
+		signals.Connect(nameof(SignalManager.GameReset), this, nameof(this.ResetGame));
 		
+		signals.Connect(nameof(SignalManager.UIManagerLoaded), this, nameof(this.LoadUIManager));
+		signals.Connect(nameof(SignalManager.PlayerLoaded), this, nameof(this.LoadPlayer));
 		signals.Connect(nameof(SignalManager.SceneChangeCall), this, nameof(this.HandleSceneChange));
 	}
 	
@@ -137,9 +132,9 @@ public class GameManager : Node
 	
 	private void HandlePlayerDeath()
 	{
+		HandleSceneChange("res://Scenes/GameOver.tscn");
 		playerRef = null;
 		playerData = null;
-		HandleSceneChange("res://Scenes/GameOver.tscn");
 	}
 	
 	private void HandleSceneChange(string newSceneName)
@@ -166,6 +161,15 @@ public class GameManager : Node
 		}
 	}
 	
+	private void LoadUIManager()
+	{
+		GD.Print("Gamescore: ", gameScore);
+		//Called at every new Scene entry to update the display to the current game score
+		signals.EmitSignal(nameof(SignalManager.UpdatedGameScore),
+							gameScore
+							);
+	}
+	
 	private void LoadPlayer(Player player)
 	{
 		playerRef = player;
@@ -173,5 +177,14 @@ public class GameManager : Node
 		{
 			playerRef.HP = playerData.HealthPoints;
 		}
+	}
+	
+	private void ResetGame()
+	{
+		playerRef = null;
+		playerData = null;
+		gameScore = 0;
+		playTime = 0;
+		GD.Print("Gamescore updated to: ", gameScore);
 	}
 }

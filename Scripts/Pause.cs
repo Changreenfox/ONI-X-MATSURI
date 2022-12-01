@@ -58,6 +58,7 @@ public class Pause : Control
 	{
 		Hide();
 		GetTree().Paused = false;
+		gManager.Signals.EmitSignal(nameof(SignalManager.GameReset));
 		gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
 									"res://Scenes/Start.tscn"
 									);

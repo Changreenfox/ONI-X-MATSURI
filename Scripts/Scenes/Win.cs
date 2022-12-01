@@ -20,6 +20,7 @@ public class Win : SceneBase
 //  }
 	private void _on_ReturnButton_pressed()
 	{
+		gManager.Signals.EmitSignal(nameof(SignalManager.GameReset));
 		Transition.SceneTransition("res://Scenes/Start.tscn");
 		//gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
 		//							"res://Scenes/Start.tscn"
