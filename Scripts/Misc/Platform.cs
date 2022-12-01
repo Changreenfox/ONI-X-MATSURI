@@ -68,14 +68,12 @@ public class Platform : StaticBody2D
 		sprite.Frame = 0;
 		animationPlayer.Play("default");
 		
-		GD.Print("Platform respawned!!");
 	}
 	
 	private void _on_DecayArea_body_entered(object body)
 	{
 		decayObjects.Add(body);
 		CallDeferred("set_process", true);
-		GD.Print("Platform is now decaying!!!!!!!!!!!!!!!!!!!!!");
 	}
 
 	private void _on_DecayArea_body_exited(object body)

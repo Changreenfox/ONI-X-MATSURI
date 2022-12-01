@@ -135,7 +135,8 @@ public abstract class Actor : KinematicBody2D
 		set{ currentAttack = value; }
 	}
 
-
+	[Export]
+	protected bool attackAnimationFirst = false;
 
 	//FSM variables
 	protected State state;
@@ -283,7 +284,7 @@ public abstract class Actor : KinematicBody2D
 	public string PlayAnimation(string name)
 	{
 		//Don't want to interrupt an attack animation from here
-		if(currentAttack >= 0)
+		if(attackAnimationFirst && currentAttack >= 0)
 			attacks[0].PreviousAnim = name;
 		else
 			animator.Play(name);
