@@ -5,6 +5,7 @@ public class OniBrute : Enemy
 {
 	// Called when the node enters the scene tree for the first time.
 	private Area2D attackCollider;
+	bool lost = false;
 	public override void _Ready()
 	{
 		base._Ready();
@@ -25,15 +26,17 @@ public class OniBrute : Enemy
 		state.Enter();
 	}
 
-	public override void HandleAlert(KinematicBody2D player)
+	public override void HandleAlert(Area2D player)
 	{
 		alertArea.SetDeferred("monitoring", false);
 		lostArea.SetDeferred("monitoring", true);
 		ChangeState("Alert");
 	}
 
-	public override void HandleLost(KinematicBody2D player)
+	public override void HandleLost(Area2D player)
 	{
+		lost = true;
+		//GD.Print(1);
 		if(!lostArea.Monitoring)
 			return;
 		alertArea.SetDeferred("monitoring", true);
@@ -41,7 +44,7 @@ public class OniBrute : Enemy
 		ChangeState("Lost");
 	}
 
-	public void OnAttackAreaEntered(KinematicBody2D body)
+	public void OnAttackAreaEntered(Area2D collision)
 	{
 		if(hp <= 0)
 			return;
@@ -52,7 +55,8 @@ public class OniBrute : Enemy
 	public override void AfterAttack()
 	{
 		attackCollider.SetDeferred("monitoring", true);
-		if(hp > 0)
+		//GD.Print("Here");
+		if(hp > 0 && !lost)
 			ChangeState("Approach");
 	}
 
@@ -63,6 +67,8 @@ public class OniBrute : Enemy
 
 	public override void AfterLost()
 	{
+		//GD.Print(2);
+		lost = false;
 		attackCollider.SetDeferred("monitoring", false);
 	}
 

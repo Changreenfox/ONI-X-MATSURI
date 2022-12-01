@@ -81,6 +81,9 @@ public class BasicAttack : Attack
 		//Enable the attack range until animation is finished
 		await ToSignal(this, "AttackFinished");
 
+		if(host.HP <= 0)
+			return;
+
 		//Reset currentFrame
 		currentFrame = 0;
 

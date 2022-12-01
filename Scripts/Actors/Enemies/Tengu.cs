@@ -40,14 +40,14 @@ public class Tengu : Enemy
         }
     }
 
-    public override void HandleAlert(KinematicBody2D player)
+    public override void HandleAlert(Area2D collision)
     {
         alertArea.SetDeferred("monitoring", false);
         ChangeState("Alert");
     }
 
     //Handle Timer gets called here, but it's just used to signal we've hit a collider
-    public void TargetReached(KinematicBody2D host)
+    public void TargetReached(Area2D collision)
     {
         state.HandleTimer();
     }

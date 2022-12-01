@@ -6,6 +6,7 @@ radius = 600.0
 [node name="Lost" type="Area2D"]
 visible = false
 collision_layer = 0
+collision_mask = 16
 monitoring = false
 monitorable = false
 

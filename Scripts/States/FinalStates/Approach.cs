@@ -14,6 +14,11 @@ public class Approach : Motion
 
     public override void Enter()
     {
+        if(player.HP <= 0)
+        {
+            host.ChangeState("Idle");
+            return;
+        }
         host.FacingRight = host.GlobalPosition.DirectionTo(player.GlobalPosition).x >= 0;
         facingRight = host.FacingRight;
         PlayAnimation();
