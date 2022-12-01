@@ -14,6 +14,9 @@ public class SignalManager : Node
 	public delegate void EntityCreated(string domainName);
 	
 	[Signal]
+	public delegate void GameExit();
+	
+	[Signal]
 	public delegate void GameReset();
 	
 	[Signal]

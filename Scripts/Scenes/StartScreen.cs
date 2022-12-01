@@ -61,7 +61,7 @@ public class StartScreen : SceneBase
 
 	public void _on_QuitButton_pressed()
 	{
-		GetTree().Quit();
+		gManager.Signals.EmitSignal(nameof(SignalManager.GameExit));
 	}
 
 	public void _on_CreditsButton_pressed()

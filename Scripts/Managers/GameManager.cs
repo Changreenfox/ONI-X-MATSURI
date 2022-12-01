@@ -89,6 +89,7 @@ public class GameManager : Node
 		signals.Connect(nameof(SignalManager.PlaySound2DSignal), audio, nameof(AudioManager.PlaySound2D));
 		signals.Connect(nameof(SignalManager.EnemyDied), this, nameof(this.SetGameScore));
 		
+		signals.Connect(nameof(SignalManager.GameExit), this, nameof(this.ExitGame));
 		signals.Connect(nameof(SignalManager.PlayerDied), this, nameof(this.HandlePlayerDeath));
 		signals.Connect(nameof(SignalManager.GameReset), this, nameof(this.ResetGame));
 		
@@ -182,6 +183,14 @@ public class GameManager : Node
 		{
 			playerRef.HP = playerData.HealthPoints;
 		}
+	}
+	
+	private async void ExitGame()
+	{
+		transitionHandler.Layer = 100;	//Random number
+		await transitionHandler.ExitScene();
+		
+		GetTree().Quit();
 	}
 	
 	private void ResetGame()
