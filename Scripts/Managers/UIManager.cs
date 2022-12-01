@@ -45,6 +45,8 @@ public class UIManager : Control
 		pauseMenu = GetNode<Control>("PauseScreen");
 		
 		scoreLabel = GetNodeOrNull<HBoxContainer>("Center").GetNodeOrNull<Label>("Label");
+		
+		gManager.Signals.EmitSignal(nameof(SignalManager.UIManagerLoaded));
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
