@@ -22,7 +22,7 @@ public class CreditsScreen : SceneBase
 		SecondPage.Hide();
 	}
 
-	public void _on_any_input_pressed()
+	public void _on_AnyInput_pressed()
 	{
 		if (PageNum == 1) {
 			FirstPage.Hide();
@@ -43,14 +43,14 @@ public class CreditsScreen : SceneBase
 		if (GetTree().Paused == true && @event is InputEventKey eventKey) {
 			// GD.Print("here credit "+PageNum);
 			if (eventKey.Pressed == true) {
-				_on_any_input_pressed();
+				_on_AnyInput_pressed();
 			}
 		}
 	}
 	
 	private void _on_ContinueButton_pressed()
 	{
-		_on_any_input_pressed();
+		_on_AnyInput_pressed();
 	}
 }
 
