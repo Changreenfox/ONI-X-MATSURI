@@ -7,7 +7,6 @@ public class BossLevel : SceneBase
 	private float curCamShakeStrength = 0.0f;
 	private const int NUM_PHASE2_POWERUPS = 10;
 	RandomNumberGenerator random = new RandomNumberGenerator();
-	private FadeTransition Transition;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -22,8 +21,6 @@ public class BossLevel : SceneBase
 		
 		random.Randomize();
 		SetProcess(false);
-		
-		Transition = GetNode<FadeTransition>("TransitionScreen");
 	}
 	
 	public override void _Process(float delta)
@@ -72,10 +69,9 @@ public class BossLevel : SceneBase
 		AddChild(coinTimer);
 		coinTimer.Start(3.0f);
 		await ToSignal(coinTimer, "timeout");
-		Transition.SceneTransition("res://Scenes/Win.tscn");
-		//gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
-		//							"res://Scenes/Win.tscn"
-		//							);
+		gManager.Signals.EmitSignal(nameof(SignalManager.SceneChangeCall),
+									"res://Scenes/Win.tscn"
+									);
 	}
 	
 	public void On_OniBoss_Land()
