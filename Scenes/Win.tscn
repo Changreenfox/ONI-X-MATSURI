@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/backgrounds/win_overlay.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Scenes/Win.cs" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/buttons/return_button_pressed.png" type="Texture" id=4]
 [ext_resource path="res://assets/buttons/return_button_highlighted.png" type="Texture" id=5]
 [ext_resource path="res://assets/music_ogg/win_screen_music.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/backgrounds/win_text.png" type="Texture" id=7]
 [ext_resource path="res://assets/backgrounds/stage_1.png" type="Texture" id=8]
 [ext_resource path="res://assets/backgrounds/Boss_bg.png" type="Texture" id=9]
 [ext_resource path="res://assets/backgrounds/stage_3.png" type="Texture" id=10]
@@ -232,10 +233,10 @@ script = ExtResource( 2 )
 [node name="ReturnButton" type="TextureButton" parent="."]
 anchor_left = 0.5
 anchor_right = 0.505
-margin_left = 778.0
-margin_top = 522.0
-margin_right = 1151.0
-margin_bottom = 662.0
+margin_left = 1451.0
+margin_top = 891.0
+margin_right = 1824.0
+margin_bottom = 1031.0
 texture_normal = ExtResource( 3 )
 texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 5 )
@@ -249,14 +250,17 @@ bus = "Music"
 
 [node name="Clouds" type="Sprite" parent="Backdrop"]
 position = Vector2( 0, 540 )
+z_index = -1
 texture = ExtResource( 11 )
 
 [node name="Fireworks2" type="Sprite" parent="Backdrop"]
 position = Vector2( 960, 540 )
+z_index = -1
 texture = ExtResource( 13 )
 
 [node name="Stage" type="Sprite" parent="Backdrop"]
 position = Vector2( 961, 539 )
+z_index = -1
 texture = SubResource( 1 )
 
 [node name="WinOverlay" type="Sprite" parent="Backdrop"]
@@ -274,11 +278,16 @@ autoplay = "RESET"
 anims/RESET = SubResource( 2 )
 anims/clouds = SubResource( 3 )
 
+[node name="WinText" type="Sprite" parent="Backdrop"]
+position = Vector2( 959, 241 )
+texture = ExtResource( 7 )
+
 [node name="Particles" type="Node" parent="."]
 
 [node name="Particles2D" type="Particles2D" parent="Particles"]
 position = Vector2( 225, 192 )
 z_index = -1
+emitting = false
 amount = 50
 lifetime = 10.0
 speed_scale = 5.0
