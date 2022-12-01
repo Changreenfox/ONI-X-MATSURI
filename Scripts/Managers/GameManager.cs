@@ -51,6 +51,8 @@ public class GameManager : Node
 		}
 	}
 	
+	private FadeTransition transitionHandler;
+	
 	private Camera2D currentCamera;
 	public Camera2D CurrentCamera
 	{
@@ -77,6 +79,10 @@ public class GameManager : Node
 	{
 		audio = (AudioManager)GetNode("/root/AudioManager");
 		signals = (SignalManager)GetNode("/root/SignalManager");
+		
+		PackedScene transitionScene = ResourceLoader.Load<PackedScene>($"res://Scenes/Prefabs/FadeTransition.tscn");
+		transitionHandler = transitionScene.Instance() as FadeTransition;
+		CallDeferred("add_child", transitionHandler);
 		
 		signals.Connect(nameof(SignalManager.SceneLoadedSignal), audio, nameof(AudioManager.PlayMusic));
 		signals.Connect(nameof(SignalManager.PlaySoundSignal), audio, nameof(AudioManager.PlaySound));
@@ -137,7 +143,7 @@ public class GameManager : Node
 		playerData = null;
 	}
 	
-	private void HandleSceneChange(string newSceneName)
+	private void HandleSceneChange(string newScene)
 	{
 		if(playerRef != null)
 		{
@@ -157,13 +163,12 @@ public class GameManager : Node
 		//Handle scene transitions
 		if(currentScene != null)
 		{
-			currentScene.GetTree().ChangeScene(newSceneName);
+			TransitionScenes(newScene);
 		}
 	}
 	
 	private void LoadUIManager()
 	{
-		GD.Print("Gamescore: ", gameScore);
 		//Called at every new Scene entry to update the display to the current game score
 		signals.EmitSignal(nameof(SignalManager.UpdatedGameScore),
 							gameScore
@@ -185,6 +190,16 @@ public class GameManager : Node
 		playerData = null;
 		gameScore = 0;
 		playTime = 0;
-		GD.Print("Gamescore updated to: ", gameScore);
+	}
+	
+	private async void TransitionScenes(string newScene)
+	{
+		transitionHandler.Layer = 100;	//Random number
+		await transitionHandler.ExitScene();
+		
+		GetTree().ChangeScene(newScene);
+		
+		await transitionHandler.EnterScene(newScene);
+		transitionHandler.Layer = 1;
 	}
 }

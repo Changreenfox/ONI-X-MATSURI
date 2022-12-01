@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://assets/backgrounds/fireworks.png" type="Texture" id=1]
 [ext_resource path="res://assets/buttons/start_button_highlighted.png" type="Texture" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://assets/buttons/credits_button_pressed.png" type="Texture" id=11]
 [ext_resource path="res://assets/buttons/credits_button_highlighted.png" type="Texture" id=12]
 [ext_resource path="res://Scenes/Credits.tscn" type="PackedScene" id=13]
-[ext_resource path="res://Scenes/Prefabs/FadeTransition.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/backgrounds/Background_sky.png" type="Texture" id=15]
 [ext_resource path="res://assets/backgrounds/Background_mountains.png" type="Texture" id=16]
 [ext_resource path="res://assets/backgrounds/Background_buildings_1.png" type="Texture" id=17]
@@ -305,8 +304,6 @@ margin_bottom = 140.0
 texture_normal = ExtResource( 5 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 4 )
-
-[node name="TransitionScreen" parent="." instance=ExtResource( 14 )]
 
 [node name="CreditsScreen" parent="." instance=ExtResource( 13 )]
 pause_mode = 2
