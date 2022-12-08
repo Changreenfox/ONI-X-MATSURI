@@ -19,13 +19,13 @@ env:
 jobs:
   static-analysis:
     name: Static Analysis
-    runs-on: ubuntu-20.04
+    runs-on: windows-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Run .NET Code Analysis
-        uses: dotnet/code-analysis@v1
+        uses: dotnet/code-analysis
         id: code-analysis
         with:
           solution: ONI-x-MATSURI.sln
