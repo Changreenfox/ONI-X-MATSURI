@@ -19,7 +19,7 @@ env:
 jobs:
   static-analysis:
     name: Static Analysis
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
