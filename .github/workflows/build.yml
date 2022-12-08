@@ -29,6 +29,7 @@ jobs:
         id: code-analysis
         with:
           solution: ONI-x-MATSURI.sln
+          project: ONI-x-MATSURI.csproj
           build-breaking: true
           all-categories: all
 
