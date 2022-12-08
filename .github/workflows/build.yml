@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run .NET Code Analysis
-        uses: dotnet/code-analysis@d3a5cb6ef8547e36e
+        uses: dotnet/code-analysis@main
         id: code-analysis
         with:
           solution: ONI-x-MATSURI.sln
