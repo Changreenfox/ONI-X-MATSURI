@@ -17,6 +17,21 @@ env:
   EXPORT_NAME: oni-x-matsuri
 
 jobs:
+  static-analysis:
+    name: Static Analysis
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run .NET Code Analysis
+        uses: dotnet/code-analysis@v1
+        id: code-analysis
+        with:
+          solution: ONI-x-MATSURI.sln
+          build-breaking: true
+          all-categories: all
+
   export-windows:
     name: Windows Export
     runs-on: ubuntu-20.04
