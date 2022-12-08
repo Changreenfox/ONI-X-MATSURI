@@ -32,6 +32,13 @@ jobs:
           build-breaking: true
           all-categories: all
 
+      - name: Upload SARIF report
+        uses: actions/upload-artifact@v3
+        with:
+          name: analysis-report
+          path: .gdn/analysis_results.sarif
+          if-no-files-found: error
+
   export-windows:
     name: Windows Export
     runs-on: ubuntu-20.04
