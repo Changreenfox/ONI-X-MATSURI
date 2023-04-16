@@ -70,9 +70,10 @@ public class Platform : StaticBody2D
 		
 	}
 	
-	private void _on_DecayArea_body_entered(object body)
+	private void _on_DecayArea_body_entered(KinematicBody2D body)
 	{
 		decayObjects.Add(body);
+		GD.Print(body.Name);
 		CallDeferred("set_process", true);
 	}
 

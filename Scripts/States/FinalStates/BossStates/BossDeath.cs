@@ -21,7 +21,7 @@ public class BossDeath : JustGravity
 		if(deathCounter == 1){//if the boss has only died 1 time, enter Phase 2
 			host.EmitManagedSignal(nameof(SignalManager.OniBossPhase2));
 			host.ChangeState("BossAngry");
-			host.HP = 3;
+			host.HP = 9;
 		}
 		else if(deathCounter==2){ //else play die animation and show win screen after a bit
 			//Timer timer = (Timer)host.GetNode("BossDeathTimer");

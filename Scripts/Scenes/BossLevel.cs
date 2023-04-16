@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class BossLevel : SceneBase
 {
 	private float curCamShakeStrength = 0.0f;
-	private const int NUM_PHASE2_POWERUPS = 10;
+	private const int NUM_PHASE2_POWERUPS = 5;
 	RandomNumberGenerator random = new RandomNumberGenerator();
 
 	// Called when the node enters the scene tree for the first time.
@@ -82,7 +82,7 @@ public class BossLevel : SceneBase
 	public void On_OniBoss_Phase2()
 	{
 		Sprite background = (Sprite)GetNode("Background");
-		List<string> powerUps = new List<string> { "AttackPowerUp", "HealthPowerUp", "JumpPowerUp" };
+		List<string> powerUps = new List<string> {"HealthPowerUp"};
 		for(int i = 0; i < NUM_PHASE2_POWERUPS; ++i)
 		{
 			Vector2 powerUpCoords = new Vector2(random.RandiRange(0, background.Texture.GetWidth() - 1), 

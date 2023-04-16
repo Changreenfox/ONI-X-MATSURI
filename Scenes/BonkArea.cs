@@ -8,7 +8,7 @@ public class BonkArea : Area2D
     // private string b = "text";
 
     [Export]
-    private String path;
+    private String path = "../Tengu";
 
     private Tengu tengu;
 

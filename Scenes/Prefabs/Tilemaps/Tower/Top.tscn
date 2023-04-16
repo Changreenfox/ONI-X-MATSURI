@@ -1,12 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/HealthPowerUp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/LastChunkTower.cs" type="Script" id=4]
+[ext_resource path="res://Scenes/BonkArea.cs" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 992.125, 29.375 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 965, 10 )
 
 [node name="Template" type="Node2D"]
 script = ExtResource( 4 )
@@ -53,5 +57,17 @@ position = Vector2( 1195, 856 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EndWall"]
 position = Vector2( 964, -96 )
 shape = SubResource( 1 )
+
+[node name="BonkArea" type="Area2D" parent="."]
+position = Vector2( -8, 800 )
+collision_layer = 0
+collision_mask = 128
+monitorable = false
+script = ExtResource( 5 )
+path = "/root/Tower/TenguSpawn/Tengu"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BonkArea"]
+position = Vector2( 962, -304 )
+shape = SubResource( 2 )
 
 [connection signal="body_entered" from="EndWall" to="." method="_on_EndWall_body_entered"]

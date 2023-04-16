@@ -16,8 +16,8 @@ public class BossPhase2Attack : Motion
 	public override void Enter()
 	{
 		base.Enter(); //Unless base is just State
-		finished = false;
 		prevDir = host.Direction;
+		host.StateTimer.Start(5.0f);
 		//host.StateTimer.Start(3.0f);
 		PlayAnimation();
 		//Set any necessary variables here
@@ -27,19 +27,21 @@ public class BossPhase2Attack : Motion
 	{
 		if(!active)
 			return null;
+		
 		base.HandlePhysics(delta); //Unless base is just State
-		if(prevDir.x != host.Direction.x)
+
+		//This happens when the boss hits the wall
+		/*if(prevDir.x != host.Direction.x)
 		{
-			finished = true;
 			FinishAnimation();
 			
-		}
+		}*/
 		return null;
 	}
 	
 	public override void HandleTimer()
 	{
-		//finished = true;
+		FinishAnimation();
 	}
 
 	public override string StateName()
@@ -54,16 +56,18 @@ public class BossPhase2Attack : Motion
 	{
 		//Make any calls to playing animation in here. Should be handled in the state that calls it
 		host.PlayAnimation("ChargeAttack");
-		host.Animator.GetAnimation("Attack").Loop = true;
-		host.Animator.Queue("Attack");
+		host.Animator.GetAnimation("Attack2").Loop = true;
+		host.Animator.Queue("Attack2");
 	}
 	
 	private async void FinishAnimation()
 	{
-		active = false;
-		host.Animator.GetAnimation("Attack").Loop = false;
+		SetPhysicsProcess(false);
+
+		host.Animator.GetAnimation("Attack2").Loop = false;
 		await ToSignal(host.Animator, "animation_finished");
 		host.ChangeState("Phase2Idle");
-		active = true;
+
+		SetPhysicsProcess(true);
 	}
 }
