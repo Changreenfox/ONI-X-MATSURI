@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/sprites/enemy/tengu_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Prefabs/BulletSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=4]
-[ext_resource path="res://Scenes/Prefabs/ThrowBullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Prefabs/TenguBullet.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/sprites/enemy/emotes.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=29]
@@ -332,36 +332,37 @@ shape = SubResource( 28 )
 [node name="BulletSpawner" parent="BulletSpawns" instance=ExtResource( 3 )]
 gravity = 1500.0
 bulletPrefab = ExtResource( 5 )
-heading = Vector2( 1500, 0 )
+heading = Vector2( 1500, -500 )
 gravity = 1500.0
 
 [node name="BulletSpawner2" parent="BulletSpawns" instance=ExtResource( 3 )]
 gravity = 1500.0
 bulletPrefab = ExtResource( 5 )
-heading = Vector2( 500, 0 )
+heading = Vector2( 500, -500 )
 gravity = 1500.0
 
 [node name="BulletSpawner3" parent="BulletSpawns" instance=ExtResource( 3 )]
 gravity = 1500.0
 bulletPrefab = ExtResource( 5 )
+heading = Vector2( 1, -500 )
 gravity = 1500.0
 
 [node name="BulletSpawner4" parent="BulletSpawns" instance=ExtResource( 3 )]
 gravity = 1500.0
 bulletPrefab = ExtResource( 5 )
-heading = Vector2( -1, 0 )
+heading = Vector2( -1, -500 )
 gravity = 1500.0
 
 [node name="BulletSpawner5" parent="BulletSpawns" instance=ExtResource( 3 )]
 gravity = 1500.0
 bulletPrefab = ExtResource( 5 )
-heading = Vector2( -500, 0 )
+heading = Vector2( -500, -500 )
 gravity = 1500.0
 
 [node name="BulletSpawner6" parent="BulletSpawns" instance=ExtResource( 3 )]
 gravity = 1500.0
 bulletPrefab = ExtResource( 5 )
-heading = Vector2( -1500, 0 )
+heading = Vector2( -1500, -500 )
 gravity = 1500.0
 
 [connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]

@@ -26,6 +26,9 @@ public class Bullet : KinematicBody2D
 
 	[Export]
 	private bool destroyOnWall = false;
+
+	[Export]
+	private bool hasTrail = false;
 	
 	private Sprite sprite;
 
@@ -47,6 +50,13 @@ public class Bullet : KinematicBody2D
 		KinematicCollision2D collisionInfo = MoveAndCollide(velocity * delta);
 
 		sprite.FlipH = velocity.x >= 0;
+
+		if(hasTrail)
+		{
+			
+			GD.Print(Mathf.Rad2Deg(velocity.Angle()) - 90);
+			sprite.RotationDegrees = Mathf.Rad2Deg(velocity.Angle()) - 90;
+		}
 
 		//We adjust the mask so it can only collide with a selected Actor
 		//Could be useful if we want to destroy the bullet on wall
