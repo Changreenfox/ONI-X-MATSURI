@@ -114,6 +114,9 @@ public class GameManager : Node
 	
 	private async void PlayerCoinGet(int scoreValue)
 	{
+		if(playerRef.HP <= 0) {
+			return;
+		}
 		PackedScene coinScene = ResourceLoader.Load<PackedScene>($"res://Scenes/Prefabs/Coin.tscn");
 		Timer delayTimer = new Timer();
 		delayTimer.Name = "CoinTimer";
