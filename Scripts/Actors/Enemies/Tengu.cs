@@ -72,6 +72,8 @@ public class Tengu : Enemy
 
 	public void BonkHead(KinematicBody2D actor)
 	{
+		if(state.StateName() == "Falling")
+			return;
 		ChangeState("BonkHead");
 	}
 

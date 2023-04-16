@@ -99,7 +99,6 @@ public class TenguFly : Fly
         //Not as dynamic, there is probably a better solution here
         facingRight = currentPos == 0;
         host.FacingRight = facingRight;
-        GD.Print("facingRight 1 = " + facingRight);
         Attack();
         await ToSignal(host.Animator, "animation_finished");
 
@@ -110,7 +109,6 @@ public class TenguFly : Fly
         currentPos = (currentPos + 1) % positions.Count;
         currentTarget = positions[currentPos];
         GetInputDirection();
-        GD.Print("facingRight 2 = " + facingRight);
         PlayAnimation();
         currentTarget.SetDeferred("monitoring", true);
     }

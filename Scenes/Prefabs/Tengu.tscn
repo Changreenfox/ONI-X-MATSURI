@@ -249,7 +249,7 @@ height = 84.0
 
 [sub_resource type="CapsuleShape2D" id=28]
 radius = 320.0
-height = 784.0
+height = 1200.0
 
 [node name="Tengu" type="KinematicBody2D"]
 collision_layer = 128
@@ -330,40 +330,40 @@ shape = SubResource( 28 )
 [node name="BulletSpawns" type="Node2D" parent="."]
 
 [node name="BulletSpawner" parent="BulletSpawns" instance=ExtResource( 3 )]
-gravity = 1500.0
+gravity = 2000.0
 bulletPrefab = ExtResource( 5 )
 heading = Vector2( 1500, -500 )
-gravity = 1500.0
+gravity = 2000.0
 
 [node name="BulletSpawner2" parent="BulletSpawns" instance=ExtResource( 3 )]
-gravity = 1500.0
+gravity = 2000.0
 bulletPrefab = ExtResource( 5 )
 heading = Vector2( 500, -500 )
-gravity = 1500.0
+gravity = 2000.0
 
 [node name="BulletSpawner3" parent="BulletSpawns" instance=ExtResource( 3 )]
-gravity = 1500.0
+gravity = 2000.0
 bulletPrefab = ExtResource( 5 )
-heading = Vector2( 1, -500 )
-gravity = 1500.0
+heading = Vector2( 50, -500 )
+gravity = 2000.0
 
 [node name="BulletSpawner4" parent="BulletSpawns" instance=ExtResource( 3 )]
-gravity = 1500.0
+gravity = 2000.0
 bulletPrefab = ExtResource( 5 )
-heading = Vector2( -1, -500 )
-gravity = 1500.0
+heading = Vector2( -50, -500 )
+gravity = 2000.0
 
 [node name="BulletSpawner5" parent="BulletSpawns" instance=ExtResource( 3 )]
-gravity = 1500.0
+gravity = 2000.0
 bulletPrefab = ExtResource( 5 )
 heading = Vector2( -500, -500 )
-gravity = 1500.0
+gravity = 2000.0
 
 [node name="BulletSpawner6" parent="BulletSpawns" instance=ExtResource( 3 )]
-gravity = 1500.0
+gravity = 2000.0
 bulletPrefab = ExtResource( 5 )
 heading = Vector2( -1500, -500 )
-gravity = 1500.0
+gravity = 2000.0
 
 [connection signal="timeout" from="StateTimer" to="." method="HandleTimer"]
 [connection signal="area_entered" from="Alert" to="." method="HandleAlert"]

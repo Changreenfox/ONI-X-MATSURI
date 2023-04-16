@@ -53,8 +53,6 @@ public class Bullet : KinematicBody2D
 
 		if(hasTrail)
 		{
-			
-			GD.Print(Mathf.Rad2Deg(velocity.Angle()) - 90);
 			sprite.RotationDegrees = Mathf.Rad2Deg(velocity.Angle()) - 90;
 		}
 

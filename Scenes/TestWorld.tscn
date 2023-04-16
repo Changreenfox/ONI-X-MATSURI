@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/World/TileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=2]
@@ -12,6 +12,10 @@
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Scripts/TowerCamera.cs" type="Script" id=11]
 [ext_resource path="res://Scripts/FollowScreen.cs" type="Script" id=12]
+[ext_resource path="res://Scenes/BonkArea.cs" type="Script" id=13]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 965, 10 )
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 36.2215
@@ -27,9 +31,6 @@ extents = Vector2( 40, 40 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 100, 100 )
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 965, 10 )
 
 [node name="TestWorld" type="Node2D"]
 script = ExtResource( 8 )
@@ -59,68 +60,6 @@ visible = false
 position = Vector2( 0, 0 )
 current = false
 script = ExtResource( 7 )
-
-[node name="Tengu" parent="." instance=ExtResource( 4 )]
-position = Vector2( 962, -152 )
-collision_mask = 64
-gravity = 0.0
-maxFallSpeed = 1000.0
-
-[node name="TenguSpots" type="Node2D" parent="."]
-position = Vector2( 0, 136 )
-script = ExtResource( 12 )
-
-[node name="LeftCorner" type="Area2D" parent="TenguSpots"]
-position = Vector2( 100, 100 )
-collision_layer = 0
-collision_mask = 128
-monitorable = false
-
-[node name="Collider" type="CollisionShape2D" parent="TenguSpots/LeftCorner"]
-shape = SubResource( 1 )
-
-[node name="Static" type="StaticBody2D" parent="TenguSpots/LeftCorner"]
-collision_layer = 0
-collision_mask = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TenguSpots/LeftCorner/Static"]
-position = Vector2( -80, 0 )
-rotation = 1.5708
-shape = SubResource( 2 )
-one_way_collision = true
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="TenguSpots/LeftCorner/Static"]
-position = Vector2( 0, -204 )
-rotation = -3.14159
-shape = SubResource( 3 )
-one_way_collision = true
-
-[node name="LeftCorner2" type="Area2D" parent="TenguSpots"]
-position = Vector2( 1820, 100 )
-collision_layer = 0
-collision_mask = 128
-monitoring = false
-monitorable = false
-
-[node name="Collider" type="CollisionShape2D" parent="TenguSpots/LeftCorner2"]
-shape = SubResource( 1 )
-
-[node name="Static2" type="StaticBody2D" parent="TenguSpots/LeftCorner2"]
-collision_layer = 0
-collision_mask = 128
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TenguSpots/LeftCorner2/Static2"]
-position = Vector2( 84, 0 )
-rotation = -1.5708
-shape = SubResource( 4 )
-one_way_collision = true
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="TenguSpots/LeftCorner2/Static2"]
-position = Vector2( 0, -204 )
-rotation = -3.14159
-shape = SubResource( 5 )
-one_way_collision = true
-one_way_collision_margin = 100.0
 
 [node name="Bottom" type="Node2D" parent="."]
 
@@ -176,11 +115,73 @@ tile_data = PoolIntArray( 458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0
 collision_layer = 0
 collision_mask = 128
 monitorable = false
+script = ExtResource( 13 )
+path = "../TenguSpawn/Tengu"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BonkArea"]
 position = Vector2( 962, -304 )
 shape = SubResource( 6 )
 
-[connection signal="body_entered" from="TenguSpots/LeftCorner" to="Tengu" method="TargetReached"]
-[connection signal="body_entered" from="TenguSpots/LeftCorner2" to="Tengu" method="TargetReached"]
-[connection signal="body_entered" from="BonkArea" to="Tengu" method="BonkHead"]
+[node name="TenguSpawn" type="Node2D" parent="."]
+
+[node name="TenguSpots" type="Node2D" parent="TenguSpawn"]
+position = Vector2( 0, 136 )
+script = ExtResource( 12 )
+
+[node name="LeftCorner" type="Area2D" parent="TenguSpawn/TenguSpots"]
+position = Vector2( 100, 100 )
+collision_layer = 0
+collision_mask = 128
+monitorable = false
+
+[node name="Collider" type="CollisionShape2D" parent="TenguSpawn/TenguSpots/LeftCorner"]
+shape = SubResource( 1 )
+
+[node name="Static" type="StaticBody2D" parent="TenguSpawn/TenguSpots/LeftCorner"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TenguSpawn/TenguSpots/LeftCorner/Static"]
+position = Vector2( -80, 0 )
+rotation = 1.5708
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TenguSpawn/TenguSpots/LeftCorner/Static"]
+position = Vector2( 0, -204 )
+rotation = -3.14159
+shape = SubResource( 3 )
+one_way_collision = true
+
+[node name="RightCorner" type="Area2D" parent="TenguSpawn/TenguSpots"]
+position = Vector2( 1820, 100 )
+collision_layer = 0
+collision_mask = 128
+monitoring = false
+monitorable = false
+
+[node name="Collider" type="CollisionShape2D" parent="TenguSpawn/TenguSpots/RightCorner"]
+shape = SubResource( 1 )
+
+[node name="Static2" type="StaticBody2D" parent="TenguSpawn/TenguSpots/RightCorner"]
+collision_layer = 0
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TenguSpawn/TenguSpots/RightCorner/Static2"]
+position = Vector2( 84, 0 )
+rotation = -1.5708
+shape = SubResource( 4 )
+one_way_collision = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TenguSpawn/TenguSpots/RightCorner/Static2"]
+position = Vector2( 0, -204 )
+rotation = -3.14159
+shape = SubResource( 5 )
+one_way_collision = true
+one_way_collision_margin = 100.0
+
+[node name="Tengu" parent="TenguSpawn" instance=ExtResource( 4 )]
+position = Vector2( 936, -872 )
+
+[connection signal="body_entered" from="TenguSpawn/TenguSpots/LeftCorner" to="TenguSpawn/Tengu" method="TargetReached"]
+[connection signal="body_entered" from="TenguSpawn/TenguSpots/RightCorner" to="TenguSpawn/Tengu" method="TargetReached"]

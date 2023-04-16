@@ -16,7 +16,7 @@ public class BossDeath : JustGravity
 		base.Enter();
 		host.Velocity = new Vector2(0, 0);
 		deathCounter++; //increase the number of times he has died
-		GD.Print("Entered: BossDeath\t|\t", "Death counter: ", deathCounter);
+		//GD.Print("Entered: BossDeath\t|\t", "Death counter: ", deathCounter);
 		
 		if(deathCounter == 1){//if the boss has only died 1 time, enter Phase 2
 			host.EmitManagedSignal(nameof(SignalManager.OniBossPhase2));

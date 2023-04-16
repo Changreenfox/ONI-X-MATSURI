@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/backgrounds/Buildings_animated.tres" type="Texture" id=1]
 [ext_resource path="res://assets/backgrounds/Background_mountains.png" type="Texture" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Scenes/Prefabs/GUI.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/Scenes/TowerLevel.cs" type="Script" id=10]
 [ext_resource path="res://assets/music_ogg/Cooler_Ninjari_Ninjarous.ogg" type="AudioStream" id=11]
+[ext_resource path="res://Scenes/Prefabs/TenguSpawn.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scripts/TowerCamera.cs" type="Script" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 61, 3791.5 )
@@ -22,17 +24,18 @@ script = ExtResource( 10 )
 position = Vector2( 68, 636 )
 jumpSpeed = 1150.0
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="TowerCamera" type="Camera2D" parent="Player"]
 current = true
 limit_left = 0
 limit_top = -6480
 limit_right = 1920
 limit_bottom = 1080
 smoothing_enabled = true
+script = ExtResource( 14 )
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Player/Camera2D"]
+[node name="CanvasLayer" type="CanvasLayer" parent="Player/TowerCamera"]
 
-[node name="Interface" parent="Player/Camera2D/CanvasLayer" instance=ExtResource( 9 )]
+[node name="Interface" parent="Player/TowerCamera/CanvasLayer" instance=ExtResource( 9 )]
 margin_left = -1.99982
 margin_top = -8.0
 margin_right = -1.99976
@@ -139,3 +142,5 @@ pause_mode = 2
 stream = ExtResource( 11 )
 autoplay = true
 bus = "Music"
+
+[node name="TenguSpawn" parent="." instance=ExtResource( 12 )]
