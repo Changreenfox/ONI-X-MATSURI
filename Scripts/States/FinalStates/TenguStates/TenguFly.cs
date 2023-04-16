@@ -77,7 +77,7 @@ public class TenguFly : Fly
         //Change which way we're facing
         if(test > 0.5)
             facingRight = true;
-        else if (test < 0.5)
+        else
             facingRight = false;
 
         host.FacingRight = facingRight;
@@ -99,15 +99,19 @@ public class TenguFly : Fly
         //Not as dynamic, there is probably a better solution here
         facingRight = currentPos == 0;
         host.FacingRight = facingRight;
+        GD.Print("facingRight 1 = " + facingRight);
         Attack();
         await ToSignal(host.Animator, "animation_finished");
 
-        //TO-Do
+        //TODO
         //Make sure we wait until after attacking to switch states to TenguBonkHead
 
         //Loops infinitely through the potential targets one at a time
         currentPos = (currentPos + 1) % positions.Count;
         currentTarget = positions[currentPos];
+        GetInputDirection();
+        GD.Print("facingRight 2 = " + facingRight);
+        PlayAnimation();
         currentTarget.SetDeferred("monitoring", true);
     }
 

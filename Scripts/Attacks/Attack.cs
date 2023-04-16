@@ -23,15 +23,6 @@ public abstract class Attack : Area2D
 		get { return impulse; }
 	}
 
-	//States
-	protected bool active = false;
-	protected bool attacking = false;
-	protected bool waiting = false;
-	public bool Waiting
-	{
-		get { return waiting; }
-	}
-
 	[Export]
 	protected string name = "Attack";
 
@@ -69,6 +60,7 @@ public abstract class Attack : Area2D
 
 		//cooldown timer
 		time = (Timer)host.GetNode("AttackCooldown");
+		SetProcess(false);
 	}
 
 	protected void FindHost()
@@ -92,12 +84,8 @@ public abstract class Attack : Area2D
 	//Update state of attack
 	public override void _Process(float delta)
 	{
-		//Leave when not ready to call functions
-		if(!active)
-			return;
-		
-		//Immediately reset active so we only call it once
-		active = false;
+		//Immediately reset process to inactive so we only call it once
+		SetProcess(false);
 
 		//Call async functions
 		ActivateCollider();
@@ -136,8 +124,6 @@ public abstract class Attack : Area2D
 		time.Start(cooldown);
 		await ToSignal(time, "timeout");
 		time.Stop();
-
-		waiting = false;
 	}
 
 	// Cancel the attack functionality and animation

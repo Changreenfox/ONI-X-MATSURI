@@ -5,7 +5,7 @@
     <id>UMLClass</id>
     <coordinates>
       <x>783</x>
-      <y>144</y>
+      <y>342</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -18,7 +18,7 @@ bg=white
     <id>UMLClass</id>
     <coordinates>
       <x>756</x>
-      <y>198</y>
+      <y>396</y>
       <w>144</w>
       <h>27</h>
     </coordinates>
@@ -30,7 +30,7 @@ bg=white</panel_attributes>
     <id>UMLObject</id>
     <coordinates>
       <x>1242</x>
-      <y>468</y>
+      <y>792</y>
       <w>486</w>
       <h>72</h>
     </coordinates>
@@ -43,7 +43,7 @@ bg=light_gray</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>819</x>
-      <y>162</y>
+      <y>360</y>
       <w>27</w>
       <h>54</h>
     </coordinates>
@@ -54,7 +54,7 @@ bg=light_gray</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>783</x>
-      <y>306</y>
+      <y>504</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -65,7 +65,7 @@ bg=light_gray</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>819</x>
-      <y>216</y>
+      <y>414</y>
       <w>45</w>
       <h>108</h>
     </coordinates>
@@ -77,7 +77,7 @@ is a</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>846</x>
-      <y>441</y>
+      <y>639</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -88,7 +88,7 @@ is a</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>819</x>
-      <y>324</y>
+      <y>522</y>
       <w>90</w>
       <h>135</h>
     </coordinates>
@@ -100,7 +100,7 @@ is a</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>720</x>
-      <y>441</y>
+      <y>639</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -111,7 +111,7 @@ is a</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>756</x>
-      <y>324</y>
+      <y>522</y>
       <w>90</w>
       <h>135</h>
     </coordinates>
@@ -123,7 +123,7 @@ is a</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>864</x>
-      <y>297</y>
+      <y>495</y>
       <w>126</w>
       <h>36</h>
     </coordinates>
@@ -135,7 +135,7 @@ has a</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>972</x>
-      <y>306</y>
+      <y>504</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -146,7 +146,7 @@ has a</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>99</x>
-      <y>108</y>
+      <y>306</y>
       <w>198</w>
       <h>81</h>
     </coordinates>
@@ -162,7 +162,7 @@ has a</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>189</x>
-      <y>180</y>
+      <y>378</y>
       <w>54</w>
       <h>90</h>
     </coordinates>
@@ -174,7 +174,7 @@ has a</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>153</x>
-      <y>252</y>
+      <y>450</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -185,7 +185,7 @@ has a</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>675</x>
-      <y>297</y>
+      <y>495</y>
       <w>126</w>
       <h>36</h>
     </coordinates>
@@ -197,7 +197,7 @@ has a</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>567</x>
-      <y>306</y>
+      <y>504</y>
       <w>117</w>
       <h>27</h>
     </coordinates>
@@ -208,7 +208,7 @@ has a</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>288</x>
-      <y>135</y>
+      <y>333</y>
       <w>117</w>
       <h>36</h>
     </coordinates>
@@ -220,7 +220,7 @@ has a</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>387</x>
-      <y>135</y>
+      <y>333</y>
       <w>162</w>
       <h>54</h>
     </coordinates>
@@ -233,7 +233,7 @@ has a</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>234</x>
-      <y>180</y>
+      <y>378</y>
       <w>252</w>
       <h>99</h>
     </coordinates>
@@ -245,7 +245,7 @@ has a</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>144</x>
-      <y>603</y>
+      <y>801</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -256,7 +256,7 @@ has a</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>351</x>
-      <y>603</y>
+      <y>801</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -267,7 +267,7 @@ has a</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>18</x>
-      <y>603</y>
+      <y>801</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -278,7 +278,7 @@ has a</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>180</x>
-      <y>621</y>
+      <y>819</y>
       <w>81</w>
       <h>99</h>
     </coordinates>
@@ -289,7 +289,7 @@ has a</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>198</x>
-      <y>702</y>
+      <y>900</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -300,7 +300,7 @@ has a</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>189</x>
-      <y>270</y>
+      <y>468</y>
       <w>45</w>
       <h>63</h>
     </coordinates>
@@ -312,7 +312,7 @@ is a</panel_attributes>
     <id>UMLNote</id>
     <coordinates>
       <x>162</x>
-      <y>315</y>
+      <y>513</y>
       <w>81</w>
       <h>36</h>
     </coordinates>
@@ -324,7 +324,7 @@ All States</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>90</x>
-      <y>702</y>
+      <y>900</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -335,7 +335,7 @@ All States</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>126</x>
-      <y>621</y>
+      <y>819</y>
       <w>81</w>
       <h>99</h>
     </coordinates>
@@ -346,7 +346,7 @@ All States</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>54</x>
-      <y>765</y>
+      <y>963</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -357,7 +357,7 @@ All States</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>162</x>
-      <y>765</y>
+      <y>963</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -368,7 +368,7 @@ All States</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>270</x>
-      <y>765</y>
+      <y>963</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -379,7 +379,7 @@ All States</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>90</x>
-      <y>720</y>
+      <y>918</y>
       <w>171</w>
       <h>63</h>
     </coordinates>
@@ -390,7 +390,7 @@ All States</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>198</x>
-      <y>720</y>
+      <y>918</y>
       <w>63</w>
       <h>63</h>
     </coordinates>
@@ -401,7 +401,7 @@ All States</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>234</x>
-      <y>720</y>
+      <y>918</y>
       <w>99</w>
       <h>63</h>
     </coordinates>
@@ -412,7 +412,7 @@ All States</panel_attributes>
     <id>UMLObject</id>
     <coordinates>
       <x>0</x>
-      <y>558</y>
+      <y>756</y>
       <w>549</w>
       <h>243</h>
     </coordinates>
@@ -424,7 +424,7 @@ valign=top</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>351</x>
-      <y>666</y>
+      <y>864</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -435,7 +435,7 @@ valign=top</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>387</x>
-      <y>621</y>
+      <y>819</y>
       <w>27</w>
       <h>63</h>
     </coordinates>
@@ -446,19 +446,29 @@ valign=top</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1305</x>
-      <y>54</y>
+      <y>108</y>
       <w>252</w>
-      <h>126</h>
+      <h>270</h>
     </coordinates>
     <panel_attributes>/Attack/
 --
-+damage: int
-+impulse: Vector2
+#host: Actor
++Damage: int
++Impulse&lt;r&gt;: Vector2
+#time: Timer
+#cooldown: float
+#name: string
 --
-/#void GetRange()/
-/#void SetColliderActive()/
-#&lt;&lt;virtual&gt;&gt; &lt;&lt;async&gt;&gt; Task ActivateCollider()
++override void _Ready()
++override void _Process()
+#void FindHost()
++void StartAttack()
++void OnAttackAreaEntered(Area2D hitbox)
+#&lt;&lt;virtual&gt;&gt;void GetRange()
+#&lt;&lt;virtual&gt;&gt;void SetColliderActive()
+#&lt;&lt;virtual&gt;&gt; &lt;&lt;async&gt;&gt; void ActivateCollider()
 #&lt;&lt;virtual&gt;&gt; &lt;&lt;async&gt;&gt; Task WaitCooldown()
++&lt;&lt;virtual&gt;&gt;void Cancel()
 
 </panel_attributes>
     <additional_attributes/>
@@ -466,44 +476,42 @@ valign=top</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1107</x>
-      <y>297</y>
-      <w>207</w>
-      <h>108</h>
+      <x>1098</x>
+      <y>495</y>
+      <w>216</w>
+      <h>117</h>
     </coordinates>
     <panel_attributes>BasicAttack
 --
--range: CollisionPolygon2D
+-leftRanges[]: CollisionPolygon2D[]
+-rightRanges[]: CollisionPolygon2D[]
+-rightAttacking: bool
+-currentFrame: int
 --
-#override void GetRange()
-#override void SetColliderActive()
-#override Task ActivateCollider()
-#override Task WaitCooldown()</panel_attributes>
++void FinishAttack()
++void UpdateFrame()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1332</x>
-      <y>297</y>
+      <y>495</y>
       <w>207</w>
-      <h>108</h>
+      <h>45</h>
     </coordinates>
     <panel_attributes>ContactDamage
 --
 -range: CollisionShape2D
 --
-#override void GetRange()
-#override void SetColliderActive()
-#override Task ActivateCollider()
-#override Task WaitCooldown()</panel_attributes>
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1197</x>
-      <y>171</y>
+      <y>369</y>
       <w>252</w>
       <h>144</h>
     </coordinates>
@@ -515,7 +523,7 @@ is a</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1422</x>
-      <y>171</y>
+      <y>369</y>
       <w>45</w>
       <h>144</h>
     </coordinates>
@@ -527,25 +535,22 @@ is a</panel_attributes>
     <id>UMLClass</id>
     <coordinates>
       <x>1557</x>
-      <y>297</y>
+      <y>495</y>
       <w>207</w>
-      <h>108</h>
+      <h>63</h>
     </coordinates>
     <panel_attributes>BulletSpawn
 --
 -bulletPrefab: Scene 
 --
-#override void GetRange()
-#override void SetColliderActive()
-#override Task ActivateCollider()
-#override Task WaitCooldown()</panel_attributes>
++override void _Ready()</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1422</x>
-      <y>171</y>
+      <y>369</y>
       <w>252</w>
       <h>144</h>
     </coordinates>
@@ -557,31 +562,31 @@ is a</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1197</x>
-      <y>396</y>
+      <y>603</y>
       <w>144</w>
-      <h>117</h>
+      <h>234</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 has a</panel_attributes>
-    <additional_attributes>140.0;110.0;140.0;60.0;10.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>140.0;240.0;140.0;140.0;10.0;140.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>1314</x>
-      <y>396</y>
+      <y>531</y>
       <w>135</w>
-      <h>117</h>
+      <h>306</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 has a</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;60.0;130.0;60.0;130.0;10.0</additional_attributes>
+    <additional_attributes>10.0;320.0;10.0;220.0;130.0;220.0;130.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1611</x>
-      <y>495</y>
+      <y>819</y>
       <w>90</w>
       <h>27</h>
     </coordinates>
@@ -594,7 +599,7 @@ layer=1</panel_attributes>
     <id>UMLObject</id>
     <coordinates>
       <x>693</x>
-      <y>108</y>
+      <y>306</y>
       <w>279</w>
       <h>153</h>
     </coordinates>
@@ -607,23 +612,23 @@ bg=light_gray</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>1647</x>
-      <y>396</y>
+      <y>549</y>
       <w>54</w>
-      <h>117</h>
+      <h>288</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 has a</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;300.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>1287</x>
-      <y>495</y>
+      <y>819</y>
       <w>81</w>
       <h>27</h>
     </coordinates>
-    <panel_attributes>Colliders
+    <panel_attributes>Collider
 bg=white
 layer=1</panel_attributes>
     <additional_attributes/>
@@ -631,8 +636,8 @@ layer=1</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1791</x>
-      <y>270</y>
+      <x>1764</x>
+      <y>342</y>
       <w>126</w>
       <h>63</h>
     </coordinates>
@@ -644,8 +649,8 @@ fetched</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1791</x>
-      <y>351</y>
+      <x>1908</x>
+      <y>342</y>
       <w>126</w>
       <h>63</h>
     </coordinates>
@@ -653,5 +658,41 @@ fetched</panel_attributes>
 is where we setup
 bullet spawning</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1386</x>
+      <y>27</y>
+      <w>90</w>
+      <h>27</h>
+    </coordinates>
+    <panel_attributes>Area2D</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLObject</id>
+    <coordinates>
+      <x>1305</x>
+      <y>0</y>
+      <w>252</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Godot Classes
+valign=top
+bg=light_gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1422</x>
+      <y>45</y>
+      <w>45</w>
+      <h>81</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+is a</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
 </diagram>

@@ -43,15 +43,13 @@ public class BasicAttack : Attack
 	public override void StartAttack(string prevAnim = "")
 	{
 		//GD.Print("StartAttack? ", !waiting, " ", host.CurrentAttack < 0, " ", time.IsStopped());
-		//If you're not waiting for the attack to finish and the Time is stopped
-		if(!waiting && host.CurrentAttack < 0 && time.IsStopped())
+		//If you're not waiting for any attack to finish(waiting is this one, current is others) and the Time is stopped
+		if(host.CurrentAttack < 0 && time.IsStopped())
 		{
 			previousAnim = prevAnim;
-			//Start waiting for the attack to finish
-			waiting = true;
 
 			//Allows a single entrance into the co-routine
-			active = true;
+			SetProcess(true);
 
 			rightAttack = host.FacingRight;
 		}
@@ -73,7 +71,6 @@ public class BasicAttack : Attack
 			temp += "Left";
 		host.PlayAnimation(temp);
 		
-		attacking = true;
 		host.CurrentAttack = attackNumber;
 		
 		host.PlaySound("Attack");
