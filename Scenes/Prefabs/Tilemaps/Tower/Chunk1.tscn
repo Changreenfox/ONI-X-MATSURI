@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Taiko.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/HealthPowerUp.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerUp.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Prefabs/Platform.tscn" type="PackedScene" id=7]
 
 [node name="Template" type="Node2D"]
 
@@ -24,7 +25,7 @@ cell_quadrant_size = 128
 collision_layer = 64
 collision_mask = 7
 format = 1
-tile_data = PoolIntArray( 1, 536870915, 0, 5, 536870915, 0, 65545, 536870914, 0, 65546, 536870916, 0, 131082, 536870916, 0, 196618, 536870916, 0, 262154, 536870915, 0, 458753, 536870913, 0, 458763, 536870915, 0 )
+tile_data = PoolIntArray( 1, 536870915, 0, 5, 536870915, 0, 65545, 536870914, 0, 65546, 536870916, 0, 131082, 536870916, 0, 196618, 536870916, 0, 262154, 536870915, 0, 458753, 536870913, 0 )
 
 [node name="Lanterns" type="TileMap" parent="."]
 position = Vector2( 0, 75 )
@@ -47,6 +48,11 @@ position = Vector2( 199, 850 )
 
 [node name="HealthPowerUp" parent="." instance=ExtResource( 5 )]
 position = Vector2( 1336, 115 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 1530, 1013 )
+
+[node name="Platform" parent="Node2D" instance=ExtResource( 7 )]
 
 [node name="JumpPowerUp" parent="." instance=ExtResource( 6 )]
 position = Vector2( 784, 757 )

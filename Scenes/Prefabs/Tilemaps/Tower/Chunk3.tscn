@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Taiko.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Prefabs/Platform.tscn" type="PackedScene" id=4]
 
 [node name="Template" type="Node2D"]
 
@@ -14,7 +15,7 @@ cell_quadrant_size = 128
 collision_layer = 64
 collision_mask = 7
 format = 1
-tile_data = PoolIntArray( 8, 1, 0, 262147, 536870915, 0, 262154, 3, 0, 393221, 536870915, 0, 393224, 3, 0, 458753, 536870915, 0, 458764, 536870915, 0 )
+tile_data = PoolIntArray( 8, 1, 0, 262147, 536870915, 0, 262154, 3, 0, 393221, 536870915, 0, 393224, 3, 0 )
 
 [node name="Scaffolding" type="TileMap" parent="."]
 position = Vector2( 0, 56 )
@@ -39,3 +40,12 @@ position = Vector2( 511, 506 )
 
 [node name="OniBrute" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1188, -34 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 0, 56 )
+
+[node name="Platform" parent="Node2D" instance=ExtResource( 4 )]
+position = Vector2( 301, 968 )
+
+[node name="Platform2" parent="Node2D" instance=ExtResource( 4 )]
+position = Vector2( 1653, 959 )

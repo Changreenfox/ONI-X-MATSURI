@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Prefabs/Tilemaps/Tower/Tower_TileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/Prefabs/OniBrute.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/AttackPowerUp.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Prefabs/PowerUps/JumpPowerUp.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Prefabs/Platform.tscn" type="PackedScene" id=5]
 
 [node name="Template" type="Node2D"]
 
@@ -15,7 +16,7 @@ cell_quadrant_size = 128
 collision_layer = 64
 collision_mask = 7
 format = 1
-tile_data = PoolIntArray( 2, 3, 0, 10, 2, 0, 131080, 3, 0, 262145, 1, 0, 458753, 3, 0, 458757, 2, 0, 458762, 2, 0 )
+tile_data = PoolIntArray( 2, 3, 0, 10, 2, 0, 131080, 3, 0, 262145, 1, 0, 458757, 2, 0, 458762, 2, 0 )
 
 [node name="Scaffolding" type="TileMap" parent="."]
 position = Vector2( 0, 56 )
@@ -43,3 +44,6 @@ position = Vector2( 1140, 240 )
 
 [node name="OniBrute" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1361, 844 )
+
+[node name="Platform" parent="." instance=ExtResource( 5 )]
+position = Vector2( 300, 1015 )

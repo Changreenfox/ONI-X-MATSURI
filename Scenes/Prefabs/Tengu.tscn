@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scripts/Actors/Enemies/Tengu.cs" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemy/tengu_spritesheet.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/Prefabs/BulletSpawner.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Shaders/FlashColor.material" type="Material" id=4]
 [ext_resource path="res://Scenes/Prefabs/TenguBullet.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sounds/enemy/enemy_oni_damage.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/sounds/enemy/Oni_Thrower/Oni_Thrower_Attack.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/sprites/enemy/emotes.png" type="Texture" id=8]
 
 [sub_resource type="Animation" id=29]
@@ -88,6 +90,30 @@ tracks/2/keys = {
 "update": 0,
 "values": [ Vector2( 7, 7 ), Vector2( 6, 8 ), Vector2( 7, 7 ) ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sounds/Throw:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sounds/Wing:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, true ]
+}
 
 [sub_resource type="Animation" id=32]
 resource_name = "AttackRight"
@@ -129,6 +155,30 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 0.420448, 3.4822, 1 ),
 "update": 0,
 "values": [ Vector2( 7, 7 ), Vector2( 6, 8 ), Vector2( 7, 7 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sounds/Throw:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sounds/Wing:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, true, true ]
 }
 
 [sub_resource type="Animation" id=24]
@@ -262,7 +312,6 @@ material = ExtResource( 4 )
 scale = Vector2( 7, 7 )
 z_index = 1
 texture = ExtResource( 2 )
-offset = Vector2( 0, -3.5 )
 hframes = 8
 vframes = 7
 frame = 8
@@ -316,6 +365,12 @@ area_mask = 0
 [node name="Death" type="AudioStreamPlayer2D" parent="Sounds"]
 bus = "Sounds"
 area_mask = 0
+
+[node name="Throw" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource( 6 )
+
+[node name="Wing" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource( 7 )
 
 [node name="Alert" type="Area2D" parent="."]
 collision_layer = 0
